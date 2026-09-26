@@ -1,157 +1,179 @@
 {
-  "last_updated": "26 Sep 2026, 07:43 PM IST",
+  "last_updated": "26 Sep 2026, 08:49 PM IST",
+  "index_name": "NIFTY FIN SERVICE",
+  "index_ltp": 25394.5,
+  "index_chg": 132.1,
   "stocks": [
-    {
-      "symbol": "AXISBANK",
-      "ltp": 1222.4,
-      "pct_chg": 0.19,
-      "hyper_flow": 3.4,
-      "z_score": 2.4,
-      "momentum": -5.43
-    },
-    {
-      "symbol": "KOTAKBANK",
-      "ltp": 404.0,
-      "pct_chg": 0.49,
-      "hyper_flow": 2.5,
-      "z_score": 1.5,
-      "momentum": -7.77
-    },
-    {
-      "symbol": "LT",
-      "ltp": 3876.2,
-      "pct_chg": 0.18,
-      "hyper_flow": 2.38,
-      "z_score": 1.38,
-      "momentum": -2.99
-    },
-    {
-      "symbol": "TATASTEEL",
-      "ltp": 187.97,
-      "pct_chg": -0.18,
-      "hyper_flow": 1.67,
-      "z_score": 0.67,
-      "momentum": 1.78
-    },
     {
       "symbol": "RELIANCE",
       "ltp": 1226.0,
       "pct_chg": 0.25,
-      "hyper_flow": 1.62,
-      "z_score": 0.62,
-      "momentum": -7.26
-    },
-    {
-      "symbol": "TITAN",
-      "ltp": 4884.0,
-      "pct_chg": 0.45,
-      "hyper_flow": 1.2,
-      "z_score": 0.2,
-      "momentum": -2.01
+      "rvat": 2.03,
+      "vwap_gap": -3.57,
+      "futures_oi": 1.65,
+      "oi_behavior": "Long buildup"
     },
     {
       "symbol": "TCS",
       "ltp": 2082.0,
       "pct_chg": 0.05,
-      "hyper_flow": 1.0,
-      "z_score": -0.77,
-      "momentum": -0.83
+      "rvat": 0.14,
+      "vwap_gap": -6.16,
+      "futures_oi": -1.63,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "HDFCBANK",
       "ltp": 735.6,
       "pct_chg": 0.03,
-      "hyper_flow": 1.0,
-      "z_score": -1.07,
-      "momentum": 0.18
+      "rvat": 0.07,
+      "vwap_gap": 2.56,
+      "futures_oi": -2.32,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "INFY",
       "ltp": 1000.2,
       "pct_chg": 0.14,
-      "hyper_flow": 1.0,
-      "z_score": -0.52,
-      "momentum": -1.51
+      "rvat": 0.21,
+      "vwap_gap": -7.04,
+      "futures_oi": -0.99,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "ICICIBANK",
       "ltp": 1326.8,
       "pct_chg": -0.07,
-      "hyper_flow": 1.0,
-      "z_score": -0.97,
-      "momentum": -0.71
+      "rvat": 0.15,
+      "vwap_gap": -4.67,
+      "futures_oi": -2.22,
+      "oi_behavior": "Long unwinding"
     },
     {
       "symbol": "SBIN",
       "ltp": 983.0,
       "pct_chg": 0.12,
-      "hyper_flow": 1.0,
-      "z_score": -0.86,
-      "momentum": -0.19
+      "rvat": 0.08,
+      "vwap_gap": -2.39,
+      "futures_oi": -1.75,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "BHARTIARTL",
       "ltp": 1785.4,
       "pct_chg": -0.2,
-      "hyper_flow": 1.0,
-      "z_score": -0.56,
-      "momentum": -0.6
+      "rvat": 0.17,
+      "vwap_gap": -3.48,
+      "futures_oi": -1.46,
+      "oi_behavior": "Long unwinding"
     },
     {
       "symbol": "ITC",
       "ltp": 269.0,
       "pct_chg": 0.06,
-      "hyper_flow": 1.0,
-      "z_score": -0.75,
-      "momentum": 0.18
+      "rvat": 0.12,
+      "vwap_gap": 1.44,
+      "futures_oi": -1.59,
+      "oi_behavior": "Short covering"
+    },
+    {
+      "symbol": "LT",
+      "ltp": 3876.2,
+      "pct_chg": 0.18,
+      "rvat": 2.0,
+      "vwap_gap": -1.5,
+      "futures_oi": 3.24,
+      "oi_behavior": "Long buildup"
     },
     {
       "symbol": "HINDALCO",
       "ltp": 977.0,
       "pct_chg": 0.03,
-      "hyper_flow": 1.0,
-      "z_score": -0.84,
-      "momentum": -0.27
+      "rvat": 0.12,
+      "vwap_gap": -2.28,
+      "futures_oi": -1.81,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "COALINDIA",
       "ltp": 426.1,
       "pct_chg": 0.24,
-      "hyper_flow": 1.0,
-      "z_score": -0.4,
-      "momentum": 0.18
+      "rvat": 0.08,
+      "vwap_gap": 2.39,
+      "futures_oi": -0.61,
+      "oi_behavior": "Short covering"
     },
     {
       "symbol": "WIPRO",
       "ltp": 164.02,
       "pct_chg": -0.07,
-      "hyper_flow": 1.0,
-      "z_score": -0.88,
-      "momentum": -0.38
+      "rvat": 0.09,
+      "vwap_gap": -4.08,
+      "futures_oi": -2.0,
+      "oi_behavior": "Long unwinding"
     },
     {
       "symbol": "BAJFINANCE",
       "ltp": 996.9,
       "pct_chg": -0.01,
-      "hyper_flow": 1.0,
-      "z_score": -0.93,
-      "momentum": -0.37
+      "rvat": 0.1,
+      "vwap_gap": -3.6,
+      "futures_oi": -2.06,
+      "oi_behavior": "Long unwinding"
     },
     {
       "symbol": "MARUTI",
       "ltp": 12065.0,
       "pct_chg": -0.12,
-      "hyper_flow": 1.0,
-      "z_score": -0.96,
-      "momentum": -0.18
+      "rvat": 0.04,
+      "vwap_gap": -4.54,
+      "futures_oi": -2.24,
+      "oi_behavior": "Long unwinding"
+    },
+    {
+      "symbol": "AXISBANK",
+      "ltp": 1222.4,
+      "pct_chg": 0.19,
+      "rvat": 3.18,
+      "vwap_gap": -1.71,
+      "futures_oi": 5.49,
+      "oi_behavior": "Long buildup"
     },
     {
       "symbol": "SUNPHARMA",
       "ltp": 1852.2,
       "pct_chg": 0.02,
-      "hyper_flow": 1.0,
-      "z_score": -0.8,
-      "momentum": -0.15
+      "rvat": 0.09,
+      "vwap_gap": -1.65,
+      "futures_oi": -1.74,
+      "oi_behavior": "Short covering"
+    },
+    {
+      "symbol": "TITAN",
+      "ltp": 4884.0,
+      "pct_chg": 0.45,
+      "rvat": 1.19,
+      "vwap_gap": -1.69,
+      "futures_oi": 0.94,
+      "oi_behavior": "Long buildup"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 187.97,
+      "pct_chg": -0.18,
+      "rvat": 1.67,
+      "vwap_gap": 1.06,
+      "futures_oi": 1.28,
+      "oi_behavior": "Short buildup"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 404.0,
+      "pct_chg": 0.49,
+      "rvat": 2.36,
+      "vwap_gap": -3.3,
+      "futures_oi": 3.84,
+      "oi_behavior": "Long buildup"
     }
   ]
 }
