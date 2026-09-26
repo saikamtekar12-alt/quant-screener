@@ -3,30 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener - Official Platform</title>
+  <title>Quant Screener - Derivatives & Tape Matrix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #030816; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; color: #f8fafc; }
-    .card-navy { background-color: #08152e; border: 1px solid #13274f; }
-    .header-table { background-color: #0b1d42; border-bottom: 2px solid #19356d; }
-    .sector-badge { background-color: #062b3b; color: #38bdf8; border: 1px solid #0284c7; }
+    body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
+    .card-navy { background-color: #07132a; border: 1px solid #13274f; }
+    .table-head { background-color: #0a1b3d; border-bottom: 2px solid #19356d; }
+    
+    /* Filled Teal/Green Sector Capsule from Screenshot */
+    .sector-pill {
+      display: inline-flex;
+      align-items: center;
+      background-color: #042a38;
+      border: 1px solid #065975;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+    .sector-name {
+      padding: 2px 7px;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .sector-val {
+      background-color: #021a24;
+      padding: 2px 7px;
+      font-weight: 700;
+      color: #34d399;
+      border-left: 1px solid #065975;
+    }
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
   </style>
 </head>
 <body class="p-2 md:p-6 pb-24 text-xs">
-  <div class="max-w-7xl mx-auto space-y-4">
+  <div class="max-w-7xl mx-auto space-y-5">
 
-    <!-- 1. Top Real-Time Indices Marquee Ribbon -->
-    <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap border-b border-blue-950 pb-2 text-[11px]">
+    <!-- 1. Top Real-Time Indices Ribbon -->
+    <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap border-b border-blue-950 pb-2.5 text-[11px]">
       <div><span class="text-slate-400">NIFTY 50</span> <span id="n50-ltp" class="font-bold">23,387.9</span> <span id="n50-chg" class="tag-green font-bold">▲ 58.90 (0.25%)</span></div>
       <div><span class="text-slate-400">NIFTY BANK</span> <span id="nbk-ltp" class="font-bold">56,483.65</span> <span id="nbk-chg" class="tag-green font-bold">▲ 268.10 (0.48%)</span></div>
       <div><span class="text-slate-400">NIFTY FIN SERVICE</span> <span id="nfin-ltp" class="font-bold">25,546.35</span> <span id="nfin-chg" class="tag-green font-bold">▲ 128.40 (0.51%)</span></div>
       <div><span class="text-slate-400">NIFTY IT</span> <span id="nit-ltp" class="font-bold">28,437.45</span> <span id="nit-chg" class="tag-red font-bold">▼ 144.65 (-0.51%)</span></div>
     </div>
 
-    <!-- 2. Macro Metric Tiles (Screenshot 1 & 2) -->
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-2 pt-2">
+    <!-- 2. Macro Metric Tiles -->
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">NIFTY 50 SPOT</div>
         <div class="text-lg font-bold text-white mt-1" id="tile-spot">23,387.9</div>
@@ -46,7 +68,7 @@
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">TOP SECTOR</div>
-        <div class="text-base font-bold text-cyan-300 mt-1" id="tile-top-sec">Metal</div>
+        <div class="text-base font-bold text-cyan-300 mt-1" id="tile-top-sec">Capital Markets</div>
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">WEAKEST SECTOR</div>
@@ -55,136 +77,105 @@
     </div>
 
     <!-- 3. Market Summary Strip -->
-    <div class="card-navy px-4 py-2 rounded flex flex-wrap items-center justify-between gap-2 text-[11px]">
+    <div class="card-navy px-4 py-2.5 rounded flex flex-wrap items-center justify-between gap-2 text-[11px]">
       <div class="flex items-center space-x-4">
         <div><span class="text-slate-400 uppercase text-[9px]">INDIA VIX:</span> <b id="vix-val" class="text-amber-300">10.48</b></div>
         <div><span class="text-slate-400 uppercase text-[9px]">TOP BULLISH:</span> <b id="sum-bull" class="text-emerald-400">MOTILALOFS</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">TOP BEARISH:</span> <b id="sum-bear" class="text-rose-400">ATHERENERG</b></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">TOP BEARISH:</span> <b id="sum-bear" class="text-rose-400">OFSS</b></div>
       </div>
       <div class="text-slate-500 text-[10px]">Sync: <span id="sync-time" class="text-slate-300">Syncing...</span></div>
     </div>
 
-    <!-- 4. Four Candidate Engines Grid (2x2 Matrix from Video) -->
-    <div class="text-[11px] text-slate-400 font-semibold tracking-wider uppercase mt-4">
-      CANDIDATE ENGINES · CLICK A TABLE TITLE TO FOCUS IT
+    <!-- Active Indicator Bar -->
+    <div class="flex items-center justify-between bg-[#081736] px-3 py-2 rounded border border-blue-900/60 text-xs">
+      <div class="flex items-center space-x-2">
+        <span class="bg-amber-400 text-slate-950 px-2 py-0.5 font-bold rounded text-[10px]">Future OI</span>
+        <span class="text-slate-300">Engine: <b class="text-cyan-300">Derivatives + Tape Flow</b></span>
+      </div>
+      <span class="text-[10px] text-slate-400">ready through <span id="ready-date">2026-09-26</span></span>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-      <!-- Sonic Pulse Model BULLISH -->
-      <div class="card-navy rounded overflow-hidden">
-        <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-          <span class="font-bold text-white flex items-center gap-1">Sonic Pulse Model <span class="tag-green font-bold">BULLISH ↗</span></span>
-          <span class="text-[10px] text-slate-400">ready through <span class="ready-date">2026-09-26</span></span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left whitespace-nowrap">
-            <thead class="header-table text-[10px] text-slate-400 uppercase">
-              <tr>
-                <th class="p-2 text-center w-8">ADD</th>
-                <th class="p-2">SYMBOL</th>
-                <th class="p-2">SECTOR</th>
-                <th class="p-2 text-center">LISTED AT</th>
-                <th class="p-2 text-right">% CHANGE</th>
-                <th class="p-2 text-right">HYPERFLOW™</th>
-              </tr>
-            </thead>
-            <tbody id="sonic-bull-body" class="divide-y divide-blue-950/60"></tbody>
-          </table>
-        </div>
+    <!-- SECTION 1: BULLISH MOMENTUM MATRIX (ALL ORIGINAL COLUMNS) -->
+    <div class="space-y-2">
+      <div class="flex items-center space-x-2 px-1">
+        <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
+        <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
       </div>
 
-      <!-- Sonic Pulse Model BEARISH -->
-      <div class="card-navy rounded overflow-hidden">
-        <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-          <span class="font-bold text-white flex items-center gap-1">Sonic Pulse Model <span class="tag-red font-bold">BEARISH ↘</span></span>
-          <span class="text-[10px] text-slate-400">ready through <span class="ready-date">2026-09-26</span></span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left whitespace-nowrap">
-            <thead class="header-table text-[10px] text-slate-400 uppercase">
-              <tr>
-                <th class="p-2 text-center w-8">ADD</th>
-                <th class="p-2">SYMBOL</th>
-                <th class="p-2">SECTOR</th>
-                <th class="p-2 text-center">LISTED AT</th>
-                <th class="p-2 text-right">% CHANGE</th>
-                <th class="p-2 text-right">HYPERFLOW™</th>
-              </tr>
-            </thead>
-            <tbody id="sonic-bear-body" class="divide-y divide-blue-950/60"></tbody>
-          </table>
-        </div>
+      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+        <table class="w-full text-left whitespace-nowrap text-xs">
+          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
+              <th class="py-2.5 px-3 text-right">RVAT</th>
+              <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
+              <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
+              <th class="py-2.5 px-3 text-left pl-6">OI BEHAVIOUR</th>
+            </tr>
+          </thead>
+          <tbody id="bullish-table" class="divide-y divide-blue-950/60"></tbody>
+        </table>
       </div>
-
-      <!-- Titan Flow Model BULLISH -->
-      <div class="card-navy rounded overflow-hidden">
-        <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-          <span class="font-bold text-white flex items-center gap-1">Titan Flow Model <span class="tag-green font-bold">BULLISH ↗</span></span>
-          <span class="text-[10px] text-slate-400">ready through <span class="ready-date">2026-09-26</span></span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left whitespace-nowrap">
-            <thead class="header-table text-[10px] text-slate-400 uppercase">
-              <tr>
-                <th class="p-2 text-center w-8">ADD</th>
-                <th class="p-2">SYMBOL</th>
-                <th class="p-2">SECTOR</th>
-                <th class="p-2 text-center">LISTED AT</th>
-                <th class="p-2 text-right">% CHANGE</th>
-                <th class="p-2 text-right">HYPERFLOW™</th>
-              </tr>
-            </thead>
-            <tbody id="titan-bull-body" class="divide-y divide-blue-950/60"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Titan Flow Model BEARISH -->
-      <div class="card-navy rounded overflow-hidden">
-        <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-          <span class="font-bold text-white flex items-center gap-1">Titan Flow Model <span class="tag-red font-bold">BEARISH ↘</span></span>
-          <span class="text-[10px] text-slate-400">ready through <span class="ready-date">2026-09-26</span></span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left whitespace-nowrap">
-            <thead class="header-table text-[10px] text-slate-400 uppercase">
-              <tr>
-                <th class="p-2 text-center w-8">ADD</th>
-                <th class="p-2">SYMBOL</th>
-                <th class="p-2">SECTOR</th>
-                <th class="p-2 text-center">LISTED AT</th>
-                <th class="p-2 text-right">% CHANGE</th>
-                <th class="p-2 text-right">HYPERFLOW™</th>
-              </tr>
-            </thead>
-            <tbody id="titan-bear-body" class="divide-y divide-blue-950/60"></tbody>
-          </table>
-        </div>
-      </div>
-
     </div>
 
-    <!-- 5. Progressive Candidate Funnel / Execution Stage (Screenshots 3, 4, 5) -->
-    <div class="mt-8 border border-amber-500/40 rounded bg-[#07132a] p-4 space-y-4">
+    <!-- SECTION 2: BEARISH MOMENTUM MATRIX (ALL ORIGINAL COLUMNS) -->
+    <div class="space-y-2 pt-2">
+      <div class="flex items-center space-x-2 px-1">
+        <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
+        <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
+      </div>
+
+      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+        <table class="w-full text-left whitespace-nowrap text-xs">
+          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
+              <th class="py-2.5 px-3 text-right">RVAT</th>
+              <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
+              <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
+              <th class="py-2.5 px-3 text-left pl-6">OI BEHAVIOUR</th>
+            </tr>
+          </thead>
+          <tbody id="bearish-table" class="divide-y divide-blue-950/60"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 3: EXACT RULE STATUS VALIDATION BOARD (Matching Screenshot) -->
+    <div class="mt-6 border border-blue-900/60 rounded bg-[#061229] p-4">
+      <div class="flex items-center justify-between mb-3 border-b border-blue-900/60 pb-2">
+        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Multi-Condition Rule Matrix</h3>
+        <span class="text-[10px] text-emerald-400 font-bold">STATUS CONFIRMATION ENGINE</span>
+      </div>
+      <div id="rule-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs"></div>
+    </div>
+
+    <!-- SECTION 4: PROGRESSIVE CANDIDATE FUNNEL & 1 FOCUS STOCK -->
+    <div class="border border-amber-500/40 rounded bg-[#07132a] p-4 space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-blue-900 pb-2">
         <div>
           <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">PHASE 05 / 06 FOCUS</span>
-          <h3 class="text-base font-bold text-white">PROGRESSIVE CANDIDATE FUNNEL</h3>
+          <h3 class="text-sm md:text-base font-bold text-white">PROGRESSIVE CANDIDATE FUNNEL</h3>
         </div>
-        <span class="text-slate-400 text-xs">Systematically eliminating market noise at every stage</span>
+        <span class="text-slate-400 text-xs">Systematically eliminating market noise</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Stock Selection Checkbox Rules -->
-        <div class="space-y-2 card-navy p-3 rounded">
+        <div class="space-y-2 card-navy p-3 rounded text-xs">
           <div class="text-[11px] font-bold text-slate-300">APPLY STOCK SELECTION STRATEGY</div>
           <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>HyperFlow™ momentum confirmation</span></div>
           <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Sector ranking relative strength</span></div>
           <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Defined intraday risk-to-reward ratio</span></div>
         </div>
 
-        <!-- 1 Stock Final Focus Action -->
         <div class="border border-amber-500 rounded p-4 text-center bg-[#0a1836] flex flex-col justify-center items-center">
           <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">PHASE 06 / FOCUS (1 STOCK)</span>
           <div class="text-2xl font-black text-amber-400 mt-1" id="focus-sym">MOTILALOFS</div>
@@ -199,20 +190,21 @@
   </div>
 
   <script>
-    async function loadOfficialPlatform() {
+    async function renderApp() {
       try {
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        // 1. Tickers & Top Metric Tiles
         document.getElementById('sync-time').textContent = d.sync_time;
-        document.querySelectorAll('.ready-date').forEach(el => el.textContent = d.ready_date);
+        document.getElementById('ready-date').textContent = d.ready_date;
 
+        // Top Ribbon
         document.getElementById('n50-ltp').textContent = d.indices.nifty50.ltp.toLocaleString();
         document.getElementById('nbk-ltp').textContent = d.indices.banknifty.ltp.toLocaleString();
         document.getElementById('nfin-ltp').textContent = d.indices.finnifty.ltp.toLocaleString();
         document.getElementById('nit-ltp').textContent = d.indices.niftyit.ltp.toLocaleString();
 
+        // Cards
         document.getElementById('tile-spot').textContent = d.indices.nifty50.ltp.toLocaleString();
         document.getElementById('tile-spot-chg').textContent = `${d.indices.nifty50.pct >= 0 ? '▲' : '▼'} ${d.indices.nifty50.pct}%`;
         document.getElementById('tile-adv').textContent = d.market_cards.advances;
@@ -221,43 +213,72 @@
         document.getElementById('tile-top-sec').textContent = d.market_cards.top_sector;
         document.getElementById('tile-weak-sec').textContent = d.market_cards.weak_sector;
 
-        // Market Summary Strip
-        document.getElementById('vix-val').textContent = d.indices.vix;
-        document.getElementById('sum-bull').textContent = d.market_summary.top_bullish;
-        document.getElementById('sum-bear').textContent = d.market_summary.top_bearish;
+        // Summary
+        document.getElementById('vix-val').textContent = d.indices.vix.val;
+        document.getElementById('sum-bull').textContent = d.bullish_stocks[0]?.symbol || "N/A";
+        document.getElementById('sum-bear').textContent = d.bearish_stocks[0]?.symbol || "N/A";
 
         // Focus 1 Stock Card
         document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
-        document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow} (${d.focus_stock.vol_mult})`;
+        document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow}`;
 
-        // Engine Row Render Function
+        // Row Renderer Function with Filled Teal/Green Capsule Pill
         const renderRow = (s) => `
-          <tr class="hover:bg-blue-900/30 transition-colors border-b border-blue-950/40">
-            <td class="p-2 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
-            <td class="p-2 font-bold text-white">${s.symbol}</td>
-            <td class="p-2">
-              <span class="sector-badge px-1.5 py-0.5 rounded text-[9px] font-semibold">${s.sector}</span>
+          <tr class="hover:bg-blue-900/30 transition-colors">
+            <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
+            <td class="py-2.5 px-3 font-bold text-white">${s.symbol}</td>
+            <td class="py-2.5 px-3">
+              <span class="sector-pill">
+                <span class="sector-name">${s.sector}</span>
+                <span class="sector-val ${s.sector_pct >= 0 ? 'tag-green' : 'tag-red'}">${s.sector_pct >= 0 ? '+' : ''}${s.sector_pct}%</span>
+              </span>
             </td>
-            <td class="p-2 text-center text-slate-400">${s.listed_at}</td>
-            <td class="p-2 text-right font-semibold ${s.pct_chg >= 0 ? 'tag-green' : 'tag-red'}">
-              ${s.pct_chg >= 0 ? '+' : ''}${s.pct_chg}%
+            <td class="py-2.5 px-3 text-center text-slate-400 font-medium">${s.listed_at}</td>
+            <td class="py-2.5 px-3 text-right font-medium text-slate-200">₹${s.ltp.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-bold ${s.rvat >= 1.5 ? 'text-amber-300' : 'text-slate-300'}">${s.rvat.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">
+              ${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%
             </td>
-            <td class="p-2 text-right font-bold text-amber-400">
-              ${s.hyperflow} <span class="text-[10px] text-slate-400 font-normal ml-1">${s.vol_mult}</span>
+            <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">
+              ${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%
             </td>
+            <td class="py-2.5 px-3 text-left pl-6 font-semibold text-blue-200">${s.oi_behavior}</td>
           </tr>
         `;
 
-        document.getElementById('sonic-bull-body').innerHTML = d.engines.sonic_bullish.map(renderRow).join('');
-        document.getElementById('sonic-bear-body').innerHTML = d.engines.sonic_bearish.map(renderRow).join('');
-        document.getElementById('titan-bull-body').innerHTML = d.engines.titan_bullish.map(renderRow).join('');
-        document.getElementById('titan-bear-body').innerHTML = d.engines.titan_bearish.map(renderRow).join('');
+        document.getElementById('bullish-table').innerHTML = d.bullish_stocks.map(renderRow).join('');
+        document.getElementById('bearish-table').innerHTML = d.bearish_stocks.map(renderRow).join('');
+
+        // Exact Rule Matrix from Screenshot (Breakout, Volume, PDH, Range, Final)
+        const topSet = [...d.bullish_stocks, ...d.bearish_stocks].slice(0, 4);
+        document.getElementById('rule-cards').innerHTML = topSet.map(c => `
+          <div class="card-navy rounded border border-blue-900/60 overflow-hidden">
+            <div class="p-2 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
+              <span class="font-bold text-white">${c.symbol}</span>
+              <span class="text-[10px] text-slate-400">${c.sector}</span>
+            </div>
+            <table class="w-full text-[11px] divide-y divide-blue-950/60">
+              <tr class="bg-[#0b1d44] text-[10px] uppercase text-slate-400 font-semibold">
+                <th class="py-1 px-3">RULE</th>
+                <th class="py-1 px-3 text-right">STATUS</th>
+              </tr>
+              <tr><td class="py-1 px-3 text-slate-400">Breakout</td><td class="py-1 px-3 text-right font-bold ${c.rules.breakout === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.breakout}</td></tr>
+              <tr><td class="py-1 px-3 text-slate-400">Volume</td><td class="py-1 px-3 text-right font-bold ${c.rules.volume === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.volume}</td></tr>
+              <tr><td class="py-1 px-3 text-slate-400">PDH</td><td class="py-1 px-3 text-right font-bold ${c.rules.pdh === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.pdh}</td></tr>
+              <tr><td class="py-1 px-3 text-slate-400">Range</td><td class="py-1 px-3 text-right font-bold ${c.rules.range === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.range}</td></tr>
+              <tr class="bg-emerald-950/30 border-t border-emerald-900/60">
+                <td class="py-1.5 px-3 font-bold text-white">Final</td>
+                <td class="py-1.5 px-3 text-right font-black ${c.rules.final === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.final}</td>
+              </tr>
+            </table>
+          </div>
+        `).join('');
 
       } catch (err) {
-        console.error("Screen load error:", err);
+        console.error(err);
       }
     }
-    loadOfficialPlatform();
+    renderApp();
   </script>
 </body>
 </html>
