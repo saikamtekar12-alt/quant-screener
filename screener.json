@@ -1,0 +1,157 @@
+{
+  "last_updated": "26 Sep 2026, 13:33 UTC",
+  "stocks": [
+    {
+      "symbol": "AXISBANK",
+      "ltp": 1222.4,
+      "pct_chg": 0.19,
+      "hyper_flow": 3.4,
+      "z_score": 2.4,
+      "momentum": -5.43
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 404.0,
+      "pct_chg": 0.49,
+      "hyper_flow": 2.5,
+      "z_score": 1.5,
+      "momentum": -7.77
+    },
+    {
+      "symbol": "LT",
+      "ltp": 3876.2,
+      "pct_chg": 0.18,
+      "hyper_flow": 2.38,
+      "z_score": 1.38,
+      "momentum": -2.99
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 187.97,
+      "pct_chg": -0.18,
+      "hyper_flow": 1.67,
+      "z_score": 0.67,
+      "momentum": 1.78
+    },
+    {
+      "symbol": "RELIANCE",
+      "ltp": 1226.0,
+      "pct_chg": 0.25,
+      "hyper_flow": 1.62,
+      "z_score": 0.62,
+      "momentum": -7.26
+    },
+    {
+      "symbol": "TITAN",
+      "ltp": 4884.0,
+      "pct_chg": 0.45,
+      "hyper_flow": 1.2,
+      "z_score": 0.2,
+      "momentum": -2.01
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2082.0,
+      "pct_chg": 0.05,
+      "hyper_flow": 1.0,
+      "z_score": -0.77,
+      "momentum": -0.83
+    },
+    {
+      "symbol": "HDFCBANK",
+      "ltp": 735.6,
+      "pct_chg": 0.03,
+      "hyper_flow": 1.0,
+      "z_score": -1.07,
+      "momentum": 0.18
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1000.2,
+      "pct_chg": 0.14,
+      "hyper_flow": 1.0,
+      "z_score": -0.52,
+      "momentum": -1.51
+    },
+    {
+      "symbol": "ICICIBANK",
+      "ltp": 1326.8,
+      "pct_chg": -0.07,
+      "hyper_flow": 1.0,
+      "z_score": -0.97,
+      "momentum": -0.71
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 983.0,
+      "pct_chg": 0.12,
+      "hyper_flow": 1.0,
+      "z_score": -0.86,
+      "momentum": -0.19
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "ltp": 1785.4,
+      "pct_chg": -0.2,
+      "hyper_flow": 1.0,
+      "z_score": -0.56,
+      "momentum": -0.6
+    },
+    {
+      "symbol": "ITC",
+      "ltp": 269.0,
+      "pct_chg": 0.06,
+      "hyper_flow": 1.0,
+      "z_score": -0.75,
+      "momentum": 0.18
+    },
+    {
+      "symbol": "HINDALCO",
+      "ltp": 977.0,
+      "pct_chg": 0.03,
+      "hyper_flow": 1.0,
+      "z_score": -0.84,
+      "momentum": -0.27
+    },
+    {
+      "symbol": "COALINDIA",
+      "ltp": 426.1,
+      "pct_chg": 0.24,
+      "hyper_flow": 1.0,
+      "z_score": -0.4,
+      "momentum": 0.18
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 164.02,
+      "pct_chg": -0.07,
+      "hyper_flow": 1.0,
+      "z_score": -0.88,
+      "momentum": -0.38
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "ltp": 996.9,
+      "pct_chg": -0.01,
+      "hyper_flow": 1.0,
+      "z_score": -0.93,
+      "momentum": -0.37
+    },
+    {
+      "symbol": "MARUTI",
+      "ltp": 12065.0,
+      "pct_chg": -0.12,
+      "hyper_flow": 1.0,
+      "z_score": -0.96,
+      "momentum": -0.18
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1852.2,
+      "pct_chg": 0.02,
+      "hyper_flow": 1.0,
+      "z_score": -0.8,
+      "momentum": -0.15
+    }
+  ]
+}
