@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener - Derivatives & Tape Matrix</title>
+  <title>Quant Screener - Tape & Matrix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
     .card-navy { background-color: #07132a; border: 1px solid #13274f; }
     .table-head { background-color: #0a1b3d; border-bottom: 2px solid #19356d; }
     
-    /* Filled Teal/Green Sector Capsule from Screenshot */
     .sector-pill {
       display: inline-flex;
       align-items: center;
@@ -20,18 +19,41 @@
       overflow: hidden;
       font-size: 11px;
     }
-    .sector-name {
-      padding: 2px 7px;
-      color: #38bdf8;
-      font-weight: 600;
-    }
+    .sector-name { padding: 2px 7px; color: #38bdf8; font-weight: 600; }
     .sector-val {
       background-color: #021a24;
       padding: 2px 7px;
       font-weight: 700;
-      color: #34d399;
       border-left: 1px solid #065975;
     }
+
+    .intent-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 4px;
+      min-width: 105px;
+    }
+    .bull-strong { background-color: #064e3b; color: #34d399; border: 1px solid #059669; }
+    .bull-cover  { background-color: #062f4f; color: #38bdf8; border: 1px solid #0284c7; }
+    .bear-strong { background-color: #4c0519; color: #fb7185; border: 1px solid #e11d48; }
+    .bear-weak   { background-color: #3b1803; color: #fb923c; border: 1px solid #ea580c; }
+
+    /* Star Conviction Capsule */
+    .star-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 11px;
+      min-width: 65px;
+    }
+    .star-bull { background-color: #064e3b; color: #fbbf24; border: 1px solid #047857; }
+    .star-bear { background-color: #4c0519; color: #f87171; border: 1px solid #be123c; }
+
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
   </style>
@@ -39,7 +61,7 @@
 <body class="p-2 md:p-6 pb-24 text-xs">
   <div class="max-w-7xl mx-auto space-y-5">
 
-    <!-- 1. Top Real-Time Indices Ribbon -->
+    <!-- Top Ribbon -->
     <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap border-b border-blue-950 pb-2.5 text-[11px]">
       <div><span class="text-slate-400">NIFTY 50</span> <span id="n50-ltp" class="font-bold">23,387.9</span> <span id="n50-chg" class="tag-green font-bold">▲ 58.90 (0.25%)</span></div>
       <div><span class="text-slate-400">NIFTY BANK</span> <span id="nbk-ltp" class="font-bold">56,483.65</span> <span id="nbk-chg" class="tag-green font-bold">▲ 268.10 (0.48%)</span></div>
@@ -47,7 +69,7 @@
       <div><span class="text-slate-400">NIFTY IT</span> <span id="nit-ltp" class="font-bold">28,437.45</span> <span id="nit-chg" class="tag-red font-bold">▼ 144.65 (-0.51%)</span></div>
     </div>
 
-    <!-- 2. Macro Metric Tiles -->
+    <!-- Macro Metric Tiles -->
     <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">NIFTY 50 SPOT</div>
@@ -76,7 +98,7 @@
       </div>
     </div>
 
-    <!-- 3. Market Summary Strip -->
+    <!-- Market Summary Strip -->
     <div class="card-navy px-4 py-2.5 rounded flex flex-wrap items-center justify-between gap-2 text-[11px]">
       <div class="flex items-center space-x-4">
         <div><span class="text-slate-400 uppercase text-[9px]">INDIA VIX:</span> <b id="vix-val" class="text-amber-300">10.48</b></div>
@@ -86,16 +108,7 @@
       <div class="text-slate-500 text-[10px]">Sync: <span id="sync-time" class="text-slate-300">Syncing...</span></div>
     </div>
 
-    <!-- Active Indicator Bar -->
-    <div class="flex items-center justify-between bg-[#081736] px-3 py-2 rounded border border-blue-900/60 text-xs">
-      <div class="flex items-center space-x-2">
-        <span class="bg-amber-400 text-slate-950 px-2 py-0.5 font-bold rounded text-[10px]">Future OI</span>
-        <span class="text-slate-300">Engine: <b class="text-cyan-300">Derivatives + Tape Flow</b></span>
-      </div>
-      <span class="text-[10px] text-slate-400">ready through <span id="ready-date">2026-09-26</span></span>
-    </div>
-
-    <!-- SECTION 1: BULLISH MOMENTUM MATRIX (ALL ORIGINAL COLUMNS) -->
+    <!-- SECTION 1: BULLISH MOMENTUM MATRIX -->
     <div class="space-y-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
@@ -114,7 +127,9 @@
               <th class="py-2.5 px-3 text-right">RVAT</th>
               <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
               <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
-              <th class="py-2.5 px-3 text-left pl-6">OI BEHAVIOUR</th>
+              <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
+              <th class="py-2.5 px-3 text-center">INTENT MATRIX</th>
+              <th class="py-2.5 px-3 text-center">RATING</th>
             </tr>
           </thead>
           <tbody id="bullish-table" class="divide-y divide-blue-950/60"></tbody>
@@ -122,7 +137,7 @@
       </div>
     </div>
 
-    <!-- SECTION 2: BEARISH MOMENTUM MATRIX (ALL ORIGINAL COLUMNS) -->
+    <!-- SECTION 2: BEARISH MOMENTUM MATRIX -->
     <div class="space-y-2 pt-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
@@ -141,7 +156,9 @@
               <th class="py-2.5 px-3 text-right">RVAT</th>
               <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
               <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
-              <th class="py-2.5 px-3 text-left pl-6">OI BEHAVIOUR</th>
+              <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
+              <th class="py-2.5 px-3 text-center">INTENT MATRIX</th>
+              <th class="py-2.5 px-3 text-center">RATING</th>
             </tr>
           </thead>
           <tbody id="bearish-table" class="divide-y divide-blue-950/60"></tbody>
@@ -149,7 +166,7 @@
       </div>
     </div>
 
-    <!-- SECTION 3: EXACT RULE STATUS VALIDATION BOARD (Matching Screenshot) -->
+    <!-- SECTION 3: RULE MATRIX -->
     <div class="mt-6 border border-blue-900/60 rounded bg-[#061229] p-4">
       <div class="flex items-center justify-between mb-3 border-b border-blue-900/60 pb-2">
         <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Multi-Condition Rule Matrix</h3>
@@ -158,7 +175,7 @@
       <div id="rule-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs"></div>
     </div>
 
-    <!-- SECTION 4: PROGRESSIVE CANDIDATE FUNNEL & 1 FOCUS STOCK -->
+    <!-- SECTION 4: 1 FOCUS STOCK -->
     <div class="border border-amber-500/40 rounded bg-[#07132a] p-4 space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-blue-900 pb-2">
         <div>
@@ -196,15 +213,12 @@
         const d = await res.json();
 
         document.getElementById('sync-time').textContent = d.sync_time;
-        document.getElementById('ready-date').textContent = d.ready_date;
 
-        // Top Ribbon
         document.getElementById('n50-ltp').textContent = d.indices.nifty50.ltp.toLocaleString();
         document.getElementById('nbk-ltp').textContent = d.indices.banknifty.ltp.toLocaleString();
         document.getElementById('nfin-ltp').textContent = d.indices.finnifty.ltp.toLocaleString();
         document.getElementById('nit-ltp').textContent = d.indices.niftyit.ltp.toLocaleString();
 
-        // Cards
         document.getElementById('tile-spot').textContent = d.indices.nifty50.ltp.toLocaleString();
         document.getElementById('tile-spot-chg').textContent = `${d.indices.nifty50.pct >= 0 ? '▲' : '▼'} ${d.indices.nifty50.pct}%`;
         document.getElementById('tile-adv').textContent = d.market_cards.advances;
@@ -213,16 +227,13 @@
         document.getElementById('tile-top-sec').textContent = d.market_cards.top_sector;
         document.getElementById('tile-weak-sec').textContent = d.market_cards.weak_sector;
 
-        // Summary
         document.getElementById('vix-val').textContent = d.indices.vix.val;
         document.getElementById('sum-bull').textContent = d.bullish_stocks[0]?.symbol || "N/A";
         document.getElementById('sum-bear').textContent = d.bearish_stocks[0]?.symbol || "N/A";
 
-        // Focus 1 Stock Card
         document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
         document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow}`;
 
-        // Row Renderer Function with Filled Teal/Green Capsule Pill
         const renderRow = (s) => `
           <tr class="hover:bg-blue-900/30 transition-colors">
             <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
@@ -242,14 +253,25 @@
             <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">
               ${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%
             </td>
-            <td class="py-2.5 px-3 text-left pl-6 font-semibold text-blue-200">${s.oi_behavior}</td>
+            <td class="py-2.5 px-3 text-left pl-4 font-semibold text-blue-200">${s.oi_behavior}</td>
+            <td class="py-2 px-3 text-center">
+              <span class="intent-pill ${s.matrix_tone}">
+                <span class="font-black text-[10px]">${s.matrix_intent}</span>
+                <span class="text-[9px] opacity-90 tracking-tighter">${s.matrix_pulse}</span>
+              </span>
+            </td>
+            <td class="py-2 px-3 text-center">
+              <span class="star-pill ${s.star_score > 0 ? 'star-bull' : 'star-bear'}">
+                <span>${s.star_display}</span>
+                <span class="text-[8px] opacity-80">${s.star_label}</span>
+              </span>
+            </td>
           </tr>
         `;
 
         document.getElementById('bullish-table').innerHTML = d.bullish_stocks.map(renderRow).join('');
         document.getElementById('bearish-table').innerHTML = d.bearish_stocks.map(renderRow).join('');
 
-        // Exact Rule Matrix from Screenshot (Breakout, Volume, PDH, Range, Final)
         const topSet = [...d.bullish_stocks, ...d.bearish_stocks].slice(0, 4);
         document.getElementById('rule-cards').innerHTML = topSet.map(c => `
           <div class="card-navy rounded border border-blue-900/60 overflow-hidden">
