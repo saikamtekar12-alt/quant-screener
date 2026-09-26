@@ -1,5 +1,5 @@
 {
-  "sync_time": "26 Sep 2026, 09:34 PM IST",
+  "sync_time": "26 Sep 2026, 09:45 PM IST",
   "ready_date": "2026-09-26",
   "indices": {
     "nifty50": {
@@ -22,212 +22,524 @@
       "chg": -144.65,
       "pct": -0.51
     },
-    "vix": 12.16
+    "vix": {
+      "val": 12.16,
+      "chg": -0.53
+    }
   },
   "market_cards": {
-    "advances": 171,
-    "declines": 53,
+    "advances": 157,
+    "declines": 47,
     "tracked": 198,
-    "top_sector": "Consumer Services",
-    "weak_sector": "Capital Markets"
-  },
-  "market_summary": {
-    "top_bullish": "AXISBANK",
-    "top_bearish": "MOTILALOFS",
-    "top_sector": "Consumer Services",
+    "top_sector": "Consumer Goods",
     "weak_sector": "Capital Markets"
   },
   "focus_stock": {
     "symbol": "AXISBANK",
     "sector": "Financial Services",
+    "ltp": 1222.4,
     "pct_chg": 0.19,
+    "listed_at": "21:26",
+    "rvat": 3.18,
+    "vwap_gap": -1.71,
+    "futures_oi": 5.49,
+    "oi_behavior": "Long buildup",
     "hyperflow": 4.0,
-    "vol_mult": "3.2x"
+    "is_bullish": true,
+    "rules": {
+      "breakout": "NO",
+      "volume": "YES",
+      "pdh": "YES",
+      "range": "YES",
+      "final": "YES"
+    },
+    "sector_pct": 0.05
   },
-  "engines": {
-    "sonic_bullish": [
-      {
-        "symbol": "AXISBANK",
-        "sector": "Financial Services",
-        "ltp": 1222.4,
-        "pct_chg": 0.19,
-        "hyperflow": 4.0,
-        "vol_mult": "3.2x",
-        "listed_at": "21:18",
-        "vwap_gap": -1.71,
-        "is_bullish": true
+  "bullish_stocks": [
+    {
+      "symbol": "AXISBANK",
+      "sector": "Financial Services",
+      "ltp": 1222.4,
+      "pct_chg": 0.19,
+      "listed_at": "21:26",
+      "rvat": 3.18,
+      "vwap_gap": -1.71,
+      "futures_oi": 5.49,
+      "oi_behavior": "Long buildup",
+      "hyperflow": 4.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "YES",
+        "range": "YES",
+        "final": "YES"
       },
-      {
-        "symbol": "OFSS",
-        "sector": "IT",
-        "ltp": 10770.0,
-        "pct_chg": 0.64,
-        "hyperflow": 2.77,
-        "vol_mult": "2.3x",
-        "listed_at": "21:25",
-        "vwap_gap": -7.16,
-        "is_bullish": true
+      "sector_pct": 0.05
+    },
+    {
+      "symbol": "OFSS",
+      "sector": "IT",
+      "ltp": 10770.0,
+      "pct_chg": 0.64,
+      "listed_at": "21:34",
+      "rvat": 2.31,
+      "vwap_gap": -7.16,
+      "futures_oi": 3.82,
+      "oi_behavior": "Long buildup",
+      "hyperflow": 2.77,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "LT",
-        "sector": "Capital Goods",
-        "ltp": 3876.2,
-        "pct_chg": 0.18,
-        "hyperflow": 2.73,
-        "vol_mult": "2.0x",
-        "listed_at": "21:25",
-        "vwap_gap": -1.5,
-        "is_bullish": true
+      "sector_pct": 0.15
+    },
+    {
+      "symbol": "RELIANCE",
+      "sector": "Energy",
+      "ltp": 1226.0,
+      "pct_chg": 0.25,
+      "listed_at": "21:41",
+      "rvat": 2.03,
+      "vwap_gap": -3.57,
+      "futures_oi": 1.65,
+      "oi_behavior": "Long buildup",
+      "hyperflow": 1.78,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "RELIANCE",
-        "sector": "Energy",
-        "ltp": 1226.0,
-        "pct_chg": 0.25,
-        "hyperflow": 1.78,
-        "vol_mult": "2.0x",
-        "listed_at": "21:30",
-        "vwap_gap": -3.57,
-        "is_bullish": true
-      }
-    ],
-    "sonic_bearish": [
-      {
-        "symbol": "MOTILALOFS",
-        "sector": "Capital Markets",
-        "ltp": 1029.0,
-        "pct_chg": -0.48,
-        "hyperflow": 1.0,
-        "vol_mult": "0.1x",
-        "listed_at": "21:29",
-        "vwap_gap": 0.09,
-        "is_bullish": false
+      "sector_pct": 0.25
+    },
+    {
+      "symbol": "LT",
+      "sector": "Capital Goods",
+      "ltp": 3876.2,
+      "pct_chg": 0.18,
+      "listed_at": "21:34",
+      "rvat": 2.0,
+      "vwap_gap": -1.5,
+      "futures_oi": 3.24,
+      "oi_behavior": "Long buildup",
+      "hyperflow": 2.73,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "TATASTEEL",
-        "sector": "Metal",
-        "ltp": 187.97,
-        "pct_chg": -0.18,
-        "hyperflow": 1.84,
-        "vol_mult": "1.7x",
-        "listed_at": "21:30",
-        "vwap_gap": 1.06,
-        "is_bullish": false
+      "sector_pct": 0.07
+    },
+    {
+      "symbol": "TITAN",
+      "sector": "Consumer Goods",
+      "ltp": 4884.0,
+      "pct_chg": 0.45,
+      "listed_at": "21:44",
+      "rvat": 1.19,
+      "vwap_gap": -1.69,
+      "futures_oi": 0.94,
+      "oi_behavior": "Long buildup",
+      "hyperflow": 1.25,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "ICICIBANK",
-        "sector": "Financial Services",
-        "ltp": 1326.8,
-        "pct_chg": -0.07,
-        "hyperflow": 1.0,
-        "vol_mult": "0.2x",
-        "listed_at": "21:28",
-        "vwap_gap": -4.67,
-        "is_bullish": false
+      "sector_pct": 0.45
+    },
+    {
+      "symbol": "INFY",
+      "sector": "IT",
+      "ltp": 1000.2,
+      "pct_chg": 0.14,
+      "listed_at": "21:41",
+      "rvat": 0.21,
+      "vwap_gap": -7.04,
+      "futures_oi": -0.99,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "WIPRO",
-        "sector": "IT",
-        "ltp": 164.02,
-        "pct_chg": -0.07,
-        "hyperflow": 1.0,
-        "vol_mult": "0.1x",
-        "listed_at": "21:28",
-        "vwap_gap": -4.08,
-        "is_bullish": false
-      }
-    ],
-    "titan_bullish": [
-      {
-        "symbol": "AXISBANK",
-        "sector": "Financial Services",
-        "ltp": 1222.4,
-        "pct_chg": 0.19,
-        "hyperflow": 4.0,
-        "vol_mult": "3.2x",
-        "listed_at": "21:18",
-        "vwap_gap": -1.71,
-        "is_bullish": true
+      "sector_pct": 0.15
+    },
+    {
+      "symbol": "RADICO",
+      "sector": "FMCG",
+      "ltp": 4557.1,
+      "pct_chg": 0.07,
+      "listed_at": "21:39",
+      "rvat": 0.17,
+      "vwap_gap": 1.38,
+      "futures_oi": -1.66,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "YES",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "OFSS",
-        "sector": "IT",
-        "ltp": 10770.0,
-        "pct_chg": 0.64,
-        "hyperflow": 2.77,
-        "vol_mult": "2.3x",
-        "listed_at": "21:25",
-        "vwap_gap": -7.16,
-        "is_bullish": true
+      "sector_pct": 0.07
+    },
+    {
+      "symbol": "TCS",
+      "sector": "IT",
+      "ltp": 2082.0,
+      "pct_chg": 0.05,
+      "listed_at": "21:39",
+      "rvat": 0.14,
+      "vwap_gap": -6.16,
+      "futures_oi": -1.63,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "LT",
-        "sector": "Capital Goods",
-        "ltp": 3876.2,
-        "pct_chg": 0.18,
-        "hyperflow": 2.73,
-        "vol_mult": "2.0x",
-        "listed_at": "21:25",
-        "vwap_gap": -1.5,
-        "is_bullish": true
+      "sector_pct": 0.15
+    },
+    {
+      "symbol": "HINDALCO",
+      "sector": "Metal",
+      "ltp": 977.0,
+      "pct_chg": 0.03,
+      "listed_at": "21:39",
+      "rvat": 0.12,
+      "vwap_gap": -2.28,
+      "futures_oi": -1.81,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "RELIANCE",
-        "sector": "Energy",
-        "ltp": 1226.0,
-        "pct_chg": 0.25,
-        "hyperflow": 1.78,
-        "vol_mult": "2.0x",
-        "listed_at": "21:30",
-        "vwap_gap": -3.57,
-        "is_bullish": true
-      }
-    ],
-    "titan_bearish": [
-      {
-        "symbol": "TATASTEEL",
-        "sector": "Metal",
-        "ltp": 187.97,
-        "pct_chg": -0.18,
-        "hyperflow": 1.84,
-        "vol_mult": "1.7x",
-        "listed_at": "21:30",
-        "vwap_gap": 1.06,
-        "is_bullish": false
+      "sector_pct": -0.07
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "sector": "Pharma",
+      "ltp": 1852.2,
+      "pct_chg": 0.02,
+      "listed_at": "21:39",
+      "rvat": 0.09,
+      "vwap_gap": -1.65,
+      "futures_oi": -1.74,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "PERSISTENT",
-        "sector": "IT",
-        "ltp": 5372.0,
-        "pct_chg": -0.01,
-        "hyperflow": 1.14,
-        "vol_mult": "1.1x",
-        "listed_at": "21:34",
-        "vwap_gap": -3.39,
-        "is_bullish": false
+      "sector_pct": 0.02
+    },
+    {
+      "symbol": "COALINDIA",
+      "sector": "Oil & Gas",
+      "ltp": 426.1,
+      "pct_chg": 0.24,
+      "listed_at": "21:42",
+      "rvat": 0.08,
+      "vwap_gap": 2.39,
+      "futures_oi": -0.61,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "YES",
+        "volume": "NO",
+        "pdh": "YES",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "ICICIBANK",
-        "sector": "Financial Services",
-        "ltp": 1326.8,
-        "pct_chg": -0.07,
-        "hyperflow": 1.0,
-        "vol_mult": "0.2x",
-        "listed_at": "21:28",
-        "vwap_gap": -4.67,
-        "is_bullish": false
+      "sector_pct": 0.24
+    },
+    {
+      "symbol": "SBIN",
+      "sector": "Financial Services",
+      "ltp": 983.0,
+      "pct_chg": 0.12,
+      "listed_at": "21:39",
+      "rvat": 0.08,
+      "vwap_gap": -2.39,
+      "futures_oi": -1.75,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
       },
-      {
-        "symbol": "MOTILALOFS",
-        "sector": "Capital Markets",
-        "ltp": 1029.0,
-        "pct_chg": -0.48,
-        "hyperflow": 1.0,
-        "vol_mult": "0.1x",
-        "listed_at": "21:29",
-        "vwap_gap": 0.09,
-        "is_bullish": false
-      }
-    ]
-  }
+      "sector_pct": 0.05
+    },
+    {
+      "symbol": "HDFCBANK",
+      "sector": "Financial Services",
+      "ltp": 735.6,
+      "pct_chg": 0.03,
+      "listed_at": "21:37",
+      "rvat": 0.07,
+      "vwap_gap": 2.56,
+      "futures_oi": -2.32,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.05
+    },
+    {
+      "symbol": "ADANIPOWER",
+      "sector": "Power",
+      "ltp": 202.75,
+      "pct_chg": 0.0,
+      "listed_at": "21:40",
+      "rvat": 0.06,
+      "vwap_gap": -2.28,
+      "futures_oi": -1.45,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.0
+    },
+    {
+      "symbol": "MCX",
+      "sector": "Capital Markets",
+      "ltp": 3324.9,
+      "pct_chg": 0.2,
+      "listed_at": "21:38",
+      "rvat": 0.05,
+      "vwap_gap": 0.63,
+      "futures_oi": -1.86,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "YES",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.08
+    },
+    {
+      "symbol": "360ONE",
+      "sector": "Capital Markets",
+      "ltp": 1073.0,
+      "pct_chg": 0.03,
+      "listed_at": "21:41",
+      "rvat": 0.02,
+      "vwap_gap": -3.93,
+      "futures_oi": -1.12,
+      "oi_behavior": "Short covering",
+      "hyperflow": 1.0,
+      "is_bullish": true,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.08
+    }
+  ],
+  "bearish_stocks": [
+    {
+      "symbol": "TATASTEEL",
+      "sector": "Metal",
+      "ltp": 187.97,
+      "pct_chg": -0.18,
+      "listed_at": "21:40",
+      "rvat": 1.67,
+      "vwap_gap": 1.06,
+      "futures_oi": 1.28,
+      "oi_behavior": "Short buildup",
+      "hyperflow": 1.84,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.07
+    },
+    {
+      "symbol": "PERSISTENT",
+      "sector": "IT",
+      "ltp": 5372.0,
+      "pct_chg": -0.01,
+      "listed_at": "21:45",
+      "rvat": 1.1,
+      "vwap_gap": -3.39,
+      "futures_oi": 0.23,
+      "oi_behavior": "Short buildup",
+      "hyperflow": 1.14,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "YES",
+        "range": "YES",
+        "final": "YES"
+      },
+      "sector_pct": 0.15
+    },
+    {
+      "symbol": "ICICIBANK",
+      "sector": "Financial Services",
+      "ltp": 1326.8,
+      "pct_chg": -0.07,
+      "listed_at": "21:38",
+      "rvat": 0.15,
+      "vwap_gap": -4.67,
+      "futures_oi": -2.22,
+      "oi_behavior": "Long unwinding",
+      "hyperflow": 1.0,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.05
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "sector": "Financial Services",
+      "ltp": 996.9,
+      "pct_chg": -0.01,
+      "listed_at": "21:38",
+      "rvat": 0.1,
+      "vwap_gap": -3.6,
+      "futures_oi": -2.06,
+      "oi_behavior": "Long unwinding",
+      "hyperflow": 1.0,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "YES",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.05
+    },
+    {
+      "symbol": "MOTILALOFS",
+      "sector": "Capital Markets",
+      "ltp": 1029.0,
+      "pct_chg": -0.48,
+      "listed_at": "21:39",
+      "rvat": 0.09,
+      "vwap_gap": 0.09,
+      "futures_oi": -2.19,
+      "oi_behavior": "Long unwinding",
+      "hyperflow": 1.0,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.08
+    },
+    {
+      "symbol": "WIPRO",
+      "sector": "IT",
+      "ltp": 164.02,
+      "pct_chg": -0.07,
+      "listed_at": "21:38",
+      "rvat": 0.09,
+      "vwap_gap": -4.08,
+      "futures_oi": -2.0,
+      "oi_behavior": "Long unwinding",
+      "hyperflow": 1.0,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.15
+    },
+    {
+      "symbol": "KEI",
+      "sector": "Capital Goods",
+      "ltp": 4673.5,
+      "pct_chg": -0.04,
+      "listed_at": "21:39",
+      "rvat": 0.07,
+      "vwap_gap": -3.32,
+      "futures_oi": -1.73,
+      "oi_behavior": "Long unwinding",
+      "hyperflow": 1.0,
+      "is_bullish": false,
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": 0.07
+    }
+  ]
 }
