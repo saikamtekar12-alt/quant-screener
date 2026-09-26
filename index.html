@@ -40,7 +40,10 @@
       try {
         const res = await fetch('screener.json?t=' + Date.now());
         const json = await res.json();
-        document.getElementById('sync-time').textContent = json.last_updated;
+        const utcDate = new Date(json.last_updated);
+document.getElementById('sync-time').textContent = isNaN(utcDate) 
+  ? json.last_updated 
+  : utcDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' IST';
         const tbody = document.getElementById('screener-rows');
         tbody.innerHTML = json.stocks.map(s => `
           <tr class="hover:bg-slate-800/50 transition-colors">
