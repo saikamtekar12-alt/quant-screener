@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+# Tracked NSE F&O universe mapped with real sectors
 UNIVERSE = [
     {"sym": "MOTILALOFS.NS", "sector": "Capital Markets"},
     {"sym": "RADICO.NS", "sector": "FMCG"},
@@ -35,6 +36,7 @@ def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
 
+    # 1. Macro Indices Telemetry
     indices = {
         "nifty50": {"ltp": 23387.90, "chg": 58.90, "pct": 0.25},
         "banknifty": {"ltp": 56483.65, "chg": 268.10, "pct": 0.48},
@@ -77,6 +79,7 @@ def run_quant_engine():
 
             pdh = float(df["High"].iloc[-10:-1].max()) if len(df) >= 10 else float(df["High"].max())
 
+            # Relative Volume Activity (RVAT)
             recent_vol = float(df["Volume"].iloc[-1])
             hist_vols = df["Volume"].iloc[:-1]
             avg_vol = float(hist_vols.mean()) + 1e-6
@@ -84,20 +87,21 @@ def run_quant_engine():
             rvat = round(recent_vol / avg_vol, 2)
             z_score = (recent_vol - avg_vol) / std_vol
 
+            # VWAP Gap Calculation
             cum_vol = df["Volume"].sum() + 1e-6
             vwap = float((df["Close"] * df["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
+            # Futures OI Percentage
             oi_pct = round(float(np.clip(z_score * 2.2 + (pct_chg * 1.1), -14.0, 25.0)), 2)
 
-            # Behaviour, Intent, and -5★ to +5★ Star Rating
+            # Behaviour, Matrix Intent, and Star Rating Calculations
             star_score = 0
             if pct_chg >= 0 and oi_pct >= 0:
                 behavior = "Long buildup"
                 intent = "ACCUMULATION"
                 pulse = "P▲ | OI▲"
                 tone = "bull-strong"
-                # Long Buildup: Baseline +3, scale up to +5 if volume and VWAP agree
                 score = 3
                 if rvat >= 1.5: score += 1
                 if vwap_gap > 0: score += 1
@@ -107,7 +111,6 @@ def run_quant_engine():
                 intent = "SQUEEZE"
                 pulse = "P▲ | OI▼"
                 tone = "bull-cover"
-                # Short Covering: typically +1 to +3
                 score = 2
                 if rvat >= 1.5: score += 1
                 star_score = score
@@ -116,7 +119,6 @@ def run_quant_engine():
                 intent = "DISTRIBUTION"
                 pulse = "P▼ | OI▲"
                 tone = "bear-strong"
-                # Short Buildup: Baseline -3, scale down to -5 on heavy volume
                 score = -3
                 if rvat >= 1.5: score -= 1
                 if vwap_gap < 0: score -= 1
@@ -126,12 +128,10 @@ def run_quant_engine():
                 intent = "LIQUIDATION"
                 pulse = "P▼ | OI▼"
                 tone = "bear-weak"
-                # Long Unwinding: typically -1 to -3
                 score = -2
                 if rvat >= 1.5: score -= 1
                 star_score = score
 
-            # Star display string formatting
             if star_score > 0:
                 star_display = f"+{star_score}★"
                 star_label = "BULLISH"
@@ -139,6 +139,7 @@ def run_quant_engine():
                 star_display = f"{star_score}★"
                 star_label = "BEARISH"
 
+            # Multi-Condition Validation
             rule_breakout = pct_chg > 0.05 and ltp > vwap
             rule_volume = rvat >= 1.05
             rule_pdh = ltp >= (pdh * 0.998)
@@ -188,8 +189,10 @@ def run_quant_engine():
 
     bullish = [s for s in scanned if s["is_bullish"]]
     bearish = [s for s in scanned if not s["is_bullish"]]
-    bullish.sort(key=lambda x: x["star_score"], reverse=True)
-    bearish.sort(key=lambda x: x["star_score"])
+
+    # STRICT VOLUME-FIRST SORTING (Highest RVAT volume at top)
+    bullish.sort(key=lambda x: x["rvat"], reverse=True)
+    bearish.sort(key=lambda x: x["rvat"], reverse=True)
 
     focus = bullish[0] if bullish else scanned[0]
 
