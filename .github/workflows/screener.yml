@@ -2,7 +2,6 @@ name: Run Quant Screener
 
 on:
   schedule:
-    # Runs every 30 minutes from 03:30 to 10:00 UTC (9:00 AM to 3:30 PM IST) on weekdays
     - cron: '*/30 3-10 * * 1-5'
   workflow_dispatch:
 
@@ -22,7 +21,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Libraries
-        run: pip install yfinance numpy
+        run: pip install yfinance numpy pandas
 
       - name: Compute Screening Models
         run: python scanner.py
