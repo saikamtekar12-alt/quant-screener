@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import json
 import numpy as np
 import yfinance as yf
@@ -74,10 +74,14 @@ def run_scanner():
   # Sort by highest baseline divergence (HyperFlow rank)
   records.sort(key=lambda item: item['hyper_flow'], reverse=True)
 
-  output = {
-      'last_updated': datetime.utcnow().strftime('%d %b %Y, %H:%M UTC'),
-      'stocks': records,
-  }
+      # Force Indian Standard Time (+5:30)
+    ist = timezone(timedelta(hours=5, minutes=30))
+    now_ist = datetime.now(ist).strftime("%d %b %Y, %I:%M %p IST")
+
+    output = {
+        "last_updated": now_ist,
+        "stocks": records
+    }
 
   with open('screener.json', 'w') as f:
     json.dump(output, f, indent=2)
