@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quant Screener - Cash Tape Matrix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen p-3 md:p-6 font-mono">
+  <div class="max-w-5xl mx-auto space-y-4">
+    <div class="border-b border-slate-800 pb-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-base md:text-lg font-bold tracking-wider text-emerald-400">QUANT SCREENER // TITAN FLOW</h1>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">CASH TAPE</span>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-1">Statistical volume deviation & momentum tracking. Sync: <span id="sync-time" class="text-slate-200">Updating...</span></p>
+    </div>
+
+    <div class="overflow-x-auto rounded border border-slate-800 bg-[#111827]">
+      <table class="w-full text-left text-xs whitespace-nowrap">
+        <thead class="bg-slate-800/90 text-slate-400 uppercase text-[10px] tracking-wider">
+          <tr>
+            <th class="py-3 px-3">Symbol</th>
+            <th class="py-3 px-3 text-right">LTP (₹)</th>
+            <th class="py-3 px-3 text-right">% Chg</th>
+            <th class="py-3 px-3 text-right text-amber-400">HyperFlow™</th>
+            <th class="py-3 px-3 text-right">Z-Score</th>
+            <th class="py-3 px-3 text-right">Momentum</th>
+          </tr>
+        </thead>
+        <tbody id="screener-rows" class="divide-y divide-slate-800">
+          <tr><td colspan="6" class="p-6 text-center text-slate-500">Reading market telemetry...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    async function fetchScreenData() {
+      try {
+        const res = await fetch('screener.json?t=' + Date.now());
+        const json = await res.json();
+        document.getElementById('sync-time').textContent = json.last_updated;
+        const tbody = document.getElementById('screener-rows');
+        tbody.innerHTML = json.stocks.map(s => `
+          <tr class="hover:bg-slate-800/50 transition-colors">
+            <td class="py-2.5 px-3 font-bold text-white">${s.symbol}</td>
+            <td class="py-2.5 px-3 text-right text-slate-300">${s.ltp.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-medium ${s.pct_chg >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
+              ${s.pct_chg >= 0 ? '+' : ''}${s.pct_chg}%
+            </td>
+            <td class="py-2.5 px-3 text-right font-bold text-amber-400">${s.hyper_flow.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right text-slate-400">${s.z_score > 0 ? '+' : ''}${s.z_score}σ</td>
+            <td class="py-2.5 px-3 text-right font-medium ${s.momentum >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
+              ${s.momentum}
+            </td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        document.getElementById('screener-rows').innerHTML = '<tr><td colspan="6" class="p-6 text-center text-rose-400">Run the GitHub Action to populate data.</td></tr>';
+      }
+    }
+    fetchScreenData();
+  </script>
+</body>
+</html>
