@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Tracked NSE F&O universe mapped with real sectors
 UNIVERSE = [
     {"sym": "MOTILALOFS.NS", "sector": "Capital Markets"},
     {"sym": "RADICO.NS", "sector": "FMCG"},
@@ -32,11 +31,10 @@ UNIVERSE = [
     {"sym": "AXISBANK.NS", "sector": "Financial Services"},
 ]
 
-def run_quant_screener():
+def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
 
-    # 1. Fetch Market Macro Indices
     indices = {
         "nifty50": {"ltp": 23387.90, "chg": 58.90, "pct": 0.25},
         "banknifty": {"ltp": 56483.65, "chg": 268.10, "pct": 0.48},
@@ -61,7 +59,6 @@ def run_quant_screener():
     except Exception:
         pass
 
-    # 2. Process All Tickers
     scanned = []
     sector_deltas = {}
 
@@ -78,10 +75,8 @@ def run_quant_screener():
             prev_close = float(df["Close"].iloc[-2])
             pct_chg = round(((ltp - prev_close) / prev_close) * 100, 2)
 
-            # Previous Day High (PDH)
             pdh = float(df["High"].iloc[-10:-1].max()) if len(df) >= 10 else float(df["High"].max())
 
-            # Relative Volume Activity (RVAT)
             recent_vol = float(df["Volume"].iloc[-1])
             hist_vols = df["Volume"].iloc[:-1]
             avg_vol = float(hist_vols.mean()) + 1e-6
@@ -89,35 +84,68 @@ def run_quant_screener():
             rvat = round(recent_vol / avg_vol, 2)
             z_score = (recent_vol - avg_vol) / std_vol
 
-            # VWAP Gap %
             cum_vol = df["Volume"].sum() + 1e-6
             vwap = float((df["Close"] * df["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
-            # Futures OI % (Derived from institutional pressure & price change)
             oi_pct = round(float(np.clip(z_score * 2.2 + (pct_chg * 1.1), -14.0, 25.0)), 2)
 
-            # Derivatives OI Behaviour Matrix
-            if pct_chg >= 0 and oi_pct < 0:
-                behavior = "Short covering"
-            elif pct_chg < 0 and oi_pct < 0:
-                behavior = "Long unwinding"
-            elif pct_chg >= 0 and oi_pct >= 0:
+            # Behaviour, Intent, and -5★ to +5★ Star Rating
+            star_score = 0
+            if pct_chg >= 0 and oi_pct >= 0:
                 behavior = "Long buildup"
-            else:
+                intent = "ACCUMULATION"
+                pulse = "P▲ | OI▲"
+                tone = "bull-strong"
+                # Long Buildup: Baseline +3, scale up to +5 if volume and VWAP agree
+                score = 3
+                if rvat >= 1.5: score += 1
+                if vwap_gap > 0: score += 1
+                star_score = min(5, score)
+            elif pct_chg >= 0 and oi_pct < 0:
+                behavior = "Short covering"
+                intent = "SQUEEZE"
+                pulse = "P▲ | OI▼"
+                tone = "bull-cover"
+                # Short Covering: typically +1 to +3
+                score = 2
+                if rvat >= 1.5: score += 1
+                star_score = score
+            elif pct_chg < 0 and oi_pct >= 0:
                 behavior = "Short buildup"
+                intent = "DISTRIBUTION"
+                pulse = "P▼ | OI▲"
+                tone = "bear-strong"
+                # Short Buildup: Baseline -3, scale down to -5 on heavy volume
+                score = -3
+                if rvat >= 1.5: score -= 1
+                if vwap_gap < 0: score -= 1
+                star_score = max(-5, score)
+            else:
+                behavior = "Long unwinding"
+                intent = "LIQUIDATION"
+                pulse = "P▼ | OI▼"
+                tone = "bear-weak"
+                # Long Unwinding: typically -1 to -3
+                score = -2
+                if rvat >= 1.5: score -= 1
+                star_score = score
 
-            # Check Execution Filter Rules
+            # Star display string formatting
+            if star_score > 0:
+                star_display = f"+{star_score}★"
+                star_label = "BULLISH"
+            else:
+                star_display = f"{star_score}★"
+                star_label = "BEARISH"
+
             rule_breakout = pct_chg > 0.05 and ltp > vwap
             rule_volume = rvat >= 1.05
             rule_pdh = ltp >= (pdh * 0.998)
             rule_range = abs(pct_chg) < 4.5
             final_status = "YES" if (rule_volume and (rule_breakout or rule_pdh)) else "NO"
 
-            # Timestamp when signal surfaced
             listed_at = (now_ist - timedelta(minutes=int(abs(z_score * 8)) % 45)).strftime("%H:%M")
-
-            # HyperFlow score
             hyperflow = round(float(np.clip(1.0 + max(0.0, z_score * 1.25), 1.0, 5.0)), 2)
 
             scanned.append({
@@ -130,6 +158,12 @@ def run_quant_screener():
                 "vwap_gap": vwap_gap,
                 "futures_oi": oi_pct,
                 "oi_behavior": behavior,
+                "matrix_intent": intent,
+                "matrix_pulse": pulse,
+                "matrix_tone": tone,
+                "star_score": star_score,
+                "star_display": star_display,
+                "star_label": star_label,
                 "hyperflow": hyperflow,
                 "is_bullish": pct_chg >= 0,
                 "rules": {
@@ -145,20 +179,17 @@ def run_quant_screener():
         except Exception as e:
             print(f"Error {sym}: {e}")
 
-    # Compute Sector Performance Percentages
     sector_perf = {k: round(float(np.mean(v)), 2) for k, v in sector_deltas.items()}
     top_sec = max(sector_perf, key=sector_perf.get) if sector_perf else "Capital Markets"
     weak_sec = min(sector_perf, key=sector_perf.get) if sector_perf else "IT"
 
-    # Inject calculated sector percentage back into each stock entry
     for s in scanned:
         s["sector_pct"] = sector_perf.get(s["sector"], 0.0)
 
-    # Sort candidates by activity
     bullish = [s for s in scanned if s["is_bullish"]]
     bearish = [s for s in scanned if not s["is_bullish"]]
-    bullish.sort(key=lambda x: x["rvat"], reverse=True)
-    bearish.sort(key=lambda x: x["rvat"], reverse=True)
+    bullish.sort(key=lambda x: x["star_score"], reverse=True)
+    bearish.sort(key=lambda x: x["star_score"])
 
     focus = bullish[0] if bullish else scanned[0]
 
@@ -182,4 +213,4 @@ def run_quant_screener():
         json.dump(output, f, indent=2)
 
 if __name__ == "__main__":
-    run_quant_screener()
+    run_quant_engine()
