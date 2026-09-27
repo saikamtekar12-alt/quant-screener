@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quant Screener - Derivatives & HyperFlow</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- TradingView Widget Script for Instant Quick-Peek -->
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <style>
     body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
     .card-navy { background-color: #07132a; border: 1px solid #13274f; }
@@ -58,15 +56,16 @@
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
 
-    /* Floating Hover Chart Modal */
+    /* Floating Quick-Peek Chart Modal */
     #chart-hover-modal {
       display: none;
       position: fixed;
       z-index: 9999;
-      width: min(94vw, 680px);
+      width: min(94vw, 700px);
+      height: 470px;
       background: #061229;
       border: 1px solid #38bdf8;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
       border-radius: 8px;
       overflow: hidden;
       pointer-events: auto;
@@ -225,9 +224,9 @@
 
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW WITH DAY HIGH & DAY LOW -->
+  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
   <div id="chart-hover-modal">
-    <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
+    <div class="p-2 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
         <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
         <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN LIVE</span>
@@ -248,7 +247,8 @@
       </div>
     </div>
 
-    <div id="tv-container" class="w-full h-[360px]"></div>
+    <!-- TradingView Embed Holder -->
+    <div id="tv-container" class="w-full h-[395px]"></div>
   </div>
 
   <script>
@@ -279,29 +279,44 @@
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      const x = Math.min(window.innerWidth - 700, Math.max(20, event.clientX - 340));
-      const y = Math.min(window.innerHeight - 460, Math.max(60, event.clientY - 200));
+      const x = Math.min(window.innerWidth - 720, Math.max(10, (event.clientX || window.innerWidth / 2) - 350));
+      const y = Math.min(window.innerHeight - 490, Math.max(50, (event.clientY || 200) - 180));
       modal.style.left = `${x}px`;
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      document.getElementById('tv-container').innerHTML = '';
+      const container = document.getElementById('tv-container');
+      container.innerHTML = `
+        <div class="tradingview-widget-container" style="height:100%;width:100%">
+          <div id="tv_chart_inner" style="height:100%;width:100%"></div>
+        </div>
+      `;
 
-      new TradingView.widget({
-        autosize: true,
-        symbol: `NSE:${sym}`,
-        interval: "5",
-        timezone: "Asia/Kolkata",
-        theme: "dark",
-        style: "1",
-        locale: "in",
-        toolbar_bg: "#061229",
-        enable_publishing: false,
-        hide_side_toolbar: true,
-        allow_symbol_change: false,
-        container_id: "tv-container",
-        studies: ["VWAP@tv-basicstudies", "Volume@tv-basicstudies"]
+      // Official Advanced Embed using BSE feed to avoid NSE permissions error
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "autosize": true,
+        "symbol": "BSE:" + sym,
+        "interval": "5",
+        "timezone": "Asia/Kolkata",
+        "theme": "dark",
+        "style": "1",
+        "locale": "in",
+        "enable_publishing": false,
+        "backgroundColor": "rgba(6, 18, 41, 1)",
+        "gridColor": "rgba(25, 53, 109, 0.2)",
+        "hide_top_toolbar": false,
+        "hide_legend": false,
+        "save_image": false,
+        "calendar": false,
+        "hide_volume": false,
+        "support_host": "https://www.tradingview.com"
       });
+
+      container.querySelector('.tradingview-widget-container').appendChild(script);
     }
 
     function hideQuickChart() {
@@ -315,7 +330,7 @@
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        // Cache stock data for instant hover lookup
+        // Populate lookup cache
         [...d.bullish_stocks, ...d.bearish_stocks].forEach(s => { screenerDataMap[s.symbol] = s; });
 
         document.getElementById('sync-time').textContent = d.sync_time;
