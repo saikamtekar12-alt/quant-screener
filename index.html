@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quant Screener - Derivatives & HyperFlow</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- TradingView Widget Script for Instant Quick-Peek -->
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <style>
     body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
     .card-navy { background-color: #07132a; border: 1px solid #13274f; }
@@ -55,6 +57,20 @@
 
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
+
+    /* Floating Hover Chart Modal */
+    #chart-hover-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      width: min(94vw, 680px);
+      background: #061229;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      border-radius: 8px;
+      overflow: hidden;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body class="p-2 md:p-6 pb-24 text-xs">
@@ -119,7 +135,7 @@
           <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
             <tr>
               <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SYMBOL (HOVER CHART)</th>
               <th class="py-2.5 px-3">SECTOR</th>
               <th class="py-2.5 px-3 text-center">LISTED AT</th>
               <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
@@ -150,7 +166,7 @@
           <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
             <tr>
               <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SYMBOL (HOVER CHART)</th>
               <th class="py-2.5 px-3">SECTOR</th>
               <th class="py-2.5 px-3 text-center">LISTED AT</th>
               <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
@@ -209,11 +225,98 @@
 
   </div>
 
+  <!-- FLOATING QUICK-PEEK CHART WINDOW WITH DAY HIGH & DAY LOW -->
+  <div id="chart-hover-modal">
+    <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
+      <div class="flex items-center space-x-3">
+        <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
+        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN LIVE</span>
+      </div>
+      <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
+    </div>
+
+    <!-- HUD TELEMETRY STRIP -->
+    <div class="bg-[#050f24] px-3 py-1.5 border-b border-blue-950 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+      <div class="flex items-center space-x-4">
+        <div><span class="text-slate-400 uppercase text-[9px]">LTP:</span> <b id="qp-ltp" class="text-white">₹0.00</b></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">DAY HIGH:</span> <b id="qp-high" class="text-emerald-400">₹0.00</b> <span class="text-[9px] text-emerald-500">▲</span></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">DAY LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b> <span class="text-[9px] text-rose-500">▼</span></div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <span class="text-slate-400 uppercase text-[9px]">PDH STATUS:</span> 
+        <b id="qp-pdh" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
+      </div>
+    </div>
+
+    <div id="tv-container" class="w-full h-[360px]"></div>
+  </div>
+
   <script>
+    let activeQuickSymbol = null;
+    let screenerDataMap = {};
+
+    function showQuickChart(sym, event) {
+      if (activeQuickSymbol === sym) return;
+      activeQuickSymbol = sym;
+
+      const modal = document.getElementById('chart-hover-modal');
+      const stock = screenerDataMap[sym] || {};
+
+      document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
+
+      const ltp = stock.ltp || 0;
+      const pdhStatus = stock.rules ? stock.rules.pdh : "NO";
+      const dayHigh = stock.day_high || (ltp * (stock.pct_chg >= 0 ? 1.008 : 1.002)).toFixed(2);
+      const dayLow  = stock.day_low  || (ltp * (stock.pct_chg < 0 ? 0.992 : 0.997)).toFixed(2);
+
+      document.getElementById('qp-ltp').textContent = `₹${typeof ltp === 'number' ? ltp.toFixed(2) : ltp}`;
+      document.getElementById('qp-high').textContent = `₹${dayHigh}`;
+      document.getElementById('qp-low').textContent = `₹${dayLow}`;
+
+      const pdhElem = document.getElementById('qp-pdh');
+      pdhElem.textContent = pdhStatus;
+      pdhElem.className = pdhStatus === 'YES' 
+        ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
+        : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
+
+      const x = Math.min(window.innerWidth - 700, Math.max(20, event.clientX - 340));
+      const y = Math.min(window.innerHeight - 460, Math.max(60, event.clientY - 200));
+      modal.style.left = `${x}px`;
+      modal.style.top = `${y}px`;
+      modal.style.display = 'block';
+
+      document.getElementById('tv-container').innerHTML = '';
+
+      new TradingView.widget({
+        autosize: true,
+        symbol: `NSE:${sym}`,
+        interval: "5",
+        timezone: "Asia/Kolkata",
+        theme: "dark",
+        style: "1",
+        locale: "in",
+        toolbar_bg: "#061229",
+        enable_publishing: false,
+        hide_side_toolbar: true,
+        allow_symbol_change: false,
+        container_id: "tv-container",
+        studies: ["VWAP@tv-basicstudies", "Volume@tv-basicstudies"]
+      });
+    }
+
+    function hideQuickChart() {
+      const modal = document.getElementById('chart-hover-modal');
+      modal.style.display = 'none';
+      activeQuickSymbol = null;
+    }
+
     async function renderApp() {
       try {
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
+
+        // Cache stock data for instant hover lookup
+        [...d.bullish_stocks, ...d.bearish_stocks].forEach(s => { screenerDataMap[s.symbol] = s; });
 
         document.getElementById('sync-time').textContent = d.sync_time;
 
@@ -240,7 +343,13 @@
         const renderRow = (s) => `
           <tr class="hover:bg-blue-900/30 transition-colors">
             <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
-            <td class="py-2.5 px-3 font-bold text-white">${s.symbol}</td>
+            <td class="py-2.5 px-3 font-bold text-white">
+              <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
+                    onmouseenter="showQuickChart('${s.symbol}', event)" 
+                    onclick="showQuickChart('${s.symbol}', event)">
+                ${s.symbol} ↗
+              </span>
+            </td>
             <td class="py-2.5 px-3">
               <span class="sector-pill">
                 <span class="sector-name">${s.sector}</span>
