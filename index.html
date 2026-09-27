@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener - Tape & Matrix</title>
+  <title>Quant Screener - Derivatives & HyperFlow</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
@@ -107,7 +107,7 @@
       <div class="text-slate-500 text-[10px]">Sync: <span id="sync-time" class="text-slate-300">Syncing...</span></div>
     </div>
 
-    <!-- SECTION 1: BULLISH MOMENTUM MATRIX -->
+    <!-- SECTION 1: BULLISH MATRIX TABLE -->
     <div class="space-y-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
@@ -123,7 +123,9 @@
               <th class="py-2.5 px-3">SECTOR</th>
               <th class="py-2.5 px-3 text-center">LISTED AT</th>
               <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
-              <th class="py-2.5 px-3 text-right">RVAT</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
               <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
               <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
               <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
@@ -136,7 +138,7 @@
       </div>
     </div>
 
-    <!-- SECTION 2: BEARISH MOMENTUM MATRIX -->
+    <!-- SECTION 2: BEARISH MATRIX TABLE -->
     <div class="space-y-2 pt-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
@@ -152,7 +154,9 @@
               <th class="py-2.5 px-3">SECTOR</th>
               <th class="py-2.5 px-3 text-center">LISTED AT</th>
               <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
-              <th class="py-2.5 px-3 text-right">RVAT</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
               <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
               <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
               <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
@@ -195,7 +199,7 @@
         <div class="border border-amber-500 rounded p-4 text-center bg-[#0a1836] flex flex-col justify-center items-center">
           <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">PHASE 06 / FOCUS (1 STOCK)</span>
           <div class="text-2xl font-black text-amber-400 mt-1" id="focus-sym">AXISBANK</div>
-          <div class="text-slate-300 text-xs mt-1" id="focus-meta">Financial Services · +0.19% · RVAT 3.18</div>
+          <div class="text-slate-300 text-xs mt-1" id="focus-meta">Financial Services · +0.19% · HyperFlow 5.9x</div>
           <button class="mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-1.5 rounded uppercase tracking-wider text-xs shadow-lg">
             EXECUTE
           </button>
@@ -231,7 +235,7 @@
         document.getElementById('sum-bear').textContent = d.bearish_stocks[0]?.symbol || "N/A";
 
         document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
-        document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · RVAT ${d.focus_stock.rvat} · Rating ${d.focus_stock.star_display}`;
+        document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow} · Rating ${d.focus_stock.star_display}`;
 
         const renderRow = (s) => `
           <tr class="hover:bg-blue-900/30 transition-colors">
@@ -245,7 +249,9 @@
             </td>
             <td class="py-2.5 px-3 text-center text-slate-400 font-medium">${s.listed_at}</td>
             <td class="py-2.5 px-3 text-right font-medium text-slate-200">₹${s.ltp.toFixed(2)}</td>
-            <td class="py-2.5 px-3 text-right font-bold ${s.rvat >= 1.5 ? 'text-amber-300' : 'text-slate-300'}">${s.rvat.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-bold text-amber-300">${s.hyperflow}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
             <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">
               ${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%
             </td>
