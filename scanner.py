@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from datetime import datetime, timedelta, timezone
 import numpy as np
 import pandas as pd
@@ -32,8 +33,8 @@ UNIVERSE = [
     {"sym": "AXISBANK.NS", "sector": "Financial Services"},
 ]
 
-BULL_KEYWORDS = ["rise", "surge", "gain", "profit", "order", "growth", "high", "upgrade", "deal", "rally", "record"]
-BEAR_KEYWORDS = ["fall", "drop", "plunge", "loss", "decline", "cut", "warning", "probe", "downgrade", "weak", "ahead of decision"]
+BULL_KEYWORDS = ["rise", "surge", "gain", "profit", "order", "growth", "high", "upgrade", "deal", "rally", "record", "bull"]
+BEAR_KEYWORDS = ["fall", "drop", "plunge", "loss", "decline", "cut", "warning", "probe", "downgrade", "weak", "ahead of decision", "bear", "down"]
 
 def analyze_sentiment(title):
     t = title.lower()
@@ -94,6 +95,9 @@ def run_quant_engine():
 
     scanned = []
     sector_deltas = {}
+
+    # 48-hour cutoff window for fresh news
+    news_cutoff_epoch = time.time() - (48 * 3600)
 
     for item in UNIVERSE:
         sym = item["sym"]
@@ -169,53 +173,46 @@ def run_quant_engine():
             else:
                 trigger_time = "09:20"
 
-            # Parse Live News & Sentiment for the [N] Badge
+            # Parse ONLY genuine breaking news items (strict filter)
             news_items = []
             overall_sentiment = "neutral"
             try:
                 raw_news = ticker.news
                 if raw_news and len(raw_news) > 0:
                     sentiments = []
-                    for item_news in raw_news[:3]:
+                    for item_news in raw_news:
                         title = item_news.get("title", "")
-                        publisher = item_news.get("publisher", "Livemint")
-                        pub_time = item_news.get("providerPublishTime", None)
-                        if pub_time:
+                        pub_time = item_news.get("providerPublishTime", 0)
+                        
+                        # Only accept stories published within the recent 48 hours
+                        if pub_time and pub_time >= news_cutoff_epoch:
+                            publisher = item_news.get("publisher", "Financial Press")
                             time_str = datetime.fromtimestamp(pub_time, tz=ist).strftime("%d %b %H:%M")
+                            sent = analyze_sentiment(title)
+                            sentiments.append(sent)
+                            news_items.append({
+                                "title": title,
+                                "publisher": publisher,
+                                "time": time_str,
+                                "sentiment": sent
+                            })
+                        if len(news_items) >= 3:
+                            break
+
+                    if news_items:
+                        bull_count = sentiments.count("bullish")
+                        bear_count = sentiments.count("bearish")
+                        if bear_count > bull_count:
+                            overall_sentiment = "bearish"
+                        elif bull_count > bear_count:
+                            overall_sentiment = "bullish"
                         else:
-                            time_str = "Today 09:15"
-                        sent = analyze_sentiment(title)
-                        sentiments.append(sent)
-                        news_items.append({
-                            "title": title,
-                            "publisher": publisher,
-                            "time": time_str,
-                            "sentiment": sent
-                        })
-                    
-                    bull_count = sentiments.count("bullish")
-                    bear_count = sentiments.count("bearish")
-                    if bear_count > bull_count:
-                        overall_sentiment = "bearish"
-                    elif bull_count > bear_count:
-                        overall_sentiment = "bullish"
-                    else:
-                        overall_sentiment = "bearish" if pct_chg < 0 else "bullish"
+                            overall_sentiment = "bearish" if pct_chg < 0 else "bullish"
             except Exception:
                 pass
 
-            # Fallback realistic news items if API returns empty
-            if not news_items:
-                is_stock_bull = pct_chg >= 0
-                overall_sentiment = "bullish" if is_stock_bull else "bearish"
-                news_items = [
-                    {
-                        "title": f"{clean_sym} reports steady volume expansion amidst sectoral momentum" if is_stock_bull else f"Gold and silver prices impact market sentiment ahead of decisions on {clean_sym}",
-                        "publisher": "Mint",
-                        "time": "Today 09:15",
-                        "sentiment": overall_sentiment
-                    }
-                ]
+            # IMPORTANT: has_news is True ONLY IF genuine stories were found
+            has_actual_news = len(news_items) > 0
 
             scanned.append({
                 "symbol": clean_sym,
@@ -240,8 +237,8 @@ def run_quant_engine():
                 "star_label": star_label,
                 "is_bullish": pct_chg >= 0,
                 "news": {
-                    "has_news": True,
-                    "sentiment": overall_sentiment,  # "bullish" -> Green, "bearish" -> Red
+                    "has_news": has_actual_news,
+                    "sentiment": overall_sentiment,
                     "count": len(news_items),
                     "stories": news_items
                 },
@@ -293,7 +290,7 @@ def run_quant_engine():
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] screener.json updated successfully with News Sentiments.")
+    print(f"[{output['sync_time']}] screener.json updated successfully.")
 
 if __name__ == "__main__":
     run_quant_engine()
