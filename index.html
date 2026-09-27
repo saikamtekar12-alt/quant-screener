@@ -61,8 +61,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 17px;
-      height: 17px;
+      width: 16px;
+      height: 16px;
       border-radius: 9999px;
       font-size: 10px;
       font-weight: 900;
@@ -72,7 +72,7 @@
       vertical-align: middle;
       transition: transform 0.15s ease-in-out;
     }
-    .news-badge:hover { transform: scale(1.15); }
+    .news-badge:hover { transform: scale(1.2); }
     .news-bull { background-color: #064e3b; color: #34d399; border: 1px solid #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.4); }
     .news-bear { background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4); }
 
@@ -84,7 +84,7 @@
       width: 320px;
       background-color: #071533;
       border: 1px solid #1e3a8a;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.95);
       border-radius: 6px;
       padding: 10px;
       pointer-events: auto;
@@ -257,7 +257,7 @@
 
   </div>
 
-  <!-- FLOATING NEWS CARD MODAL (Screenshots 1000186549.jpg & 1000186548.jpg) -->
+  <!-- FLOATING NEWS CARD MODAL -->
   <div id="news-hover-card">
     <div class="flex justify-between items-center border-b border-blue-900 pb-1 mb-2">
       <div class="flex items-center space-x-1.5">
@@ -320,7 +320,7 @@
     function showNewsCard(sym, event) {
       event.stopPropagation();
       const stock = screenerDataMap[sym];
-      if (!stock || !stock.news) return;
+      if (!stock || !stock.news || !stock.news.stories.length) return;
 
       const card = document.getElementById('news-hover-card');
       document.getElementById('news-card-sym').textContent = `${sym}`;
@@ -547,8 +547,20 @@
         document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow} · Rating ${d.focus_stock.star_display}`;
 
         const renderRow = (s) => {
-          const isBearNews = s.news && s.news.sentiment === 'bearish';
-          const newsClass = isBearNews ? 'news-bear' : 'news-bull';
+          // Conditional check: only render [N] badge if real news exists
+          let newsBadgeHtml = '';
+          if (s.news && s.news.has_news) {
+            const isBearNews = s.news.sentiment === 'bearish';
+            const newsClass = isBearNews ? 'news-bear' : 'news-bull';
+            newsBadgeHtml = `
+              <span class="news-badge ${newsClass}" 
+                    title="Recent news about ${s.symbol}" 
+                    onmouseenter="showNewsCard('${s.symbol}', event)" 
+                    onclick="showNewsCard('${s.symbol}', event)">
+                N
+              </span>
+            `;
+          }
 
           return `
             <tr class="hover:bg-blue-900/30 transition-colors">
@@ -559,12 +571,7 @@
                       onclick="showQuickChart('${s.symbol}', event)">
                   ${s.symbol} ↗
                 </span>
-                <span class="news-badge ${newsClass}" 
-                      title="Recent news about ${s.symbol}" 
-                      onmouseenter="showNewsCard('${s.symbol}', event)" 
-                      onclick="showNewsCard('${s.symbol}', event)">
-                  N
-                </span>
+                ${newsBadgeHtml}
               </td>
               <td class="py-2.5 px-3">
                 <span class="sector-pill">
