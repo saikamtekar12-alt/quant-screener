@@ -56,7 +56,41 @@
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
 
-    /* Custom Floating Chart Modal */
+    /* Circular [N] News Badge */
+    .news-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 900;
+      margin-left: 6px;
+      cursor: pointer;
+      user-select: none;
+      vertical-align: middle;
+      transition: transform 0.15s ease-in-out;
+    }
+    .news-badge:hover { transform: scale(1.15); }
+    .news-bull { background-color: #064e3b; color: #34d399; border: 1px solid #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.4); }
+    .news-bear { background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4); }
+
+    /* Floating News Card Modal */
+    #news-hover-card {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      width: 320px;
+      background-color: #071533;
+      border: 1px solid #1e3a8a;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+      border-radius: 6px;
+      padding: 10px;
+      pointer-events: auto;
+    }
+
+    /* Floating Quick-Peek Chart Modal */
     #chart-hover-modal {
       display: none;
       position: fixed;
@@ -223,9 +257,20 @@
 
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW WITH REAL CANDLESTICKS & LEVELS -->
+  <!-- FLOATING NEWS CARD MODAL (Screenshots 1000186549.jpg & 1000186548.jpg) -->
+  <div id="news-hover-card">
+    <div class="flex justify-between items-center border-b border-blue-900 pb-1 mb-2">
+      <div class="flex items-center space-x-1.5">
+        <span id="news-card-sym" class="font-bold text-white uppercase text-xs">SYMBOL</span>
+        <span id="news-card-count" class="text-[10px] text-slate-400 font-medium">3 stories</span>
+      </div>
+      <button onclick="hideNewsCard()" class="text-slate-400 hover:text-white px-1 text-xs font-bold">✕</button>
+    </div>
+    <div id="news-card-list" class="space-y-2 text-[11px]"></div>
+  </div>
+
+  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
   <div id="chart-hover-modal">
-    <!-- Header -->
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
         <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
@@ -252,11 +297,9 @@
       </div>
     </div>
 
-    <!-- Candlestick Canvas & Overlaid Rule HUD -->
     <div class="relative w-full h-[395px] bg-[#030b1e]">
       <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
 
-      <!-- Embedded Rule Checklist Table (Matching Screenshot 1000186522.jpg) -->
       <div id="chart-rule-hud" class="absolute top-3 left-3 bg-[#061229]/95 border border-blue-900 rounded p-2 text-[10px] shadow-lg pointer-events-none min-w-[125px]">
         <div class="text-[9px] text-slate-400 font-bold border-b border-blue-950 pb-1 mb-1 flex justify-between">
           <span>RULE</span><span>STATUS</span>
@@ -274,6 +317,40 @@
     let activeQuickSymbol = null;
     let screenerDataMap = {};
 
+    function showNewsCard(sym, event) {
+      event.stopPropagation();
+      const stock = screenerDataMap[sym];
+      if (!stock || !stock.news) return;
+
+      const card = document.getElementById('news-hover-card');
+      document.getElementById('news-card-sym').textContent = `${sym}`;
+      document.getElementById('news-card-count').textContent = `${stock.news.stories.length} stories`;
+
+      const listHtml = stock.news.stories.map(s => `
+        <div class="border-b border-blue-950 pb-1.5 last:border-b-0">
+          <div class="text-[9px] text-slate-400 flex justify-between">
+            <span class="font-bold text-cyan-300">${s.time}</span>
+            <span class="text-slate-500">${s.publisher}</span>
+          </div>
+          <div class="font-semibold text-slate-200 mt-0.5 hover:text-white leading-tight">
+            ${s.title}
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('news-card-list').innerHTML = listHtml;
+
+      const x = Math.min(window.innerWidth - 330, Math.max(10, event.clientX + 10));
+      const y = Math.min(window.innerHeight - 250, Math.max(20, event.clientY - 40));
+      card.style.left = `${x}px`;
+      card.style.top = `${y}px`;
+      card.style.display = 'block';
+    }
+
+    function hideNewsCard() {
+      document.getElementById('news-hover-card').style.display = 'none';
+    }
+
     function drawQuickCandles(stock) {
       const canvas = document.getElementById('quick-candle-canvas');
       const ctx = canvas.getContext('2d');
@@ -289,7 +366,6 @@
 
       ctx.clearRect(0, 0, w, h);
 
-      // Background grid
       ctx.strokeStyle = '#0e2248';
       ctx.lineWidth = 1;
       for (let y = 30; y < h; y += 40) {
@@ -304,7 +380,6 @@
       const high = parseFloat(stock.day_high || (ltp * (isBull ? 1.012 : 1.004)).toFixed(2));
       const low = parseFloat(stock.day_low || (ltp * (isBull ? 0.996 : 0.988)).toFixed(2));
 
-      // Synthesize realistic 5-min session candles leading to LTP
       const numCandles = 28;
       const candles = [];
       let cur = low + (high - low) * 0.35;
@@ -313,7 +388,7 @@
         const step = (Math.sin(i / 3) * 0.35 + (isBull ? 0.2 : -0.2)) * ((high - low) / 10);
         const o = cur;
         let c = cur + step + (Math.random() - 0.5) * ((high - low) / 12);
-        if (i === numCandles - 1) c = ltp; // Last close matches current market price
+        if (i === numCandles - 1) c = ltp;
 
         const cHigh = Math.min(high, Math.max(o, c) + Math.random() * ((high - low) / 18));
         const cLow = Math.max(low, Math.min(o, c) - Math.random() * ((high - low) / 18));
@@ -329,13 +404,11 @@
 
       const getY = (val) => h - 70 - ((val - minVal) / range) * (h - 110);
       const candleWidth = Math.max(4, (w - 180) / numCandles - 4);
-      const startX = 145; // Leave room for left Rule HUD
+      const startX = 145;
 
-      // 1. Plot Day High (Green) & Day Low (Red) lines
       const yHigh = getY(high);
       const yLow = getY(low);
 
-      // Day High Line
       ctx.strokeStyle = '#00e676';
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1.5;
@@ -348,7 +421,6 @@
       ctx.font = '10px monospace';
       ctx.fillText(`Day High: ₹${high}`, w - 120, yHigh - 5);
 
-      // Day Low Line
       ctx.strokeStyle = '#ef4444';
       ctx.beginPath();
       ctx.moveTo(startX, yLow);
@@ -359,14 +431,12 @@
       ctx.fillText(`Day Low: ₹${low}`, w - 120, yLow + 12);
       ctx.setLineDash([]);
 
-      // 2. Render Candlesticks and Volume Bars
       for (let i = 0; i < numCandles; i++) {
         const cd = candles[i];
         const x = startX + i * (candleWidth + 4);
         const candleBull = cd.c >= cd.o;
         const color = candleBull ? '#00e5ff' : '#f43f5e';
 
-        // Candle Wick
         ctx.strokeStyle = color;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
@@ -374,7 +444,6 @@
         ctx.lineTo(x + candleWidth / 2, getY(cd.l));
         ctx.stroke();
 
-        // Candle Body
         const yOpen = getY(cd.o);
         const yClose = getY(cd.c);
         const bodyY = Math.min(yOpen, yClose);
@@ -383,7 +452,6 @@
         ctx.fillStyle = color;
         ctx.fillRect(x, bodyY, candleWidth, bodyH);
 
-        // Floor Volume Bars
         const maxVolH = 45;
         const volH = Math.min(maxVolH, cd.v * 22);
         ctx.fillStyle = candleBull ? 'rgba(0, 229, 255, 0.45)' : 'rgba(244, 63, 94, 0.45)';
@@ -416,7 +484,6 @@
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      // Populate Overlaid HUD Rules
       const r = stock.rules || { breakout: "YES", volume: "YES", pdh: "YES", range: "YES", final: "YES" };
       const setHud = (id, val) => {
         const el = document.getElementById(id);
@@ -435,7 +502,6 @@
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      // Draw Candlesticks, High/Low lines, and volume bars
       setTimeout(() => drawQuickCandles(stock), 30);
     }
 
@@ -445,12 +511,17 @@
       activeQuickSymbol = null;
     }
 
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#news-hover-card') && !e.target.closest('.news-badge')) {
+        hideNewsCard();
+      }
+    });
+
     async function renderApp() {
       try {
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        // Populate lookup cache
         [...d.bullish_stocks, ...d.bearish_stocks].forEach(s => { screenerDataMap[s.symbol] = s; });
 
         document.getElementById('sync-time').textContent = d.sync_time;
@@ -475,48 +546,59 @@
         document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
         document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow} · Rating ${d.focus_stock.star_display}`;
 
-        const renderRow = (s) => `
-          <tr class="hover:bg-blue-900/30 transition-colors">
-            <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
-            <td class="py-2.5 px-3 font-bold text-white">
-              <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
-                    onmouseenter="showQuickChart('${s.symbol}', event)" 
-                    onclick="showQuickChart('${s.symbol}', event)">
-                ${s.symbol} ↗
-              </span>
-            </td>
-            <td class="py-2.5 px-3">
-              <span class="sector-pill">
-                <span class="sector-name">${s.sector}</span>
-                <span class="sector-val ${s.sector_pct >= 0 ? 'tag-green' : 'tag-red'}">${s.sector_pct >= 0 ? '+' : ''}${s.sector_pct}%</span>
-              </span>
-            </td>
-            <td class="py-2.5 px-3 text-center text-slate-400 font-medium">${s.listed_at}</td>
-            <td class="py-2.5 px-3 text-right font-medium text-slate-200">₹${s.ltp.toFixed(2)}</td>
-            <td class="py-2.5 px-3 text-right font-bold text-amber-300">${s.hyperflow}</td>
-            <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
-            <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
-            <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">
-              ${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%
-            </td>
-            <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">
-              ${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%
-            </td>
-            <td class="py-2.5 px-3 text-left pl-4 font-semibold text-blue-200">${s.oi_behavior}</td>
-            <td class="py-2 px-3 text-center">
-              <span class="intent-pill ${s.matrix_tone}">
-                <span class="font-black text-[10px]">${s.matrix_intent}</span>
-                <span class="text-[9px] opacity-90 tracking-tighter">${s.matrix_pulse}</span>
-              </span>
-            </td>
-            <td class="py-2 px-3 text-center">
-              <span class="star-pill ${s.star_score > 0 ? 'star-bull' : 'star-bear'}">
-                <span>${s.star_display}</span>
-                <span class="text-[8px] opacity-80">${s.star_label}</span>
-              </span>
-            </td>
-          </tr>
-        `;
+        const renderRow = (s) => {
+          const isBearNews = s.news && s.news.sentiment === 'bearish';
+          const newsClass = isBearNews ? 'news-bear' : 'news-bull';
+
+          return `
+            <tr class="hover:bg-blue-900/30 transition-colors">
+              <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
+              <td class="py-2.5 px-3 font-bold text-white flex items-center">
+                <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
+                      onmouseenter="showQuickChart('${s.symbol}', event)" 
+                      onclick="showQuickChart('${s.symbol}', event)">
+                  ${s.symbol} ↗
+                </span>
+                <span class="news-badge ${newsClass}" 
+                      title="Recent news about ${s.symbol}" 
+                      onmouseenter="showNewsCard('${s.symbol}', event)" 
+                      onclick="showNewsCard('${s.symbol}', event)">
+                  N
+                </span>
+              </td>
+              <td class="py-2.5 px-3">
+                <span class="sector-pill">
+                  <span class="sector-name">${s.sector}</span>
+                  <span class="sector-val ${s.sector_pct >= 0 ? 'tag-green' : 'tag-red'}">${s.sector_pct >= 0 ? '+' : ''}${s.sector_pct}%</span>
+                </span>
+              </td>
+              <td class="py-2.5 px-3 text-center text-slate-400 font-medium">${s.listed_at}</td>
+              <td class="py-2.5 px-3 text-right font-medium text-slate-200">₹${s.ltp.toFixed(2)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-amber-300">${s.hyperflow}</td>
+              <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
+              <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
+              <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">
+                ${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%
+              </td>
+              <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">
+                ${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%
+              </td>
+              <td class="py-2.5 px-3 text-left pl-4 font-semibold text-blue-200">${s.oi_behavior}</td>
+              <td class="py-2 px-3 text-center">
+                <span class="intent-pill ${s.matrix_tone}">
+                  <span class="font-black text-[10px]">${s.matrix_intent}</span>
+                  <span class="text-[9px] opacity-90 tracking-tighter">${s.matrix_pulse}</span>
+                </span>
+              </td>
+              <td class="py-2 px-3 text-center">
+                <span class="star-pill ${s.star_score > 0 ? 'star-bull' : 'star-bear'}">
+                  <span>${s.star_display}</span>
+                  <span class="text-[8px] opacity-80">${s.star_label}</span>
+                </span>
+              </td>
+            </tr>
+          `;
+        };
 
         document.getElementById('bullish-table').innerHTML = d.bullish_stocks.map(renderRow).join('');
         document.getElementById('bearish-table').innerHTML = d.bearish_stocks.map(renderRow).join('');
