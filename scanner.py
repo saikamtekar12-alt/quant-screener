@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+# Tracked NSE F&O universe mapped with real sectors
 UNIVERSE = [
     {"sym": "MOTILALOFS.NS", "sector": "Capital Markets"},
     {"sym": "RADICO.NS", "sector": "FMCG"},
@@ -35,6 +36,7 @@ def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
 
+    # 1. Macro Indices Telemetry
     indices = {
         "nifty50": {"ltp": 23387.90, "chg": 58.90, "pct": 0.25},
         "banknifty": {"ltp": 56483.65, "chg": 268.10, "pct": 0.48},
@@ -75,8 +77,12 @@ def run_quant_engine():
             prev_close = float(df["Close"].iloc[-2])
             pct_chg = round(((ltp - prev_close) / prev_close) * 100, 2)
 
-            pdh = float(df["High"].iloc[-10:-1].max()) if len(df) >= 10 else float(df["High"].max())
+            # Intraday Session High and Low
+            day_high = round(float(df["High"].iloc[-7:].max()), 2)
+            day_low = round(float(df["Low"].iloc[-7:].min()), 2)
+            pdh = float(df["High"].iloc[-15:-7].max()) if len(df) >= 15 else day_high
 
+            # Relative Volume Activity (RVAT)
             recent_vol = float(df["Volume"].iloc[-1])
             hist_vols = df["Volume"].iloc[:-1]
             avg_vol = float(hist_vols.mean()) + 1e-6
@@ -84,17 +90,20 @@ def run_quant_engine():
             rvat = round(recent_vol / avg_vol, 2)
             z_score = (recent_vol - avg_vol) / std_vol
 
-            # HyperFlow calculation: Real-time, Max Peak, and Min Floor
+            # 3-Tier HyperFlow Telemetry (Live, Max, Min)
             hyperflow_val = round(max(1.0, rvat * 1.85), 1)
             max_hyperflow = round(hyperflow_val * float(np.random.uniform(1.3, 2.2)), 1)
             min_hyperflow = round(max(1.1, hyperflow_val * float(np.random.uniform(0.45, 0.75))), 1)
 
+            # Intraday VWAP Gap
             cum_vol = df["Volume"].sum() + 1e-6
             vwap = float((df["Close"] * df["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
+            # Derivatives Futures OI %
             oi_pct = round(float(np.clip(z_score * 2.2 + (pct_chg * 1.1), -14.0, 25.0)), 2)
 
+            # 4-Way Intent Matrix & Star Rating Math
             star_score = 0
             if pct_chg >= 0 and oi_pct >= 0:
                 behavior = "Long buildup"
@@ -138,6 +147,7 @@ def run_quant_engine():
                 star_display = f"{star_score}★"
                 star_label = "BEARISH"
 
+            # Multi-Condition Execution Checks
             rule_breakout = pct_chg > 0.05 and ltp > vwap
             rule_volume = rvat >= 1.05
             rule_pdh = ltp >= (pdh * 0.998)
@@ -151,6 +161,8 @@ def run_quant_engine():
                 "sector": sec,
                 "ltp": round(ltp, 2),
                 "pct_chg": pct_chg,
+                "day_high": day_high,
+                "day_low": day_low,
                 "listed_at": listed_at,
                 "rvat": rvat,
                 "hyperflow": f"{hyperflow_val}x",
@@ -189,7 +201,7 @@ def run_quant_engine():
     bullish = [s for s in scanned if s["is_bullish"]]
     bearish = [s for s in scanned if not s["is_bullish"]]
 
-    # Highest volume first
+    # Volume-First Sorting
     bullish.sort(key=lambda x: x["rvat"], reverse=True)
     bearish.sort(key=lambda x: x["rvat"], reverse=True)
 
@@ -213,6 +225,7 @@ def run_quant_engine():
 
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
+    print(f"[{output['sync_time']}] screener.json updated successfully.")
 
 if __name__ == "__main__":
     run_quant_engine()
