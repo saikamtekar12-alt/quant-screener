@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime, timedelta, timezone
 import numpy as np
 import pandas as pd
@@ -36,7 +37,28 @@ def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
 
-    # 1. Macro Indices Telemetry
+    # 1. Load historical state to preserve legitimate 'listed_at' trigger times
+    existing_timestamps = {}
+    if os.path.exists("screener.json"):
+        try:
+            with open("screener.json", "r") as f:
+                prev_data = json.load(f)
+                prev_stocks = prev_data.get("bullish_stocks", []) + prev_data.get("bearish_stocks", [])
+                for ps in prev_stocks:
+                    if "symbol" in ps and "listed_at" in ps:
+                        existing_timestamps[ps["symbol"]] = ps["listed_at"]
+        except Exception:
+            pass
+
+    # 2. Verify active NSE market hours (Mon-Fri 09:15 to 15:30 IST)
+    is_weekday = now_ist.weekday() < 5
+    market_open = (
+        is_weekday and
+        (now_ist.hour > 9 or (now_ist.hour == 9 and now_ist.minute >= 15)) and
+        (now_ist.hour < 15 or (now_ist.hour == 15 and now_ist.minute <= 30))
+    )
+
+    # 3. Macro Indices Telemetry
     indices = {
         "nifty50": {"ltp": 23387.90, "chg": 58.90, "pct": 0.25},
         "banknifty": {"ltp": 56483.65, "chg": 268.10, "pct": 0.48},
@@ -67,6 +89,7 @@ def run_quant_engine():
     for item in UNIVERSE:
         sym = item["sym"]
         sec = item["sector"]
+        clean_sym = sym.replace(".NS", "")
         try:
             ticker = yf.Ticker(sym)
             df = ticker.history(period="1mo", interval="1h")
@@ -90,7 +113,7 @@ def run_quant_engine():
             rvat = round(recent_vol / avg_vol, 2)
             z_score = (recent_vol - avg_vol) / std_vol
 
-            # 3-Tier HyperFlow Telemetry (Live, Max, Min)
+            # 3-Tier HyperFlow Telemetry
             hyperflow_val = round(max(1.0, rvat * 1.85), 1)
             max_hyperflow = round(hyperflow_val * float(np.random.uniform(1.3, 2.2)), 1)
             min_hyperflow = round(max(1.1, hyperflow_val * float(np.random.uniform(0.45, 0.75))), 1)
@@ -154,16 +177,25 @@ def run_quant_engine():
             rule_range = abs(pct_chg) < 4.5
             final_status = "YES" if (rule_volume and (rule_breakout or rule_pdh)) else "NO"
 
-            listed_at = (now_ist - timedelta(minutes=int(abs(z_score * 8)) % 45)).strftime("%H:%M")
+            # Determine listed_at timestamp:
+            # 1. Reuse existing timestamp if already locked
+            # 2. If market is actively open, record current IST time of breakout
+            # 3. Outside market hours / weekend, lock to initial market bell reference
+            if clean_sym in existing_timestamps:
+                trigger_time = existing_timestamps[clean_sym]
+            elif market_open:
+                trigger_time = now_ist.strftime("%H:%M")
+            else:
+                trigger_time = "09:20"
 
             scanned.append({
-                "symbol": sym.replace(".NS", ""),
+                "symbol": clean_sym,
                 "sector": sec,
                 "ltp": round(ltp, 2),
                 "pct_chg": pct_chg,
                 "day_high": day_high,
                 "day_low": day_low,
-                "listed_at": listed_at,
+                "listed_at": trigger_time,
                 "rvat": rvat,
                 "hyperflow": f"{hyperflow_val}x",
                 "max_hyperflow": f"{max_hyperflow}x",
@@ -201,7 +233,7 @@ def run_quant_engine():
     bullish = [s for s in scanned if s["is_bullish"]]
     bearish = [s for s in scanned if not s["is_bullish"]]
 
-    # Volume-First Sorting
+    # VOLUME-FIRST SORTING (Raw RVAT priority)
     bullish.sort(key=lambda x: x["rvat"], reverse=True)
     bearish.sort(key=lambda x: x["rvat"], reverse=True)
 
@@ -210,6 +242,7 @@ def run_quant_engine():
     output = {
         "sync_time": now_ist.strftime("%d %b %Y, %I:%M %p IST"),
         "ready_date": now_ist.strftime("%Y-%m-%d"),
+        "market_status": "OPEN" if market_open else "CLOSED",
         "indices": indices,
         "market_cards": {
             "advances": len(bullish) * 7 + 45,
@@ -225,7 +258,8 @@ def run_quant_engine():
 
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
-    print(f"[{output['sync_time']}] screener.json updated successfully.")
+
+    print(f"[{output['sync_time']}] screener.json successfully updated. Market: {output['market_status']}")
 
 if __name__ == "__main__":
     run_quant_engine()
