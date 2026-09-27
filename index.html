@@ -61,8 +61,8 @@
       display: none;
       position: fixed;
       z-index: 9999;
-      width: min(94vw, 700px);
-      height: 470px;
+      width: min(94vw, 680px);
+      height: 460px;
       background: #061229;
       border: 1px solid #38bdf8;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -247,8 +247,8 @@
       </div>
     </div>
 
-    <!-- TradingView Embed Holder -->
-    <div id="tv-container" class="w-full h-[395px]"></div>
+    <!-- Direct Iframe Holder -->
+    <iframe id="tv-frame" class="w-full h-[385px] border-0" src="about:blank"></iframe>
   </div>
 
   <script>
@@ -279,49 +279,21 @@
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      const x = Math.min(window.innerWidth - 720, Math.max(10, (event.clientX || window.innerWidth / 2) - 350));
-      const y = Math.min(window.innerHeight - 490, Math.max(50, (event.clientY || 200) - 180));
+      const x = Math.min(window.innerWidth - 700, Math.max(10, (event.clientX || window.innerWidth / 2) - 340));
+      const y = Math.min(window.innerHeight - 480, Math.max(50, (event.clientY || 200) - 180));
       modal.style.left = `${x}px`;
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      const container = document.getElementById('tv-container');
-      container.innerHTML = `
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div id="tv_chart_inner" style="height:100%;width:100%"></div>
-        </div>
-      `;
-
-      // Official Advanced Embed using BSE feed to avoid NSE permissions error
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-      script.async = true;
-      script.innerHTML = JSON.stringify({
-        "autosize": true,
-        "symbol": "BSE:" + sym,
-        "interval": "5",
-        "timezone": "Asia/Kolkata",
-        "theme": "dark",
-        "style": "1",
-        "locale": "in",
-        "enable_publishing": false,
-        "backgroundColor": "rgba(6, 18, 41, 1)",
-        "gridColor": "rgba(25, 53, 109, 0.2)",
-        "hide_top_toolbar": false,
-        "hide_legend": false,
-        "save_image": false,
-        "calendar": false,
-        "hide_volume": false,
-        "support_host": "https://www.tradingview.com"
-      });
-
-      container.querySelector('.tradingview-widget-container').appendChild(script);
+      // Direct embed URL using TradingView's official standalone widget
+      const chartUrl = `https://s.tradingview.com/widgetembed/?symbol=BSE%3A${encodeURIComponent(sym)}&interval=5&theme=dark&style=1&timezone=Asia%2FKolkata&studies=%5B%22VWAP%40tv-basicstudies%22%2C%22Volume%40tv-basicstudies%22%5D&hide_side_toolbar=true&allow_symbol_change=false&locale=in`;
+      document.getElementById('tv-frame').src = chartUrl;
     }
 
     function hideQuickChart() {
       const modal = document.getElementById('chart-hover-modal');
       modal.style.display = 'none';
+      document.getElementById('tv-frame').src = 'about:blank';
       activeQuickSymbol = null;
     }
 
