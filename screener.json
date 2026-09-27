@@ -1,5 +1,5 @@
 {
-  "sync_time": "27 Sep 2026, 01:37 PM IST",
+  "sync_time": "27 Sep 2026, 01:44 PM IST",
   "ready_date": "2026-09-27",
   "market_status": "CLOSED",
   "indices": {
@@ -45,8 +45,8 @@
     "listed_at": "12:17",
     "rvat": 3.18,
     "hyperflow": "5.9x",
-    "max_hyperflow": "10.0x",
-    "min_hyperflow": "4.3x",
+    "max_hyperflow": "11.3x",
+    "min_hyperflow": "3.6x",
     "vwap_gap": -1.71,
     "futures_oi": 5.49,
     "oi_behavior": "Long buildup",
@@ -58,29 +58,10 @@
     "star_label": "BULLISH",
     "is_bullish": true,
     "news": {
-      "has_news": true,
-      "sentiment": "bullish",
-      "count": 3,
-      "stories": [
-        {
-          "title": "",
-          "publisher": "Livemint",
-          "time": "Today 09:15",
-          "sentiment": "neutral"
-        },
-        {
-          "title": "",
-          "publisher": "Livemint",
-          "time": "Today 09:15",
-          "sentiment": "neutral"
-        },
-        {
-          "title": "",
-          "publisher": "Livemint",
-          "time": "Today 09:15",
-          "sentiment": "neutral"
-        }
-      ]
+      "has_news": false,
+      "sentiment": "neutral",
+      "count": 0,
+      "stories": []
     },
     "rules": {
       "breakout": "NO",
@@ -102,8 +83,8 @@
       "listed_at": "12:17",
       "rvat": 3.18,
       "hyperflow": "5.9x",
-      "max_hyperflow": "10.0x",
-      "min_hyperflow": "4.3x",
+      "max_hyperflow": "11.3x",
+      "min_hyperflow": "3.6x",
       "vwap_gap": -1.71,
       "futures_oi": 5.49,
       "oi_behavior": "Long buildup",
@@ -115,29 +96,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -158,8 +120,8 @@
       "listed_at": "12:25",
       "rvat": 2.31,
       "hyperflow": "4.3x",
-      "max_hyperflow": "5.9x",
-      "min_hyperflow": "2.2x",
+      "max_hyperflow": "6.5x",
+      "min_hyperflow": "2.6x",
       "vwap_gap": -7.16,
       "futures_oi": 3.82,
       "oi_behavior": "Long buildup",
@@ -171,17 +133,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 1,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -202,8 +157,8 @@
       "listed_at": "12:32",
       "rvat": 2.03,
       "hyperflow": "3.8x",
-      "max_hyperflow": "7.0x",
-      "min_hyperflow": "2.8x",
+      "max_hyperflow": "6.8x",
+      "min_hyperflow": "1.8x",
       "vwap_gap": -3.57,
       "futures_oi": 1.65,
       "oi_behavior": "Long buildup",
@@ -215,29 +170,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -258,8 +194,8 @@
       "listed_at": "12:25",
       "rvat": 2.0,
       "hyperflow": "3.7x",
-      "max_hyperflow": "7.2x",
-      "min_hyperflow": "1.7x",
+      "max_hyperflow": "7.3x",
+      "min_hyperflow": "2.3x",
       "vwap_gap": -1.5,
       "futures_oi": 3.24,
       "oi_behavior": "Long buildup",
@@ -271,29 +207,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -314,7 +231,7 @@
       "listed_at": "12:35",
       "rvat": 1.19,
       "hyperflow": "2.2x",
-      "max_hyperflow": "3.5x",
+      "max_hyperflow": "4.0x",
       "min_hyperflow": "1.3x",
       "vwap_gap": -1.69,
       "futures_oi": 0.94,
@@ -327,29 +244,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -370,7 +268,7 @@
       "listed_at": "12:32",
       "rvat": 0.21,
       "hyperflow": "1.0x",
-      "max_hyperflow": "2.0x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -7.04,
       "futures_oi": -0.99,
@@ -383,29 +281,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -426,7 +305,7 @@
       "listed_at": "12:30",
       "rvat": 0.17,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
+      "max_hyperflow": "1.5x",
       "min_hyperflow": "1.1x",
       "vwap_gap": 1.38,
       "futures_oi": -1.66,
@@ -439,29 +318,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "YES",
@@ -482,7 +342,7 @@
       "listed_at": "12:30",
       "rvat": 0.14,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
+      "max_hyperflow": "2.0x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -6.16,
       "futures_oi": -1.63,
@@ -495,29 +355,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -538,7 +379,7 @@
       "listed_at": "12:30",
       "rvat": 0.12,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.8x",
+      "max_hyperflow": "1.4x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -2.28,
       "futures_oi": -1.81,
@@ -551,29 +392,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -594,7 +416,7 @@
       "listed_at": "12:30",
       "rvat": 0.09,
       "hyperflow": "1.0x",
-      "max_hyperflow": "2.0x",
+      "max_hyperflow": "1.6x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -1.65,
       "futures_oi": -1.74,
@@ -607,29 +429,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -650,7 +453,7 @@
       "listed_at": "12:33",
       "rvat": 0.08,
       "hyperflow": "1.0x",
-      "max_hyperflow": "2.2x",
+      "max_hyperflow": "1.7x",
       "min_hyperflow": "1.1x",
       "vwap_gap": 2.39,
       "futures_oi": -0.61,
@@ -663,29 +466,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "YES",
@@ -719,29 +503,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -762,7 +527,7 @@
       "listed_at": "12:28",
       "rvat": 0.07,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.1x",
       "vwap_gap": 2.56,
       "futures_oi": -2.32,
@@ -775,29 +540,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -818,7 +564,7 @@
       "listed_at": "12:31",
       "rvat": 0.06,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
+      "max_hyperflow": "1.6x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -2.28,
       "futures_oi": -1.45,
@@ -831,29 +577,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -874,7 +601,7 @@
       "listed_at": "12:29",
       "rvat": 0.05,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.3x",
+      "max_hyperflow": "1.9x",
       "min_hyperflow": "1.1x",
       "vwap_gap": 0.63,
       "futures_oi": -1.86,
@@ -887,29 +614,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "YES",
@@ -930,7 +638,7 @@
       "listed_at": "12:32",
       "rvat": 0.02,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.4x",
+      "max_hyperflow": "1.7x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -3.93,
       "futures_oi": -1.12,
@@ -943,29 +651,10 @@
       "star_label": "BULLISH",
       "is_bullish": true,
       "news": {
-        "has_news": true,
-        "sentiment": "bullish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -988,8 +677,8 @@
       "listed_at": "12:31",
       "rvat": 1.67,
       "hyperflow": "3.1x",
-      "max_hyperflow": "4.4x",
-      "min_hyperflow": "1.6x",
+      "max_hyperflow": "6.2x",
+      "min_hyperflow": "1.4x",
       "vwap_gap": 1.06,
       "futures_oi": 1.28,
       "oi_behavior": "Short buildup",
@@ -1001,29 +690,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1044,8 +714,8 @@
       "listed_at": "12:36",
       "rvat": 1.1,
       "hyperflow": "2.0x",
-      "max_hyperflow": "3.3x",
-      "min_hyperflow": "1.5x",
+      "max_hyperflow": "4.0x",
+      "min_hyperflow": "1.1x",
       "vwap_gap": -3.39,
       "futures_oi": 0.23,
       "oi_behavior": "Short buildup",
@@ -1057,29 +727,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1100,7 +751,7 @@
       "listed_at": "12:29",
       "rvat": 0.15,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
+      "max_hyperflow": "1.4x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -4.67,
       "futures_oi": -2.22,
@@ -1113,29 +764,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1156,7 +788,7 @@
       "listed_at": "12:29",
       "rvat": 0.1,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.4x",
+      "max_hyperflow": "1.5x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -3.6,
       "futures_oi": -2.06,
@@ -1169,29 +801,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1212,7 +825,7 @@
       "listed_at": "12:30",
       "rvat": 0.09,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
+      "max_hyperflow": "1.4x",
       "min_hyperflow": "1.1x",
       "vwap_gap": 0.09,
       "futures_oi": -2.19,
@@ -1225,29 +838,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1268,7 +862,7 @@
       "listed_at": "12:29",
       "rvat": 0.09,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.6x",
+      "max_hyperflow": "1.9x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -4.08,
       "futures_oi": -2.0,
@@ -1281,29 +875,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 3,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          },
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
@@ -1324,7 +899,7 @@
       "listed_at": "12:30",
       "rvat": 0.07,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
+      "max_hyperflow": "2.0x",
       "min_hyperflow": "1.1x",
       "vwap_gap": -3.32,
       "futures_oi": -1.73,
@@ -1337,17 +912,10 @@
       "star_label": "BEARISH",
       "is_bullish": false,
       "news": {
-        "has_news": true,
-        "sentiment": "bearish",
-        "count": 1,
-        "stories": [
-          {
-            "title": "",
-            "publisher": "Livemint",
-            "time": "Today 09:15",
-            "sentiment": "neutral"
-          }
-        ]
+        "has_news": false,
+        "sentiment": "neutral",
+        "count": 0,
+        "stories": []
       },
       "rules": {
         "breakout": "NO",
