@@ -226,12 +226,17 @@
 
   <!-- FLOATING QUICK-PEEK CHART WINDOW -->
   <div id="chart-hover-modal">
-    <div class="p-2 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
+    <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
         <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
-        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN LIVE</span>
+        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">INTRADAY TAPE</span>
       </div>
-      <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
+      <div class="flex items-center space-x-2">
+        <a id="tv-open-link" href="#" target="_blank" class="text-[10px] bg-blue-600 hover:bg-blue-500 text-white font-bold px-2 py-0.5 rounded flex items-center space-x-1">
+          <span>Open Full TV ↗</span>
+        </a>
+        <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
+      </div>
     </div>
 
     <!-- HUD TELEMETRY STRIP -->
@@ -247,8 +252,8 @@
       </div>
     </div>
 
-    <!-- Direct Iframe Holder -->
-    <iframe id="tv-frame" class="w-full h-[385px] border-0" src="about:blank"></iframe>
+    <!-- Container that bypasses D/W/M restriction -->
+    <div id="tv-quick-box" class="w-full h-[385px] bg-[#061229]"></div>
   </div>
 
   <script>
@@ -263,6 +268,7 @@
       const stock = screenerDataMap[sym] || {};
 
       document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
+      document.getElementById('tv-open-link').href = `https://in.tradingview.com/chart/?symbol=NSE:${sym}`;
 
       const ltp = stock.ltp || 0;
       const pdhStatus = stock.rules ? stock.rules.pdh : "NO";
@@ -285,15 +291,60 @@
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      // Direct embed URL using TradingView's official standalone widget
-      const chartUrl = `https://s.tradingview.com/widgetembed/?symbol=BSE%3A${encodeURIComponent(sym)}&interval=5&theme=dark&style=1&timezone=Asia%2FKolkata&studies=%5B%22VWAP%40tv-basicstudies%22%2C%22Volume%40tv-basicstudies%22%5D&hide_side_toolbar=true&allow_symbol_change=false&locale=in`;
-      document.getElementById('tv-frame').src = chartUrl;
+      const box = document.getElementById('tv-quick-box');
+      box.innerHTML = `
+        <div class="tradingview-widget-container" style="height:100%; width:100%">
+          <div class="tradingview-widget-container__widget" style="height:100%; width:100%"></div>
+        </div>
+      `;
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        "symbols": [
+          [sym, "BSE:" + sym + "|1D"]
+        ],
+        "chartOnly": true,
+        "width": "100%",
+        "height": "100%",
+        "locale": "in",
+        "colorTheme": "dark",
+        "autosize": true,
+        "showVolume": true,
+        "showMA": true,
+        "maLength": 20,
+        "hideDateRanges": false,
+        "hideMarketStatus": false,
+        "hideSymbolLogo": true,
+        "scalePosition": "right",
+        "scaleMode": "Normal",
+        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+        "fontSize": "10",
+        "noTimeScale": false,
+        "valuesTracking": "1",
+        "changeMode": "price-and-percent",
+        "chartType": "area",
+        "maLineColor": "#a855f7",
+        "maLineWidth": 2,
+        "lineType": 0,
+        "dateRanges": ["1d|5", "1m|60", "3m|D"],
+        "upColor": "#2dd4bf",
+        "downColor": "#f43f5e",
+        "borderUpColor": "#2dd4bf",
+        "borderDownColor": "#f43f5e",
+        "wickUpColor": "#2dd4bf",
+        "wickDownColor": "#f43f5e"
+      });
+
+      box.querySelector('.tradingview-widget-container').appendChild(script);
     }
 
     function hideQuickChart() {
       const modal = document.getElementById('chart-hover-modal');
       modal.style.display = 'none';
-      document.getElementById('tv-frame').src = 'about:blank';
+      document.getElementById('tv-quick-box').innerHTML = '';
       activeQuickSymbol = null;
     }
 
