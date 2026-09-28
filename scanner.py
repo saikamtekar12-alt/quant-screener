@@ -1,39 +1,48 @@
 import json
 import os
+import time
 from datetime import datetime, timedelta, timezone
 import numpy as np
 import pandas as pd
 import yfinance as yf
 
+# Expanded active F&O universe matching Downstox & QuantScreener
 UNIVERSE = [
-    {"sym": "MCX.NS", "sector": "Capital Markets"},
-    {"sym": "MOTILALOFS.NS", "sector": "Capital Markets"},
-    {"sym": "RADICO.NS", "sector": "FMCG"},
-    {"sym": "KEI.NS", "sector": "Capital Goods"},
-    {"sym": "OFSS.NS", "sector": "IT"},
-    {"sym": "360ONE.NS", "sector": "Capital Markets"},
-    {"sym": "PERSISTENT.NS", "sector": "IT"},
-    {"sym": "COALINDIA.NS", "sector": "Oil & Gas"},
-    {"sym": "ADANIPOWER.NS", "sector": "Power"},
-    {"sym": "RELIANCE.NS", "sector": "Energy"},
-    {"sym": "HDFCBANK.NS", "sector": "Financial Services"},
-    {"sym": "ICICIBANK.NS", "sector": "Financial Services"},
-    {"sym": "SBIN.NS", "sector": "Financial Services"},
+    # Top Bullish candidates from Downstox
+    {"sym": "DABUR.NS", "sector": "FMCG"},
+    {"sym": "DIXON.NS", "sector": "Consumer Durables"},
+    {"sym": "DRREDDY.NS", "sector": "Pharma"},
+    {"sym": "FEDERALBNK.NS", "sector": "Financial Services"},
+    {"sym": "HEROMOTOCO.NS", "sector": "Auto"},
     {"sym": "INFY.NS", "sector": "IT"},
+    {"sym": "OFSS.NS", "sector": "IT"},
+    {"sym": "VOLTAS.NS", "sector": "Consumer Durables"},
+    {"sym": "LAURUSLABS.NS", "sector": "Pharma"},
+    # Top Bearish candidates from Downstox
+    {"sym": "ADANIPOWER.NS", "sector": "Power"},
+    {"sym": "BANDHANBNK.NS", "sector": "Financial Services"},
+    {"sym": "BANKBARODA.NS", "sector": "Financial Services"},
+    {"sym": "BANKINDIA.NS", "sector": "Financial Services"},
+    {"sym": "IDEA.NS", "sector": "Telecom"},
+    {"sym": "MCX.NS", "sector": "Capital Markets"},
+    {"sym": "RADICO.NS", "sector": "FMCG"},
+    {"sym": "ICICIBANK.NS", "sector": "Financial Services"},
     {"sym": "TCS.NS", "sector": "IT"},
-    {"sym": "TATAMOTORS.NS", "sector": "Auto"},
-    {"sym": "HINDALCO.NS", "sector": "Metal"},
     {"sym": "TATASTEEL.NS", "sector": "Metal"},
     {"sym": "LT.NS", "sector": "Capital Goods"},
+    {"sym": "RELIANCE.NS", "sector": "Energy"},
     {"sym": "WIPRO.NS", "sector": "IT"},
+    {"sym": "PERSISTENT.NS", "sector": "IT"},
     {"sym": "BAJFINANCE.NS", "sector": "Financial Services"},
+    {"sym": "HDFCBANK.NS", "sector": "Financial Services"},
+    {"sym": "COALINDIA.NS", "sector": "Oil & Gas"},
     {"sym": "TITAN.NS", "sector": "Consumer Goods"},
-    {"sym": "SUNPHARMA.NS", "sector": "Pharma"},
-    {"sym": "AXISBANK.NS", "sector": "Financial Services"},
+    {"sym": "HINDALCO.NS", "sector": "Metal"},
+    {"sym": "AXISBANK.NS", "sector": "Financial Services"}
 ]
 
-BULL_KEYWORDS = ["surge", "rally", "profit", "order", "growth", "high", "upgrade", "gain", "breakout"]
-BEAR_KEYWORDS = ["fall", "drop", "plunge", "loss", "decline", "warning", "probe", "weak", "down", "cut"]
+BULL_KEYWORDS = ["rise", "surge", "gain", "profit", "order", "growth", "high", "upgrade", "deal", "rally", "record", "bull"]
+BEAR_KEYWORDS = ["fall", "drop", "plunge", "loss", "decline", "cut", "warning", "probe", "downgrade", "weak", "bear", "down"]
 
 def analyze_sentiment(title):
     t = title.lower()
@@ -71,6 +80,7 @@ def run_quant_engine():
 
     scanned = []
     sector_deltas = {}
+    news_cutoff_epoch = time.time() - (48 * 3600)
 
     for item in UNIVERSE:
         sym = item["sym"]
@@ -92,7 +102,6 @@ def run_quant_engine():
             if df_5m is None or len(df_5m) < 5:
                 continue
 
-            # Isolate current day's candles
             df_5m.index = df_5m.index.tz_convert(ist)
             latest_date = df_5m.index[-1].date()
             today_candles = df_5m[df_5m.index.date == latest_date]
@@ -100,29 +109,31 @@ def run_quant_engine():
                 today_candles = df_5m.iloc[-30:]
 
             ltp = round(float(today_candles["Close"].iloc[-1]), 2)
+            
+            # Accurate session % change vs yesterday's close (matching Downstox CHG%)
             pct_chg = round(((ltp - prev_day_close) / prev_day_close) * 100, 2)
+            chg_pts = round(ltp - prev_day_close, 2)
             is_bullish = pct_chg >= 0
 
-            # Accurate Day High and Day Low from full day 5m session
             day_high = round(float(today_candles["High"].max()), 2)
-            day_low = round(float(today_candles["Low"].max() if len(today_candles) == 0 else today_candles["Low"].min()), 2)
+            day_low = round(float(today_candles["Low"].min()), 2)
 
-            # Accurate True Session VWAP
+            # True session VWAP
             typical_price = (today_candles["High"] + today_candles["Low"] + today_candles["Close"]) / 3
             cum_vol = today_candles["Volume"].sum() + 1e-6
             vwap = float((typical_price * today_candles["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
-            # Volume Anomaly Multiplier (RVAT) across day's volume vs 20-period average
+            # Volume anomaly multiplier
             vol_series = today_candles["Volume"]
             recent_vol = float(vol_series.iloc[-1])
             avg_vol = float(vol_series.rolling(20, min_periods=1).mean().iloc[-1]) + 1e-6
             rvat = round(recent_vol / avg_vol, 2)
 
-            # Real trigger time: determine when volume first exceeded 1.5x today
+            # Dynamic trigger time based on first 5-min surge
             trigger_time = "09:20"
             for t_idx, row in today_candles.iterrows():
-                if row["Volume"] > (avg_vol * 1.4):
+                if row["Volume"] > (avg_vol * 1.35):
                     trigger_time = t_idx.strftime("%H:%M")
                     break
 
@@ -130,9 +141,9 @@ def run_quant_engine():
             max_hyperflow = round(hyperflow_val * 1.6, 1)
             min_hyperflow = round(max(1.0, hyperflow_val * 0.6), 1)
 
-            # Futures OI calculation
             oi_pct = round(float(np.clip((rvat - 1.0) * 4.0 + (pct_chg * 1.2), -15.0, 25.0)), 2)
 
+            # Downstox Confluence Classification
             if pct_chg >= 0 and oi_pct >= 0:
                 behavior, intent, pulse, tone, star_score = "Long buildup", "ACCUMULATION", "P▲ | OI▲", "bull-strong", 4
             elif pct_chg >= 0 and oi_pct < 0:
@@ -148,10 +159,10 @@ def run_quant_engine():
             rule_breakout = pct_chg > 0 and ltp > vwap
             rule_volume = rvat >= 1.1
             rule_pdh = ltp >= (pdh * 0.998)
-            rule_range = abs(pct_chg) <= 4.5
+            rule_range = abs(pct_chg) <= 5.0
             final_status = "YES" if (rule_volume and (rule_breakout or rule_pdh)) else "NO"
 
-            # Strict 48h news parsing
+            # Parse genuine 48-hr news
             news_items = []
             overall_sentiment = "neutral"
             try:
@@ -175,7 +186,6 @@ def run_quant_engine():
             except Exception:
                 pass
 
-            # Export real 5m session candles for the quick-peek canvas
             candle_payload = []
             sampled_candles = today_candles.tail(32)
             for _, c_row in sampled_candles.iterrows():
@@ -192,6 +202,7 @@ def run_quant_engine():
                 "sector": sec,
                 "ltp": ltp,
                 "pct_chg": pct_chg,
+                "chg_pts": chg_pts,
                 "day_high": day_high,
                 "day_low": day_low,
                 "listed_at": trigger_time,
@@ -229,8 +240,8 @@ def run_quant_engine():
             print(f"Error {sym}: {e}")
 
     sector_perf = {k: round(float(np.mean(v)), 2) for k, v in sector_deltas.items()}
-    top_sec = max(sector_perf, key=sector_perf.get) if sector_perf else "Capital Markets"
-    weak_sec = min(sector_perf, key=sector_perf.get) if sector_perf else "IT"
+    top_sec = max(sector_perf, key=sector_perf.get) if sector_perf else "FMCG"
+    weak_sec = min(sector_perf, key=sector_perf.get) if sector_perf else "Power"
 
     for s in scanned:
         s["sector_pct"] = sector_perf.get(s["sector"], 0.0)
@@ -238,6 +249,7 @@ def run_quant_engine():
     bullish = [s for s in scanned if s["is_bullish"]]
     bearish = [s for s in scanned if not s["is_bullish"]]
 
+    # Sort candidates by relative volume anomaly (RVAT)
     bullish.sort(key=lambda x: x["rvat"], reverse=True)
     bearish.sort(key=lambda x: x["rvat"], reverse=True)
 
@@ -262,7 +274,7 @@ def run_quant_engine():
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] screener.json regenerated with accurate market data.")
+    print(f"[{output['sync_time']}] screener.json regenerated with accurate Downstox-aligned CHG%.")
 
 if __name__ == "__main__":
     run_quant_engine()
