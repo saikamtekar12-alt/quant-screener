@@ -56,7 +56,6 @@
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
 
-    /* Circular [N] News Badge */
     .news-badge {
       display: inline-flex;
       align-items: center;
@@ -73,10 +72,9 @@
       transition: transform 0.15s ease-in-out;
     }
     .news-badge:hover { transform: scale(1.2); }
-    .news-bull { background-color: #064e3b; color: #34d399; border: 1px solid #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.4); }
-    .news-bear { background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4); }
+    .news-bull { background-color: #064e3b; color: #34d399; border: 1px solid #10b981; }
+    .news-bear { background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; }
 
-    /* Floating News Card Modal */
     #news-hover-card {
       display: none;
       position: fixed;
@@ -90,7 +88,6 @@
       pointer-events: auto;
     }
 
-    /* Floating Quick-Peek Chart Modal */
     #chart-hover-modal {
       display: none;
       position: fixed;
@@ -108,7 +105,7 @@
 <body class="p-2 md:p-6 pb-24 text-xs">
   <div class="max-w-7xl mx-auto space-y-5">
 
-    <!-- Top Real-Time Indices Ribbon -->
+    <!-- Indices Ribbon -->
     <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap border-b border-blue-950 pb-2.5 text-[11px]">
       <div><span class="text-slate-400">NIFTY 50</span> <span id="n50-ltp" class="font-bold">23,387.9</span> <span id="n50-chg" class="tag-green font-bold">▲ 58.90 (0.25%)</span></div>
       <div><span class="text-slate-400">NIFTY BANK</span> <span id="nbk-ltp" class="font-bold">56,483.65</span> <span id="nbk-chg" class="tag-green font-bold">▲ 268.10 (0.48%)</span></div>
@@ -125,15 +122,15 @@
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">ADVANCES</div>
-        <div class="text-xl font-bold tag-green mt-1" id="tile-adv">139</div>
+        <div class="text-xl font-bold tag-green mt-1" id="tile-adv">0</div>
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">DECLINES</div>
-        <div class="text-xl font-bold tag-red mt-1" id="tile-dec">59</div>
+        <div class="text-xl font-bold tag-red mt-1" id="tile-dec">0</div>
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">TRACKED SYMBOLS</div>
-        <div class="text-xl font-bold text-white mt-1" id="tile-track">198</div>
+        <div class="text-xl font-bold text-white mt-1" id="tile-track">24</div>
       </div>
       <div class="card-navy p-3 rounded text-center">
         <div class="text-[10px] text-slate-400 uppercase tracking-wider">TOP SECTOR</div>
@@ -148,20 +145,19 @@
     <!-- Market Summary Strip -->
     <div class="card-navy px-4 py-2.5 rounded flex flex-wrap items-center justify-between gap-2 text-[11px]">
       <div class="flex items-center space-x-4">
-        <div><span class="text-slate-400 uppercase text-[9px]">INDIA VIX:</span> <b id="vix-val" class="text-amber-300">10.48</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">TOP BULLISH:</span> <b id="sum-bull" class="text-emerald-400">AXISBANK</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">TOP BEARISH:</span> <b id="sum-bear" class="text-rose-400">TATASTEEL</b></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">INDIA VIX:</span> <b id="vix-val" class="text-amber-300">12.16</b></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">TOP BULLISH:</span> <b id="sum-bull" class="text-emerald-400">--</b></div>
+        <div><span class="text-slate-400 uppercase text-[9px]">TOP BEARISH:</span> <b id="sum-bear" class="text-rose-400">--</b></div>
       </div>
       <div class="text-slate-500 text-[10px]">Sync: <span id="sync-time" class="text-slate-300">Syncing...</span></div>
     </div>
 
-    <!-- SECTION 1: BULLISH MATRIX TABLE -->
+    <!-- BULLISH TABLE -->
     <div class="space-y-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
         <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
       </div>
-
       <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
         <table class="w-full text-left whitespace-nowrap text-xs">
           <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
@@ -186,13 +182,12 @@
       </div>
     </div>
 
-    <!-- SECTION 2: BEARISH MATRIX TABLE -->
+    <!-- BEARISH TABLE -->
     <div class="space-y-2 pt-2">
       <div class="flex items-center space-x-2 px-1">
         <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
         <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
       </div>
-
       <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
         <table class="w-full text-left whitespace-nowrap text-xs">
           <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
@@ -217,64 +212,26 @@
       </div>
     </div>
 
-    <!-- SECTION 3: RULE MATRIX -->
-    <div class="mt-6 border border-blue-900/60 rounded bg-[#061229] p-4">
-      <div class="flex items-center justify-between mb-3 border-b border-blue-900/60 pb-2">
-        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Multi-Condition Rule Matrix</h3>
-        <span class="text-[10px] text-emerald-400 font-bold">STATUS CONFIRMATION ENGINE</span>
-      </div>
-      <div id="rule-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs"></div>
-    </div>
-
-    <!-- SECTION 4: 1 FOCUS STOCK -->
-    <div class="border border-amber-500/40 rounded bg-[#07132a] p-4 space-y-4">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-blue-900 pb-2">
-        <div>
-          <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">PHASE 05 / 06 FOCUS</span>
-          <h3 class="text-sm md:text-base font-bold text-white">PROGRESSIVE CANDIDATE FUNNEL</h3>
-        </div>
-        <span class="text-slate-400 text-xs">Systematically eliminating market noise</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="space-y-2 card-navy p-3 rounded text-xs">
-          <div class="text-[11px] font-bold text-slate-300">APPLY STOCK SELECTION STRATEGY</div>
-          <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>HyperFlow™ momentum confirmation</span></div>
-          <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Sector ranking relative strength</span></div>
-          <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Defined intraday risk-to-reward ratio</span></div>
-        </div>
-
-        <div class="border border-amber-500 rounded p-4 text-center bg-[#0a1836] flex flex-col justify-center items-center">
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">PHASE 06 / FOCUS (1 STOCK)</span>
-          <div class="text-2xl font-black text-amber-400 mt-1" id="focus-sym">AXISBANK</div>
-          <div class="text-slate-300 text-xs mt-1" id="focus-meta">Financial Services · +0.19% · HyperFlow 5.9x</div>
-          <button class="mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-1.5 rounded uppercase tracking-wider text-xs shadow-lg">
-            EXECUTE
-          </button>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- FLOATING NEWS CARD MODAL -->
+  <!-- FLOATING NEWS CARD -->
   <div id="news-hover-card">
     <div class="flex justify-between items-center border-b border-blue-900 pb-1 mb-2">
       <div class="flex items-center space-x-1.5">
         <span id="news-card-sym" class="font-bold text-white uppercase text-xs">SYMBOL</span>
-        <span id="news-card-count" class="text-[10px] text-slate-400 font-medium">3 stories</span>
+        <span id="news-card-count" class="text-[10px] text-slate-400 font-medium">stories</span>
       </div>
       <button onclick="hideNewsCard()" class="text-slate-400 hover:text-white px-1 text-xs font-bold">✕</button>
     </div>
     <div id="news-card-list" class="space-y-2 text-[11px]"></div>
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
+  <!-- FLOATING QUICK-PEEK CANVAS -->
   <div id="chart-hover-modal">
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
         <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
-        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN CANDLES</span>
+        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN REAL TAPE</span>
       </div>
       <div class="flex items-center space-x-2">
         <a id="tv-open-link" href="#" target="_blank" class="text-[10px] bg-blue-600 hover:bg-blue-500 text-white font-bold px-2 py-0.5 rounded">
@@ -326,25 +283,21 @@
       document.getElementById('news-card-sym').textContent = `${sym}`;
       document.getElementById('news-card-count').textContent = `${stock.news.stories.length} stories`;
 
-      const listHtml = stock.news.stories.map(s => `
+      card.style.display = 'block';
+      const x = Math.min(window.innerWidth - 330, Math.max(10, event.clientX + 10));
+      const y = Math.min(window.innerHeight - 250, Math.max(20, event.clientY - 40));
+      card.style.left = `${x}px`;
+      card.style.top = `${y}px`;
+
+      document.getElementById('news-card-list').innerHTML = stock.news.stories.map(s => `
         <div class="border-b border-blue-950 pb-1.5 last:border-b-0">
           <div class="text-[9px] text-slate-400 flex justify-between">
             <span class="font-bold text-cyan-300">${s.time}</span>
             <span class="text-slate-500">${s.publisher}</span>
           </div>
-          <div class="font-semibold text-slate-200 mt-0.5 hover:text-white leading-tight">
-            ${s.title}
-          </div>
+          <div class="font-semibold text-slate-200 mt-0.5 leading-tight">${s.title}</div>
         </div>
       `).join('');
-
-      document.getElementById('news-card-list').innerHTML = listHtml;
-
-      const x = Math.min(window.innerWidth - 330, Math.max(10, event.clientX + 10));
-      const y = Math.min(window.innerHeight - 250, Math.max(20, event.clientY - 40));
-      card.style.left = `${x}px`;
-      card.style.top = `${y}px`;
-      card.style.display = 'block';
     }
 
     function hideNewsCard() {
@@ -355,7 +308,6 @@
       const canvas = document.getElementById('quick-candle-canvas');
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
-
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
@@ -363,9 +315,9 @@
 
       const w = rect.width;
       const h = rect.height;
-
       ctx.clearRect(0, 0, w, h);
 
+      // Grid
       ctx.strokeStyle = '#0e2248';
       ctx.lineWidth = 1;
       for (let y = 30; y < h; y += 40) {
@@ -375,87 +327,72 @@
         ctx.stroke();
       }
 
-      const ltp = stock.ltp || 1000;
-      const isBull = (stock.pct_chg || 0) >= 0;
-      const high = parseFloat(stock.day_high || (ltp * (isBull ? 1.012 : 1.004)).toFixed(2));
-      const low = parseFloat(stock.day_low || (ltp * (isBull ? 0.996 : 0.988)).toFixed(2));
+      const candles = stock.candles || [];
+      if (candles.length === 0) return;
 
-      const numCandles = 28;
-      const candles = [];
-      let cur = low + (high - low) * 0.35;
+      const high = stock.day_high;
+      const low = stock.day_low;
+      const range = (high - low) || 1;
+      const minVal = low - range * 0.05;
+      const maxVal = high + range * 0.05;
+      const totalRange = maxVal - minVal;
 
-      for (let i = 0; i < numCandles; i++) {
-        const step = (Math.sin(i / 3) * 0.35 + (isBull ? 0.2 : -0.2)) * ((high - low) / 10);
-        const o = cur;
-        let c = cur + step + (Math.random() - 0.5) * ((high - low) / 12);
-        if (i === numCandles - 1) c = ltp;
-
-        const cHigh = Math.min(high, Math.max(o, c) + Math.random() * ((high - low) / 18));
-        const cLow = Math.max(low, Math.min(o, c) - Math.random() * ((high - low) / 18));
-        const vol = Math.random() * 0.7 + (i === numCandles - 1 && stock.rvat > 1.5 ? 1.6 : 0.4);
-
-        candles.push({ o, c, h: cHigh, l: cLow, v: vol });
-        cur = c;
-      }
-
-      const minVal = low * 0.998;
-      const maxVal = high * 1.002;
-      const range = maxVal - minVal || 1;
-
-      const getY = (val) => h - 70 - ((val - minVal) / range) * (h - 110);
-      const candleWidth = Math.max(4, (w - 180) / numCandles - 4);
+      const getY = (val) => h - 60 - ((val - minVal) / totalRange) * (h - 90);
       const startX = 145;
+      const num = candles.length;
+      const candleWidth = Math.max(3, (w - 180) / num - 3);
 
+      // Plot Day High line
       const yHigh = getY(high);
-      const yLow = getY(low);
-
       ctx.strokeStyle = '#00e676';
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(startX, yHigh);
-      ctx.lineTo(w - 20, yHigh);
+      ctx.lineTo(w - 15, yHigh);
       ctx.stroke();
-
       ctx.fillStyle = '#00e676';
       ctx.font = '10px monospace';
       ctx.fillText(`Day High: ₹${high}`, w - 120, yHigh - 5);
 
+      // Plot Day Low line
+      const yLow = getY(low);
       ctx.strokeStyle = '#ef4444';
       ctx.beginPath();
       ctx.moveTo(startX, yLow);
-      ctx.lineTo(w - 20, yLow);
+      ctx.lineTo(w - 15, yLow);
       ctx.stroke();
-
       ctx.fillStyle = '#ef4444';
       ctx.fillText(`Day Low: ₹${low}`, w - 120, yLow + 12);
       ctx.setLineDash([]);
 
-      for (let i = 0; i < numCandles; i++) {
-        const cd = candles[i];
-        const x = startX + i * (candleWidth + 4);
-        const candleBull = cd.c >= cd.o;
-        const color = candleBull ? '#00e5ff' : '#f43f5e';
+      const maxVol = Math.max(...candles.map(c => c.v), 1);
 
+      // Render actual candles
+      for (let i = 0; i < num; i++) {
+        const cd = candles[i];
+        const x = startX + i * (candleWidth + 3);
+        const bull = cd.c >= cd.o;
+        const color = bull ? '#00e5ff' : '#f43f5e';
+
+        // Wick
         ctx.strokeStyle = color;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.moveTo(x + candleWidth / 2, getY(cd.h));
         ctx.lineTo(x + candleWidth / 2, getY(cd.l));
         ctx.stroke();
 
-        const yOpen = getY(cd.o);
-        const yClose = getY(cd.c);
-        const bodyY = Math.min(yOpen, yClose);
-        const bodyH = Math.max(2, Math.abs(yOpen - yClose));
-
+        // Body
+        const yO = getY(cd.o);
+        const yC = getY(cd.c);
         ctx.fillStyle = color;
-        ctx.fillRect(x, bodyY, candleWidth, bodyH);
+        ctx.fillRect(x, Math.min(yO, yC), candleWidth, Math.max(2, Math.abs(yO - yC)));
 
-        const maxVolH = 45;
-        const volH = Math.min(maxVolH, cd.v * 22);
-        ctx.fillStyle = candleBull ? 'rgba(0, 229, 255, 0.45)' : 'rgba(244, 63, 94, 0.45)';
-        ctx.fillRect(x, h - volH - 10, candleWidth, volH);
+        // Real Volume Bar
+        const volH = (cd.v / maxVol) * 40;
+        ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
+        ctx.fillRect(x, h - volH - 5, candleWidth, volH);
       }
     }
 
@@ -469,22 +406,18 @@
       document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
       document.getElementById('tv-open-link').href = `https://in.tradingview.com/chart/?symbol=NSE:${sym}`;
 
-      const ltp = stock.ltp || 0;
-      const pdhStatus = stock.rules ? stock.rules.pdh : "NO";
-      const dayHigh = stock.day_high || (ltp * (stock.pct_chg >= 0 ? 1.008 : 1.002)).toFixed(2);
-      const dayLow  = stock.day_low  || (ltp * (stock.pct_chg < 0 ? 0.992 : 0.997)).toFixed(2);
-
-      document.getElementById('qp-ltp').textContent = `₹${typeof ltp === 'number' ? ltp.toFixed(2) : ltp}`;
-      document.getElementById('qp-high').textContent = `₹${dayHigh}`;
-      document.getElementById('qp-low').textContent = `₹${dayLow}`;
+      document.getElementById('qp-ltp').textContent = `₹${stock.ltp.toFixed(2)}`;
+      document.getElementById('qp-high').textContent = `₹${stock.day_high}`;
+      document.getElementById('qp-low').textContent = `₹${stock.day_low}`;
 
       const pdhElem = document.getElementById('qp-pdh');
+      const pdhStatus = stock.rules ? stock.rules.pdh : "NO";
       pdhElem.textContent = pdhStatus;
       pdhElem.className = pdhStatus === 'YES' 
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      const r = stock.rules || { breakout: "YES", volume: "YES", pdh: "YES", range: "YES", final: "YES" };
+      const r = stock.rules || { breakout: "NO", volume: "NO", pdh: "NO", range: "NO", final: "NO" };
       const setHud = (id, val) => {
         const el = document.getElementById(id);
         el.textContent = val;
@@ -502,19 +435,16 @@
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      setTimeout(() => drawQuickCandles(stock), 30);
+      setTimeout(() => drawQuickCandles(stock), 20);
     }
 
     function hideQuickChart() {
-      const modal = document.getElementById('chart-hover-modal');
-      modal.style.display = 'none';
+      document.getElementById('chart-hover-modal').style.display = 'none';
       activeQuickSymbol = null;
     }
 
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('#news-hover-card') && !e.target.closest('.news-badge')) {
-        hideNewsCard();
-      }
+      if (!e.target.closest('#news-hover-card') && !e.target.closest('.news-badge')) hideNewsCard();
     });
 
     async function renderApp() {
@@ -525,7 +455,6 @@
         [...d.bullish_stocks, ...d.bearish_stocks].forEach(s => { screenerDataMap[s.symbol] = s; });
 
         document.getElementById('sync-time').textContent = d.sync_time;
-
         document.getElementById('n50-ltp').textContent = d.indices.nifty50.ltp.toLocaleString();
         document.getElementById('nbk-ltp').textContent = d.indices.banknifty.ltp.toLocaleString();
         document.getElementById('nfin-ltp').textContent = d.indices.finnifty.ltp.toLocaleString();
@@ -543,22 +472,14 @@
         document.getElementById('sum-bull').textContent = d.bullish_stocks[0]?.symbol || "N/A";
         document.getElementById('sum-bear').textContent = d.bearish_stocks[0]?.symbol || "N/A";
 
-        document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
-        document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow} · Rating ${d.focus_stock.star_display}`;
-
         const renderRow = (s) => {
-          // Conditional check: only render [N] badge if real news exists
           let newsBadgeHtml = '';
           if (s.news && s.news.has_news) {
-            const isBearNews = s.news.sentiment === 'bearish';
-            const newsClass = isBearNews ? 'news-bear' : 'news-bull';
+            const newsClass = s.news.sentiment === 'bearish' ? 'news-bear' : 'news-bull';
             newsBadgeHtml = `
               <span class="news-badge ${newsClass}" 
-                    title="Recent news about ${s.symbol}" 
                     onmouseenter="showNewsCard('${s.symbol}', event)" 
-                    onclick="showNewsCard('${s.symbol}', event)">
-                N
-              </span>
+                    onclick="showNewsCard('${s.symbol}', event)">N</span>
             `;
           }
 
@@ -584,12 +505,8 @@
               <td class="py-2.5 px-3 text-right font-bold text-amber-300">${s.hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
-              <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">
-                ${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%
-              </td>
-              <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">
-                ${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%
-              </td>
+              <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%</td>
+              <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%</td>
               <td class="py-2.5 px-3 text-left pl-4 font-semibold text-blue-200">${s.oi_behavior}</td>
               <td class="py-2 px-3 text-center">
                 <span class="intent-pill ${s.matrix_tone}">
@@ -609,31 +526,6 @@
 
         document.getElementById('bullish-table').innerHTML = d.bullish_stocks.map(renderRow).join('');
         document.getElementById('bearish-table').innerHTML = d.bearish_stocks.map(renderRow).join('');
-
-        const topSet = [...d.bullish_stocks, ...d.bearish_stocks].slice(0, 4);
-        document.getElementById('rule-cards').innerHTML = topSet.map(c => `
-          <div class="card-navy rounded border border-blue-900/60 overflow-hidden">
-            <div class="p-2 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-              <span class="font-bold text-white">${c.symbol}</span>
-              <span class="text-[10px] text-slate-400">${c.sector}</span>
-            </div>
-            <table class="w-full text-[11px] divide-y divide-blue-950/60">
-              <tr class="bg-[#0b1d44] text-[10px] uppercase text-slate-400 font-semibold">
-                <th class="py-1 px-3">RULE</th>
-                <th class="py-1 px-3 text-right">STATUS</th>
-              </tr>
-              <tr><td class="py-1 px-3 text-slate-400">Breakout</td><td class="py-1 px-3 text-right font-bold ${c.rules.breakout === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.breakout}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">Volume</td><td class="py-1 px-3 text-right font-bold ${c.rules.volume === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.volume}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">PDH</td><td class="py-1 px-3 text-right font-bold ${c.rules.pdh === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.pdh}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">Range</td><td class="py-1 px-3 text-right font-bold ${c.rules.range === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.range}</td></tr>
-              <tr class="bg-emerald-950/30 border-t border-emerald-900/60">
-                <td class="py-1.5 px-3 font-bold text-white">Final</td>
-                <td class="py-1.5 px-3 text-right font-black ${c.rules.final === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.final}</td>
-              </tr>
-            </table>
-          </div>
-        `).join('');
-
       } catch (err) {
         console.error(err);
       }
