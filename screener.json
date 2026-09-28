@@ -1,7 +1,6 @@
 {
-  "sync_time": "28 Sep 2026, 04:39 PM IST",
+  "sync_time": "28 Sep 2026, 04:49 PM IST",
   "ready_date": "2026-09-28",
-  "market_status": "CLOSED",
   "indices": {
     "nifty50": {
       "ltp": 22780.2,
@@ -29,26 +28,26 @@
     }
   },
   "market_cards": {
-    "advances": 94,
-    "declines": 92,
-    "tracked": 198,
-    "top_sector": "Oil & Gas",
-    "weak_sector": "FMCG"
+    "advances": 2,
+    "declines": 21,
+    "tracked": 23,
+    "top_sector": "IT",
+    "weak_sector": "Power"
   },
   "focus_stock": {
-    "symbol": "MCX",
-    "sector": "Capital Markets",
-    "ltp": 3263.5,
-    "pct_chg": 0.14,
-    "day_high": 3324.9,
-    "day_low": 3251.7,
-    "listed_at": "12:29",
-    "rvat": 1.56,
-    "hyperflow": "2.9x",
-    "max_hyperflow": "5.1x",
-    "min_hyperflow": "1.9x",
-    "vwap_gap": -1.18,
-    "futures_oi": 1.34,
+    "symbol": "OFSS",
+    "sector": "IT",
+    "ltp": 10800.0,
+    "pct_chg": 0.28,
+    "day_high": 10905.0,
+    "day_low": 10601.0,
+    "listed_at": "09:40",
+    "rvat": 4.34,
+    "hyperflow": "7.8x",
+    "max_hyperflow": "12.5x",
+    "min_hyperflow": "4.7x",
+    "vwap_gap": 0.15,
+    "futures_oi": 13.7,
     "oi_behavior": "Long buildup",
     "matrix_intent": "ACCUMULATION",
     "matrix_pulse": "P\u25b2 | OI\u25b2",
@@ -57,36 +56,261 @@
     "star_display": "+4\u2605",
     "star_label": "BULLISH",
     "is_bullish": true,
+    "candles": [
+      {
+        "o": 10826.0,
+        "h": 10827.0,
+        "l": 10807.0,
+        "c": 10809.0,
+        "v": 1221.0
+      },
+      {
+        "o": 10808.0,
+        "h": 10835.0,
+        "l": 10805.0,
+        "c": 10828.0,
+        "v": 1076.0
+      },
+      {
+        "o": 10829.0,
+        "h": 10850.0,
+        "l": 10829.0,
+        "c": 10844.0,
+        "v": 1556.0
+      },
+      {
+        "o": 10844.0,
+        "h": 10867.0,
+        "l": 10839.0,
+        "c": 10860.0,
+        "v": 1370.0
+      },
+      {
+        "o": 10855.0,
+        "h": 10861.0,
+        "l": 10832.0,
+        "c": 10843.0,
+        "v": 1752.0
+      },
+      {
+        "o": 10842.0,
+        "h": 10864.0,
+        "l": 10841.0,
+        "c": 10851.0,
+        "v": 1270.0
+      },
+      {
+        "o": 10852.0,
+        "h": 10853.0,
+        "l": 10811.0,
+        "c": 10826.0,
+        "v": 2248.0
+      },
+      {
+        "o": 10828.0,
+        "h": 10860.0,
+        "l": 10823.0,
+        "c": 10860.0,
+        "v": 1512.0
+      },
+      {
+        "o": 10860.0,
+        "h": 10875.0,
+        "l": 10855.0,
+        "c": 10866.0,
+        "v": 2309.0
+      },
+      {
+        "o": 10860.0,
+        "h": 10868.0,
+        "l": 10860.0,
+        "c": 10865.0,
+        "v": 1952.0
+      },
+      {
+        "o": 10868.0,
+        "h": 10868.0,
+        "l": 10856.0,
+        "c": 10856.0,
+        "v": 515.0
+      },
+      {
+        "o": 10861.0,
+        "h": 10861.0,
+        "l": 10839.0,
+        "c": 10856.0,
+        "v": 1484.0
+      },
+      {
+        "o": 10854.0,
+        "h": 10877.0,
+        "l": 10852.0,
+        "c": 10874.0,
+        "v": 2100.0
+      },
+      {
+        "o": 10874.0,
+        "h": 10877.0,
+        "l": 10832.0,
+        "c": 10842.0,
+        "v": 1478.0
+      },
+      {
+        "o": 10842.0,
+        "h": 10860.0,
+        "l": 10831.0,
+        "c": 10852.0,
+        "v": 599.0
+      },
+      {
+        "o": 10853.0,
+        "h": 10869.0,
+        "l": 10840.0,
+        "c": 10842.0,
+        "v": 926.0
+      },
+      {
+        "o": 10842.0,
+        "h": 10849.0,
+        "l": 10822.0,
+        "c": 10835.0,
+        "v": 1443.0
+      },
+      {
+        "o": 10830.0,
+        "h": 10852.0,
+        "l": 10830.0,
+        "c": 10845.0,
+        "v": 527.0
+      },
+      {
+        "o": 10849.0,
+        "h": 10852.0,
+        "l": 10833.0,
+        "c": 10850.0,
+        "v": 589.0
+      },
+      {
+        "o": 10845.0,
+        "h": 10854.0,
+        "l": 10821.0,
+        "c": 10833.0,
+        "v": 1505.0
+      },
+      {
+        "o": 10832.0,
+        "h": 10855.0,
+        "l": 10825.0,
+        "c": 10837.0,
+        "v": 884.0
+      },
+      {
+        "o": 10831.0,
+        "h": 10842.0,
+        "l": 10828.0,
+        "c": 10828.0,
+        "v": 775.0
+      },
+      {
+        "o": 10828.0,
+        "h": 10837.0,
+        "l": 10820.0,
+        "c": 10827.0,
+        "v": 1121.0
+      },
+      {
+        "o": 10824.0,
+        "h": 10837.0,
+        "l": 10809.0,
+        "c": 10810.0,
+        "v": 1489.0
+      },
+      {
+        "o": 10814.0,
+        "h": 10837.0,
+        "l": 10814.0,
+        "c": 10832.0,
+        "v": 2660.0
+      },
+      {
+        "o": 10828.0,
+        "h": 10848.0,
+        "l": 10824.0,
+        "c": 10843.0,
+        "v": 1523.0
+      },
+      {
+        "o": 10837.0,
+        "h": 10862.0,
+        "l": 10837.0,
+        "c": 10862.0,
+        "v": 2894.0
+      },
+      {
+        "o": 10862.0,
+        "h": 10880.0,
+        "l": 10831.0,
+        "c": 10836.0,
+        "v": 4872.0
+      },
+      {
+        "o": 10827.0,
+        "h": 10842.0,
+        "l": 10820.0,
+        "c": 10827.0,
+        "v": 8122.0
+      },
+      {
+        "o": 10827.0,
+        "h": 10854.0,
+        "l": 10816.0,
+        "c": 10854.0,
+        "v": 10635.0
+      },
+      {
+        "o": 10843.0,
+        "h": 10859.0,
+        "l": 10834.0,
+        "c": 10834.0,
+        "v": 9298.0
+      },
+      {
+        "o": 10839.0,
+        "h": 10841.0,
+        "l": 10793.0,
+        "c": 10800.0,
+        "v": 14795.0
+      }
+    ],
     "news": {
       "has_news": false,
       "sentiment": "neutral",
-      "count": 0,
       "stories": []
     },
     "rules": {
-      "breakout": "NO",
+      "breakout": "YES",
       "volume": "YES",
-      "pdh": "NO",
+      "pdh": "YES",
       "range": "YES",
-      "final": "NO"
+      "final": "YES"
     },
-    "sector_pct": -0.1
+    "sector_pct": -0.45
   },
   "bullish_stocks": [
     {
-      "symbol": "MCX",
-      "sector": "Capital Markets",
-      "ltp": 3263.5,
-      "pct_chg": 0.14,
-      "day_high": 3324.9,
-      "day_low": 3251.7,
-      "listed_at": "12:29",
-      "rvat": 1.56,
-      "hyperflow": "2.9x",
-      "max_hyperflow": "5.1x",
-      "min_hyperflow": "1.9x",
-      "vwap_gap": -1.18,
-      "futures_oi": 1.34,
+      "symbol": "OFSS",
+      "sector": "IT",
+      "ltp": 10800.0,
+      "pct_chg": 0.28,
+      "day_high": 10905.0,
+      "day_low": 10601.0,
+      "listed_at": "09:40",
+      "rvat": 4.34,
+      "hyperflow": "7.8x",
+      "max_hyperflow": "12.5x",
+      "min_hyperflow": "4.7x",
+      "vwap_gap": 0.15,
+      "futures_oi": 13.7,
       "oi_behavior": "Long buildup",
       "matrix_intent": "ACCUMULATION",
       "matrix_pulse": "P\u25b2 | OI\u25b2",
@@ -95,629 +319,3406 @@
       "star_display": "+4\u2605",
       "star_label": "BULLISH",
       "is_bullish": true,
+      "candles": [
+        {
+          "o": 10826.0,
+          "h": 10827.0,
+          "l": 10807.0,
+          "c": 10809.0,
+          "v": 1221.0
+        },
+        {
+          "o": 10808.0,
+          "h": 10835.0,
+          "l": 10805.0,
+          "c": 10828.0,
+          "v": 1076.0
+        },
+        {
+          "o": 10829.0,
+          "h": 10850.0,
+          "l": 10829.0,
+          "c": 10844.0,
+          "v": 1556.0
+        },
+        {
+          "o": 10844.0,
+          "h": 10867.0,
+          "l": 10839.0,
+          "c": 10860.0,
+          "v": 1370.0
+        },
+        {
+          "o": 10855.0,
+          "h": 10861.0,
+          "l": 10832.0,
+          "c": 10843.0,
+          "v": 1752.0
+        },
+        {
+          "o": 10842.0,
+          "h": 10864.0,
+          "l": 10841.0,
+          "c": 10851.0,
+          "v": 1270.0
+        },
+        {
+          "o": 10852.0,
+          "h": 10853.0,
+          "l": 10811.0,
+          "c": 10826.0,
+          "v": 2248.0
+        },
+        {
+          "o": 10828.0,
+          "h": 10860.0,
+          "l": 10823.0,
+          "c": 10860.0,
+          "v": 1512.0
+        },
+        {
+          "o": 10860.0,
+          "h": 10875.0,
+          "l": 10855.0,
+          "c": 10866.0,
+          "v": 2309.0
+        },
+        {
+          "o": 10860.0,
+          "h": 10868.0,
+          "l": 10860.0,
+          "c": 10865.0,
+          "v": 1952.0
+        },
+        {
+          "o": 10868.0,
+          "h": 10868.0,
+          "l": 10856.0,
+          "c": 10856.0,
+          "v": 515.0
+        },
+        {
+          "o": 10861.0,
+          "h": 10861.0,
+          "l": 10839.0,
+          "c": 10856.0,
+          "v": 1484.0
+        },
+        {
+          "o": 10854.0,
+          "h": 10877.0,
+          "l": 10852.0,
+          "c": 10874.0,
+          "v": 2100.0
+        },
+        {
+          "o": 10874.0,
+          "h": 10877.0,
+          "l": 10832.0,
+          "c": 10842.0,
+          "v": 1478.0
+        },
+        {
+          "o": 10842.0,
+          "h": 10860.0,
+          "l": 10831.0,
+          "c": 10852.0,
+          "v": 599.0
+        },
+        {
+          "o": 10853.0,
+          "h": 10869.0,
+          "l": 10840.0,
+          "c": 10842.0,
+          "v": 926.0
+        },
+        {
+          "o": 10842.0,
+          "h": 10849.0,
+          "l": 10822.0,
+          "c": 10835.0,
+          "v": 1443.0
+        },
+        {
+          "o": 10830.0,
+          "h": 10852.0,
+          "l": 10830.0,
+          "c": 10845.0,
+          "v": 527.0
+        },
+        {
+          "o": 10849.0,
+          "h": 10852.0,
+          "l": 10833.0,
+          "c": 10850.0,
+          "v": 589.0
+        },
+        {
+          "o": 10845.0,
+          "h": 10854.0,
+          "l": 10821.0,
+          "c": 10833.0,
+          "v": 1505.0
+        },
+        {
+          "o": 10832.0,
+          "h": 10855.0,
+          "l": 10825.0,
+          "c": 10837.0,
+          "v": 884.0
+        },
+        {
+          "o": 10831.0,
+          "h": 10842.0,
+          "l": 10828.0,
+          "c": 10828.0,
+          "v": 775.0
+        },
+        {
+          "o": 10828.0,
+          "h": 10837.0,
+          "l": 10820.0,
+          "c": 10827.0,
+          "v": 1121.0
+        },
+        {
+          "o": 10824.0,
+          "h": 10837.0,
+          "l": 10809.0,
+          "c": 10810.0,
+          "v": 1489.0
+        },
+        {
+          "o": 10814.0,
+          "h": 10837.0,
+          "l": 10814.0,
+          "c": 10832.0,
+          "v": 2660.0
+        },
+        {
+          "o": 10828.0,
+          "h": 10848.0,
+          "l": 10824.0,
+          "c": 10843.0,
+          "v": 1523.0
+        },
+        {
+          "o": 10837.0,
+          "h": 10862.0,
+          "l": 10837.0,
+          "c": 10862.0,
+          "v": 2894.0
+        },
+        {
+          "o": 10862.0,
+          "h": 10880.0,
+          "l": 10831.0,
+          "c": 10836.0,
+          "v": 4872.0
+        },
+        {
+          "o": 10827.0,
+          "h": 10842.0,
+          "l": 10820.0,
+          "c": 10827.0,
+          "v": 8122.0
+        },
+        {
+          "o": 10827.0,
+          "h": 10854.0,
+          "l": 10816.0,
+          "c": 10854.0,
+          "v": 10635.0
+        },
+        {
+          "o": 10843.0,
+          "h": 10859.0,
+          "l": 10834.0,
+          "c": 10834.0,
+          "v": 9298.0
+        },
+        {
+          "o": 10839.0,
+          "h": 10841.0,
+          "l": 10793.0,
+          "c": 10800.0,
+          "v": 14795.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "YES",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.1
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "sector": "Financial Services",
-      "ltp": 985.0,
-      "pct_chg": 0.2,
-      "day_high": 992.0,
-      "day_low": 974.6,
-      "listed_at": "12:29",
-      "rvat": 0.33,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "2.0x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -4.08,
-      "futures_oi": -1.33,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.03
-    },
-    {
-      "symbol": "SBIN",
-      "sector": "Financial Services",
-      "ltp": 962.0,
-      "pct_chg": 0.01,
-      "day_high": 981.0,
-      "day_low": 956.1,
-      "listed_at": "12:30",
-      "rvat": 0.22,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.5x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -3.88,
-      "futures_oi": -1.6,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.03
-    },
-    {
-      "symbol": "TITAN",
-      "sector": "Consumer Goods",
-      "ltp": 4819.5,
-      "pct_chg": 0.2,
-      "day_high": 4878.5,
-      "day_low": 4810.0,
-      "listed_at": "12:35",
-      "rvat": 0.22,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.5x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -2.3,
-      "futures_oi": -1.63,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": 0.2
-    },
-    {
-      "symbol": "TATASTEEL",
-      "sector": "Metal",
-      "ltp": 186.3,
-      "pct_chg": 0.43,
-      "day_high": 188.58,
-      "day_low": 185.32,
-      "listed_at": "12:31",
-      "rvat": 0.15,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": 0.27,
-      "futures_oi": -1.33,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
         "breakout": "YES",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": 0.05
-    },
-    {
-      "symbol": "HDFCBANK",
-      "sector": "Financial Services",
-      "ltp": 719.05,
-      "pct_chg": 0.01,
-      "day_high": 732.7,
-      "day_low": 718.3,
-      "listed_at": "12:28",
-      "rvat": 0.13,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.3x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": 0.25,
-      "futures_oi": -2.2,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.03
-    },
-    {
-      "symbol": "COALINDIA",
-      "sector": "Oil & Gas",
-      "ltp": 422.5,
-      "pct_chg": 0.31,
-      "day_high": 429.3,
-      "day_low": 421.2,
-      "listed_at": "12:33",
-      "rvat": 0.12,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.6x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": 0.4,
-      "futures_oi": -1.21,
-      "oi_behavior": "Short covering",
-      "matrix_intent": "SQUEEZE",
-      "matrix_pulse": "P\u25b2 | OI\u25bc",
-      "matrix_tone": "bull-cover",
-      "star_score": 2,
-      "star_display": "+2\u2605",
-      "star_label": "BULLISH",
-      "is_bullish": true,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "YES",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": 0.31
-    }
-  ],
-  "bearish_stocks": [
-    {
-      "symbol": "PERSISTENT",
-      "sector": "IT",
-      "ltp": 5328.5,
-      "pct_chg": -0.48,
-      "day_high": 5383.5,
-      "day_low": 5287.5,
-      "listed_at": "12:36",
-      "rvat": 2.93,
-      "hyperflow": "5.4x",
-      "max_hyperflow": "10.1x",
-      "min_hyperflow": "3.4x",
-      "vwap_gap": -3.39,
-      "futures_oi": 4.5,
-      "oi_behavior": "Short buildup",
-      "matrix_intent": "DISTRIBUTION",
-      "matrix_pulse": "P\u25bc | OI\u25b2",
-      "matrix_tone": "bear-strong",
-      "star_score": -5,
-      "star_display": "-5\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
         "volume": "YES",
-        "pdh": "NO",
+        "pdh": "YES",
         "range": "YES",
-        "final": "NO"
+        "final": "YES"
       },
-      "sector_pct": -0.28
-    },
-    {
-      "symbol": "OFSS",
-      "sector": "IT",
-      "ltp": 10800.0,
-      "pct_chg": -0.3,
-      "day_high": 10905.0,
-      "day_low": 10601.0,
-      "listed_at": "12:25",
-      "rvat": 2.26,
-      "hyperflow": "4.2x",
-      "max_hyperflow": "9.1x",
-      "min_hyperflow": "2.8x",
-      "vwap_gap": -6.15,
-      "futures_oi": 2.57,
-      "oi_behavior": "Short buildup",
-      "matrix_intent": "DISTRIBUTION",
-      "matrix_pulse": "P\u25bc | OI\u25b2",
-      "matrix_tone": "bear-strong",
-      "star_score": -5,
-      "star_display": "-5\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "YES",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.28
-    },
-    {
-      "symbol": "ICICIBANK",
-      "sector": "Financial Services",
-      "ltp": 1302.0,
-      "pct_chg": -0.28,
-      "day_high": 1327.7,
-      "day_low": 1300.1,
-      "listed_at": "12:29",
-      "rvat": 1.66,
-      "hyperflow": "3.1x",
-      "max_hyperflow": "5.5x",
-      "min_hyperflow": "1.5x",
-      "vwap_gap": -5.86,
-      "futures_oi": 1.36,
-      "oi_behavior": "Short buildup",
-      "matrix_intent": "DISTRIBUTION",
-      "matrix_pulse": "P\u25bc | OI\u25b2",
-      "matrix_tone": "bear-strong",
-      "star_score": -5,
-      "star_display": "-5\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "YES",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.03
-    },
-    {
-      "symbol": "SUNPHARMA",
-      "sector": "Pharma",
-      "ltp": 1838.0,
-      "pct_chg": -0.78,
-      "day_high": 1856.5,
-      "day_low": 1838.0,
-      "listed_at": "12:30",
-      "rvat": 1.55,
-      "hyperflow": "2.9x",
-      "max_hyperflow": "6.2x",
-      "min_hyperflow": "2.0x",
-      "vwap_gap": -2.2,
-      "futures_oi": 0.21,
-      "oi_behavior": "Short buildup",
-      "matrix_intent": "DISTRIBUTION",
-      "matrix_pulse": "P\u25bc | OI\u25b2",
-      "matrix_tone": "bear-strong",
-      "star_score": -5,
-      "star_display": "-5\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "YES",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.78
-    },
-    {
-      "symbol": "RADICO",
-      "sector": "FMCG",
-      "ltp": 4478.3,
-      "pct_chg": -1.01,
-      "day_high": 4557.1,
-      "day_low": 4463.5,
-      "listed_at": "12:30",
-      "rvat": 1.35,
-      "hyperflow": "2.5x",
-      "max_hyperflow": "4.5x",
-      "min_hyperflow": "1.4x",
-      "vwap_gap": -0.07,
-      "futures_oi": -0.39,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "YES",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -1.01
-    },
-    {
-      "symbol": "RELIANCE",
-      "sector": "Energy",
-      "ltp": 1197.6,
-      "pct_chg": -0.11,
-      "day_high": 1219.7,
-      "day_low": 1197.4,
-      "listed_at": "12:32",
-      "rvat": 0.33,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "2.0x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -5.4,
-      "futures_oi": -1.03,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.11
-    },
-    {
-      "symbol": "TCS",
-      "sector": "IT",
-      "ltp": 2070.7,
-      "pct_chg": -0.14,
-      "day_high": 2098.9,
-      "day_low": 2051.0,
-      "listed_at": "12:30",
-      "rvat": 0.32,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "2.1x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -6.03,
-      "futures_oi": -1.46,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.28
-    },
-    {
-      "symbol": "LT",
-      "sector": "Capital Goods",
-      "ltp": 3766.4,
-      "pct_chg": -0.12,
-      "day_high": 3855.9,
-      "day_low": 3766.4,
-      "listed_at": "12:25",
-      "rvat": 0.32,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.5x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -3.79,
-      "futures_oi": -2.25,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
-      "news": {
-        "has_news": false,
-        "sentiment": "neutral",
-        "count": 0,
-        "stories": []
-      },
-      "rules": {
-        "breakout": "NO",
-        "volume": "NO",
-        "pdh": "NO",
-        "range": "YES",
-        "final": "NO"
-      },
-      "sector_pct": -0.08
+      "sector_pct": -0.45
     },
     {
       "symbol": "INFY",
       "sector": "IT",
       "ltp": 1003.2,
-      "pct_chg": -0.09,
+      "pct_chg": 0.3,
       "day_high": 1009.5,
       "day_low": 986.6,
-      "listed_at": "12:32",
-      "rvat": 0.26,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.8x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -5.9,
-      "futures_oi": -1.16,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
-      "star_label": "BEARISH",
-      "is_bullish": false,
+      "listed_at": "09:40",
+      "rvat": 1.61,
+      "hyperflow": "2.9x",
+      "max_hyperflow": "4.6x",
+      "min_hyperflow": "1.7x",
+      "vwap_gap": 0.43,
+      "futures_oi": 2.8,
+      "oi_behavior": "Long buildup",
+      "matrix_intent": "ACCUMULATION",
+      "matrix_pulse": "P\u25b2 | OI\u25b2",
+      "matrix_tone": "bull-strong",
+      "star_score": 4,
+      "star_display": "+4\u2605",
+      "star_label": "BULLISH",
+      "is_bullish": true,
+      "candles": [
+        {
+          "o": 1000.5,
+          "h": 1000.7,
+          "l": 1000.0,
+          "c": 1000.1,
+          "v": 31583.0
+        },
+        {
+          "o": 1000.1,
+          "h": 1002.0,
+          "l": 1000.0,
+          "c": 1001.7,
+          "v": 87448.0
+        },
+        {
+          "o": 1001.9,
+          "h": 1001.9,
+          "l": 1001.0,
+          "c": 1001.6,
+          "v": 42340.0
+        },
+        {
+          "o": 1001.7,
+          "h": 1002.5,
+          "l": 1000.5,
+          "c": 1002.3,
+          "v": 61116.0
+        },
+        {
+          "o": 1002.3,
+          "h": 1003.3,
+          "l": 1002.0,
+          "c": 1002.8,
+          "v": 65360.0
+        },
+        {
+          "o": 1002.6,
+          "h": 1002.8,
+          "l": 1001.6,
+          "c": 1002.5,
+          "v": 38543.0
+        },
+        {
+          "o": 1002.7,
+          "h": 1003.5,
+          "l": 1002.4,
+          "c": 1002.7,
+          "v": 61414.0
+        },
+        {
+          "o": 1002.7,
+          "h": 1005.7,
+          "l": 1002.7,
+          "c": 1005.3,
+          "v": 113458.0
+        },
+        {
+          "o": 1005.5,
+          "h": 1006.6,
+          "l": 1005.0,
+          "c": 1006.1,
+          "v": 120051.0
+        },
+        {
+          "o": 1006.1,
+          "h": 1006.7,
+          "l": 1004.8,
+          "c": 1004.9,
+          "v": 107213.0
+        },
+        {
+          "o": 1005.0,
+          "h": 1005.1,
+          "l": 1003.5,
+          "c": 1004.6,
+          "v": 55720.0
+        },
+        {
+          "o": 1004.6,
+          "h": 1008.8,
+          "l": 1004.4,
+          "c": 1008.6,
+          "v": 139497.0
+        },
+        {
+          "o": 1008.9,
+          "h": 1009.0,
+          "l": 1006.3,
+          "c": 1007.1,
+          "v": 90094.0
+        },
+        {
+          "o": 1007.1,
+          "h": 1007.9,
+          "l": 1006.1,
+          "c": 1006.8,
+          "v": 46759.0
+        },
+        {
+          "o": 1006.9,
+          "h": 1007.3,
+          "l": 1006.5,
+          "c": 1006.9,
+          "v": 38694.0
+        },
+        {
+          "o": 1006.9,
+          "h": 1007.7,
+          "l": 1006.4,
+          "c": 1007.7,
+          "v": 44839.0
+        },
+        {
+          "o": 1007.6,
+          "h": 1008.0,
+          "l": 1006.5,
+          "c": 1007.3,
+          "v": 51242.0
+        },
+        {
+          "o": 1007.3,
+          "h": 1007.7,
+          "l": 1006.9,
+          "c": 1007.4,
+          "v": 39376.0
+        },
+        {
+          "o": 1007.2,
+          "h": 1009.5,
+          "l": 1006.8,
+          "c": 1007.0,
+          "v": 112606.0
+        },
+        {
+          "o": 1007.0,
+          "h": 1007.0,
+          "l": 1003.9,
+          "c": 1004.6,
+          "v": 177037.0
+        },
+        {
+          "o": 1004.5,
+          "h": 1004.5,
+          "l": 1003.3,
+          "c": 1003.6,
+          "v": 52871.0
+        },
+        {
+          "o": 1003.5,
+          "h": 1004.0,
+          "l": 1003.2,
+          "c": 1003.2,
+          "v": 63272.0
+        },
+        {
+          "o": 1003.3,
+          "h": 1003.5,
+          "l": 1002.0,
+          "c": 1002.1,
+          "v": 98429.0
+        },
+        {
+          "o": 1002.1,
+          "h": 1002.9,
+          "l": 1000.1,
+          "c": 1001.0,
+          "v": 275334.0
+        },
+        {
+          "o": 1001.3,
+          "h": 1001.3,
+          "l": 999.8,
+          "c": 1001.2,
+          "v": 223290.0
+        },
+        {
+          "o": 1001.0,
+          "h": 1002.2,
+          "l": 1000.6,
+          "c": 1002.0,
+          "v": 212308.0
+        },
+        {
+          "o": 1002.6,
+          "h": 1005.4,
+          "l": 1002.3,
+          "c": 1005.3,
+          "v": 204273.0
+        },
+        {
+          "o": 1005.2,
+          "h": 1005.6,
+          "l": 1003.5,
+          "c": 1004.0,
+          "v": 104880.0
+        },
+        {
+          "o": 1004.2,
+          "h": 1005.3,
+          "l": 1004.0,
+          "c": 1005.2,
+          "v": 134785.0
+        },
+        {
+          "o": 1003.4,
+          "h": 1003.8,
+          "l": 1000.0,
+          "c": 1003.6,
+          "v": 506716.0
+        },
+        {
+          "o": 1003.4,
+          "h": 1005.0,
+          "l": 1001.4,
+          "c": 1004.1,
+          "v": 475372.0
+        },
+        {
+          "o": 1004.8,
+          "h": 1004.8,
+          "l": 1003.2,
+          "c": 1003.2,
+          "v": 258258.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
+        "stories": []
+      },
+      "rules": {
+        "breakout": "YES",
+        "volume": "YES",
+        "pdh": "YES",
+        "range": "YES",
+        "final": "YES"
+      },
+      "sector_pct": -0.45
+    }
+  ],
+  "bearish_stocks": [
+    {
+      "symbol": "RADICO",
+      "sector": "FMCG",
+      "ltp": 4478.3,
+      "pct_chg": -1.73,
+      "day_high": 4549.2,
+      "day_low": 4463.5,
+      "listed_at": "09:20",
+      "rvat": 7.95,
+      "hyperflow": "14.3x",
+      "max_hyperflow": "22.9x",
+      "min_hyperflow": "8.6x",
+      "vwap_gap": -0.85,
+      "futures_oi": 25.0,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 4536.9,
+          "h": 4538.2,
+          "l": 4531.5,
+          "c": 4531.5,
+          "v": 1066.0
+        },
+        {
+          "o": 4532.1,
+          "h": 4538.2,
+          "l": 4530.9,
+          "c": 4538.2,
+          "v": 3976.0
+        },
+        {
+          "o": 4538.0,
+          "h": 4538.0,
+          "l": 4529.8,
+          "c": 4535.4,
+          "v": 1052.0
+        },
+        {
+          "o": 4535.1,
+          "h": 4537.9,
+          "l": 4522.5,
+          "c": 4526.2,
+          "v": 1046.0
+        },
+        {
+          "o": 4526.2,
+          "h": 4529.7,
+          "l": 4521.0,
+          "c": 4529.5,
+          "v": 1440.0
+        },
+        {
+          "o": 4529.8,
+          "h": 4529.8,
+          "l": 4522.3,
+          "c": 4522.3,
+          "v": 895.0
+        },
+        {
+          "o": 4522.8,
+          "h": 4526.6,
+          "l": 4520.0,
+          "c": 4526.6,
+          "v": 1427.0
+        },
+        {
+          "o": 4527.1,
+          "h": 4532.2,
+          "l": 4525.6,
+          "c": 4528.6,
+          "v": 862.0
+        },
+        {
+          "o": 4530.8,
+          "h": 4535.0,
+          "l": 4525.8,
+          "c": 4532.4,
+          "v": 1147.0
+        },
+        {
+          "o": 4532.3,
+          "h": 4533.0,
+          "l": 4526.6,
+          "c": 4531.8,
+          "v": 656.0
+        },
+        {
+          "o": 4531.6,
+          "h": 4533.0,
+          "l": 4528.5,
+          "c": 4532.0,
+          "v": 450.0
+        },
+        {
+          "o": 4532.0,
+          "h": 4532.0,
+          "l": 4528.0,
+          "c": 4529.4,
+          "v": 1329.0
+        },
+        {
+          "o": 4529.4,
+          "h": 4529.9,
+          "l": 4527.4,
+          "c": 4529.5,
+          "v": 417.0
+        },
+        {
+          "o": 4529.4,
+          "h": 4533.0,
+          "l": 4527.2,
+          "c": 4527.5,
+          "v": 695.0
+        },
+        {
+          "o": 4529.7,
+          "h": 4533.0,
+          "l": 4529.7,
+          "c": 4532.5,
+          "v": 239.0
+        },
+        {
+          "o": 4532.5,
+          "h": 4533.0,
+          "l": 4528.4,
+          "c": 4530.8,
+          "v": 871.0
+        },
+        {
+          "o": 4530.8,
+          "h": 4531.8,
+          "l": 4528.4,
+          "c": 4531.2,
+          "v": 442.0
+        },
+        {
+          "o": 4531.2,
+          "h": 4531.8,
+          "l": 4528.3,
+          "c": 4530.0,
+          "v": 359.0
+        },
+        {
+          "o": 4530.0,
+          "h": 4532.4,
+          "l": 4525.0,
+          "c": 4527.2,
+          "v": 2867.0
+        },
+        {
+          "o": 4527.2,
+          "h": 4528.8,
+          "l": 4522.0,
+          "c": 4524.2,
+          "v": 923.0
+        },
+        {
+          "o": 4522.0,
+          "h": 4524.9,
+          "l": 4512.6,
+          "c": 4512.6,
+          "v": 1249.0
+        },
+        {
+          "o": 4512.7,
+          "h": 4520.4,
+          "l": 4512.7,
+          "c": 4519.2,
+          "v": 879.0
+        },
+        {
+          "o": 4519.1,
+          "h": 4522.1,
+          "l": 4516.9,
+          "c": 4520.9,
+          "v": 1188.0
+        },
+        {
+          "o": 4520.9,
+          "h": 4522.8,
+          "l": 4516.6,
+          "c": 4519.1,
+          "v": 633.0
+        },
+        {
+          "o": 4519.8,
+          "h": 4521.4,
+          "l": 4516.5,
+          "c": 4518.2,
+          "v": 566.0
+        },
+        {
+          "o": 4518.2,
+          "h": 4519.4,
+          "l": 4515.2,
+          "c": 4516.3,
+          "v": 1004.0
+        },
+        {
+          "o": 4517.0,
+          "h": 4520.2,
+          "l": 4516.6,
+          "c": 4519.6,
+          "v": 669.0
+        },
+        {
+          "o": 4519.6,
+          "h": 4521.8,
+          "l": 4517.0,
+          "c": 4517.5,
+          "v": 2591.0
+        },
+        {
+          "o": 4517.6,
+          "h": 4518.6,
+          "l": 4517.1,
+          "c": 4518.0,
+          "v": 1641.0
+        },
+        {
+          "o": 4514.1,
+          "h": 4517.1,
+          "l": 4513.7,
+          "c": 4513.7,
+          "v": 6432.0
+        },
+        {
+          "o": 4511.0,
+          "h": 4511.4,
+          "l": 4492.7,
+          "c": 4494.8,
+          "v": 5484.0
+        },
+        {
+          "o": 4494.9,
+          "h": 4505.9,
+          "l": 4463.5,
+          "c": 4478.3,
+          "v": 19240.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
         "stories": []
       },
       "rules": {
         "breakout": "NO",
-        "volume": "NO",
+        "volume": "YES",
         "pdh": "NO",
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.28
+      "sector_pct": -1.73
+    },
+    {
+      "symbol": "ICICIBANK",
+      "sector": "Financial Services",
+      "ltp": 1302.0,
+      "pct_chg": -1.87,
+      "day_high": 1322.0,
+      "day_low": 1300.1,
+      "listed_at": "10:00",
+      "rvat": 4.31,
+      "hyperflow": "7.8x",
+      "max_hyperflow": "12.5x",
+      "min_hyperflow": "4.7x",
+      "vwap_gap": -0.2,
+      "futures_oi": 11.0,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 1304.0,
+          "h": 1304.0,
+          "l": 1303.4,
+          "c": 1303.9,
+          "v": 47436.0
+        },
+        {
+          "o": 1304.0,
+          "h": 1304.4,
+          "l": 1303.7,
+          "c": 1304.3,
+          "v": 46656.0
+        },
+        {
+          "o": 1304.6,
+          "h": 1305.6,
+          "l": 1304.1,
+          "c": 1305.3,
+          "v": 54100.0
+        },
+        {
+          "o": 1305.3,
+          "h": 1306.9,
+          "l": 1305.0,
+          "c": 1306.3,
+          "v": 60662.0
+        },
+        {
+          "o": 1306.5,
+          "h": 1306.9,
+          "l": 1305.2,
+          "c": 1306.0,
+          "v": 46949.0
+        },
+        {
+          "o": 1306.0,
+          "h": 1306.6,
+          "l": 1304.7,
+          "c": 1304.7,
+          "v": 46430.0
+        },
+        {
+          "o": 1304.7,
+          "h": 1304.7,
+          "l": 1303.6,
+          "c": 1304.4,
+          "v": 49720.0
+        },
+        {
+          "o": 1304.4,
+          "h": 1304.9,
+          "l": 1304.3,
+          "c": 1304.3,
+          "v": 31643.0
+        },
+        {
+          "o": 1304.4,
+          "h": 1304.9,
+          "l": 1304.1,
+          "c": 1304.7,
+          "v": 40777.0
+        },
+        {
+          "o": 1304.6,
+          "h": 1306.8,
+          "l": 1304.3,
+          "c": 1306.3,
+          "v": 65230.0
+        },
+        {
+          "o": 1306.3,
+          "h": 1306.3,
+          "l": 1305.2,
+          "c": 1305.5,
+          "v": 39375.0
+        },
+        {
+          "o": 1305.6,
+          "h": 1305.9,
+          "l": 1304.6,
+          "c": 1305.4,
+          "v": 41723.0
+        },
+        {
+          "o": 1305.4,
+          "h": 1305.6,
+          "l": 1304.6,
+          "c": 1305.6,
+          "v": 34584.0
+        },
+        {
+          "o": 1305.5,
+          "h": 1305.7,
+          "l": 1304.3,
+          "c": 1304.6,
+          "v": 55065.0
+        },
+        {
+          "o": 1304.6,
+          "h": 1304.8,
+          "l": 1303.6,
+          "c": 1303.8,
+          "v": 49356.0
+        },
+        {
+          "o": 1304.1,
+          "h": 1306.0,
+          "l": 1303.8,
+          "c": 1305.2,
+          "v": 47793.0
+        },
+        {
+          "o": 1305.3,
+          "h": 1307.6,
+          "l": 1305.3,
+          "c": 1307.4,
+          "v": 51977.0
+        },
+        {
+          "o": 1307.4,
+          "h": 1307.7,
+          "l": 1306.0,
+          "c": 1306.7,
+          "v": 52747.0
+        },
+        {
+          "o": 1306.8,
+          "h": 1307.2,
+          "l": 1305.9,
+          "c": 1306.2,
+          "v": 62611.0
+        },
+        {
+          "o": 1306.3,
+          "h": 1306.6,
+          "l": 1305.6,
+          "c": 1305.7,
+          "v": 55536.0
+        },
+        {
+          "o": 1305.8,
+          "h": 1306.8,
+          "l": 1304.1,
+          "c": 1304.6,
+          "v": 73940.0
+        },
+        {
+          "o": 1304.6,
+          "h": 1306.0,
+          "l": 1304.6,
+          "c": 1305.7,
+          "v": 52681.0
+        },
+        {
+          "o": 1305.7,
+          "h": 1306.0,
+          "l": 1303.8,
+          "c": 1303.8,
+          "v": 91888.0
+        },
+        {
+          "o": 1303.8,
+          "h": 1304.6,
+          "l": 1303.3,
+          "c": 1303.3,
+          "v": 76984.0
+        },
+        {
+          "o": 1303.4,
+          "h": 1303.4,
+          "l": 1300.7,
+          "c": 1300.8,
+          "v": 140528.0
+        },
+        {
+          "o": 1300.9,
+          "h": 1301.6,
+          "l": 1300.1,
+          "c": 1300.6,
+          "v": 126684.0
+        },
+        {
+          "o": 1300.8,
+          "h": 1301.8,
+          "l": 1300.8,
+          "c": 1301.8,
+          "v": 93547.0
+        },
+        {
+          "o": 1302.0,
+          "h": 1302.4,
+          "l": 1300.6,
+          "c": 1300.6,
+          "v": 152346.0
+        },
+        {
+          "o": 1300.7,
+          "h": 1301.5,
+          "l": 1300.3,
+          "c": 1301.0,
+          "v": 133153.0
+        },
+        {
+          "o": 1300.8,
+          "h": 1301.8,
+          "l": 1300.2,
+          "c": 1301.5,
+          "v": 181948.0
+        },
+        {
+          "o": 1300.5,
+          "h": 1302.2,
+          "l": 1300.4,
+          "c": 1301.8,
+          "v": 203961.0
+        },
+        {
+          "o": 1301.4,
+          "h": 1302.6,
+          "l": 1300.1,
+          "c": 1302.0,
+          "v": 476637.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -1.69
+    },
+    {
+      "symbol": "TCS",
+      "sector": "IT",
+      "ltp": 2070.7,
+      "pct_chg": -0.54,
+      "day_high": 2098.9,
+      "day_low": 2051.0,
+      "listed_at": "09:20",
+      "rvat": 3.53,
+      "hyperflow": "6.4x",
+      "max_hyperflow": "10.2x",
+      "min_hyperflow": "3.8x",
+      "vwap_gap": -0.06,
+      "futures_oi": 9.47,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 2074.2,
+          "h": 2076.3,
+          "l": 2073.1,
+          "c": 2076.3,
+          "v": 18355.0
+        },
+        {
+          "o": 2076.4,
+          "h": 2078.6,
+          "l": 2076.3,
+          "c": 2077.3,
+          "v": 24484.0
+        },
+        {
+          "o": 2077.6,
+          "h": 2079.7,
+          "l": 2077.1,
+          "c": 2078.0,
+          "v": 22341.0
+        },
+        {
+          "o": 2078.0,
+          "h": 2081.5,
+          "l": 2076.7,
+          "c": 2081.2,
+          "v": 27898.0
+        },
+        {
+          "o": 2081.0,
+          "h": 2084.0,
+          "l": 2080.6,
+          "c": 2081.7,
+          "v": 30494.0
+        },
+        {
+          "o": 2081.8,
+          "h": 2082.4,
+          "l": 2079.2,
+          "c": 2081.0,
+          "v": 21161.0
+        },
+        {
+          "o": 2081.0,
+          "h": 2083.7,
+          "l": 2080.0,
+          "c": 2082.2,
+          "v": 23619.0
+        },
+        {
+          "o": 2082.9,
+          "h": 2088.7,
+          "l": 2081.6,
+          "c": 2087.9,
+          "v": 54067.0
+        },
+        {
+          "o": 2088.0,
+          "h": 2091.8,
+          "l": 2086.1,
+          "c": 2090.3,
+          "v": 45010.0
+        },
+        {
+          "o": 2090.9,
+          "h": 2091.3,
+          "l": 2084.0,
+          "c": 2084.0,
+          "v": 34931.0
+        },
+        {
+          "o": 2084.3,
+          "h": 2085.2,
+          "l": 2079.5,
+          "c": 2079.6,
+          "v": 34358.0
+        },
+        {
+          "o": 2079.9,
+          "h": 2084.9,
+          "l": 2079.3,
+          "c": 2084.9,
+          "v": 20149.0
+        },
+        {
+          "o": 2084.5,
+          "h": 2085.0,
+          "l": 2082.0,
+          "c": 2082.7,
+          "v": 17535.0
+        },
+        {
+          "o": 2082.8,
+          "h": 2084.3,
+          "l": 2081.3,
+          "c": 2081.6,
+          "v": 14900.0
+        },
+        {
+          "o": 2082.3,
+          "h": 2083.0,
+          "l": 2080.1,
+          "c": 2080.1,
+          "v": 15719.0
+        },
+        {
+          "o": 2080.1,
+          "h": 2083.5,
+          "l": 2079.6,
+          "c": 2081.1,
+          "v": 21256.0
+        },
+        {
+          "o": 2081.1,
+          "h": 2084.0,
+          "l": 2080.0,
+          "c": 2083.1,
+          "v": 11772.0
+        },
+        {
+          "o": 2083.4,
+          "h": 2083.6,
+          "l": 2081.0,
+          "c": 2083.1,
+          "v": 10749.0
+        },
+        {
+          "o": 2083.1,
+          "h": 2084.7,
+          "l": 2079.7,
+          "c": 2080.2,
+          "v": 16063.0
+        },
+        {
+          "o": 2080.3,
+          "h": 2080.6,
+          "l": 2077.4,
+          "c": 2078.0,
+          "v": 21540.0
+        },
+        {
+          "o": 2078.3,
+          "h": 2078.3,
+          "l": 2073.7,
+          "c": 2074.4,
+          "v": 49728.0
+        },
+        {
+          "o": 2074.8,
+          "h": 2076.9,
+          "l": 2073.9,
+          "c": 2076.1,
+          "v": 14307.0
+        },
+        {
+          "o": 2075.6,
+          "h": 2077.4,
+          "l": 2073.6,
+          "c": 2073.7,
+          "v": 24298.0
+        },
+        {
+          "o": 2074.0,
+          "h": 2074.8,
+          "l": 2071.2,
+          "c": 2072.0,
+          "v": 18022.0
+        },
+        {
+          "o": 2071.8,
+          "h": 2073.5,
+          "l": 2071.3,
+          "c": 2073.5,
+          "v": 26650.0
+        },
+        {
+          "o": 2073.6,
+          "h": 2076.4,
+          "l": 2073.1,
+          "c": 2075.6,
+          "v": 19156.0
+        },
+        {
+          "o": 2075.2,
+          "h": 2079.0,
+          "l": 2075.0,
+          "c": 2078.0,
+          "v": 23036.0
+        },
+        {
+          "o": 2077.6,
+          "h": 2078.0,
+          "l": 2075.5,
+          "c": 2076.0,
+          "v": 38127.0
+        },
+        {
+          "o": 2075.4,
+          "h": 2077.0,
+          "l": 2074.0,
+          "c": 2075.7,
+          "v": 35404.0
+        },
+        {
+          "o": 2072.6,
+          "h": 2074.4,
+          "l": 2070.5,
+          "c": 2074.4,
+          "v": 61391.0
+        },
+        {
+          "o": 2073.7,
+          "h": 2075.4,
+          "l": 2073.1,
+          "c": 2073.5,
+          "v": 58596.0
+        },
+        {
+          "o": 2073.9,
+          "h": 2073.9,
+          "l": 2070.7,
+          "c": 2070.7,
+          "v": 106915.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.45
+    },
+    {
+      "symbol": "MCX",
+      "sector": "Capital Markets",
+      "ltp": 3263.5,
+      "pct_chg": -1.85,
+      "day_high": 3321.0,
+      "day_low": 3251.7,
+      "listed_at": "09:30",
+      "rvat": 2.67,
+      "hyperflow": "4.8x",
+      "max_hyperflow": "7.7x",
+      "min_hyperflow": "2.9x",
+      "vwap_gap": -0.53,
+      "futures_oi": 4.46,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 3279.1,
+          "h": 3285.0,
+          "l": 3279.0,
+          "c": 3282.4,
+          "v": 6451.0
+        },
+        {
+          "o": 3283.6,
+          "h": 3286.3,
+          "l": 3281.4,
+          "c": 3281.9,
+          "v": 7126.0
+        },
+        {
+          "o": 3280.9,
+          "h": 3283.3,
+          "l": 3280.3,
+          "c": 3283.3,
+          "v": 3903.0
+        },
+        {
+          "o": 3283.3,
+          "h": 3284.3,
+          "l": 3270.1,
+          "c": 3270.5,
+          "v": 13283.0
+        },
+        {
+          "o": 3268.5,
+          "h": 3275.3,
+          "l": 3267.8,
+          "c": 3271.6,
+          "v": 14036.0
+        },
+        {
+          "o": 3271.6,
+          "h": 3274.9,
+          "l": 3268.0,
+          "c": 3273.2,
+          "v": 7365.0
+        },
+        {
+          "o": 3271.2,
+          "h": 3271.5,
+          "l": 3263.2,
+          "c": 3268.7,
+          "v": 11084.0
+        },
+        {
+          "o": 3268.8,
+          "h": 3274.9,
+          "l": 3264.5,
+          "c": 3266.4,
+          "v": 11724.0
+        },
+        {
+          "o": 3265.5,
+          "h": 3268.9,
+          "l": 3262.1,
+          "c": 3264.4,
+          "v": 21677.0
+        },
+        {
+          "o": 3264.0,
+          "h": 3268.9,
+          "l": 3262.9,
+          "c": 3267.9,
+          "v": 6334.0
+        },
+        {
+          "o": 3266.7,
+          "h": 3270.0,
+          "l": 3266.5,
+          "c": 3269.9,
+          "v": 8554.0
+        },
+        {
+          "o": 3269.0,
+          "h": 3270.0,
+          "l": 3262.4,
+          "c": 3264.4,
+          "v": 11654.0
+        },
+        {
+          "o": 3264.6,
+          "h": 3264.9,
+          "l": 3262.0,
+          "c": 3264.7,
+          "v": 5043.0
+        },
+        {
+          "o": 3263.9,
+          "h": 3267.5,
+          "l": 3260.0,
+          "c": 3264.7,
+          "v": 9070.0
+        },
+        {
+          "o": 3264.7,
+          "h": 3269.7,
+          "l": 3263.6,
+          "c": 3266.4,
+          "v": 5448.0
+        },
+        {
+          "o": 3266.4,
+          "h": 3268.1,
+          "l": 3262.1,
+          "c": 3263.5,
+          "v": 6228.0
+        },
+        {
+          "o": 3263.5,
+          "h": 3263.5,
+          "l": 3259.0,
+          "c": 3259.0,
+          "v": 10272.0
+        },
+        {
+          "o": 3260.0,
+          "h": 3264.5,
+          "l": 3258.8,
+          "c": 3263.8,
+          "v": 9801.0
+        },
+        {
+          "o": 3263.2,
+          "h": 3264.3,
+          "l": 3256.7,
+          "c": 3257.0,
+          "v": 4836.0
+        },
+        {
+          "o": 3257.0,
+          "h": 3263.1,
+          "l": 3256.7,
+          "c": 3258.8,
+          "v": 9213.0
+        },
+        {
+          "o": 3258.8,
+          "h": 3258.8,
+          "l": 3251.7,
+          "c": 3256.1,
+          "v": 17181.0
+        },
+        {
+          "o": 3257.1,
+          "h": 3268.0,
+          "l": 3255.1,
+          "c": 3265.9,
+          "v": 19876.0
+        },
+        {
+          "o": 3265.9,
+          "h": 3269.7,
+          "l": 3264.1,
+          "c": 3266.7,
+          "v": 25966.0
+        },
+        {
+          "o": 3266.7,
+          "h": 3270.1,
+          "l": 3265.6,
+          "c": 3267.8,
+          "v": 20712.0
+        },
+        {
+          "o": 3265.9,
+          "h": 3269.1,
+          "l": 3264.5,
+          "c": 3267.4,
+          "v": 19169.0
+        },
+        {
+          "o": 3267.4,
+          "h": 3269.9,
+          "l": 3264.2,
+          "c": 3269.9,
+          "v": 17720.0
+        },
+        {
+          "o": 3269.9,
+          "h": 3274.5,
+          "l": 3263.9,
+          "c": 3274.5,
+          "v": 30048.0
+        },
+        {
+          "o": 3274.7,
+          "h": 3280.8,
+          "l": 3271.0,
+          "c": 3278.9,
+          "v": 41915.0
+        },
+        {
+          "o": 3280.2,
+          "h": 3281.7,
+          "l": 3271.2,
+          "c": 3272.1,
+          "v": 25193.0
+        },
+        {
+          "o": 3272.9,
+          "h": 3274.0,
+          "l": 3266.1,
+          "c": 3271.9,
+          "v": 35604.0
+        },
+        {
+          "o": 3271.1,
+          "h": 3274.9,
+          "l": 3270.1,
+          "c": 3272.4,
+          "v": 26442.0
+        },
+        {
+          "o": 3270.9,
+          "h": 3277.6,
+          "l": 3263.5,
+          "c": 3263.5,
+          "v": 52341.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -2.05
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "sector": "Pharma",
+      "ltp": 1838.0,
+      "pct_chg": -0.77,
+      "day_high": 1856.5,
+      "day_low": 1838.0,
+      "listed_at": "14:05",
+      "rvat": 2.64,
+      "hyperflow": "4.8x",
+      "max_hyperflow": "7.7x",
+      "min_hyperflow": "2.9x",
+      "vwap_gap": -0.53,
+      "futures_oi": 5.64,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 1842.2,
+          "h": 1843.3,
+          "l": 1841.4,
+          "c": 1842.0,
+          "v": 3549.0
+        },
+        {
+          "o": 1842.0,
+          "h": 1842.7,
+          "l": 1841.4,
+          "c": 1842.0,
+          "v": 3322.0
+        },
+        {
+          "o": 1842.0,
+          "h": 1842.4,
+          "l": 1841.4,
+          "c": 1841.7,
+          "v": 2707.0
+        },
+        {
+          "o": 1841.6,
+          "h": 1842.4,
+          "l": 1840.9,
+          "c": 1842.3,
+          "v": 6076.0
+        },
+        {
+          "o": 1842.4,
+          "h": 1843.2,
+          "l": 1841.0,
+          "c": 1841.8,
+          "v": 5845.0
+        },
+        {
+          "o": 1841.8,
+          "h": 1842.8,
+          "l": 1841.3,
+          "c": 1841.7,
+          "v": 2848.0
+        },
+        {
+          "o": 1841.6,
+          "h": 1845.7,
+          "l": 1840.9,
+          "c": 1845.7,
+          "v": 22921.0
+        },
+        {
+          "o": 1845.9,
+          "h": 1846.7,
+          "l": 1844.2,
+          "c": 1845.3,
+          "v": 7683.0
+        },
+        {
+          "o": 1845.3,
+          "h": 1845.9,
+          "l": 1844.9,
+          "c": 1845.6,
+          "v": 3698.0
+        },
+        {
+          "o": 1846.0,
+          "h": 1847.1,
+          "l": 1845.0,
+          "c": 1846.3,
+          "v": 11541.0
+        },
+        {
+          "o": 1846.8,
+          "h": 1846.8,
+          "l": 1845.1,
+          "c": 1845.6,
+          "v": 1182.0
+        },
+        {
+          "o": 1845.8,
+          "h": 1846.9,
+          "l": 1844.2,
+          "c": 1844.6,
+          "v": 6453.0
+        },
+        {
+          "o": 1844.5,
+          "h": 1845.8,
+          "l": 1844.0,
+          "c": 1845.3,
+          "v": 3659.0
+        },
+        {
+          "o": 1845.3,
+          "h": 1846.3,
+          "l": 1844.6,
+          "c": 1846.0,
+          "v": 3068.0
+        },
+        {
+          "o": 1846.2,
+          "h": 1848.0,
+          "l": 1846.2,
+          "c": 1847.8,
+          "v": 4495.0
+        },
+        {
+          "o": 1847.7,
+          "h": 1849.0,
+          "l": 1847.2,
+          "c": 1848.2,
+          "v": 5842.0
+        },
+        {
+          "o": 1848.2,
+          "h": 1848.3,
+          "l": 1847.2,
+          "c": 1847.6,
+          "v": 5258.0
+        },
+        {
+          "o": 1847.4,
+          "h": 1847.6,
+          "l": 1846.5,
+          "c": 1846.9,
+          "v": 3133.0
+        },
+        {
+          "o": 1846.9,
+          "h": 1856.5,
+          "l": 1846.7,
+          "c": 1856.4,
+          "v": 114031.0
+        },
+        {
+          "o": 1856.2,
+          "h": 1856.2,
+          "l": 1851.8,
+          "c": 1852.5,
+          "v": 181617.0
+        },
+        {
+          "o": 1852.5,
+          "h": 1852.5,
+          "l": 1847.7,
+          "c": 1847.7,
+          "v": 24214.0
+        },
+        {
+          "o": 1850.4,
+          "h": 1850.4,
+          "l": 1848.6,
+          "c": 1849.2,
+          "v": 13499.0
+        },
+        {
+          "o": 1848.5,
+          "h": 1848.9,
+          "l": 1847.1,
+          "c": 1848.3,
+          "v": 10765.0
+        },
+        {
+          "o": 1848.4,
+          "h": 1849.0,
+          "l": 1846.6,
+          "c": 1847.4,
+          "v": 6037.0
+        },
+        {
+          "o": 1847.4,
+          "h": 1847.9,
+          "l": 1845.5,
+          "c": 1846.0,
+          "v": 8605.0
+        },
+        {
+          "o": 1845.9,
+          "h": 1846.7,
+          "l": 1845.1,
+          "c": 1846.5,
+          "v": 8510.0
+        },
+        {
+          "o": 1846.7,
+          "h": 1847.8,
+          "l": 1846.1,
+          "c": 1847.8,
+          "v": 16805.0
+        },
+        {
+          "o": 1847.7,
+          "h": 1848.7,
+          "l": 1846.8,
+          "c": 1846.8,
+          "v": 33531.0
+        },
+        {
+          "o": 1848.1,
+          "h": 1848.1,
+          "l": 1845.9,
+          "c": 1847.4,
+          "v": 28310.0
+        },
+        {
+          "o": 1847.3,
+          "h": 1849.0,
+          "l": 1846.1,
+          "c": 1847.3,
+          "v": 47786.0
+        },
+        {
+          "o": 1846.7,
+          "h": 1847.0,
+          "l": 1845.6,
+          "c": 1846.8,
+          "v": 21902.0
+        },
+        {
+          "o": 1846.8,
+          "h": 1847.4,
+          "l": 1838.0,
+          "c": 1838.0,
+          "v": 82134.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.77
+    },
+    {
+      "symbol": "TATASTEEL",
+      "sector": "Metal",
+      "ltp": 186.3,
+      "pct_chg": -0.89,
+      "day_high": 188.58,
+      "day_low": 185.32,
+      "listed_at": "09:20",
+      "rvat": 2.47,
+      "hyperflow": "4.4x",
+      "max_hyperflow": "7.0x",
+      "min_hyperflow": "2.6x",
+      "vwap_gap": -0.16,
+      "futures_oi": 4.81,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 186.23,
+          "h": 186.3,
+          "l": 186.05,
+          "c": 186.12,
+          "v": 65485.0
+        },
+        {
+          "o": 186.05,
+          "h": 186.12,
+          "l": 185.82,
+          "c": 185.92,
+          "v": 262016.0
+        },
+        {
+          "o": 185.92,
+          "h": 185.92,
+          "l": 185.65,
+          "c": 185.72,
+          "v": 135814.0
+        },
+        {
+          "o": 185.68,
+          "h": 185.7,
+          "l": 185.5,
+          "c": 185.67,
+          "v": 78313.0
+        },
+        {
+          "o": 185.66,
+          "h": 185.8,
+          "l": 185.54,
+          "c": 185.74,
+          "v": 60200.0
+        },
+        {
+          "o": 185.81,
+          "h": 185.81,
+          "l": 185.41,
+          "c": 185.6,
+          "v": 231764.0
+        },
+        {
+          "o": 185.68,
+          "h": 185.92,
+          "l": 185.61,
+          "c": 185.64,
+          "v": 48614.0
+        },
+        {
+          "o": 185.7,
+          "h": 185.77,
+          "l": 185.67,
+          "c": 185.77,
+          "v": 24615.0
+        },
+        {
+          "o": 185.71,
+          "h": 186.72,
+          "l": 185.64,
+          "c": 186.64,
+          "v": 748276.0
+        },
+        {
+          "o": 186.7,
+          "h": 186.74,
+          "l": 186.46,
+          "c": 186.61,
+          "v": 567790.0
+        },
+        {
+          "o": 186.65,
+          "h": 186.72,
+          "l": 186.33,
+          "c": 186.44,
+          "v": 42015.0
+        },
+        {
+          "o": 186.37,
+          "h": 186.7,
+          "l": 186.3,
+          "c": 186.59,
+          "v": 218206.0
+        },
+        {
+          "o": 186.59,
+          "h": 186.77,
+          "l": 186.55,
+          "c": 186.7,
+          "v": 133809.0
+        },
+        {
+          "o": 186.7,
+          "h": 186.89,
+          "l": 186.62,
+          "c": 186.67,
+          "v": 224953.0
+        },
+        {
+          "o": 186.7,
+          "h": 186.7,
+          "l": 186.41,
+          "c": 186.41,
+          "v": 64557.0
+        },
+        {
+          "o": 186.43,
+          "h": 186.54,
+          "l": 186.34,
+          "c": 186.46,
+          "v": 64278.0
+        },
+        {
+          "o": 186.46,
+          "h": 186.5,
+          "l": 186.25,
+          "c": 186.28,
+          "v": 62886.0
+        },
+        {
+          "o": 186.33,
+          "h": 186.33,
+          "l": 186.11,
+          "c": 186.15,
+          "v": 90890.0
+        },
+        {
+          "o": 186.21,
+          "h": 186.4,
+          "l": 186.2,
+          "c": 186.22,
+          "v": 64957.0
+        },
+        {
+          "o": 186.2,
+          "h": 186.22,
+          "l": 185.89,
+          "c": 185.89,
+          "v": 136511.0
+        },
+        {
+          "o": 185.91,
+          "h": 186.2,
+          "l": 185.9,
+          "c": 186.11,
+          "v": 190195.0
+        },
+        {
+          "o": 186.02,
+          "h": 186.2,
+          "l": 185.9,
+          "c": 186.06,
+          "v": 63321.0
+        },
+        {
+          "o": 186.01,
+          "h": 186.2,
+          "l": 185.87,
+          "c": 185.97,
+          "v": 66847.0
+        },
+        {
+          "o": 185.98,
+          "h": 186.0,
+          "l": 185.73,
+          "c": 185.8,
+          "v": 92648.0
+        },
+        {
+          "o": 185.8,
+          "h": 185.8,
+          "l": 185.54,
+          "c": 185.65,
+          "v": 114672.0
+        },
+        {
+          "o": 185.75,
+          "h": 185.97,
+          "l": 185.67,
+          "c": 185.9,
+          "v": 253972.0
+        },
+        {
+          "o": 185.97,
+          "h": 186.24,
+          "l": 185.8,
+          "c": 186.12,
+          "v": 435865.0
+        },
+        {
+          "o": 186.03,
+          "h": 186.15,
+          "l": 186.0,
+          "c": 186.01,
+          "v": 170053.0
+        },
+        {
+          "o": 186.08,
+          "h": 186.08,
+          "l": 185.71,
+          "c": 185.98,
+          "v": 287658.0
+        },
+        {
+          "o": 185.79,
+          "h": 185.86,
+          "l": 185.5,
+          "c": 185.5,
+          "v": 381383.0
+        },
+        {
+          "o": 185.57,
+          "h": 185.6,
+          "l": 185.32,
+          "c": 185.5,
+          "v": 507258.0
+        },
+        {
+          "o": 185.5,
+          "h": 186.3,
+          "l": 185.5,
+          "c": 186.3,
+          "v": 479772.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -1.53
+    },
+    {
+      "symbol": "LT",
+      "sector": "Capital Goods",
+      "ltp": 3766.4,
+      "pct_chg": -2.83,
+      "day_high": 3855.9,
+      "day_low": 3766.4,
+      "listed_at": "11:55",
+      "rvat": 2.09,
+      "hyperflow": "3.8x",
+      "max_hyperflow": "6.1x",
+      "min_hyperflow": "2.3x",
+      "vwap_gap": -0.79,
+      "futures_oi": 0.96,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 3799.5,
+          "h": 3799.9,
+          "l": 3796.1,
+          "c": 3796.4,
+          "v": 10585.0
+        },
+        {
+          "o": 3796.4,
+          "h": 3797.5,
+          "l": 3794.2,
+          "c": 3796.0,
+          "v": 10889.0
+        },
+        {
+          "o": 3796.1,
+          "h": 3798.1,
+          "l": 3795.0,
+          "c": 3797.4,
+          "v": 25084.0
+        },
+        {
+          "o": 3797.6,
+          "h": 3798.1,
+          "l": 3795.0,
+          "c": 3795.8,
+          "v": 21699.0
+        },
+        {
+          "o": 3795.4,
+          "h": 3797.0,
+          "l": 3792.0,
+          "c": 3792.0,
+          "v": 8301.0
+        },
+        {
+          "o": 3792.0,
+          "h": 3792.4,
+          "l": 3786.0,
+          "c": 3788.4,
+          "v": 19978.0
+        },
+        {
+          "o": 3788.5,
+          "h": 3791.6,
+          "l": 3787.0,
+          "c": 3787.0,
+          "v": 14587.0
+        },
+        {
+          "o": 3787.0,
+          "h": 3790.2,
+          "l": 3786.0,
+          "c": 3787.8,
+          "v": 23536.0
+        },
+        {
+          "o": 3787.9,
+          "h": 3788.7,
+          "l": 3786.0,
+          "c": 3787.5,
+          "v": 15498.0
+        },
+        {
+          "o": 3787.9,
+          "h": 3790.0,
+          "l": 3786.7,
+          "c": 3790.0,
+          "v": 12636.0
+        },
+        {
+          "o": 3790.0,
+          "h": 3792.0,
+          "l": 3790.0,
+          "c": 3790.1,
+          "v": 14057.0
+        },
+        {
+          "o": 3790.0,
+          "h": 3794.1,
+          "l": 3790.0,
+          "c": 3793.0,
+          "v": 15704.0
+        },
+        {
+          "o": 3793.1,
+          "h": 3793.8,
+          "l": 3792.2,
+          "c": 3793.0,
+          "v": 13943.0
+        },
+        {
+          "o": 3793.4,
+          "h": 3795.0,
+          "l": 3790.0,
+          "c": 3793.0,
+          "v": 18526.0
+        },
+        {
+          "o": 3793.2,
+          "h": 3793.4,
+          "l": 3791.0,
+          "c": 3791.1,
+          "v": 4773.0
+        },
+        {
+          "o": 3791.1,
+          "h": 3791.4,
+          "l": 3789.1,
+          "c": 3790.1,
+          "v": 10821.0
+        },
+        {
+          "o": 3790.2,
+          "h": 3792.0,
+          "l": 3788.8,
+          "c": 3790.8,
+          "v": 21816.0
+        },
+        {
+          "o": 3790.9,
+          "h": 3790.9,
+          "l": 3787.0,
+          "c": 3788.1,
+          "v": 12168.0
+        },
+        {
+          "o": 3788.2,
+          "h": 3791.5,
+          "l": 3788.0,
+          "c": 3789.7,
+          "v": 13071.0
+        },
+        {
+          "o": 3789.7,
+          "h": 3790.6,
+          "l": 3782.0,
+          "c": 3784.1,
+          "v": 30079.0
+        },
+        {
+          "o": 3785.7,
+          "h": 3786.1,
+          "l": 3781.1,
+          "c": 3784.0,
+          "v": 23031.0
+        },
+        {
+          "o": 3784.0,
+          "h": 3788.0,
+          "l": 3782.4,
+          "c": 3785.1,
+          "v": 18367.0
+        },
+        {
+          "o": 3785.1,
+          "h": 3788.4,
+          "l": 3784.7,
+          "c": 3784.7,
+          "v": 20688.0
+        },
+        {
+          "o": 3784.7,
+          "h": 3788.3,
+          "l": 3783.7,
+          "c": 3785.0,
+          "v": 16406.0
+        },
+        {
+          "o": 3785.3,
+          "h": 3787.8,
+          "l": 3785.0,
+          "c": 3787.4,
+          "v": 23869.0
+        },
+        {
+          "o": 3787.6,
+          "h": 3788.9,
+          "l": 3782.1,
+          "c": 3783.0,
+          "v": 26355.0
+        },
+        {
+          "o": 3783.4,
+          "h": 3785.0,
+          "l": 3781.8,
+          "c": 3783.4,
+          "v": 49807.0
+        },
+        {
+          "o": 3783.4,
+          "h": 3783.8,
+          "l": 3781.1,
+          "c": 3782.3,
+          "v": 31241.0
+        },
+        {
+          "o": 3781.9,
+          "h": 3783.8,
+          "l": 3777.0,
+          "c": 3778.9,
+          "v": 52767.0
+        },
+        {
+          "o": 3778.0,
+          "h": 3779.5,
+          "l": 3775.1,
+          "c": 3775.5,
+          "v": 39009.0
+        },
+        {
+          "o": 3775.1,
+          "h": 3776.3,
+          "l": 3771.0,
+          "c": 3771.0,
+          "v": 58541.0
+        },
+        {
+          "o": 3775.0,
+          "h": 3775.0,
+          "l": 3766.4,
+          "c": 3766.4,
+          "v": 56768.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -3.1
+    },
+    {
+      "symbol": "RELIANCE",
+      "sector": "Energy",
+      "ltp": 1197.6,
+      "pct_chg": -2.32,
+      "day_high": 1219.7,
+      "day_low": 1197.4,
+      "listed_at": "09:20",
+      "rvat": 2.0,
+      "hyperflow": "3.6x",
+      "max_hyperflow": "5.8x",
+      "min_hyperflow": "2.2x",
+      "vwap_gap": -0.65,
+      "futures_oi": 1.22,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 1207.1,
+          "h": 1208.1,
+          "l": 1207.0,
+          "c": 1208.1,
+          "v": 123891.0
+        },
+        {
+          "o": 1208.1,
+          "h": 1208.1,
+          "l": 1206.9,
+          "c": 1207.1,
+          "v": 149431.0
+        },
+        {
+          "o": 1207.1,
+          "h": 1207.3,
+          "l": 1205.6,
+          "c": 1206.0,
+          "v": 110592.0
+        },
+        {
+          "o": 1206.0,
+          "h": 1206.1,
+          "l": 1205.0,
+          "c": 1205.7,
+          "v": 148563.0
+        },
+        {
+          "o": 1205.7,
+          "h": 1205.7,
+          "l": 1205.0,
+          "c": 1205.0,
+          "v": 132609.0
+        },
+        {
+          "o": 1205.0,
+          "h": 1205.0,
+          "l": 1204.1,
+          "c": 1204.6,
+          "v": 109405.0
+        },
+        {
+          "o": 1204.6,
+          "h": 1205.9,
+          "l": 1204.6,
+          "c": 1205.2,
+          "v": 121356.0
+        },
+        {
+          "o": 1205.2,
+          "h": 1205.2,
+          "l": 1202.5,
+          "c": 1204.3,
+          "v": 288090.0
+        },
+        {
+          "o": 1204.3,
+          "h": 1204.4,
+          "l": 1203.7,
+          "c": 1204.3,
+          "v": 147229.0
+        },
+        {
+          "o": 1204.3,
+          "h": 1205.4,
+          "l": 1204.2,
+          "c": 1205.1,
+          "v": 142750.0
+        },
+        {
+          "o": 1205.1,
+          "h": 1205.4,
+          "l": 1204.3,
+          "c": 1205.1,
+          "v": 130822.0
+        },
+        {
+          "o": 1205.0,
+          "h": 1205.3,
+          "l": 1205.0,
+          "c": 1205.2,
+          "v": 70189.0
+        },
+        {
+          "o": 1205.2,
+          "h": 1205.4,
+          "l": 1204.2,
+          "c": 1204.3,
+          "v": 128247.0
+        },
+        {
+          "o": 1204.3,
+          "h": 1204.3,
+          "l": 1203.6,
+          "c": 1203.9,
+          "v": 69267.0
+        },
+        {
+          "o": 1203.9,
+          "h": 1204.3,
+          "l": 1202.5,
+          "c": 1202.5,
+          "v": 408003.0
+        },
+        {
+          "o": 1202.5,
+          "h": 1203.2,
+          "l": 1202.4,
+          "c": 1202.9,
+          "v": 115818.0
+        },
+        {
+          "o": 1203.0,
+          "h": 1203.0,
+          "l": 1202.0,
+          "c": 1202.5,
+          "v": 115275.0
+        },
+        {
+          "o": 1202.5,
+          "h": 1202.5,
+          "l": 1201.9,
+          "c": 1202.1,
+          "v": 114259.0
+        },
+        {
+          "o": 1202.1,
+          "h": 1202.9,
+          "l": 1201.8,
+          "c": 1201.8,
+          "v": 145967.0
+        },
+        {
+          "o": 1202.0,
+          "h": 1202.0,
+          "l": 1200.0,
+          "c": 1200.4,
+          "v": 352437.0
+        },
+        {
+          "o": 1200.5,
+          "h": 1201.2,
+          "l": 1200.0,
+          "c": 1200.3,
+          "v": 224493.0
+        },
+        {
+          "o": 1200.3,
+          "h": 1200.6,
+          "l": 1199.1,
+          "c": 1199.2,
+          "v": 121498.0
+        },
+        {
+          "o": 1199.2,
+          "h": 1200.1,
+          "l": 1198.5,
+          "c": 1198.7,
+          "v": 156790.0
+        },
+        {
+          "o": 1198.7,
+          "h": 1198.8,
+          "l": 1198.0,
+          "c": 1198.2,
+          "v": 177352.0
+        },
+        {
+          "o": 1198.3,
+          "h": 1199.0,
+          "l": 1198.0,
+          "c": 1198.9,
+          "v": 199048.0
+        },
+        {
+          "o": 1198.9,
+          "h": 1199.1,
+          "l": 1198.1,
+          "c": 1199.1,
+          "v": 208312.0
+        },
+        {
+          "o": 1199.1,
+          "h": 1199.5,
+          "l": 1198.5,
+          "c": 1198.8,
+          "v": 284757.0
+        },
+        {
+          "o": 1199.0,
+          "h": 1199.0,
+          "l": 1198.5,
+          "c": 1198.8,
+          "v": 203071.0
+        },
+        {
+          "o": 1198.8,
+          "h": 1198.9,
+          "l": 1198.1,
+          "c": 1198.6,
+          "v": 327254.0
+        },
+        {
+          "o": 1198.5,
+          "h": 1198.8,
+          "l": 1197.4,
+          "c": 1197.8,
+          "v": 484223.0
+        },
+        {
+          "o": 1197.8,
+          "h": 1199.5,
+          "l": 1197.7,
+          "c": 1198.9,
+          "v": 485022.0
+        },
+        {
+          "o": 1198.9,
+          "h": 1198.9,
+          "l": 1197.6,
+          "c": 1197.6,
+          "v": 479644.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -2.32
     },
     {
       "symbol": "WIPRO",
       "sector": "IT",
       "ltp": 161.56,
-      "pct_chg": -0.38,
+      "pct_chg": -1.5,
       "day_high": 164.37,
       "day_low": 161.0,
-      "listed_at": "12:29",
-      "rvat": 0.22,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -4.67,
-      "futures_oi": -2.06,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
+      "listed_at": "09:20",
+      "rvat": 1.82,
+      "hyperflow": "3.3x",
+      "max_hyperflow": "5.3x",
+      "min_hyperflow": "2.0x",
+      "vwap_gap": -0.36,
+      "futures_oi": 1.48,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 162.62,
+          "h": 162.69,
+          "l": 162.57,
+          "c": 162.57,
+          "v": 39068.0
+        },
+        {
+          "o": 162.58,
+          "h": 162.7,
+          "l": 162.55,
+          "c": 162.65,
+          "v": 69043.0
+        },
+        {
+          "o": 162.65,
+          "h": 162.73,
+          "l": 162.61,
+          "c": 162.66,
+          "v": 37512.0
+        },
+        {
+          "o": 162.66,
+          "h": 162.67,
+          "l": 162.5,
+          "c": 162.56,
+          "v": 105387.0
+        },
+        {
+          "o": 162.6,
+          "h": 162.73,
+          "l": 162.55,
+          "c": 162.7,
+          "v": 60879.0
+        },
+        {
+          "o": 162.69,
+          "h": 162.7,
+          "l": 162.6,
+          "c": 162.65,
+          "v": 49559.0
+        },
+        {
+          "o": 162.65,
+          "h": 162.81,
+          "l": 162.65,
+          "c": 162.75,
+          "v": 56811.0
+        },
+        {
+          "o": 162.76,
+          "h": 163.19,
+          "l": 162.76,
+          "c": 163.19,
+          "v": 229936.0
+        },
+        {
+          "o": 163.2,
+          "h": 163.47,
+          "l": 163.02,
+          "c": 163.46,
+          "v": 167963.0
+        },
+        {
+          "o": 163.47,
+          "h": 163.47,
+          "l": 163.12,
+          "c": 163.2,
+          "v": 66209.0
+        },
+        {
+          "o": 163.22,
+          "h": 163.32,
+          "l": 163.02,
+          "c": 163.03,
+          "v": 73716.0
+        },
+        {
+          "o": 163.03,
+          "h": 163.3,
+          "l": 163.01,
+          "c": 163.25,
+          "v": 67711.0
+        },
+        {
+          "o": 163.3,
+          "h": 163.3,
+          "l": 163.08,
+          "c": 163.12,
+          "v": 62749.0
+        },
+        {
+          "o": 163.16,
+          "h": 163.23,
+          "l": 162.9,
+          "c": 163.02,
+          "v": 55517.0
+        },
+        {
+          "o": 162.98,
+          "h": 163.08,
+          "l": 162.9,
+          "c": 162.93,
+          "v": 21665.0
+        },
+        {
+          "o": 162.93,
+          "h": 163.08,
+          "l": 162.93,
+          "c": 163.0,
+          "v": 29837.0
+        },
+        {
+          "o": 162.99,
+          "h": 163.04,
+          "l": 162.89,
+          "c": 162.94,
+          "v": 27047.0
+        },
+        {
+          "o": 162.94,
+          "h": 162.95,
+          "l": 162.8,
+          "c": 162.87,
+          "v": 43736.0
+        },
+        {
+          "o": 162.92,
+          "h": 163.06,
+          "l": 162.84,
+          "c": 162.9,
+          "v": 49993.0
+        },
+        {
+          "o": 162.91,
+          "h": 162.91,
+          "l": 162.44,
+          "c": 162.45,
+          "v": 67130.0
+        },
+        {
+          "o": 162.5,
+          "h": 162.5,
+          "l": 162.3,
+          "c": 162.34,
+          "v": 95201.0
+        },
+        {
+          "o": 162.36,
+          "h": 162.38,
+          "l": 162.24,
+          "c": 162.34,
+          "v": 76310.0
+        },
+        {
+          "o": 162.3,
+          "h": 162.44,
+          "l": 162.2,
+          "c": 162.3,
+          "v": 115170.0
+        },
+        {
+          "o": 162.32,
+          "h": 162.32,
+          "l": 162.11,
+          "c": 162.14,
+          "v": 117491.0
+        },
+        {
+          "o": 162.1,
+          "h": 162.19,
+          "l": 162.0,
+          "c": 162.16,
+          "v": 131605.0
+        },
+        {
+          "o": 162.18,
+          "h": 162.3,
+          "l": 162.08,
+          "c": 162.23,
+          "v": 96186.0
+        },
+        {
+          "o": 162.29,
+          "h": 162.43,
+          "l": 162.28,
+          "c": 162.33,
+          "v": 109028.0
+        },
+        {
+          "o": 162.3,
+          "h": 162.31,
+          "l": 161.91,
+          "c": 161.91,
+          "v": 149451.0
+        },
+        {
+          "o": 161.96,
+          "h": 162.06,
+          "l": 161.8,
+          "c": 162.06,
+          "v": 215202.0
+        },
+        {
+          "o": 162.09,
+          "h": 162.09,
+          "l": 161.9,
+          "c": 161.97,
+          "v": 276467.0
+        },
+        {
+          "o": 161.89,
+          "h": 162.23,
+          "l": 161.89,
+          "c": 162.18,
+          "v": 775887.0
+        },
+        {
+          "o": 162.2,
+          "h": 162.2,
+          "l": 161.56,
+          "c": 161.56,
+          "v": 251182.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
         "breakout": "NO",
-        "volume": "NO",
+        "volume": "YES",
         "pdh": "NO",
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.28
+      "sector_pct": -0.45
     },
     {
-      "symbol": "ADANIPOWER",
-      "sector": "Power",
-      "ltp": 196.14,
-      "pct_chg": -0.13,
-      "day_high": 203.49,
-      "day_low": 195.37,
-      "listed_at": "12:31",
-      "rvat": 0.15,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "2.0x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -4.53,
-      "futures_oi": -1.49,
+      "symbol": "PERSISTENT",
+      "sector": "IT",
+      "ltp": 5328.5,
+      "pct_chg": -0.81,
+      "day_high": 5374.5,
+      "day_low": 5287.5,
+      "listed_at": "14:15",
+      "rvat": 1.58,
+      "hyperflow": "2.8x",
+      "max_hyperflow": "4.5x",
+      "min_hyperflow": "1.7x",
+      "vwap_gap": 0.1,
+      "futures_oi": 1.35,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 5315.5,
+          "h": 5324.0,
+          "l": 5313.5,
+          "c": 5321.5,
+          "v": 3471.0
+        },
+        {
+          "o": 5323.0,
+          "h": 5327.0,
+          "l": 5316.0,
+          "c": 5325.5,
+          "v": 6353.0
+        },
+        {
+          "o": 5325.0,
+          "h": 5326.0,
+          "l": 5318.5,
+          "c": 5318.5,
+          "v": 6313.0
+        },
+        {
+          "o": 5318.0,
+          "h": 5321.0,
+          "l": 5316.5,
+          "c": 5319.5,
+          "v": 1277.0
+        },
+        {
+          "o": 5320.5,
+          "h": 5320.5,
+          "l": 5312.0,
+          "c": 5318.0,
+          "v": 1738.0
+        },
+        {
+          "o": 5319.5,
+          "h": 5333.0,
+          "l": 5315.0,
+          "c": 5328.5,
+          "v": 4483.0
+        },
+        {
+          "o": 5330.5,
+          "h": 5331.5,
+          "l": 5325.0,
+          "c": 5331.0,
+          "v": 2037.0
+        },
+        {
+          "o": 5331.5,
+          "h": 5335.5,
+          "l": 5330.5,
+          "c": 5331.5,
+          "v": 1704.0
+        },
+        {
+          "o": 5334.0,
+          "h": 5353.0,
+          "l": 5332.0,
+          "c": 5353.0,
+          "v": 5339.0
+        },
+        {
+          "o": 5351.0,
+          "h": 5360.0,
+          "l": 5350.0,
+          "c": 5356.5,
+          "v": 3146.0
+        },
+        {
+          "o": 5356.0,
+          "h": 5356.0,
+          "l": 5344.0,
+          "c": 5344.0,
+          "v": 3195.0
+        },
+        {
+          "o": 5344.0,
+          "h": 5356.5,
+          "l": 5344.0,
+          "c": 5349.5,
+          "v": 4364.0
+        },
+        {
+          "o": 5348.5,
+          "h": 5351.5,
+          "l": 5342.0,
+          "c": 5351.5,
+          "v": 2823.0
+        },
+        {
+          "o": 5352.5,
+          "h": 5353.0,
+          "l": 5346.0,
+          "c": 5350.0,
+          "v": 2145.0
+        },
+        {
+          "o": 5350.0,
+          "h": 5353.5,
+          "l": 5344.5,
+          "c": 5349.5,
+          "v": 1836.0
+        },
+        {
+          "o": 5352.0,
+          "h": 5352.5,
+          "l": 5345.5,
+          "c": 5352.5,
+          "v": 2627.0
+        },
+        {
+          "o": 5351.5,
+          "h": 5359.0,
+          "l": 5350.0,
+          "c": 5357.5,
+          "v": 2311.0
+        },
+        {
+          "o": 5357.5,
+          "h": 5360.5,
+          "l": 5354.5,
+          "c": 5360.5,
+          "v": 5093.0
+        },
+        {
+          "o": 5362.0,
+          "h": 5362.5,
+          "l": 5352.5,
+          "c": 5360.0,
+          "v": 1547.0
+        },
+        {
+          "o": 5357.5,
+          "h": 5366.0,
+          "l": 5353.0,
+          "c": 5354.0,
+          "v": 3214.0
+        },
+        {
+          "o": 5355.0,
+          "h": 5357.5,
+          "l": 5337.0,
+          "c": 5337.0,
+          "v": 14184.0
+        },
+        {
+          "o": 5337.0,
+          "h": 5346.0,
+          "l": 5335.0,
+          "c": 5344.0,
+          "v": 6417.0
+        },
+        {
+          "o": 5343.0,
+          "h": 5348.0,
+          "l": 5335.5,
+          "c": 5335.5,
+          "v": 11024.0
+        },
+        {
+          "o": 5333.0,
+          "h": 5337.0,
+          "l": 5308.5,
+          "c": 5310.5,
+          "v": 28280.0
+        },
+        {
+          "o": 5308.0,
+          "h": 5310.0,
+          "l": 5301.5,
+          "c": 5308.0,
+          "v": 14397.0
+        },
+        {
+          "o": 5306.0,
+          "h": 5324.0,
+          "l": 5304.5,
+          "c": 5321.5,
+          "v": 5813.0
+        },
+        {
+          "o": 5320.0,
+          "h": 5320.0,
+          "l": 5309.0,
+          "c": 5317.0,
+          "v": 3120.0
+        },
+        {
+          "o": 5317.0,
+          "h": 5321.5,
+          "l": 5313.0,
+          "c": 5320.0,
+          "v": 4170.0
+        },
+        {
+          "o": 5317.5,
+          "h": 5345.5,
+          "l": 5313.5,
+          "c": 5333.0,
+          "v": 20231.0
+        },
+        {
+          "o": 5330.5,
+          "h": 5331.5,
+          "l": 5315.5,
+          "c": 5323.0,
+          "v": 10756.0
+        },
+        {
+          "o": 5323.0,
+          "h": 5329.5,
+          "l": 5315.5,
+          "c": 5329.5,
+          "v": 20001.0
+        },
+        {
+          "o": 5329.5,
+          "h": 5329.5,
+          "l": 5315.0,
+          "c": 5328.5,
+          "v": 13709.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.45
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "sector": "Financial Services",
+      "ltp": 985.0,
+      "pct_chg": -1.19,
+      "day_high": 992.0,
+      "day_low": 974.6,
+      "listed_at": "14:15",
+      "rvat": 1.45,
+      "hyperflow": "2.6x",
+      "max_hyperflow": "4.2x",
+      "min_hyperflow": "1.6x",
+      "vwap_gap": 0.44,
+      "futures_oi": 0.37,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 980.5,
+          "h": 980.9,
+          "l": 979.4,
+          "c": 980.6,
+          "v": 94307.0
+        },
+        {
+          "o": 980.6,
+          "h": 980.8,
+          "l": 980.2,
+          "c": 980.2,
+          "v": 66289.0
+        },
+        {
+          "o": 980.1,
+          "h": 980.8,
+          "l": 979.5,
+          "c": 980.2,
+          "v": 63379.0
+        },
+        {
+          "o": 980.0,
+          "h": 980.7,
+          "l": 979.4,
+          "c": 980.1,
+          "v": 58519.0
+        },
+        {
+          "o": 980.2,
+          "h": 980.4,
+          "l": 979.8,
+          "c": 980.0,
+          "v": 56297.0
+        },
+        {
+          "o": 980.1,
+          "h": 980.3,
+          "l": 979.3,
+          "c": 980.0,
+          "v": 71416.0
+        },
+        {
+          "o": 980.0,
+          "h": 980.6,
+          "l": 979.5,
+          "c": 979.5,
+          "v": 63720.0
+        },
+        {
+          "o": 979.5,
+          "h": 980.8,
+          "l": 979.5,
+          "c": 980.8,
+          "v": 56487.0
+        },
+        {
+          "o": 980.8,
+          "h": 981.6,
+          "l": 980.3,
+          "c": 981.3,
+          "v": 54172.0
+        },
+        {
+          "o": 981.4,
+          "h": 981.9,
+          "l": 980.2,
+          "c": 980.2,
+          "v": 69948.0
+        },
+        {
+          "o": 980.2,
+          "h": 980.2,
+          "l": 979.3,
+          "c": 979.6,
+          "v": 87943.0
+        },
+        {
+          "o": 979.4,
+          "h": 980.8,
+          "l": 979.4,
+          "c": 980.7,
+          "v": 52438.0
+        },
+        {
+          "o": 980.9,
+          "h": 980.9,
+          "l": 980.1,
+          "c": 980.2,
+          "v": 60072.0
+        },
+        {
+          "o": 980.3,
+          "h": 980.9,
+          "l": 979.8,
+          "c": 980.7,
+          "v": 72000.0
+        },
+        {
+          "o": 980.9,
+          "h": 981.2,
+          "l": 980.3,
+          "c": 981.1,
+          "v": 31653.0
+        },
+        {
+          "o": 981.1,
+          "h": 981.1,
+          "l": 980.2,
+          "c": 981.0,
+          "v": 41821.0
+        },
+        {
+          "o": 981.0,
+          "h": 981.2,
+          "l": 980.6,
+          "c": 981.0,
+          "v": 34419.0
+        },
+        {
+          "o": 981.0,
+          "h": 981.2,
+          "l": 980.5,
+          "c": 980.9,
+          "v": 32025.0
+        },
+        {
+          "o": 981.0,
+          "h": 981.5,
+          "l": 980.5,
+          "c": 980.7,
+          "v": 35372.0
+        },
+        {
+          "o": 980.7,
+          "h": 981.8,
+          "l": 980.0,
+          "c": 980.5,
+          "v": 649937.0
+        },
+        {
+          "o": 980.5,
+          "h": 981.5,
+          "l": 980.3,
+          "c": 981.5,
+          "v": 53779.0
+        },
+        {
+          "o": 981.5,
+          "h": 982.4,
+          "l": 981.3,
+          "c": 981.9,
+          "v": 51700.0
+        },
+        {
+          "o": 981.9,
+          "h": 982.1,
+          "l": 980.8,
+          "c": 981.3,
+          "v": 65615.0
+        },
+        {
+          "o": 981.3,
+          "h": 982.4,
+          "l": 980.4,
+          "c": 982.1,
+          "v": 441951.0
+        },
+        {
+          "o": 982.1,
+          "h": 982.3,
+          "l": 980.5,
+          "c": 981.1,
+          "v": 99630.0
+        },
+        {
+          "o": 981.1,
+          "h": 982.3,
+          "l": 981.1,
+          "c": 982.1,
+          "v": 58556.0
+        },
+        {
+          "o": 982.3,
+          "h": 984.0,
+          "l": 981.9,
+          "c": 983.7,
+          "v": 181791.0
+        },
+        {
+          "o": 983.7,
+          "h": 984.9,
+          "l": 983.6,
+          "c": 984.7,
+          "v": 155604.0
+        },
+        {
+          "o": 984.7,
+          "h": 984.9,
+          "l": 982.5,
+          "c": 984.7,
+          "v": 472376.0
+        },
+        {
+          "o": 984.8,
+          "h": 984.8,
+          "l": 981.5,
+          "c": 981.8,
+          "v": 232180.0
+        },
+        {
+          "o": 982.0,
+          "h": 983.5,
+          "l": 980.0,
+          "c": 983.0,
+          "v": 288663.0
+        },
+        {
+          "o": 983.0,
+          "h": 985.0,
+          "l": 983.0,
+          "c": 985.0,
+          "v": 238334.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -1.69
+    },
+    {
+      "symbol": "HDFCBANK",
+      "sector": "Financial Services",
+      "ltp": 719.05,
+      "pct_chg": -2.25,
+      "day_high": 732.7,
+      "day_low": 718.3,
+      "listed_at": "09:20",
+      "rvat": 1.38,
+      "hyperflow": "2.5x",
+      "max_hyperflow": "4.0x",
+      "min_hyperflow": "1.5x",
+      "vwap_gap": -0.35,
+      "futures_oi": -1.18,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -726,35 +3727,784 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 721.65,
+          "h": 722.4,
+          "l": 721.45,
+          "c": 721.5,
+          "v": 198997.0
+        },
+        {
+          "o": 721.5,
+          "h": 722.05,
+          "l": 721.2,
+          "c": 721.7,
+          "v": 124930.0
+        },
+        {
+          "o": 721.7,
+          "h": 721.8,
+          "l": 720.55,
+          "c": 720.75,
+          "v": 177265.0
+        },
+        {
+          "o": 720.75,
+          "h": 721.1,
+          "l": 720.55,
+          "c": 720.8,
+          "v": 164568.0
+        },
+        {
+          "o": 720.75,
+          "h": 721.0,
+          "l": 720.3,
+          "c": 720.35,
+          "v": 140337.0
+        },
+        {
+          "o": 720.35,
+          "h": 721.1,
+          "l": 720.2,
+          "c": 720.45,
+          "v": 174471.0
+        },
+        {
+          "o": 720.5,
+          "h": 721.0,
+          "l": 720.2,
+          "c": 720.3,
+          "v": 103176.0
+        },
+        {
+          "o": 720.3,
+          "h": 720.95,
+          "l": 720.25,
+          "c": 720.75,
+          "v": 148630.0
+        },
+        {
+          "o": 720.8,
+          "h": 721.0,
+          "l": 720.25,
+          "c": 720.7,
+          "v": 245838.0
+        },
+        {
+          "o": 720.6,
+          "h": 720.8,
+          "l": 720.2,
+          "c": 720.4,
+          "v": 127241.0
+        },
+        {
+          "o": 720.4,
+          "h": 720.4,
+          "l": 719.45,
+          "c": 719.55,
+          "v": 279384.0
+        },
+        {
+          "o": 719.5,
+          "h": 719.6,
+          "l": 719.05,
+          "c": 719.3,
+          "v": 159440.0
+        },
+        {
+          "o": 719.3,
+          "h": 719.8,
+          "l": 719.15,
+          "c": 719.5,
+          "v": 95298.0
+        },
+        {
+          "o": 719.5,
+          "h": 721.2,
+          "l": 719.45,
+          "c": 721.05,
+          "v": 206506.0
+        },
+        {
+          "o": 721.05,
+          "h": 721.6,
+          "l": 720.85,
+          "c": 721.3,
+          "v": 182668.0
+        },
+        {
+          "o": 721.3,
+          "h": 721.9,
+          "l": 721.25,
+          "c": 721.6,
+          "v": 218445.0
+        },
+        {
+          "o": 721.6,
+          "h": 721.85,
+          "l": 720.95,
+          "c": 721.45,
+          "v": 180992.0
+        },
+        {
+          "o": 721.4,
+          "h": 721.65,
+          "l": 720.9,
+          "c": 721.2,
+          "v": 245639.0
+        },
+        {
+          "o": 721.15,
+          "h": 721.5,
+          "l": 720.5,
+          "c": 720.85,
+          "v": 193506.0
+        },
+        {
+          "o": 720.9,
+          "h": 721.15,
+          "l": 719.3,
+          "c": 719.75,
+          "v": 270581.0
+        },
+        {
+          "o": 719.75,
+          "h": 720.6,
+          "l": 719.65,
+          "c": 720.25,
+          "v": 257425.0
+        },
+        {
+          "o": 720.25,
+          "h": 720.65,
+          "l": 720.05,
+          "c": 720.15,
+          "v": 297358.0
+        },
+        {
+          "o": 720.15,
+          "h": 720.5,
+          "l": 719.25,
+          "c": 719.5,
+          "v": 246649.0
+        },
+        {
+          "o": 719.5,
+          "h": 719.8,
+          "l": 718.75,
+          "c": 719.2,
+          "v": 376129.0
+        },
+        {
+          "o": 719.15,
+          "h": 719.7,
+          "l": 718.7,
+          "c": 718.95,
+          "v": 274600.0
+        },
+        {
+          "o": 718.9,
+          "h": 720.45,
+          "l": 718.85,
+          "c": 720.25,
+          "v": 409289.0
+        },
+        {
+          "o": 720.25,
+          "h": 720.6,
+          "l": 719.85,
+          "c": 720.1,
+          "v": 535459.0
+        },
+        {
+          "o": 720.1,
+          "h": 720.3,
+          "l": 719.7,
+          "c": 719.9,
+          "v": 297256.0
+        },
+        {
+          "o": 719.85,
+          "h": 720.0,
+          "l": 719.0,
+          "c": 719.25,
+          "v": 331308.0
+        },
+        {
+          "o": 719.2,
+          "h": 719.4,
+          "l": 718.3,
+          "c": 718.8,
+          "v": 454616.0
+        },
+        {
+          "o": 718.75,
+          "h": 720.5,
+          "l": 718.5,
+          "c": 719.0,
+          "v": 661788.0
+        },
+        {
+          "o": 719.0,
+          "h": 719.05,
+          "l": 719.0,
+          "c": 719.05,
+          "v": 425568.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
         "breakout": "NO",
-        "volume": "NO",
+        "volume": "YES",
         "pdh": "NO",
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.13
+      "sector_pct": -1.69
+    },
+    {
+      "symbol": "COALINDIA",
+      "sector": "Oil & Gas",
+      "ltp": 422.5,
+      "pct_chg": -0.84,
+      "day_high": 429.3,
+      "day_low": 421.2,
+      "listed_at": "12:00",
+      "rvat": 1.32,
+      "hyperflow": "2.4x",
+      "max_hyperflow": "3.8x",
+      "min_hyperflow": "1.4x",
+      "vwap_gap": -0.65,
+      "futures_oi": 0.27,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 425.35,
+          "h": 426.25,
+          "l": 425.3,
+          "c": 426.2,
+          "v": 58521.0
+        },
+        {
+          "o": 426.45,
+          "h": 426.5,
+          "l": 426.2,
+          "c": 426.5,
+          "v": 25706.0
+        },
+        {
+          "o": 426.45,
+          "h": 426.45,
+          "l": 425.2,
+          "c": 425.45,
+          "v": 31506.0
+        },
+        {
+          "o": 425.45,
+          "h": 425.9,
+          "l": 425.35,
+          "c": 425.55,
+          "v": 26556.0
+        },
+        {
+          "o": 425.75,
+          "h": 425.8,
+          "l": 425.25,
+          "c": 425.5,
+          "v": 17745.0
+        },
+        {
+          "o": 425.55,
+          "h": 425.85,
+          "l": 425.4,
+          "c": 425.5,
+          "v": 17690.0
+        },
+        {
+          "o": 425.5,
+          "h": 425.95,
+          "l": 425.5,
+          "c": 425.8,
+          "v": 21683.0
+        },
+        {
+          "o": 425.8,
+          "h": 425.8,
+          "l": 425.25,
+          "c": 425.3,
+          "v": 13855.0
+        },
+        {
+          "o": 425.3,
+          "h": 425.4,
+          "l": 425.15,
+          "c": 425.35,
+          "v": 31097.0
+        },
+        {
+          "o": 425.25,
+          "h": 425.8,
+          "l": 425.05,
+          "c": 425.8,
+          "v": 72152.0
+        },
+        {
+          "o": 425.85,
+          "h": 425.9,
+          "l": 425.0,
+          "c": 425.35,
+          "v": 26435.0
+        },
+        {
+          "o": 425.35,
+          "h": 425.4,
+          "l": 425.1,
+          "c": 425.3,
+          "v": 22621.0
+        },
+        {
+          "o": 425.2,
+          "h": 425.35,
+          "l": 424.9,
+          "c": 424.95,
+          "v": 25433.0
+        },
+        {
+          "o": 424.95,
+          "h": 425.75,
+          "l": 424.9,
+          "c": 425.7,
+          "v": 79986.0
+        },
+        {
+          "o": 425.65,
+          "h": 426.2,
+          "l": 425.55,
+          "c": 426.0,
+          "v": 27303.0
+        },
+        {
+          "o": 426.05,
+          "h": 426.5,
+          "l": 426.0,
+          "c": 426.5,
+          "v": 60757.0
+        },
+        {
+          "o": 426.65,
+          "h": 426.65,
+          "l": 426.3,
+          "c": 426.45,
+          "v": 33702.0
+        },
+        {
+          "o": 426.45,
+          "h": 426.45,
+          "l": 426.0,
+          "c": 426.1,
+          "v": 39483.0
+        },
+        {
+          "o": 426.15,
+          "h": 426.15,
+          "l": 425.3,
+          "c": 425.35,
+          "v": 67557.0
+        },
+        {
+          "o": 425.35,
+          "h": 425.35,
+          "l": 424.75,
+          "c": 424.8,
+          "v": 77862.0
+        },
+        {
+          "o": 424.85,
+          "h": 425.65,
+          "l": 424.8,
+          "c": 425.0,
+          "v": 152420.0
+        },
+        {
+          "o": 424.95,
+          "h": 425.2,
+          "l": 424.8,
+          "c": 424.8,
+          "v": 68377.0
+        },
+        {
+          "o": 424.95,
+          "h": 425.15,
+          "l": 424.35,
+          "c": 424.55,
+          "v": 91338.0
+        },
+        {
+          "o": 424.65,
+          "h": 424.65,
+          "l": 423.6,
+          "c": 423.85,
+          "v": 103824.0
+        },
+        {
+          "o": 423.75,
+          "h": 423.75,
+          "l": 422.7,
+          "c": 423.2,
+          "v": 102291.0
+        },
+        {
+          "o": 423.25,
+          "h": 423.25,
+          "l": 422.05,
+          "c": 422.6,
+          "v": 109313.0
+        },
+        {
+          "o": 422.65,
+          "h": 423.0,
+          "l": 422.55,
+          "c": 422.85,
+          "v": 82290.0
+        },
+        {
+          "o": 422.85,
+          "h": 423.1,
+          "l": 422.65,
+          "c": 422.95,
+          "v": 95816.0
+        },
+        {
+          "o": 422.9,
+          "h": 422.95,
+          "l": 421.4,
+          "c": 421.55,
+          "v": 160269.0
+        },
+        {
+          "o": 421.65,
+          "h": 422.25,
+          "l": 421.5,
+          "c": 421.6,
+          "v": 270550.0
+        },
+        {
+          "o": 421.75,
+          "h": 422.1,
+          "l": 421.2,
+          "c": 421.2,
+          "v": 263700.0
+        },
+        {
+          "o": 421.8,
+          "h": 422.5,
+          "l": 421.8,
+          "c": 422.5,
+          "v": 135521.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -0.84
+    },
+    {
+      "symbol": "TITAN",
+      "sector": "Consumer Goods",
+      "ltp": 4819.5,
+      "pct_chg": -1.32,
+      "day_high": 4878.5,
+      "day_low": 4810.0,
+      "listed_at": "10:50",
+      "rvat": 1.32,
+      "hyperflow": "2.4x",
+      "max_hyperflow": "3.8x",
+      "min_hyperflow": "1.4x",
+      "vwap_gap": -0.11,
+      "futures_oi": -0.3,
+      "oi_behavior": "Long unwinding",
+      "matrix_intent": "LIQUIDATION",
+      "matrix_pulse": "P\u25bc | OI\u25bc",
+      "matrix_tone": "bear-weak",
+      "star_score": -2,
+      "star_display": "-2\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 4832.5,
+          "h": 4832.5,
+          "l": 4827.5,
+          "c": 4828.0,
+          "v": 2867.0
+        },
+        {
+          "o": 4828.0,
+          "h": 4830.0,
+          "l": 4819.5,
+          "c": 4820.5,
+          "v": 55418.0
+        },
+        {
+          "o": 4821.0,
+          "h": 4830.0,
+          "l": 4820.0,
+          "c": 4829.0,
+          "v": 39462.0
+        },
+        {
+          "o": 4829.0,
+          "h": 4830.0,
+          "l": 4821.5,
+          "c": 4827.0,
+          "v": 4378.0
+        },
+        {
+          "o": 4829.0,
+          "h": 4829.5,
+          "l": 4825.5,
+          "c": 4827.0,
+          "v": 3744.0
+        },
+        {
+          "o": 4827.5,
+          "h": 4832.5,
+          "l": 4827.0,
+          "c": 4831.5,
+          "v": 4775.0
+        },
+        {
+          "o": 4832.0,
+          "h": 4833.5,
+          "l": 4825.5,
+          "c": 4827.5,
+          "v": 4266.0
+        },
+        {
+          "o": 4826.5,
+          "h": 4831.0,
+          "l": 4825.5,
+          "c": 4828.5,
+          "v": 3126.0
+        },
+        {
+          "o": 4828.5,
+          "h": 4830.5,
+          "l": 4827.0,
+          "c": 4829.5,
+          "v": 6318.0
+        },
+        {
+          "o": 4829.5,
+          "h": 4837.0,
+          "l": 4829.5,
+          "c": 4837.0,
+          "v": 3922.0
+        },
+        {
+          "o": 4837.5,
+          "h": 4837.5,
+          "l": 4825.0,
+          "c": 4827.0,
+          "v": 9170.0
+        },
+        {
+          "o": 4828.0,
+          "h": 4834.5,
+          "l": 4826.5,
+          "c": 4831.5,
+          "v": 9007.0
+        },
+        {
+          "o": 4833.5,
+          "h": 4839.5,
+          "l": 4831.5,
+          "c": 4833.0,
+          "v": 17728.0
+        },
+        {
+          "o": 4833.5,
+          "h": 4834.0,
+          "l": 4829.0,
+          "c": 4830.5,
+          "v": 11539.0
+        },
+        {
+          "o": 4830.0,
+          "h": 4834.5,
+          "l": 4829.0,
+          "c": 4831.5,
+          "v": 7237.0
+        },
+        {
+          "o": 4831.5,
+          "h": 4836.0,
+          "l": 4829.5,
+          "c": 4833.0,
+          "v": 7776.0
+        },
+        {
+          "o": 4833.0,
+          "h": 4834.5,
+          "l": 4826.5,
+          "c": 4827.0,
+          "v": 7662.0
+        },
+        {
+          "o": 4827.0,
+          "h": 4831.5,
+          "l": 4825.5,
+          "c": 4826.0,
+          "v": 7590.0
+        },
+        {
+          "o": 4831.5,
+          "h": 4831.5,
+          "l": 4825.5,
+          "c": 4826.5,
+          "v": 11837.0
+        },
+        {
+          "o": 4825.0,
+          "h": 4825.0,
+          "l": 4820.0,
+          "c": 4820.5,
+          "v": 10533.0
+        },
+        {
+          "o": 4820.5,
+          "h": 4823.5,
+          "l": 4819.0,
+          "c": 4819.0,
+          "v": 4656.0
+        },
+        {
+          "o": 4819.0,
+          "h": 4821.0,
+          "l": 4818.0,
+          "c": 4818.0,
+          "v": 4020.0
+        },
+        {
+          "o": 4818.5,
+          "h": 4820.5,
+          "l": 4816.0,
+          "c": 4816.0,
+          "v": 16083.0
+        },
+        {
+          "o": 4817.0,
+          "h": 4820.0,
+          "l": 4810.5,
+          "c": 4811.5,
+          "v": 26372.0
+        },
+        {
+          "o": 4812.5,
+          "h": 4815.0,
+          "l": 4811.0,
+          "c": 4811.5,
+          "v": 11308.0
+        },
+        {
+          "o": 4813.5,
+          "h": 4816.0,
+          "l": 4811.5,
+          "c": 4813.0,
+          "v": 11337.0
+        },
+        {
+          "o": 4813.0,
+          "h": 4818.5,
+          "l": 4813.0,
+          "c": 4818.0,
+          "v": 11557.0
+        },
+        {
+          "o": 4817.5,
+          "h": 4821.5,
+          "l": 4813.0,
+          "c": 4818.0,
+          "v": 13671.0
+        },
+        {
+          "o": 4816.0,
+          "h": 4822.0,
+          "l": 4815.0,
+          "c": 4820.0,
+          "v": 10634.0
+        },
+        {
+          "o": 4820.5,
+          "h": 4822.0,
+          "l": 4815.0,
+          "c": 4816.0,
+          "v": 18416.0
+        },
+        {
+          "o": 4816.0,
+          "h": 4822.0,
+          "l": 4810.0,
+          "c": 4810.0,
+          "v": 15078.0
+        },
+        {
+          "o": 4810.0,
+          "h": 4819.5,
+          "l": 4810.0,
+          "c": 4819.5,
+          "v": 15935.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -1.32
     },
     {
       "symbol": "HINDALCO",
       "sector": "Metal",
       "ltp": 955.9,
-      "pct_chg": -0.32,
+      "pct_chg": -2.16,
       "day_high": 966.6,
       "day_low": 951.2,
-      "listed_at": "12:30",
-      "rvat": 0.15,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.3x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -3.86,
-      "futures_oi": -2.16,
+      "listed_at": "09:20",
+      "rvat": 1.12,
+      "hyperflow": "2.0x",
+      "max_hyperflow": "3.2x",
+      "min_hyperflow": "1.2x",
+      "vwap_gap": -0.35,
+      "futures_oi": -2.11,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -763,35 +4513,260 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 962.3,
+          "h": 963.4,
+          "l": 962.3,
+          "c": 962.8,
+          "v": 21612.0
+        },
+        {
+          "o": 962.7,
+          "h": 962.9,
+          "l": 962.6,
+          "c": 962.8,
+          "v": 9959.0
+        },
+        {
+          "o": 962.8,
+          "h": 962.8,
+          "l": 961.1,
+          "c": 961.3,
+          "v": 23313.0
+        },
+        {
+          "o": 961.3,
+          "h": 961.4,
+          "l": 960.2,
+          "c": 960.5,
+          "v": 34482.0
+        },
+        {
+          "o": 960.5,
+          "h": 961.0,
+          "l": 960.3,
+          "c": 961.0,
+          "v": 18292.0
+        },
+        {
+          "o": 961.0,
+          "h": 961.0,
+          "l": 960.4,
+          "c": 960.6,
+          "v": 21667.0
+        },
+        {
+          "o": 960.7,
+          "h": 961.7,
+          "l": 960.7,
+          "c": 960.9,
+          "v": 18888.0
+        },
+        {
+          "o": 960.9,
+          "h": 961.0,
+          "l": 960.5,
+          "c": 960.7,
+          "v": 27559.0
+        },
+        {
+          "o": 960.7,
+          "h": 962.0,
+          "l": 960.7,
+          "c": 961.6,
+          "v": 27274.0
+        },
+        {
+          "o": 961.6,
+          "h": 962.0,
+          "l": 961.4,
+          "c": 961.9,
+          "v": 15149.0
+        },
+        {
+          "o": 961.9,
+          "h": 961.9,
+          "l": 961.1,
+          "c": 961.3,
+          "v": 30427.0
+        },
+        {
+          "o": 961.5,
+          "h": 961.6,
+          "l": 961.3,
+          "c": 961.6,
+          "v": 20588.0
+        },
+        {
+          "o": 961.6,
+          "h": 961.9,
+          "l": 961.2,
+          "c": 961.3,
+          "v": 20303.0
+        },
+        {
+          "o": 961.2,
+          "h": 961.9,
+          "l": 961.1,
+          "c": 961.7,
+          "v": 47603.0
+        },
+        {
+          "o": 961.6,
+          "h": 961.7,
+          "l": 960.9,
+          "c": 960.9,
+          "v": 12015.0
+        },
+        {
+          "o": 961.1,
+          "h": 961.3,
+          "l": 960.8,
+          "c": 961.2,
+          "v": 23114.0
+        },
+        {
+          "o": 961.2,
+          "h": 961.3,
+          "l": 960.7,
+          "c": 961.0,
+          "v": 25503.0
+        },
+        {
+          "o": 961.0,
+          "h": 961.1,
+          "l": 959.7,
+          "c": 960.6,
+          "v": 40841.0
+        },
+        {
+          "o": 960.6,
+          "h": 961.3,
+          "l": 960.4,
+          "c": 960.5,
+          "v": 29837.0
+        },
+        {
+          "o": 960.5,
+          "h": 960.5,
+          "l": 959.0,
+          "c": 959.0,
+          "v": 40646.0
+        },
+        {
+          "o": 959.1,
+          "h": 960.4,
+          "l": 958.9,
+          "c": 959.2,
+          "v": 67963.0
+        },
+        {
+          "o": 959.7,
+          "h": 959.8,
+          "l": 957.5,
+          "c": 958.6,
+          "v": 45819.0
+        },
+        {
+          "o": 959.0,
+          "h": 960.0,
+          "l": 957.6,
+          "c": 958.0,
+          "v": 33495.0
+        },
+        {
+          "o": 957.9,
+          "h": 958.2,
+          "l": 956.5,
+          "c": 956.5,
+          "v": 64959.0
+        },
+        {
+          "o": 956.8,
+          "h": 956.8,
+          "l": 955.1,
+          "c": 955.8,
+          "v": 90972.0
+        },
+        {
+          "o": 955.8,
+          "h": 956.5,
+          "l": 955.8,
+          "c": 956.5,
+          "v": 40378.0
+        },
+        {
+          "o": 956.5,
+          "h": 956.6,
+          "l": 955.8,
+          "c": 956.0,
+          "v": 77808.0
+        },
+        {
+          "o": 955.9,
+          "h": 956.5,
+          "l": 955.9,
+          "c": 956.2,
+          "v": 53512.0
+        },
+        {
+          "o": 956.1,
+          "h": 957.0,
+          "l": 955.7,
+          "c": 957.0,
+          "v": 94345.0
+        },
+        {
+          "o": 956.6,
+          "h": 957.5,
+          "l": 956.6,
+          "c": 957.0,
+          "v": 76233.0
+        },
+        {
+          "o": 956.8,
+          "h": 959.8,
+          "l": 956.8,
+          "c": 959.0,
+          "v": 130453.0
+        },
+        {
+          "o": 959.5,
+          "h": 959.5,
+          "l": 955.9,
+          "c": 955.9,
+          "v": 60168.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
         "breakout": "NO",
-        "volume": "NO",
+        "volume": "YES",
         "pdh": "NO",
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": 0.05
+      "sector_pct": -1.53
     },
     {
       "symbol": "AXISBANK",
       "sector": "Financial Services",
       "ltp": 1209.9,
-      "pct_chg": -0.09,
+      "pct_chg": -1.02,
       "day_high": 1217.5,
       "day_low": 1205.0,
-      "listed_at": "12:17",
-      "rvat": 0.14,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -2.44,
-      "futures_oi": -2.17,
+      "listed_at": "09:20",
+      "rvat": 1.11,
+      "hyperflow": "2.0x",
+      "max_hyperflow": "3.2x",
+      "min_hyperflow": "1.2x",
+      "vwap_gap": 0.05,
+      "futures_oi": -0.78,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -800,10 +4775,497 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 1208.7,
+          "h": 1210.0,
+          "l": 1208.4,
+          "c": 1209.0,
+          "v": 62462.0
+        },
+        {
+          "o": 1208.6,
+          "h": 1209.3,
+          "l": 1208.4,
+          "c": 1208.6,
+          "v": 26528.0
+        },
+        {
+          "o": 1208.5,
+          "h": 1209.6,
+          "l": 1207.7,
+          "c": 1209.6,
+          "v": 39089.0
+        },
+        {
+          "o": 1209.5,
+          "h": 1210.8,
+          "l": 1208.6,
+          "c": 1210.0,
+          "v": 62637.0
+        },
+        {
+          "o": 1210.0,
+          "h": 1210.3,
+          "l": 1208.2,
+          "c": 1208.6,
+          "v": 25284.0
+        },
+        {
+          "o": 1208.6,
+          "h": 1210.0,
+          "l": 1208.3,
+          "c": 1209.5,
+          "v": 36433.0
+        },
+        {
+          "o": 1209.6,
+          "h": 1210.0,
+          "l": 1208.7,
+          "c": 1208.7,
+          "v": 22279.0
+        },
+        {
+          "o": 1208.7,
+          "h": 1209.7,
+          "l": 1208.0,
+          "c": 1208.7,
+          "v": 42077.0
+        },
+        {
+          "o": 1208.7,
+          "h": 1210.1,
+          "l": 1208.6,
+          "c": 1209.8,
+          "v": 32604.0
+        },
+        {
+          "o": 1210.0,
+          "h": 1211.4,
+          "l": 1209.8,
+          "c": 1211.3,
+          "v": 28688.0
+        },
+        {
+          "o": 1211.4,
+          "h": 1211.4,
+          "l": 1209.4,
+          "c": 1209.4,
+          "v": 27130.0
+        },
+        {
+          "o": 1209.4,
+          "h": 1210.5,
+          "l": 1209.4,
+          "c": 1210.3,
+          "v": 33835.0
+        },
+        {
+          "o": 1210.3,
+          "h": 1211.2,
+          "l": 1209.7,
+          "c": 1211.2,
+          "v": 34929.0
+        },
+        {
+          "o": 1211.4,
+          "h": 1211.7,
+          "l": 1210.0,
+          "c": 1210.1,
+          "v": 26683.0
+        },
+        {
+          "o": 1210.4,
+          "h": 1211.3,
+          "l": 1209.6,
+          "c": 1209.7,
+          "v": 34211.0
+        },
+        {
+          "o": 1209.9,
+          "h": 1210.8,
+          "l": 1209.7,
+          "c": 1210.6,
+          "v": 34890.0
+        },
+        {
+          "o": 1210.7,
+          "h": 1210.9,
+          "l": 1209.4,
+          "c": 1210.0,
+          "v": 47408.0
+        },
+        {
+          "o": 1209.6,
+          "h": 1210.2,
+          "l": 1208.0,
+          "c": 1208.0,
+          "v": 86805.0
+        },
+        {
+          "o": 1208.3,
+          "h": 1208.7,
+          "l": 1207.8,
+          "c": 1208.2,
+          "v": 25091.0
+        },
+        {
+          "o": 1208.5,
+          "h": 1208.7,
+          "l": 1205.0,
+          "c": 1206.3,
+          "v": 70521.0
+        },
+        {
+          "o": 1206.0,
+          "h": 1207.1,
+          "l": 1206.0,
+          "c": 1207.0,
+          "v": 28712.0
+        },
+        {
+          "o": 1207.0,
+          "h": 1208.4,
+          "l": 1206.8,
+          "c": 1207.2,
+          "v": 37914.0
+        },
+        {
+          "o": 1207.2,
+          "h": 1208.0,
+          "l": 1207.2,
+          "c": 1207.9,
+          "v": 34351.0
+        },
+        {
+          "o": 1207.6,
+          "h": 1209.0,
+          "l": 1205.0,
+          "c": 1205.8,
+          "v": 67163.0
+        },
+        {
+          "o": 1206.0,
+          "h": 1207.1,
+          "l": 1205.5,
+          "c": 1206.6,
+          "v": 129415.0
+        },
+        {
+          "o": 1206.6,
+          "h": 1208.3,
+          "l": 1205.7,
+          "c": 1207.5,
+          "v": 207263.0
+        },
+        {
+          "o": 1207.9,
+          "h": 1207.9,
+          "l": 1206.3,
+          "c": 1207.3,
+          "v": 59105.0
+        },
+        {
+          "o": 1207.1,
+          "h": 1207.4,
+          "l": 1206.3,
+          "c": 1207.2,
+          "v": 62051.0
+        },
+        {
+          "o": 1207.2,
+          "h": 1207.4,
+          "l": 1205.8,
+          "c": 1207.2,
+          "v": 196737.0
+        },
+        {
+          "o": 1206.9,
+          "h": 1207.7,
+          "l": 1206.5,
+          "c": 1207.5,
+          "v": 122597.0
+        },
+        {
+          "o": 1207.4,
+          "h": 1212.4,
+          "l": 1207.4,
+          "c": 1211.0,
+          "v": 138718.0
+        },
+        {
+          "o": 1211.0,
+          "h": 1211.0,
+          "l": 1209.9,
+          "c": 1209.9,
+          "v": 85173.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "YES",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -1.69
+    },
+    {
+      "symbol": "SBIN",
+      "sector": "Financial Services",
+      "ltp": 962.0,
+      "pct_chg": -2.14,
+      "day_high": 981.0,
+      "day_low": 956.1,
+      "listed_at": "09:40",
+      "rvat": 0.99,
+      "hyperflow": "1.8x",
+      "max_hyperflow": "2.9x",
+      "min_hyperflow": "1.1x",
+      "vwap_gap": -0.2,
+      "futures_oi": -2.61,
+      "oi_behavior": "Long unwinding",
+      "matrix_intent": "LIQUIDATION",
+      "matrix_pulse": "P\u25bc | OI\u25bc",
+      "matrix_tone": "bear-weak",
+      "star_score": -2,
+      "star_display": "-2\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 964.8,
+          "h": 965.0,
+          "l": 964.5,
+          "c": 964.6,
+          "v": 29409.0
+        },
+        {
+          "o": 964.8,
+          "h": 965.0,
+          "l": 964.5,
+          "c": 964.6,
+          "v": 28761.0
+        },
+        {
+          "o": 964.9,
+          "h": 964.9,
+          "l": 963.5,
+          "c": 963.7,
+          "v": 104522.0
+        },
+        {
+          "o": 963.6,
+          "h": 963.7,
+          "l": 962.7,
+          "c": 963.0,
+          "v": 120478.0
+        },
+        {
+          "o": 963.0,
+          "h": 963.4,
+          "l": 962.1,
+          "c": 962.5,
+          "v": 92587.0
+        },
+        {
+          "o": 962.5,
+          "h": 962.9,
+          "l": 962.1,
+          "c": 962.5,
+          "v": 47092.0
+        },
+        {
+          "o": 962.5,
+          "h": 963.4,
+          "l": 962.4,
+          "c": 962.8,
+          "v": 39251.0
+        },
+        {
+          "o": 962.7,
+          "h": 962.9,
+          "l": 962.4,
+          "c": 962.7,
+          "v": 53064.0
+        },
+        {
+          "o": 962.7,
+          "h": 962.8,
+          "l": 962.4,
+          "c": 962.7,
+          "v": 57893.0
+        },
+        {
+          "o": 962.9,
+          "h": 963.7,
+          "l": 962.9,
+          "c": 963.7,
+          "v": 40744.0
+        },
+        {
+          "o": 963.8,
+          "h": 963.9,
+          "l": 961.3,
+          "c": 961.5,
+          "v": 102834.0
+        },
+        {
+          "o": 961.5,
+          "h": 962.6,
+          "l": 961.2,
+          "c": 961.9,
+          "v": 99600.0
+        },
+        {
+          "o": 962.2,
+          "h": 962.3,
+          "l": 960.4,
+          "c": 961.5,
+          "v": 263937.0
+        },
+        {
+          "o": 961.5,
+          "h": 962.1,
+          "l": 960.4,
+          "c": 961.0,
+          "v": 116232.0
+        },
+        {
+          "o": 961.1,
+          "h": 961.9,
+          "l": 960.4,
+          "c": 960.4,
+          "v": 76779.0
+        },
+        {
+          "o": 960.4,
+          "h": 960.4,
+          "l": 959.3,
+          "c": 960.0,
+          "v": 190817.0
+        },
+        {
+          "o": 960.0,
+          "h": 960.0,
+          "l": 958.5,
+          "c": 959.2,
+          "v": 112724.0
+        },
+        {
+          "o": 959.4,
+          "h": 960.0,
+          "l": 958.7,
+          "c": 959.0,
+          "v": 105940.0
+        },
+        {
+          "o": 959.1,
+          "h": 959.8,
+          "l": 958.8,
+          "c": 959.5,
+          "v": 50162.0
+        },
+        {
+          "o": 959.4,
+          "h": 959.7,
+          "l": 957.7,
+          "c": 958.4,
+          "v": 386735.0
+        },
+        {
+          "o": 958.6,
+          "h": 958.9,
+          "l": 957.7,
+          "c": 958.0,
+          "v": 110771.0
+        },
+        {
+          "o": 958.1,
+          "h": 958.5,
+          "l": 957.6,
+          "c": 957.7,
+          "v": 75318.0
+        },
+        {
+          "o": 957.7,
+          "h": 957.8,
+          "l": 956.1,
+          "c": 956.5,
+          "v": 244891.0
+        },
+        {
+          "o": 956.6,
+          "h": 957.5,
+          "l": 956.4,
+          "c": 957.1,
+          "v": 137309.0
+        },
+        {
+          "o": 957.1,
+          "h": 959.9,
+          "l": 957.1,
+          "c": 959.6,
+          "v": 348783.0
+        },
+        {
+          "o": 959.8,
+          "h": 961.3,
+          "l": 959.6,
+          "c": 961.1,
+          "v": 111478.0
+        },
+        {
+          "o": 961.0,
+          "h": 961.4,
+          "l": 960.9,
+          "c": 961.2,
+          "v": 92621.0
+        },
+        {
+          "o": 961.2,
+          "h": 961.9,
+          "l": 961.0,
+          "c": 961.3,
+          "v": 194262.0
+        },
+        {
+          "o": 961.3,
+          "h": 961.9,
+          "l": 961.2,
+          "c": 961.4,
+          "v": 227093.0
+        },
+        {
+          "o": 961.0,
+          "h": 961.7,
+          "l": 960.8,
+          "c": 961.6,
+          "v": 370934.0
+        },
+        {
+          "o": 961.6,
+          "h": 962.5,
+          "l": 960.0,
+          "c": 961.9,
+          "v": 590202.0
+        },
+        {
+          "o": 962.0,
+          "h": 962.0,
+          "l": 962.0,
+          "c": 962.0,
+          "v": 197942.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
         "stories": []
       },
       "rules": {
@@ -813,22 +5275,22 @@
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.03
+      "sector_pct": -1.69
     },
     {
       "symbol": "KEI",
       "sector": "Capital Goods",
       "ltp": 4516.0,
-      "pct_chg": -0.04,
+      "pct_chg": -3.37,
       "day_high": 4654.0,
       "day_low": 4513.0,
-      "listed_at": "12:30",
-      "rvat": 0.05,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.6x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -5.75,
-      "futures_oi": -1.81,
+      "listed_at": "09:20",
+      "rvat": 0.9,
+      "hyperflow": "1.6x",
+      "max_hyperflow": "2.6x",
+      "min_hyperflow": "1.0x",
+      "vwap_gap": -1.05,
+      "futures_oi": -4.44,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -837,10 +5299,235 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 4561.5,
+          "h": 4563.5,
+          "l": 4560.0,
+          "c": 4560.0,
+          "v": 1744.0
+        },
+        {
+          "o": 4561.0,
+          "h": 4561.0,
+          "l": 4554.5,
+          "c": 4556.0,
+          "v": 1413.0
+        },
+        {
+          "o": 4556.0,
+          "h": 4565.0,
+          "l": 4554.0,
+          "c": 4563.0,
+          "v": 2191.0
+        },
+        {
+          "o": 4564.5,
+          "h": 4564.5,
+          "l": 4553.5,
+          "c": 4559.5,
+          "v": 4131.0
+        },
+        {
+          "o": 4560.0,
+          "h": 4564.5,
+          "l": 4558.0,
+          "c": 4560.0,
+          "v": 1542.0
+        },
+        {
+          "o": 4560.0,
+          "h": 4564.5,
+          "l": 4558.0,
+          "c": 4563.5,
+          "v": 1447.0
+        },
+        {
+          "o": 4564.5,
+          "h": 4572.5,
+          "l": 4562.5,
+          "c": 4563.5,
+          "v": 3009.0
+        },
+        {
+          "o": 4563.0,
+          "h": 4572.0,
+          "l": 4562.5,
+          "c": 4568.5,
+          "v": 2800.0
+        },
+        {
+          "o": 4568.0,
+          "h": 4569.5,
+          "l": 4566.5,
+          "c": 4566.5,
+          "v": 957.0
+        },
+        {
+          "o": 4569.0,
+          "h": 4571.5,
+          "l": 4565.0,
+          "c": 4570.0,
+          "v": 1778.0
+        },
+        {
+          "o": 4572.0,
+          "h": 4573.5,
+          "l": 4565.0,
+          "c": 4566.5,
+          "v": 1453.0
+        },
+        {
+          "o": 4566.5,
+          "h": 4570.0,
+          "l": 4565.0,
+          "c": 4567.5,
+          "v": 989.0
+        },
+        {
+          "o": 4567.5,
+          "h": 4570.0,
+          "l": 4565.0,
+          "c": 4565.0,
+          "v": 780.0
+        },
+        {
+          "o": 4565.0,
+          "h": 4566.5,
+          "l": 4563.0,
+          "c": 4563.0,
+          "v": 814.0
+        },
+        {
+          "o": 4563.0,
+          "h": 4565.5,
+          "l": 4562.0,
+          "c": 4564.5,
+          "v": 1548.0
+        },
+        {
+          "o": 4564.5,
+          "h": 4573.5,
+          "l": 4564.0,
+          "c": 4571.5,
+          "v": 1223.0
+        },
+        {
+          "o": 4571.5,
+          "h": 4571.5,
+          "l": 4562.5,
+          "c": 4562.5,
+          "v": 1695.0
+        },
+        {
+          "o": 4565.0,
+          "h": 4565.0,
+          "l": 4560.0,
+          "c": 4561.0,
+          "v": 735.0
+        },
+        {
+          "o": 4561.5,
+          "h": 4565.5,
+          "l": 4557.0,
+          "c": 4559.5,
+          "v": 1614.0
+        },
+        {
+          "o": 4559.0,
+          "h": 4559.0,
+          "l": 4546.5,
+          "c": 4552.5,
+          "v": 3562.0
+        },
+        {
+          "o": 4550.5,
+          "h": 4555.0,
+          "l": 4550.0,
+          "c": 4551.0,
+          "v": 1319.0
+        },
+        {
+          "o": 4550.0,
+          "h": 4550.5,
+          "l": 4546.0,
+          "c": 4546.0,
+          "v": 1035.0
+        },
+        {
+          "o": 4547.0,
+          "h": 4551.0,
+          "l": 4539.5,
+          "c": 4539.5,
+          "v": 4774.0
+        },
+        {
+          "o": 4536.5,
+          "h": 4540.5,
+          "l": 4522.0,
+          "c": 4523.0,
+          "v": 6101.0
+        },
+        {
+          "o": 4522.5,
+          "h": 4524.5,
+          "l": 4518.5,
+          "c": 4519.5,
+          "v": 2522.0
+        },
+        {
+          "o": 4518.5,
+          "h": 4527.0,
+          "l": 4517.0,
+          "c": 4524.5,
+          "v": 2959.0
+        },
+        {
+          "o": 4525.0,
+          "h": 4532.0,
+          "l": 4525.0,
+          "c": 4529.5,
+          "v": 5417.0
+        },
+        {
+          "o": 4529.0,
+          "h": 4529.0,
+          "l": 4518.5,
+          "c": 4521.0,
+          "v": 8029.0
+        },
+        {
+          "o": 4521.0,
+          "h": 4522.0,
+          "l": 4517.5,
+          "c": 4519.0,
+          "v": 5894.0
+        },
+        {
+          "o": 4519.0,
+          "h": 4521.0,
+          "l": 4514.0,
+          "c": 4516.5,
+          "v": 12006.0
+        },
+        {
+          "o": 4516.5,
+          "h": 4519.0,
+          "l": 4513.0,
+          "c": 4518.0,
+          "v": 10891.0
+        },
+        {
+          "o": 4518.0,
+          "h": 4518.0,
+          "l": 4516.0,
+          "c": 4516.0,
+          "v": 3455.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
@@ -850,22 +5537,22 @@
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.08
+      "sector_pct": -3.1
     },
     {
-      "symbol": "MOTILALOFS",
-      "sector": "Capital Markets",
-      "ltp": 1011.6,
-      "pct_chg": -0.33,
-      "day_high": 1027.0,
-      "day_low": 999.9,
-      "listed_at": "12:30",
-      "rvat": 0.01,
-      "hyperflow": "1.0x",
-      "max_hyperflow": "1.9x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -1.31,
-      "futures_oi": -2.14,
+      "symbol": "ADANIPOWER",
+      "sector": "Power",
+      "ltp": 196.14,
+      "pct_chg": -3.26,
+      "day_high": 203.49,
+      "day_low": 195.37,
+      "listed_at": "10:05",
+      "rvat": 0.87,
+      "hyperflow": "1.6x",
+      "max_hyperflow": "2.6x",
+      "min_hyperflow": "1.0x",
+      "vwap_gap": -0.93,
+      "futures_oi": -4.43,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -874,10 +5561,235 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 197.99,
+          "h": 198.08,
+          "l": 197.85,
+          "c": 197.99,
+          "v": 71220.0
+        },
+        {
+          "o": 197.99,
+          "h": 197.99,
+          "l": 197.85,
+          "c": 197.85,
+          "v": 83962.0
+        },
+        {
+          "o": 197.8,
+          "h": 197.89,
+          "l": 196.89,
+          "c": 197.0,
+          "v": 715845.0
+        },
+        {
+          "o": 197.0,
+          "h": 197.0,
+          "l": 196.8,
+          "c": 196.94,
+          "v": 196809.0
+        },
+        {
+          "o": 196.93,
+          "h": 196.93,
+          "l": 196.75,
+          "c": 196.8,
+          "v": 196308.0
+        },
+        {
+          "o": 196.8,
+          "h": 196.86,
+          "l": 196.56,
+          "c": 196.7,
+          "v": 113911.0
+        },
+        {
+          "o": 196.7,
+          "h": 196.86,
+          "l": 196.67,
+          "c": 196.77,
+          "v": 86459.0
+        },
+        {
+          "o": 196.79,
+          "h": 196.82,
+          "l": 196.65,
+          "c": 196.65,
+          "v": 98356.0
+        },
+        {
+          "o": 196.68,
+          "h": 196.75,
+          "l": 196.55,
+          "c": 196.72,
+          "v": 88057.0
+        },
+        {
+          "o": 196.71,
+          "h": 197.36,
+          "l": 196.71,
+          "c": 197.34,
+          "v": 169344.0
+        },
+        {
+          "o": 197.34,
+          "h": 197.35,
+          "l": 196.67,
+          "c": 196.95,
+          "v": 417022.0
+        },
+        {
+          "o": 196.95,
+          "h": 197.02,
+          "l": 196.7,
+          "c": 196.94,
+          "v": 396103.0
+        },
+        {
+          "o": 196.86,
+          "h": 196.93,
+          "l": 196.69,
+          "c": 196.77,
+          "v": 86485.0
+        },
+        {
+          "o": 196.8,
+          "h": 196.84,
+          "l": 196.67,
+          "c": 196.75,
+          "v": 77152.0
+        },
+        {
+          "o": 196.74,
+          "h": 196.79,
+          "l": 196.34,
+          "c": 196.48,
+          "v": 241148.0
+        },
+        {
+          "o": 196.48,
+          "h": 196.66,
+          "l": 196.48,
+          "c": 196.62,
+          "v": 98431.0
+        },
+        {
+          "o": 196.6,
+          "h": 196.63,
+          "l": 196.48,
+          "c": 196.5,
+          "v": 99722.0
+        },
+        {
+          "o": 196.54,
+          "h": 196.58,
+          "l": 196.2,
+          "c": 196.29,
+          "v": 192990.0
+        },
+        {
+          "o": 196.25,
+          "h": 196.34,
+          "l": 196.05,
+          "c": 196.1,
+          "v": 215733.0
+        },
+        {
+          "o": 196.16,
+          "h": 196.16,
+          "l": 195.91,
+          "c": 195.91,
+          "v": 388876.0
+        },
+        {
+          "o": 195.99,
+          "h": 195.99,
+          "l": 195.5,
+          "c": 195.6,
+          "v": 271240.0
+        },
+        {
+          "o": 195.6,
+          "h": 195.8,
+          "l": 195.37,
+          "c": 195.7,
+          "v": 280222.0
+        },
+        {
+          "o": 195.7,
+          "h": 196.21,
+          "l": 195.65,
+          "c": 195.9,
+          "v": 415907.0
+        },
+        {
+          "o": 195.91,
+          "h": 196.0,
+          "l": 195.76,
+          "c": 195.89,
+          "v": 164904.0
+        },
+        {
+          "o": 195.89,
+          "h": 196.49,
+          "l": 195.89,
+          "c": 196.39,
+          "v": 572395.0
+        },
+        {
+          "o": 196.39,
+          "h": 196.48,
+          "l": 196.0,
+          "c": 196.25,
+          "v": 277979.0
+        },
+        {
+          "o": 196.25,
+          "h": 196.57,
+          "l": 196.09,
+          "c": 196.36,
+          "v": 560913.0
+        },
+        {
+          "o": 196.26,
+          "h": 196.49,
+          "l": 196.1,
+          "c": 196.21,
+          "v": 425530.0
+        },
+        {
+          "o": 196.25,
+          "h": 196.35,
+          "l": 195.66,
+          "c": 195.84,
+          "v": 789821.0
+        },
+        {
+          "o": 195.82,
+          "h": 196.04,
+          "l": 195.68,
+          "c": 195.93,
+          "v": 573689.0
+        },
+        {
+          "o": 195.9,
+          "h": 196.4,
+          "l": 195.6,
+          "c": 196.4,
+          "v": 850446.0
+        },
+        {
+          "o": 196.4,
+          "h": 196.4,
+          "l": 196.14,
+          "c": 196.14,
+          "v": 298347.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
@@ -887,22 +5799,22 @@
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.1
+      "sector_pct": -3.26
     },
     {
       "symbol": "360ONE",
       "sector": "Capital Markets",
       "ltp": 1045.0,
-      "pct_chg": -0.12,
+      "pct_chg": -2.61,
       "day_high": 1074.5,
       "day_low": 1043.4,
-      "listed_at": "12:32",
-      "rvat": 0.01,
+      "listed_at": "09:20",
+      "rvat": 0.16,
       "hyperflow": "1.0x",
-      "max_hyperflow": "1.7x",
-      "min_hyperflow": "1.1x",
-      "vwap_gap": -5.9,
-      "futures_oi": -1.34,
+      "max_hyperflow": "1.6x",
+      "min_hyperflow": "1.0x",
+      "vwap_gap": -0.54,
+      "futures_oi": -6.49,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -911,10 +5823,235 @@
       "star_display": "-2\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
+      "candles": [
+        {
+          "o": 1050.8,
+          "h": 1051.6,
+          "l": 1050.2,
+          "c": 1051.0,
+          "v": 3603.0
+        },
+        {
+          "o": 1051.0,
+          "h": 1051.3,
+          "l": 1047.0,
+          "c": 1047.9,
+          "v": 9202.0
+        },
+        {
+          "o": 1047.4,
+          "h": 1050.0,
+          "l": 1047.2,
+          "c": 1048.2,
+          "v": 19806.0
+        },
+        {
+          "o": 1047.7,
+          "h": 1048.2,
+          "l": 1045.2,
+          "c": 1045.3,
+          "v": 24553.0
+        },
+        {
+          "o": 1045.5,
+          "h": 1048.7,
+          "l": 1045.3,
+          "c": 1048.7,
+          "v": 21635.0
+        },
+        {
+          "o": 1048.3,
+          "h": 1048.8,
+          "l": 1043.5,
+          "c": 1044.2,
+          "v": 8951.0
+        },
+        {
+          "o": 1044.7,
+          "h": 1046.0,
+          "l": 1043.5,
+          "c": 1045.1,
+          "v": 5640.0
+        },
+        {
+          "o": 1044.6,
+          "h": 1045.5,
+          "l": 1043.4,
+          "c": 1045.5,
+          "v": 5375.0
+        },
+        {
+          "o": 1045.5,
+          "h": 1045.6,
+          "l": 1043.9,
+          "c": 1045.1,
+          "v": 2869.0
+        },
+        {
+          "o": 1045.3,
+          "h": 1046.7,
+          "l": 1044.7,
+          "c": 1046.1,
+          "v": 6195.0
+        },
+        {
+          "o": 1045.6,
+          "h": 1046.7,
+          "l": 1045.2,
+          "c": 1045.4,
+          "v": 4474.0
+        },
+        {
+          "o": 1045.4,
+          "h": 1046.6,
+          "l": 1045.0,
+          "c": 1046.5,
+          "v": 3605.0
+        },
+        {
+          "o": 1046.4,
+          "h": 1048.4,
+          "l": 1045.3,
+          "c": 1048.3,
+          "v": 6074.0
+        },
+        {
+          "o": 1047.8,
+          "h": 1049.3,
+          "l": 1047.2,
+          "c": 1048.3,
+          "v": 4399.0
+        },
+        {
+          "o": 1048.2,
+          "h": 1049.3,
+          "l": 1047.2,
+          "c": 1049.0,
+          "v": 5992.0
+        },
+        {
+          "o": 1048.5,
+          "h": 1049.0,
+          "l": 1047.0,
+          "c": 1048.5,
+          "v": 5518.0
+        },
+        {
+          "o": 1048.6,
+          "h": 1050.0,
+          "l": 1048.2,
+          "c": 1049.4,
+          "v": 7382.0
+        },
+        {
+          "o": 1048.9,
+          "h": 1050.0,
+          "l": 1047.7,
+          "c": 1048.7,
+          "v": 6790.0
+        },
+        {
+          "o": 1048.9,
+          "h": 1051.2,
+          "l": 1047.7,
+          "c": 1049.5,
+          "v": 9432.0
+        },
+        {
+          "o": 1048.7,
+          "h": 1050.9,
+          "l": 1046.6,
+          "c": 1047.3,
+          "v": 10878.0
+        },
+        {
+          "o": 1047.1,
+          "h": 1048.2,
+          "l": 1046.0,
+          "c": 1047.4,
+          "v": 5739.0
+        },
+        {
+          "o": 1046.8,
+          "h": 1048.1,
+          "l": 1046.0,
+          "c": 1047.0,
+          "v": 5324.0
+        },
+        {
+          "o": 1046.3,
+          "h": 1047.9,
+          "l": 1046.2,
+          "c": 1046.9,
+          "v": 9878.0
+        },
+        {
+          "o": 1046.8,
+          "h": 1047.4,
+          "l": 1045.6,
+          "c": 1046.2,
+          "v": 7459.0
+        },
+        {
+          "o": 1046.8,
+          "h": 1047.3,
+          "l": 1045.5,
+          "c": 1046.6,
+          "v": 7001.0
+        },
+        {
+          "o": 1047.2,
+          "h": 1048.5,
+          "l": 1046.4,
+          "c": 1048.5,
+          "v": 6721.0
+        },
+        {
+          "o": 1048.4,
+          "h": 1050.5,
+          "l": 1047.5,
+          "c": 1047.9,
+          "v": 18869.0
+        },
+        {
+          "o": 1047.8,
+          "h": 1049.4,
+          "l": 1046.7,
+          "c": 1047.4,
+          "v": 7818.0
+        },
+        {
+          "o": 1047.2,
+          "h": 1047.5,
+          "l": 1045.0,
+          "c": 1046.3,
+          "v": 14828.0
+        },
+        {
+          "o": 1045.6,
+          "h": 1047.5,
+          "l": 1045.1,
+          "c": 1047.4,
+          "v": 13628.0
+        },
+        {
+          "o": 1047.0,
+          "h": 1049.8,
+          "l": 1046.0,
+          "c": 1046.3,
+          "v": 25037.0
+        },
+        {
+          "o": 1049.8,
+          "h": 1049.8,
+          "l": 1045.0,
+          "c": 1045.0,
+          "v": 1419.0
+        }
+      ],
       "news": {
         "has_news": false,
         "sentiment": "neutral",
-        "count": 0,
         "stories": []
       },
       "rules": {
@@ -924,7 +6061,269 @@
         "range": "YES",
         "final": "NO"
       },
-      "sector_pct": -0.1
+      "sector_pct": -2.05
+    },
+    {
+      "symbol": "MOTILALOFS",
+      "sector": "Capital Markets",
+      "ltp": 1011.6,
+      "pct_chg": -1.69,
+      "day_high": 1027.0,
+      "day_low": 999.9,
+      "listed_at": "09:30",
+      "rvat": 0.05,
+      "hyperflow": "1.0x",
+      "max_hyperflow": "1.6x",
+      "min_hyperflow": "1.0x",
+      "vwap_gap": -0.04,
+      "futures_oi": -5.83,
+      "oi_behavior": "Long unwinding",
+      "matrix_intent": "LIQUIDATION",
+      "matrix_pulse": "P\u25bc | OI\u25bc",
+      "matrix_tone": "bear-weak",
+      "star_score": -2,
+      "star_display": "-2\u2605",
+      "star_label": "BEARISH",
+      "is_bullish": false,
+      "candles": [
+        {
+          "o": 1015.9,
+          "h": 1016.8,
+          "l": 1015.7,
+          "c": 1015.9,
+          "v": 987.0
+        },
+        {
+          "o": 1015.9,
+          "h": 1016.1,
+          "l": 1015.2,
+          "c": 1015.7,
+          "v": 1075.0
+        },
+        {
+          "o": 1015.6,
+          "h": 1015.6,
+          "l": 1014.2,
+          "c": 1015.1,
+          "v": 5734.0
+        },
+        {
+          "o": 1014.5,
+          "h": 1015.3,
+          "l": 1011.0,
+          "c": 1011.1,
+          "v": 15571.0
+        },
+        {
+          "o": 1011.3,
+          "h": 1011.3,
+          "l": 1010.0,
+          "c": 1010.7,
+          "v": 11019.0
+        },
+        {
+          "o": 1010.8,
+          "h": 1010.9,
+          "l": 1009.9,
+          "c": 1010.8,
+          "v": 654.0
+        },
+        {
+          "o": 1010.4,
+          "h": 1015.3,
+          "l": 1010.4,
+          "c": 1015.1,
+          "v": 26893.0
+        },
+        {
+          "o": 1015.2,
+          "h": 1015.2,
+          "l": 1014.4,
+          "c": 1015.1,
+          "v": 8400.0
+        },
+        {
+          "o": 1014.8,
+          "h": 1016.0,
+          "l": 1014.0,
+          "c": 1016.0,
+          "v": 6150.0
+        },
+        {
+          "o": 1016.0,
+          "h": 1016.4,
+          "l": 1015.5,
+          "c": 1016.3,
+          "v": 7617.0
+        },
+        {
+          "o": 1016.3,
+          "h": 1016.4,
+          "l": 1014.9,
+          "c": 1015.6,
+          "v": 1765.0
+        },
+        {
+          "o": 1015.6,
+          "h": 1015.6,
+          "l": 1015.0,
+          "c": 1015.5,
+          "v": 616.0
+        },
+        {
+          "o": 1015.0,
+          "h": 1015.5,
+          "l": 1014.8,
+          "c": 1015.4,
+          "v": 3014.0
+        },
+        {
+          "o": 1015.4,
+          "h": 1015.5,
+          "l": 1014.6,
+          "c": 1014.7,
+          "v": 5476.0
+        },
+        {
+          "o": 1014.7,
+          "h": 1015.3,
+          "l": 1014.3,
+          "c": 1015.1,
+          "v": 22137.0
+        },
+        {
+          "o": 1015.1,
+          "h": 1015.1,
+          "l": 1012.4,
+          "c": 1014.4,
+          "v": 8914.0
+        },
+        {
+          "o": 1014.0,
+          "h": 1014.5,
+          "l": 1012.2,
+          "c": 1012.2,
+          "v": 7058.0
+        },
+        {
+          "o": 1011.9,
+          "h": 1012.8,
+          "l": 1011.7,
+          "c": 1012.3,
+          "v": 3905.0
+        },
+        {
+          "o": 1012.1,
+          "h": 1012.7,
+          "l": 1010.2,
+          "c": 1012.0,
+          "v": 24969.0
+        },
+        {
+          "o": 1012.1,
+          "h": 1012.1,
+          "l": 1009.7,
+          "c": 1010.4,
+          "v": 15157.0
+        },
+        {
+          "o": 1010.5,
+          "h": 1010.7,
+          "l": 1010.0,
+          "c": 1010.4,
+          "v": 5767.0
+        },
+        {
+          "o": 1010.4,
+          "h": 1010.6,
+          "l": 1009.7,
+          "c": 1010.0,
+          "v": 53939.0
+        },
+        {
+          "o": 1009.7,
+          "h": 1011.0,
+          "l": 1009.7,
+          "c": 1010.5,
+          "v": 21895.0
+        },
+        {
+          "o": 1011.0,
+          "h": 1011.0,
+          "l": 1009.9,
+          "c": 1010.5,
+          "v": 25531.0
+        },
+        {
+          "o": 1010.5,
+          "h": 1012.4,
+          "l": 1010.1,
+          "c": 1012.4,
+          "v": 16722.0
+        },
+        {
+          "o": 1012.2,
+          "h": 1014.8,
+          "l": 1011.4,
+          "c": 1014.6,
+          "v": 9700.0
+        },
+        {
+          "o": 1014.7,
+          "h": 1015.5,
+          "l": 1013.4,
+          "c": 1015.5,
+          "v": 18843.0
+        },
+        {
+          "o": 1014.9,
+          "h": 1014.9,
+          "l": 1012.4,
+          "c": 1013.0,
+          "v": 11747.0
+        },
+        {
+          "o": 1013.2,
+          "h": 1013.3,
+          "l": 1011.8,
+          "c": 1011.8,
+          "v": 9013.0
+        },
+        {
+          "o": 1010.8,
+          "h": 1011.4,
+          "l": 1010.0,
+          "c": 1010.6,
+          "v": 14386.0
+        },
+        {
+          "o": 1009.7,
+          "h": 1015.0,
+          "l": 1009.7,
+          "c": 1015.0,
+          "v": 23407.0
+        },
+        {
+          "o": 1014.7,
+          "h": 1014.7,
+          "l": 1011.6,
+          "c": 1011.6,
+          "v": 731.0
+        }
+      ],
+      "news": {
+        "has_news": false,
+        "sentiment": "neutral",
+        "stories": []
+      },
+      "rules": {
+        "breakout": "NO",
+        "volume": "NO",
+        "pdh": "NO",
+        "range": "YES",
+        "final": "NO"
+      },
+      "sector_pct": -2.05
     }
   ]
 }
