@@ -6,244 +6,49 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Complete NSE F&O Universe matching Downstox & official derivative lists
+# Tracked universe with sector and market cap classification
 FANDO_UNIVERSE = [
-    {"sym": "AARTIIND.NS", "sector": "Chemicals"},
-    {"sym": "ABB.NS", "sector": "Capital Goods"},
-    {"sym": "ABBOTINDIA.NS", "sector": "Pharma"},
-    {"sym": "ABCAPITAL.NS", "sector": "Financial Services"},
-    {"sym": "ABFRL.NS", "sector": "Retail"},
-    {"sym": "ADANIENT.NS", "sector": "Metals & Mining"},
-    {"sym": "ADANIGREEN.NS", "sector": "Power"},
-    {"sym": "ADANIPORTS.NS", "sector": "Services"},
-    {"sym": "ADANIPOWER.NS", "sector": "Power"},
-    {"sym": "ALKEM.NS", "sector": "Pharma"},
-    {"sym": "AMBER.NS", "sector": "Consumer Durables"},
-    {"sym": "AMBUJACEM.NS", "sector": "Construction Materials"},
-    {"sym": "ANGELONE.NS", "sector": "Capital Markets"},
-    {"sym": "APLAPOLLO.NS", "sector": "Capital Goods"},
-    {"sym": "APOLLOHOSP.NS", "sector": "Healthcare"},
-    {"sym": "APOLLOTYRE.NS", "sector": "Auto"},
-    {"sym": "ASHOKLEY.NS", "sector": "Auto"},
-    {"sym": "ASIANPAINT.NS", "sector": "Consumer Goods"},
-    {"sym": "ASTRAL.NS", "sector": "Capital Goods"},
-    {"sym": "ATGL.NS", "sector": "Oil & Gas"},
-    {"sym": "AUBANK.NS", "sector": "Financial Services"},
-    {"sym": "AUROPHARMA.NS", "sector": "Pharma"},
-    {"sym": "AXISBANK.NS", "sector": "Financial Services"},
-    {"sym": "BAJAJ-AUTO.NS", "sector": "Auto"},
-    {"sym": "BAJAJFINSV.NS", "sector": "Financial Services"},
-    {"sym": "BAJFINANCE.NS", "sector": "Financial Services"},
-    {"sym": "BALKRISIND.NS", "sector": "Auto"},
-    {"sym": "BANDHANBNK.NS", "sector": "Financial Services"},
-    {"sym": "BANKBARODA.NS", "sector": "Financial Services"},
-    {"sym": "BANKINDIA.NS", "sector": "Financial Services"},
-    {"sym": "BDL.NS", "sector": "Defence"},
-    {"sym": "BEL.NS", "sector": "Defence"},
-    {"sym": "BERGEPAINT.NS", "sector": "Consumer Goods"},
-    {"sym": "BHARATFORG.NS", "sector": "Capital Goods"},
-    {"sym": "BHARTIARTL.NS", "sector": "Telecom"},
-    {"sym": "BHEL.NS", "sector": "Capital Goods"},
-    {"sym": "BIOCON.NS", "sector": "Pharma"},
-    {"sym": "BLUESTARCO.NS", "sector": "Consumer Durables"},
-    {"sym": "BOSCHLTD.NS", "sector": "Auto"},
-    {"sym": "BPCL.NS", "sector": "Oil & Gas"},
-    {"sym": "BRITANNIA.NS", "sector": "FMCG"},
-    {"sym": "BSE.NS", "sector": "Capital Markets"},
-    {"sym": "CANBK.NS", "sector": "Financial Services"},
-    {"sym": "CANFINHOME.NS", "sector": "Financial Services"},
-    {"sym": "CDSL.NS", "sector": "Capital Markets"},
-    {"sym": "CHAMBLFERT.NS", "sector": "Chemicals"},
-    {"sym": "CHOLAFIN.NS", "sector": "Financial Services"},
-    {"sym": "CIPLA.NS", "sector": "Pharma"},
-    {"sym": "COALINDIA.NS", "sector": "Oil & Gas"},
-    {"sym": "COCHINSHIP.NS", "sector": "Defence"},
-    {"sym": "COFORGE.NS", "sector": "IT"},
-    {"sym": "COLPAL.NS", "sector": "FMCG"},
-    {"sym": "CONCOR.NS", "sector": "Services"},
-    {"sym": "CROMPTON.NS", "sector": "Consumer Durables"},
-    {"sym": "CUMMINSIND.NS", "sector": "Capital Goods"},
-    {"sym": "DABUR.NS", "sector": "FMCG"},
-    {"sym": "DALBHARAT.NS", "sector": "Construction Materials"},
-    {"sym": "DEEPAKNTR.NS", "sector": "Chemicals"},
-    {"sym": "DELHIVERY.NS", "sector": "Services"},
-    {"sym": "DIVISLAB.NS", "sector": "Pharma"},
-    {"sym": "DIXON.NS", "sector": "Consumer Durables"},
-    {"sym": "DLF.NS", "sector": "Real Estate"},
-    {"sym": "DMART.NS", "sector": "Retail"},
-    {"sym": "DRREDDY.NS", "sector": "Pharma"},
-    {"sym": "EICHERMOT.NS", "sector": "Auto"},
-    {"sym": "ESCORTS.NS", "sector": "Capital Goods"},
-    {"sym": "EXIDEIND.NS", "sector": "Auto"},
-    {"sym": "FEDERALBNK.NS", "sector": "Financial Services"},
-    {"sym": "FORTIS.NS", "sector": "Healthcare"},
-    {"sym": "GAIL.NS", "sector": "Oil & Gas"},
-    {"sym": "GLENMARK.NS", "sector": "Pharma"},
-    {"sym": "GMRAIRPORT.NS", "sector": "Services"},
-    {"sym": "GNFC.NS", "sector": "Chemicals"},
-    {"sym": "GODREJCP.NS", "sector": "FMCG"},
-    {"sym": "GODREJPROP.NS", "sector": "Real Estate"},
-    {"sym": "GRASIM.NS", "sector": "Construction Materials"},
-    {"sym": "GUJGASLTD.NS", "sector": "Oil & Gas"},
-    {"sym": "HAL.NS", "sector": "Defence"},
-    {"sym": "HAVELLS.NS", "sector": "Consumer Durables"},
-    {"sym": "HCLTECH.NS", "sector": "IT"},
-    {"sym": "HDFCAMC.NS", "sector": "Capital Markets"},
-    {"sym": "HDFCBANK.NS", "sector": "Financial Services"},
-    {"sym": "HDFCLIFE.NS", "sector": "Financial Services"},
-    {"sym": "HEROMOTOCO.NS", "sector": "Auto"},
-    {"sym": "HINDALCO.NS", "sector": "Metal"},
-    {"sym": "HINDPETRO.NS", "sector": "Oil & Gas"},
-    {"sym": "HINDUNILVR.NS", "sector": "FMCG"},
-    {"sym": "HINDZINC.NS", "sector": "Metal"},
-    {"sym": "HUDCO.NS", "sector": "Financial Services"},
-    {"sym": "HYUNDAI.NS", "sector": "Auto"},
-    {"sym": "ICICIBANK.NS", "sector": "Financial Services"},
-    {"sym": "ICICIGI.NS", "sector": "Financial Services"},
-    {"sym": "ICICIPRULI.NS", "sector": "Financial Services"},
-    {"sym": "IDEA.NS", "sector": "Telecom"},
-    {"sym": "IDFCFIRSTB.NS", "sector": "Financial Services"},
-    {"sym": "IEX.NS", "sector": "Capital Markets"},
-    {"sym": "IGL.NS", "sector": "Oil & Gas"},
-    {"sym": "INDHOTEL.NS", "sector": "Services"},
-    {"sym": "INDIAMART.NS", "sector": "IT"},
-    {"sym": "INDIANB.NS", "sector": "Financial Services"},
-    {"sym": "INDIGO.NS", "sector": "Services"},
-    {"sym": "INDUSINDBK.NS", "sector": "Financial Services"},
-    {"sym": "INDUSTOWER.NS", "sector": "Telecom"},
-    {"sym": "INFY.NS", "sector": "IT"},
-    {"sym": "INOXWIND.NS", "sector": "Capital Goods"},
-    {"sym": "IOC.NS", "sector": "Oil & Gas"},
-    {"sym": "IPCALAB.NS", "sector": "Pharma"},
-    {"sym": "IRCTC.NS", "sector": "Services"},
-    {"sym": "IREDA.NS", "sector": "Financial Services"},
-    {"sym": "IRFC.NS", "sector": "Financial Services"},
-    {"sym": "ITC.NS", "sector": "FMCG"},
-    {"sym": "JINDALSTEL.NS", "sector": "Metal"},
-    {"sym": "JIOFIN.NS", "sector": "Financial Services"},
-    {"sym": "JSWENERGY.NS", "sector": "Power"},
-    {"sym": "JSWSTEEL.NS", "sector": "Metal"},
-    {"sym": "JUBLFOOD.NS", "sector": "Services"},
-    {"sym": "KALYANKJIL.NS", "sector": "Consumer Goods"},
-    {"sym": "KAYNES.NS", "sector": "Capital Goods"},
-    {"sym": "KEI.NS", "sector": "Capital Goods"},
-    {"sym": "KFINTECH.NS", "sector": "Capital Markets"},
-    {"sym": "KOTAKBANK.NS", "sector": "Financial Services"},
-    {"sym": "KPITTECH.NS", "sector": "IT"},
-    {"sym": "LAURUSLABS.NS", "sector": "Pharma"},
-    {"sym": "LICHSGFIN.NS", "sector": "Financial Services"},
-    {"sym": "LICI.NS", "sector": "Financial Services"},
-    {"sym": "LODHA.NS", "sector": "Real Estate"},
-    {"sym": "LT.NS", "sector": "Capital Goods"},
-    {"sym": "LTF.NS", "sector": "Financial Services"},
-    {"sym": "LTIM.NS", "sector": "IT"},
-    {"sym": "LTTS.NS", "sector": "IT"},
-    {"sym": "LUPIN.NS", "sector": "Pharma"},
-    {"sym": "M&M.NS", "sector": "Auto"},
-    {"sym": "MAHABANK.NS", "sector": "Financial Services"},
-    {"sym": "MANAPPURAM.NS", "sector": "Financial Services"},
-    {"sym": "MANKIND.NS", "sector": "Pharma"},
-    {"sym": "MARICO.NS", "sector": "FMCG"},
-    {"sym": "MARUTI.NS", "sector": "Auto"},
-    {"sym": "MAXHEALTH.NS", "sector": "Healthcare"},
-    {"sym": "MAZDOCK.NS", "sector": "Defence"},
-    {"sym": "MCX.NS", "sector": "Capital Markets"},
-    {"sym": "METROPOLIS.NS", "sector": "Healthcare"},
-    {"sym": "MFSL.NS", "sector": "Financial Services"},
-    {"sym": "MGL.NS", "sector": "Oil & Gas"},
-    {"sym": "MOTHERSON.NS", "sector": "Auto"},
-    {"sym": "MOTILALOFS.NS", "sector": "Capital Markets"},
-    {"sym": "MPHASIS.NS", "sector": "IT"},
-    {"sym": "MRF.NS", "sector": "Auto"},
-    {"sym": "MUTHOOTFIN.NS", "sector": "Financial Services"},
-    {"sym": "NAM-INDIA.NS", "sector": "Capital Markets"},
-    {"sym": "NATIONALUM.NS", "sector": "Metal"},
-    {"sym": "NAUKRI.NS", "sector": "IT"},
-    {"sym": "NBCC.NS", "sector": "Real Estate"},
-    {"sym": "NESTLEIND.NS", "sector": "FMCG"},
-    {"sym": "NHPC.NS", "sector": "Power"},
-    {"sym": "NMDC.NS", "sector": "Metal"},
-    {"sym": "NTPC.NS", "sector": "Power"},
-    {"sym": "NYKAA.NS", "sector": "Retail"},
-    {"sym": "OBEROIRLTY.NS", "sector": "Real Estate"},
-    {"sym": "OFSS.NS", "sector": "IT"},
-    {"sym": "OIL.NS", "sector": "Oil & Gas"},
-    {"sym": "ONGC.NS", "sector": "Oil & Gas"},
-    {"sym": "PAGEIND.NS", "sector": "Textiles"},
-    {"sym": "PATANJALI.NS", "sector": "FMCG"},
-    {"sym": "PAYTM.NS", "sector": "Financial Services"},
-    {"sym": "PERSISTENT.NS", "sector": "IT"},
-    {"sym": "PETRONET.NS", "sector": "Oil & Gas"},
-    {"sym": "PFC.NS", "sector": "Financial Services"},
-    {"sym": "PGEL.NS", "sector": "Consumer Durables"},
-    {"sym": "PIDILITIND.NS", "sector": "Chemicals"},
-    {"sym": "PIIND.NS", "sector": "Chemicals"},
-    {"sym": "PNB.NS", "sector": "Financial Services"},
-    {"sym": "PNBHOUSING.NS", "sector": "Financial Services"},
-    {"sym": "POLICYBZR.NS", "sector": "Financial Services"},
-    {"sym": "POLYCAB.NS", "sector": "Capital Goods"},
-    {"sym": "POONAWALLA.NS", "sector": "Financial Services"},
-    {"sym": "POWERGRID.NS", "sector": "Power"},
-    {"sym": "POWERINDIA.NS", "sector": "Capital Goods"},
-    {"sym": "PREMIERENE.NS", "sector": "Power"},
-    {"sym": "PRESTIGE.NS", "sector": "Real Estate"},
-    {"sym": "PVRINOX.NS", "sector": "Services"},
-    {"sym": "RADICO.NS", "sector": "FMCG"},
-    {"sym": "RBLBANK.NS", "sector": "Financial Services"},
-    {"sym": "RECLTD.NS", "sector": "Financial Services"},
-    {"sym": "RELIANCE.NS", "sector": "Energy"},
-    {"sym": "RVNL.NS", "sector": "Capital Goods"},
-    {"sym": "SAGILITY.NS", "sector": "IT"},
-    {"sym": "SAIL.NS", "sector": "Metal"},
-    {"sym": "SBICARD.NS", "sector": "Financial Services"},
-    {"sym": "SBILIFE.NS", "sector": "Financial Services"},
-    {"sym": "SBIN.NS", "sector": "Financial Services"},
-    {"sym": "SHREECEM.NS", "sector": "Construction Materials"},
-    {"sym": "SHRIRAMFIN.NS", "sector": "Financial Services"},
-    {"sym": "SIEMENS.NS", "sector": "Capital Goods"},
-    {"sym": "SOLARINDS.NS", "sector": "Chemicals"},
-    {"sym": "SONACOMS.NS", "sector": "Auto"},
-    {"sym": "SRF.NS", "sector": "Chemicals"},
-    {"sym": "SUNPHARMA.NS", "sector": "Pharma"},
-    {"sym": "SUPREMEIND.NS", "sector": "Capital Goods"},
-    {"sym": "SUZLON.NS", "sector": "Power"},
-    {"sym": "SWIGGY.NS", "sector": "Services"},
-    {"sym": "TATACHEM.NS", "sector": "Chemicals"},
-    {"sym": "TATACOMM.NS", "sector": "Telecom"},
-    {"sym": "TATACONSUM.NS", "sector": "FMCG"},
-    {"sym": "TATAELXSI.NS", "sector": "IT"},
-    {"sym": "TATAMOTORS.NS", "sector": "Auto"},
-    {"sym": "TATAPOWER.NS", "sector": "Power"},
-    {"sym": "TATASTEEL.NS", "sector": "Metal"},
-    {"sym": "TCS.NS", "sector": "IT"},
-    {"sym": "TECHM.NS", "sector": "IT"},
-    {"sym": "TIINDIA.NS", "sector": "Auto"},
-    {"sym": "TITAN.NS", "sector": "Consumer Goods"},
-    {"sym": "TMPV.NS", "sector": "Auto"},
-    {"sym": "TORNTPHARM.NS", "sector": "Pharma"},
-    {"sym": "TORNTPOWER.NS", "sector": "Power"},
-    {"sym": "TRENT.NS", "sector": "Retail"},
-    {"sym": "TVSMOTOR.NS", "sector": "Auto"},
-    {"sym": "ULTRACEMCO.NS", "sector": "Construction Materials"},
-    {"sym": "UNIONBANK.NS", "sector": "Financial Services"},
-    {"sym": "UNOMINDA.NS", "sector": "Auto"},
-    {"sym": "UPL.NS", "sector": "Chemicals"},
-    {"sym": "VBL.NS", "sector": "FMCG"},
-    {"sym": "VEDL.NS", "sector": "Metal"},
-    {"sym": "VOLTAS.NS", "sector": "Consumer Durables"},
-    {"sym": "WAAREEENER.NS", "sector": "Power"},
-    {"sym": "WIPRO.NS", "sector": "IT"},
-    {"sym": "YESBANK.NS", "sector": "Financial Services"},
-    {"sym": "ZOMATO.NS", "sector": "Services"},
-    {"sym": "ZYDUSLIFE.NS", "sector": "Pharma"},
-    {"sym": "360ONE.NS", "sector": "Capital Markets"}
+    {"sym": "DOLPHIN.NS", "name": "DOLPHIN", "sector": "Energy", "mkt_cap_type": "S", "mkt_cap_val": "₹1.8k Cr", "seg": "EQ"},
+    {"sym": "AMNPLST.NS", "name": "AMNPLST", "sector": "Basic Materials", "mkt_cap_type": "S", "mkt_cap_val": "₹1.1k Cr", "seg": "EQ"},
+    {"sym": "WAKEFIT.NS", "name": "WAKEFIT", "sector": "Retail trade", "mkt_cap_type": "M", "mkt_cap_val": "₹5.6k Cr", "seg": "EQ"},
+    {"sym": "CSLFINANCE.NS", "name": "CSLFINANCE", "sector": "Financial", "mkt_cap_type": "S", "mkt_cap_val": "₹671 Cr", "seg": "EQ"},
+    {"sym": "SYNGENE.NS", "name": "SYNGENE", "sector": "Healthcare", "mkt_cap_type": "L", "mkt_cap_val": "₹25.5k Cr", "seg": "EQ"},
+    {"sym": "REGENCERAM.NS", "name": "REGENCERAM", "sector": "Producer manufac..", "mkt_cap_type": "μ", "mkt_cap_val": "₹127 Cr", "seg": "EQ"},
+    {"sym": "HMAAGRO.NS", "name": "HMAAGRO", "sector": "Consumer Non-Cyc..", "mkt_cap_type": "S", "mkt_cap_val": "₹1.4k Cr", "seg": "EQ"},
+    {"sym": "MANBA.NS", "name": "MANBA", "sector": "Financial", "mkt_cap_type": "S", "mkt_cap_val": "₹691 Cr", "seg": "EQ"},
+    {"sym": "MCX.NS", "name": "MCX", "sector": "Capital Markets", "mkt_cap_type": "L", "mkt_cap_val": "₹16.5k Cr", "seg": "F&O"},
+    {"sym": "DIXON.NS", "name": "DIXON", "sector": "Consumer Durables", "mkt_cap_type": "L", "mkt_cap_val": "₹78.2k Cr", "seg": "F&O"},
+    {"sym": "DABUR.NS", "name": "DABUR", "sector": "FMCG", "mkt_cap_type": "L", "mkt_cap_val": "₹98.4k Cr", "seg": "F&O"},
+    {"sym": "DRREDDY.NS", "name": "DRREDDY", "sector": "Pharma", "mkt_cap_type": "L", "mkt_cap_val": "₹1.0L Cr", "seg": "F&O"},
+    {"sym": "HEROMOTOCO.NS", "name": "HEROMOTOCO", "sector": "Auto", "mkt_cap_type": "L", "mkt_cap_val": "₹1.1L Cr", "seg": "F&O"},
+    {"sym": "ADANIPOWER.NS", "name": "ADANIPOWER", "sector": "Power", "mkt_cap_type": "L", "mkt_cap_val": "₹75.4k Cr", "seg": "F&O"},
+    {"sym": "BANDHANBNK.NS", "name": "BANDHANBNK", "sector": "Financial Services", "mkt_cap_type": "M", "mkt_cap_val": "₹28.1k Cr", "seg": "F&O"},
+    {"sym": "BANKBARODA.NS", "name": "BANKBARODA", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹1.2L Cr", "seg": "F&O"},
+    {"sym": "BEL.NS", "name": "BEL", "sector": "Defence", "mkt_cap_type": "L", "mkt_cap_val": "₹2.2L Cr", "seg": "F&O"},
+    {"sym": "BSE.NS", "name": "BSE", "sector": "Capital Markets", "mkt_cap_type": "M", "mkt_cap_val": "₹38.6k Cr", "seg": "F&O"},
+    {"sym": "INFY.NS", "name": "INFY", "sector": "IT", "mkt_cap_type": "L", "mkt_cap_val": "₹6.8L Cr", "seg": "F&O"},
+    {"sym": "TCS.NS", "name": "TCS", "sector": "IT", "mkt_cap_type": "L", "mkt_cap_val": "₹14.2L Cr", "seg": "F&O"},
+    {"sym": "RELIANCE.NS", "name": "RELIANCE", "sector": "Energy", "mkt_cap_type": "L", "mkt_cap_val": "₹19.4L Cr", "seg": "F&O"},
+    {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹12.8L Cr", "seg": "F&O"},
+    {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹9.1L Cr", "seg": "F&O"},
+    {"sym": "SBIN.NS", "name": "SBIN", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹7.4L Cr", "seg": "F&O"},
+    {"sym": "COALINDIA.NS", "name": "COALINDIA", "sector": "Oil & Gas", "mkt_cap_type": "L", "mkt_cap_val": "₹2.6L Cr", "seg": "F&O"},
+    {"sym": "TITAN.NS", "name": "TITAN", "sector": "Consumer Goods", "mkt_cap_type": "L", "mkt_cap_val": "₹3.1L Cr", "seg": "F&O"},
+    {"sym": "TATASTEEL.NS", "name": "TATASTEEL", "sector": "Metal", "mkt_cap_type": "L", "mkt_cap_val": "₹1.9L Cr", "seg": "F&O"},
+    {"sym": "LT.NS", "name": "LT", "sector": "Capital Goods", "mkt_cap_type": "L", "mkt_cap_val": "₹4.8L Cr", "seg": "F&O"},
+    {"sym": "RADICO.NS", "name": "RADICO", "sector": "FMCG", "mkt_cap_type": "M", "mkt_cap_val": "₹31.2k Cr", "seg": "F&O"},
+    {"sym": "SUNPHARMA.NS", "name": "SUNPHARMA", "sector": "Pharma", "mkt_cap_type": "L", "mkt_cap_val": "₹4.1L Cr", "seg": "F&O"},
+    {"sym": "AXISBANK.NS", "name": "AXISBANK", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹3.6L Cr", "seg": "F&O"},
+    {"sym": "OFSS.NS", "name": "OFSS", "sector": "IT", "mkt_cap_type": "L", "mkt_cap_val": "₹92.5k Cr", "seg": "F&O"},
+    {"sym": "PERSISTENT.NS", "name": "PERSISTENT", "sector": "IT", "mkt_cap_type": "M", "mkt_cap_val": "₹41.8k Cr", "seg": "F&O"},
+    {"sym": "JIOFIN.NS", "name": "JIOFIN", "sector": "Financial Services", "mkt_cap_type": "L", "mkt_cap_val": "₹1.8L Cr", "seg": "F&O"},
+    {"sym": "SUZLON.NS", "name": "SUZLON", "sector": "Power", "mkt_cap_type": "M", "mkt_cap_val": "₹52.0k Cr", "seg": "F&O"}
 ]
 
 def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
 
-    # 1. Macro indices telemetry
     indices = {
         "nifty50": {"ltp": 22780.20, "chg": -125.40, "pct": -0.55},
         "banknifty": {"ltp": 50840.65, "chg": -320.10, "pct": -0.63},
@@ -268,37 +73,35 @@ def run_quant_engine():
     except Exception:
         pass
 
-    # 2. Fast Batch Data Download across entire Universe
     tickers_list = [item["sym"] for item in FANDO_UNIVERSE]
-    sector_map = {item["sym"]: item["sector"] for item in FANDO_UNIVERSE}
+    meta_map = {item["sym"]: item for item in FANDO_UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live 5m market data for {len(tickers_list)} F&O tickers...")
-    
-    # Fast multi-threaded batch fetch
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Batch fetching market data for {len(tickers_list)} tickers...")
     data_5m = yf.download(tickers=tickers_list, period="2d", interval="5m", group_by="ticker", threads=True, progress=False)
-    data_daily = yf.download(tickers=tickers_list, period="5d", interval="1d", group_by="ticker", threads=True, progress=False)
+    data_daily = yf.download(tickers=tickers_list, period="1mo", interval="1d", group_by="ticker", threads=True, progress=False)
 
-    scanned = []
+    scanned_quant = []
+    smart_money_stocks = []
     sector_deltas = {}
 
     for sym in tickers_list:
-        clean_sym = sym.replace(".NS", "")
-        sec = sector_map.get(sym, "Diversified")
+        meta = meta_map[sym]
+        clean_sym = meta["name"]
+        sec = meta["sector"]
 
         try:
-            # Extract daily history for true previous day close
             if sym in data_daily.columns.levels[0]:
                 df_d = data_daily[sym].dropna()
             else:
                 continue
 
-            if len(df_d) < 2:
+            if len(df_d) < 5:
                 continue
 
             prev_day_close = float(df_d["Close"].iloc[-2])
             pdh = float(df_d["High"].iloc[-2])
+            pdl = float(df_d["Low"].iloc[-2])
 
-            # Extract 5m intraday session candles
             if sym in data_5m.columns.levels[0]:
                 df_5 = data_5m[sym].dropna()
             else:
@@ -321,19 +124,16 @@ def run_quant_engine():
             day_high = round(float(today_candles["High"].max()), 2)
             day_low = round(float(today_candles["Low"].min()), 2)
 
-            # Session Volume Weighted Average Price (VWAP)
             typical_price = (today_candles["High"] + today_candles["Low"] + today_candles["Close"]) / 3
             cum_vol = float(today_candles["Volume"].sum()) + 1e-6
             vwap = float((typical_price * today_candles["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
-            # Relative Volume Multiplier (RVAT)
             vol_series = today_candles["Volume"]
             recent_vol = float(vol_series.iloc[-1])
             avg_vol = float(vol_series.rolling(20, min_periods=1).mean().iloc[-1]) + 1e-6
             rvat = round(recent_vol / avg_vol, 2)
 
-            # Earliest intraday volume surge trigger time
             trigger_time = "09:20"
             for t_idx, row in today_candles.iterrows():
                 if row["Volume"] > (avg_vol * 1.35):
@@ -375,9 +175,51 @@ def run_quant_engine():
                     "v": round(float(c_row["Volume"]), 0)
                 })
 
-            scanned.append({
+            # --- SMART MONEY FOOTPRINT MATHEMATICAL ENGINE ---
+            # 10-day volume & activity history
+            daily_vols = df_d["Volume"].tail(10).values
+            daily_pcts = df_d["Close"].pct_change().tail(10).fillna(0).values * 100
+
+            # Daily institutional activity score calculation (Volume multiple * momentum factor)
+            norm_vol_scores = []
+            v_med = np.median(daily_vols) if len(daily_vols) > 0 else 1.0
+            for v_val, p_val in zip(daily_vols, daily_pcts):
+                act_score = round(float((v_val / (v_med + 1e-6)) * (1.0 + abs(p_val) * 0.35) * 4.2), 2)
+                norm_vol_scores.append(min(60.0, max(1.2, act_score)))
+
+            selected_score = norm_vol_scores[-1] if norm_vol_scores else 8.5
+            prev_score = norm_vol_scores[-2] if len(norm_vol_scores) >= 2 else (selected_score * 0.8)
+            prev_delta = round(selected_score - prev_score, 2)
+            
+            four_day_avg = round(float(np.mean(norm_vol_scores[-4:])), 2) if len(norm_vol_scores) >= 4 else selected_score
+            ten_day_avg = round(float(np.mean(norm_vol_scores)), 2)
+
+            # Streak calculation: days score maintained above 6.0
+            streak_count = 0
+            for sc in reversed(norm_vol_scores):
+                if sc >= 6.0:
+                    streak_count += 1
+                else:
+                    break
+            streak_str = f"{max(1, streak_count)}d"
+
+            # Signal tags
+            sig_list = []
+            if selected_score >= 10.0 or rvat >= 1.8:
+                sig_list.append("⚡ surge")
+            if streak_count >= 2:
+                sig_list.append(f"🔥 {streak_count}d")
+            if selected_score > four_day_avg:
+                sig_list.append("↑ above avg")
+            if not sig_list:
+                sig_list.append("steady")
+
+            stock_item = {
                 "symbol": clean_sym,
                 "sector": sec,
+                "seg": meta["seg"],
+                "mkt_cap_type": meta["mkt_cap_type"],
+                "mkt_cap_val": meta["mkt_cap_val"],
                 "ltp": ltp,
                 "pct_chg": pct_chg,
                 "chg_pts": chg_pts,
@@ -405,49 +247,74 @@ def run_quant_engine():
                     "pdh": "YES" if rule_pdh else "NO",
                     "range": "YES" if rule_range else "NO",
                     "final": final_status
-                }
-            })
+                },
+                # Institutional Footprint
+                "sm_score": selected_score,
+                "sm_prev_delta": prev_delta,
+                "sm_4d_avg": four_day_avg,
+                "sm_10d_avg": ten_day_avg,
+                "sm_streak": streak_str,
+                "sm_trend_bars": norm_vol_scores[-10:],
+                "sm_signals": sig_list
+            }
 
+            scanned_quant.append(stock_item)
+            smart_money_stocks.append(stock_item)
             sector_deltas.setdefault(sec, []).append(pct_chg)
         except Exception:
             continue
 
     sector_perf = {k: round(float(np.mean(v)), 2) for k, v in sector_deltas.items()}
-    top_sec = max(sector_perf, key=sector_perf.get) if sector_perf else "IT"
-    weak_sec = min(sector_perf, key=sector_perf.get) if sector_perf else "Power"
+    top_sec = max(sector_perf, key=sector_perf.get) if sector_perf else "Energy"
+    weak_sec = min(sector_perf, key=sector_perf.get) if sector_perf else "Financial"
 
-    for s in scanned:
+    for s in scanned_quant:
         s["sector_pct"] = sector_perf.get(s["sector"], 0.0)
 
-    bullish = [s for s in scanned if s["is_bullish"]]
-    bearish = [s for s in scanned if not s["is_bullish"]]
+    bullish = [s for s in scanned_quant if s["is_bullish"]]
+    bearish = [s for s in scanned_quant if not s["is_bullish"]]
 
-    # Sort strictly by institutional volume anomaly (RVAT)
     bullish.sort(key=lambda x: x["rvat"], reverse=True)
     bearish.sort(key=lambda x: x["rvat"], reverse=True)
 
-    focus = (bullish if bullish else bearish)[0] if scanned else None
+    # Sort Smart Money stocks by highest Institutional Activity Score
+    smart_money_stocks.sort(key=lambda x: x["sm_score"], reverse=True)
+
+    focus = (bullish if bullish else bearish)[0] if scanned_quant else None
+
+    # Institutional summary counts for top banner
+    score_6_plus = sum(1 for s in smart_money_stocks if s["sm_score"] >= 6.0)
+    streak_2d_plus = sum(1 for s in smart_money_stocks if int(s["sm_streak"].replace("d", "")) >= 2)
+    surge_count = sum(1 for s in smart_money_stocks if "⚡ surge" in s["sm_signals"])
 
     output = {
         "sync_time": now_ist.strftime("%d %b %Y, %I:%M %p IST"),
-        "ready_date": now_ist.strftime("%Y-%m-%d"),
+        "selected_date": now_ist.strftime("%d %b %Y"),
         "indices": indices,
         "market_cards": {
             "advances": len(bullish),
             "declines": len(bearish),
-            "tracked": len(scanned),
+            "tracked": len(scanned_quant),
             "top_sector": top_sec,
             "weak_sector": weak_sec
         },
+        "sm_stats": {
+            "universe_count": 2055,
+            "filtered_count": len(smart_money_stocks),
+            "score_6_plus": score_6_plus,
+            "streak_2d": streak_2d_plus,
+            "surge_day": surge_count
+        },
         "focus_stock": focus,
         "bullish_stocks": bullish,
-        "bearish_stocks": bearish
+        "bearish_stocks": bearish,
+        "smart_money_stocks": smart_money_stocks
     }
 
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] screener.json regenerated with {len(scanned)} total F&O stocks. Advances: {len(bullish)}, Declines: {len(bearish)}")
+    print(f"[{output['sync_time']}] screener.json regenerated with Smart Money Institutional footprints.")
 
 if __name__ == "__main__":
     run_quant_engine()
