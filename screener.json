@@ -1,5 +1,5 @@
 {
-  "sync_time": "02 Oct 2026, 03:09 PM IST",
+  "sync_time": "02 Oct 2026, 03:32 PM IST",
   "selected_date": "02 Oct 2026",
   "indices": {
     "nifty50": {
@@ -32,7 +32,7 @@
     "declines": 29,
     "tracked": 35,
     "top_sector": "IT",
-    "weak_sector": "Metal"
+    "weak_sector": "Basic Materials"
   },
   "sm_stats": {
     "universe_count": 2055,
@@ -1460,9 +1460,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b9691 Cr",
-      "ltp": 139.7,
-      "pct_chg": 2.09,
-      "chg_pts": 2.86,
+      "ltp": 139.01,
+      "pct_chg": 1.59,
+      "chg_pts": 2.17,
       "day_high": 139.7,
       "day_low": 136.0,
       "listed_at": "10:55",
@@ -1470,8 +1470,8 @@
       "hyperflow": "2.1x",
       "max_hyperflow": "3.4x",
       "min_hyperflow": "1.3x",
-      "vwap_gap": 1.88,
-      "futures_oi": 3.27,
+      "vwap_gap": 1.38,
+      "futures_oi": 2.67,
       "oi_behavior": "Long buildup",
       "matrix_intent": "ACCUMULATION",
       "matrix_pulse": "P\u25b2 | OI\u25b2",
@@ -1702,7 +1702,7 @@
           "o": 139.41,
           "h": 139.7,
           "l": 138.13,
-          "c": 139.7,
+          "c": 139.01,
           "v": 4943.0
         }
       ],
@@ -1733,7 +1733,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": 0.53
+      "sector_pct": 0.2
     },
     {
       "symbol": "PERSISTENT",
@@ -2581,7 +2581,7 @@
         "\u26a1 surge",
         "\u2191 above avg"
       ],
-      "sector_pct": -1.4
+      "sector_pct": -1.54
     },
     {
       "symbol": "LT",
@@ -2872,9 +2872,9 @@
       "seg": "EQ",
       "mkt_cap_type": "M",
       "mkt_cap_val": "\u20b95.6k Cr",
-      "ltp": 139.5,
-      "pct_chg": -3.0,
-      "chg_pts": -4.32,
+      "ltp": 139.88,
+      "pct_chg": -2.74,
+      "chg_pts": -3.94,
       "day_high": 146.0,
       "day_low": 138.3,
       "listed_at": "09:20",
@@ -2882,8 +2882,8 @@
       "hyperflow": "5.4x",
       "max_hyperflow": "8.6x",
       "min_hyperflow": "3.2x",
-      "vwap_gap": -0.71,
-      "futures_oi": 4.4,
+      "vwap_gap": -0.44,
+      "futures_oi": 4.71,
       "oi_behavior": "Short buildup",
       "matrix_intent": "DISTRIBUTION",
       "matrix_pulse": "P\u25bc | OI\u25b2",
@@ -3114,7 +3114,7 @@
           "o": 139.55,
           "h": 139.88,
           "l": 139.2,
-          "c": 139.5,
+          "c": 139.88,
           "v": 9527.0
         }
       ],
@@ -3145,7 +3145,7 @@
       "sm_signals": [
         "\u26a1 surge"
       ],
-      "sector_pct": -3.0
+      "sector_pct": -2.74
     },
     {
       "symbol": "TITAN",
@@ -5126,9 +5126,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.8k Cr",
-      "ltp": 630.0,
-      "pct_chg": -1.16,
-      "chg_pts": -7.4,
+      "ltp": 628.1,
+      "pct_chg": -1.46,
+      "chg_pts": -9.3,
       "day_high": 647.0,
       "day_low": 601.05,
       "listed_at": "09:20",
@@ -5136,8 +5136,8 @@
       "hyperflow": "3.7x",
       "max_hyperflow": "5.9x",
       "min_hyperflow": "2.2x",
-      "vwap_gap": 1.32,
-      "futures_oi": 2.77,
+      "vwap_gap": 1.01,
+      "futures_oi": 2.41,
       "oi_behavior": "Short buildup",
       "matrix_intent": "DISTRIBUTION",
       "matrix_pulse": "P\u25bc | OI\u25b2",
@@ -5368,7 +5368,7 @@
           "o": 626.7,
           "h": 630.0,
           "l": 625.0,
-          "c": 630.0,
+          "c": 628.1,
           "v": 1596.0
         }
       ],
@@ -5399,7 +5399,7 @@
       "sm_signals": [
         "\u26a1 surge"
       ],
-      "sector_pct": -1.4
+      "sector_pct": -1.54
     },
     {
       "symbol": "ICICIBANK",
@@ -5969,9 +5969,9 @@
       "seg": "EQ",
       "mkt_cap_type": "L",
       "mkt_cap_val": "\u20b925.5k Cr",
-      "ltp": 359.05,
-      "pct_chg": -1.71,
-      "chg_pts": -6.25,
+      "ltp": 361.3,
+      "pct_chg": -1.09,
+      "chg_pts": -4.0,
       "day_high": 365.0,
       "day_low": 353.8,
       "listed_at": "11:50",
@@ -5979,14 +5979,14 @@
       "hyperflow": "2.7x",
       "max_hyperflow": "4.3x",
       "min_hyperflow": "1.6x",
-      "vwap_gap": 0.07,
-      "futures_oi": -0.01,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
+      "vwap_gap": 0.68,
+      "futures_oi": 0.73,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
       "candles": [
@@ -6211,7 +6211,7 @@
           "o": 362.6,
           "h": 363.3,
           "l": 359.05,
-          "c": 359.05,
+          "c": 361.3,
           "v": 20473.0
         }
       ],
@@ -6242,7 +6242,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": -1.71
+      "sector_pct": -1.09
     },
     {
       "symbol": "RADICO",
@@ -7939,9 +7939,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b9671 Cr",
-      "ltp": 208.7,
-      "pct_chg": -1.02,
-      "chg_pts": -2.15,
+      "ltp": 208.34,
+      "pct_chg": -1.19,
+      "chg_pts": -2.51,
       "day_high": 213.5,
       "day_low": 205.0,
       "listed_at": "10:50",
@@ -7949,8 +7949,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.37,
-      "futures_oi": -2.9,
+      "vwap_gap": 0.19,
+      "futures_oi": -3.11,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -8181,7 +8181,7 @@
           "o": 208.75,
           "h": 208.75,
           "l": 207.06,
-          "c": 208.7,
+          "c": 208.34,
           "v": 274.0
         }
       ],
@@ -8212,7 +8212,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": 0.53
+      "sector_pct": 0.2
     },
     {
       "symbol": "JIOFIN",
@@ -8785,9 +8785,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.4k Cr",
-      "ltp": 23.35,
-      "pct_chg": -2.38,
-      "chg_pts": -0.57,
+      "ltp": 23.47,
+      "pct_chg": -1.88,
+      "chg_pts": -0.45,
       "day_high": 23.92,
       "day_low": 23.04,
       "listed_at": "14:45",
@@ -8795,8 +8795,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": -0.4,
-      "futures_oi": -5.62,
+      "vwap_gap": 0.1,
+      "futures_oi": -5.02,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -9027,7 +9027,7 @@
           "o": 23.52,
           "h": 23.63,
           "l": 23.3,
-          "c": 23.35,
+          "c": 23.47,
           "v": 33741.0
         }
       ],
@@ -9058,7 +9058,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": -2.38
+      "sector_pct": -1.88
     },
     {
       "symbol": "MCX",
@@ -9348,9 +9348,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.1k Cr",
-      "ltp": 166.79,
-      "pct_chg": -2.79,
-      "chg_pts": -4.78,
+      "ltp": 165.43,
+      "pct_chg": -3.58,
+      "chg_pts": -6.14,
       "day_high": 176.75,
       "day_low": 164.0,
       "listed_at": "09:45",
@@ -9358,8 +9358,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.35,
-      "futures_oi": -6.55,
+      "vwap_gap": -0.46,
+      "futures_oi": -7.5,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -9583,7 +9583,7 @@
           "o": 164.51,
           "h": 166.8,
           "l": 164.51,
-          "c": 166.79,
+          "c": 165.43,
           "v": 29.0
         }
       ],
@@ -9614,7 +9614,7 @@
       "sm_signals": [
         "steady"
       ],
-      "sector_pct": -2.79
+      "sector_pct": -3.58
     },
     {
       "symbol": "BSE",
@@ -9903,9 +9903,9 @@
       "seg": "EQ",
       "mkt_cap_type": "\u03bc",
       "mkt_cap_val": "\u20b9127 Cr",
-      "ltp": 31.99,
-      "pct_chg": -1.2,
-      "chg_pts": -0.39,
+      "ltp": 31.98,
+      "pct_chg": -1.24,
+      "chg_pts": -0.4,
       "day_high": 33.9,
       "day_low": 31.2,
       "listed_at": "09:25",
@@ -9913,8 +9913,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.0,
-      "futures_oi": -5.44,
+      "vwap_gap": -0.03,
+      "futures_oi": -5.49,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -10138,7 +10138,7 @@
           "o": 31.99,
           "h": 31.99,
           "l": 31.98,
-          "c": 31.99,
+          "c": 31.98,
           "v": 0.0
         }
       ],
@@ -10170,7 +10170,7 @@
         "\u26a1 surge",
         "\ud83d\udd25 3d"
       ],
-      "sector_pct": -1.2
+      "sector_pct": -1.24
     }
   ],
   "smart_money_stocks": [
@@ -11876,9 +11876,9 @@
       "seg": "EQ",
       "mkt_cap_type": "\u03bc",
       "mkt_cap_val": "\u20b9127 Cr",
-      "ltp": 31.99,
-      "pct_chg": -1.2,
-      "chg_pts": -0.39,
+      "ltp": 31.98,
+      "pct_chg": -1.24,
+      "chg_pts": -0.4,
       "day_high": 33.9,
       "day_low": 31.2,
       "listed_at": "09:25",
@@ -11886,8 +11886,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.0,
-      "futures_oi": -5.44,
+      "vwap_gap": -0.03,
+      "futures_oi": -5.49,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -12111,7 +12111,7 @@
           "o": 31.99,
           "h": 31.99,
           "l": 31.98,
-          "c": 31.99,
+          "c": 31.98,
           "v": 0.0
         }
       ],
@@ -12143,7 +12143,7 @@
         "\u26a1 surge",
         "\ud83d\udd25 3d"
       ],
-      "sector_pct": -1.2
+      "sector_pct": -1.24
     },
     {
       "symbol": "LT",
@@ -12434,9 +12434,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.4k Cr",
-      "ltp": 23.35,
-      "pct_chg": -2.38,
-      "chg_pts": -0.57,
+      "ltp": 23.47,
+      "pct_chg": -1.88,
+      "chg_pts": -0.45,
       "day_high": 23.92,
       "day_low": 23.04,
       "listed_at": "14:45",
@@ -12444,8 +12444,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": -0.4,
-      "futures_oi": -5.62,
+      "vwap_gap": 0.1,
+      "futures_oi": -5.02,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -12676,7 +12676,7 @@
           "o": 23.52,
           "h": 23.63,
           "l": 23.3,
-          "c": 23.35,
+          "c": 23.47,
           "v": 33741.0
         }
       ],
@@ -12707,7 +12707,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": -2.38
+      "sector_pct": -1.88
     },
     {
       "symbol": "PERSISTENT",
@@ -13278,9 +13278,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.1k Cr",
-      "ltp": 166.79,
-      "pct_chg": -2.79,
-      "chg_pts": -4.78,
+      "ltp": 165.43,
+      "pct_chg": -3.58,
+      "chg_pts": -6.14,
       "day_high": 176.75,
       "day_low": 164.0,
       "listed_at": "09:45",
@@ -13288,8 +13288,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.35,
-      "futures_oi": -6.55,
+      "vwap_gap": -0.46,
+      "futures_oi": -7.5,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -13513,7 +13513,7 @@
           "o": 164.51,
           "h": 166.8,
           "l": 164.51,
-          "c": 166.79,
+          "c": 165.43,
           "v": 29.0
         }
       ],
@@ -13544,7 +13544,7 @@
       "sm_signals": [
         "steady"
       ],
-      "sector_pct": -2.79
+      "sector_pct": -3.58
     },
     {
       "symbol": "DIXON",
@@ -14389,7 +14389,7 @@
         "\u26a1 surge",
         "\u2191 above avg"
       ],
-      "sector_pct": -1.4
+      "sector_pct": -1.54
     },
     {
       "symbol": "BSE",
@@ -14678,9 +14678,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b9671 Cr",
-      "ltp": 208.7,
-      "pct_chg": -1.02,
-      "chg_pts": -2.15,
+      "ltp": 208.34,
+      "pct_chg": -1.19,
+      "chg_pts": -2.51,
       "day_high": 213.5,
       "day_low": 205.0,
       "listed_at": "10:50",
@@ -14688,8 +14688,8 @@
       "hyperflow": "1.0x",
       "max_hyperflow": "1.6x",
       "min_hyperflow": "1.0x",
-      "vwap_gap": 0.37,
-      "futures_oi": -2.9,
+      "vwap_gap": 0.19,
+      "futures_oi": -3.11,
       "oi_behavior": "Long unwinding",
       "matrix_intent": "LIQUIDATION",
       "matrix_pulse": "P\u25bc | OI\u25bc",
@@ -14920,7 +14920,7 @@
           "o": 208.75,
           "h": 208.75,
           "l": 207.06,
-          "c": 208.7,
+          "c": 208.34,
           "v": 274.0
         }
       ],
@@ -14951,7 +14951,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": 0.53
+      "sector_pct": 0.2
     },
     {
       "symbol": "DABUR",
@@ -15240,9 +15240,9 @@
       "seg": "EQ",
       "mkt_cap_type": "L",
       "mkt_cap_val": "\u20b925.5k Cr",
-      "ltp": 359.05,
-      "pct_chg": -1.71,
-      "chg_pts": -6.25,
+      "ltp": 361.3,
+      "pct_chg": -1.09,
+      "chg_pts": -4.0,
       "day_high": 365.0,
       "day_low": 353.8,
       "listed_at": "11:50",
@@ -15250,14 +15250,14 @@
       "hyperflow": "2.7x",
       "max_hyperflow": "4.3x",
       "min_hyperflow": "1.6x",
-      "vwap_gap": 0.07,
-      "futures_oi": -0.01,
-      "oi_behavior": "Long unwinding",
-      "matrix_intent": "LIQUIDATION",
-      "matrix_pulse": "P\u25bc | OI\u25bc",
-      "matrix_tone": "bear-weak",
-      "star_score": -2,
-      "star_display": "-2\u2605",
+      "vwap_gap": 0.68,
+      "futures_oi": 0.73,
+      "oi_behavior": "Short buildup",
+      "matrix_intent": "DISTRIBUTION",
+      "matrix_pulse": "P\u25bc | OI\u25b2",
+      "matrix_tone": "bear-strong",
+      "star_score": -4,
+      "star_display": "-4\u2605",
       "star_label": "BEARISH",
       "is_bullish": false,
       "candles": [
@@ -15482,7 +15482,7 @@
           "o": 362.6,
           "h": 363.3,
           "l": 359.05,
-          "c": 359.05,
+          "c": 361.3,
           "v": 20473.0
         }
       ],
@@ -15513,7 +15513,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": -1.71
+      "sector_pct": -1.09
     },
     {
       "symbol": "WAKEFIT",
@@ -15521,9 +15521,9 @@
       "seg": "EQ",
       "mkt_cap_type": "M",
       "mkt_cap_val": "\u20b95.6k Cr",
-      "ltp": 139.5,
-      "pct_chg": -3.0,
-      "chg_pts": -4.32,
+      "ltp": 139.88,
+      "pct_chg": -2.74,
+      "chg_pts": -3.94,
       "day_high": 146.0,
       "day_low": 138.3,
       "listed_at": "09:20",
@@ -15531,8 +15531,8 @@
       "hyperflow": "5.4x",
       "max_hyperflow": "8.6x",
       "min_hyperflow": "3.2x",
-      "vwap_gap": -0.71,
-      "futures_oi": 4.4,
+      "vwap_gap": -0.44,
+      "futures_oi": 4.71,
       "oi_behavior": "Short buildup",
       "matrix_intent": "DISTRIBUTION",
       "matrix_pulse": "P\u25bc | OI\u25b2",
@@ -15763,7 +15763,7 @@
           "o": 139.55,
           "h": 139.88,
           "l": 139.2,
-          "c": 139.5,
+          "c": 139.88,
           "v": 9527.0
         }
       ],
@@ -15794,7 +15794,7 @@
       "sm_signals": [
         "\u26a1 surge"
       ],
-      "sector_pct": -3.0
+      "sector_pct": -2.74
     },
     {
       "symbol": "HDFCBANK",
@@ -16366,9 +16366,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b9691 Cr",
-      "ltp": 139.7,
-      "pct_chg": 2.09,
-      "chg_pts": 2.86,
+      "ltp": 139.01,
+      "pct_chg": 1.59,
+      "chg_pts": 2.17,
       "day_high": 139.7,
       "day_low": 136.0,
       "listed_at": "10:55",
@@ -16376,8 +16376,8 @@
       "hyperflow": "2.1x",
       "max_hyperflow": "3.4x",
       "min_hyperflow": "1.3x",
-      "vwap_gap": 1.88,
-      "futures_oi": 3.27,
+      "vwap_gap": 1.38,
+      "futures_oi": 2.67,
       "oi_behavior": "Long buildup",
       "matrix_intent": "ACCUMULATION",
       "matrix_pulse": "P\u25b2 | OI\u25b2",
@@ -16608,7 +16608,7 @@
           "o": 139.41,
           "h": 139.7,
           "l": 138.13,
-          "c": 139.7,
+          "c": 139.01,
           "v": 4943.0
         }
       ],
@@ -16639,7 +16639,7 @@
       "sm_signals": [
         "\u2191 above avg"
       ],
-      "sector_pct": 0.53
+      "sector_pct": 0.2
     },
     {
       "symbol": "DRREDDY",
@@ -18901,9 +18901,9 @@
       "seg": "EQ",
       "mkt_cap_type": "S",
       "mkt_cap_val": "\u20b91.8k Cr",
-      "ltp": 630.0,
-      "pct_chg": -1.16,
-      "chg_pts": -7.4,
+      "ltp": 628.1,
+      "pct_chg": -1.46,
+      "chg_pts": -9.3,
       "day_high": 647.0,
       "day_low": 601.05,
       "listed_at": "09:20",
@@ -18911,8 +18911,8 @@
       "hyperflow": "3.7x",
       "max_hyperflow": "5.9x",
       "min_hyperflow": "2.2x",
-      "vwap_gap": 1.32,
-      "futures_oi": 2.77,
+      "vwap_gap": 1.01,
+      "futures_oi": 2.41,
       "oi_behavior": "Short buildup",
       "matrix_intent": "DISTRIBUTION",
       "matrix_pulse": "P\u25bc | OI\u25b2",
@@ -19143,7 +19143,7 @@
           "o": 626.7,
           "h": 630.0,
           "l": 625.0,
-          "c": 630.0,
+          "c": 628.1,
           "v": 1596.0
         }
       ],
@@ -19174,7 +19174,7 @@
       "sm_signals": [
         "\u26a1 surge"
       ],
-      "sector_pct": -1.4
+      "sector_pct": -1.54
     },
     {
       "symbol": "SUZLON",
