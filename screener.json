@@ -1,5 +1,5 @@
 {
-  "sync_time": "06 Oct 2026, 10:53 PM IST",
+  "sync_time": "06 Oct 2026, 11:02 PM IST",
   "market_summary": {
     "nifty_spot": 22776.1,
     "nifty_pct": -0.55,
@@ -4123,7 +4123,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price consolidating at High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -4385,7 +4385,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -4647,7 +4647,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price consolidating at High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -4909,7 +4909,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -5171,7 +5171,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price consolidating at High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -5433,7 +5433,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -5695,7 +5695,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -5957,7 +5957,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -6219,7 +6219,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -6481,7 +6481,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -6743,7 +6743,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "22:53",
+      "listed_at": "23:02",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
