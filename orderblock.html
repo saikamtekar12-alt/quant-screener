@@ -309,4 +309,414 @@
     // =========================================================================
     // 1. MASTER UNIVERSE DATASET (150+ Full NSE Options & F&O Stocks)
     // Exactly matches the video & screenshot matrix
-    // =================================================
+    // =========================================================================
+    const BULLISH_STOCKS = [
+      { sym: "PGEL", sec: "Consumer", ltp: 527.65, pct: 8.19, rank: "01", stars: 5, intent: "LONG BUILD-UP", vwap: 520.72, s1: 524.65, s2: 511.45, s3: 502.40, r1: 528.90, r2: 532.00, oi: "+14.7%", conv: 97, rr: "1:3.7" },
+      { sym: "DABUR", sec: "FMCG", ltp: 588.90, pct: 2.71, rank: "02", stars: 5, intent: "LONG BUILD-UP", vwap: 582.40, s1: 584.20, s2: 576.00, s3: 568.50, r1: 592.00, r2: 596.50, oi: "+8.4%", conv: 94, rr: "1:3.2" },
+      { sym: "TIINDIA", sec: "Auto", ltp: 2472.70, pct: 6.58, rank: "03", stars: 5, intent: "LONG BUILD-UP", vwap: 2430.00, s1: 2455.00, s2: 2410.00, s3: 2380.00, r1: 2490.00, r2: 2520.00, oi: "+12.1%", conv: 96, rr: "1:4.1" },
+      { sym: "LAURUSLABS", sec: "Pharma", ltp: 2050.00, pct: 3.99, rank: "04", stars: 4, intent: "LONG BUILD-UP", vwap: 2025.00, s1: 2038.00, s2: 2005.00, s3: 1980.00, r1: 2065.00, r2: 2085.00, oi: "+6.8%", conv: 89, rr: "1:2.8" },
+      { sym: "ASTRAL", sec: "Capital Goods", ltp: 1482.30, pct: 2.95, rank: "05", stars: 4, intent: "LONG BUILD-UP", vwap: 1465.00, s1: 1472.00, s2: 1448.00, s3: 1430.00, r1: 1495.00, r2: 1510.00, oi: "+5.4%", conv: 88, rr: "1:3.0" },
+      { sym: "BHEL", sec: "Capital Goods", ltp: 452.80, pct: 5.36, rank: "06", stars: 5, intent: "SHORT COVERING", vwap: 442.00, s1: 446.50, s2: 435.00, s3: 424.00, r1: 458.00, r2: 464.00, oi: "-3.2%", conv: 92, rr: "1:3.5" },
+      { sym: "JINDALSTEL", sec: "Metal", ltp: 1085.90, pct: 1.84, rank: "07", stars: 4, intent: "SHORT COVERING", vwap: 1075.00, s1: 1080.00, s2: 1062.00, s3: 1050.00, r1: 1095.00, r2: 1110.00, oi: "-2.1%", conv: 84, rr: "1:2.6" },
+      { sym: "AMBER", sec: "Consumer Durables", ltp: 6540.00, pct: 4.31, rank: "08", stars: 4, intent: "LONG BUILD-UP", vwap: 6420.00, s1: 6480.00, s2: 6350.00, s3: 6280.00, r1: 6590.00, r2: 6650.00, oi: "+9.2%", conv: 90, rr: "1:3.1" },
+      { sym: "MOTILALOFS", sec: "Capital Markets", ltp: 1018.00, pct: 6.93, rank: "09", stars: 5, intent: "LONG BUILD-UP", vwap: 988.00, s1: 1005.00, s2: 975.00, s3: 960.00, r1: 1030.00, r2: 1045.00, oi: "+15.6%", conv: 95, rr: "1:4.0" },
+      { sym: "DIVISLAB", sec: "Pharma", ltp: 5550.00, pct: 3.85, rank: "10", stars: 4, intent: "LONG BUILD-UP", vwap: 5460.00, s1: 5510.00, s2: 5410.00, s3: 5360.00, r1: 5580.00, r2: 5620.00, oi: "+7.1%", conv: 87, rr: "1:2.9" },
+      { sym: "JIOFIN", sec: "Financial Services", ltp: 220.50, pct: 2.78, rank: "11", stars: 4, intent: "LONG BUILD-UP", vwap: 217.00, s1: 218.80, s2: 214.50, s3: 211.00, r1: 223.00, r2: 226.00, oi: "+11.4%", conv: 89, rr: "1:3.3" },
+      { sym: "ETERNA", sec: "Consumer", ltp: 330.95, pct: 2.56, rank: "12", stars: 4, intent: "LONG BUILD-UP", vwap: 325.00, s1: 328.00, s2: 320.00, s3: 314.00, r1: 335.00, r2: 340.00, oi: "+4.9%", conv: 83, rr: "1:2.7" },
+      { sym: "NESTLEIND", sec: "FMCG", ltp: 1346.00, pct: 3.42, rank: "13", stars: 4, intent: "LONG BUILD-UP", vwap: 1325.00, s1: 1338.00, s2: 1310.00, s3: 1295.00, r1: 1360.00, r2: 1375.00, oi: "+6.2%", conv: 86, rr: "1:3.0" },
+      { sym: "ASIANPAINT", sec: "Consumer Durables", ltp: 2420.00, pct: 2.66, rank: "14", stars: 4, intent: "LONG BUILD-UP", vwap: 2390.00, s1: 2405.00, s2: 2365.00, s3: 2340.00, r1: 2440.00, r2: 2465.00, oi: "+5.1%", conv: 85, rr: "1:2.9" },
+      { sym: "NHPC", sec: "Power", ltp: 76.50, pct: 1.54, rank: "15", stars: 3, intent: "LONG BUILD-UP", vwap: 75.60, s1: 76.10, s2: 74.80, s3: 73.50, r1: 77.20, r2: 78.00, oi: "+4.1%", conv: 81, rr: "1:2.5" },
+      { sym: "HINDUNILVR", sec: "FMCG", ltp: 1250.00, pct: 3.09, rank: "16", stars: 4, intent: "LONG BUILD-UP", vwap: 1230.00, s1: 1242.00, s2: 1215.00, s3: 1200.00, r1: 1265.00, r2: 1280.00, oi: "+7.8%", conv: 88, rr: "1:3.1" },
+      { sym: "RADICO", sec: "FMCG", ltp: 4478.30, pct: 3.99, rank: "17", stars: 4, intent: "LONG BUILD-UP", vwap: 4390.00, s1: 4435.00, s2: 4320.00, s3: 4260.00, r1: 4520.00, r2: 4560.00, oi: "+8.9%", conv: 90, rr: "1:3.4" },
+      { sym: "TATACONSUM", sec: "FMCG", ltp: 560.00, pct: 2.33, rank: "18", stars: 4, intent: "LONG BUILD-UP", vwap: 552.00, s1: 556.50, s2: 546.00, s3: 538.00, r1: 566.00, r2: 572.00, oi: "+5.3%", conv: 84, rr: "1:2.8" },
+      { sym: "TRENT", sec: "Retail", ltp: 7240.00, pct: 6.45, rank: "19", stars: 5, intent: "LONG BUILD-UP", vwap: 7080.00, s1: 7180.00, s2: 6980.00, s3: 6850.00, r1: 7320.00, r2: 7400.00, oi: "+18.2%", conv: 98, rr: "1:4.4" },
+      { sym: "GODREJCP", sec: "FMCG", ltp: 668.00, pct: 4.24, rank: "20", stars: 4, intent: "LONG BUILD-UP", vwap: 652.00, s1: 660.00, s2: 642.00, s3: 630.00, r1: 676.00, r2: 684.00, oi: "+9.1%", conv: 91, rr: "1:3.5" },
+      { sym: "RELIANCE", sec: "Energy", ltp: 2980.00, pct: 2.11, rank: "21", stars: 4, intent: "LONG BUILD-UP", vwap: 2950.00, s1: 2965.00, s2: 2920.00, s3: 2890.00, r1: 3010.00, r2: 3035.00, oi: "+10.4%", conv: 91, rr: "1:3.3" },
+      { sym: "TCS", sec: "IT", ltp: 3840.00, pct: 1.45, rank: "22", stars: 3, intent: "LONG BUILD-UP", vwap: 3815.00, s1: 3828.00, s2: 3780.00, s3: 3740.00, r1: 3865.00, r2: 3890.00, oi: "+3.9%", conv: 82, rr: "1:2.6" },
+      { sym: "INFY", sec: "IT", ltp: 1885.00, pct: 1.65, rank: "23", stars: 3, intent: "LONG BUILD-UP", vwap: 1865.00, s1: 1874.00, s2: 1845.00, s3: 1820.00, r1: 1900.00, r2: 1915.00, oi: "+4.2%", conv: 83, rr: "1:2.7" },
+      { sym: "ICICIBANK", sec: "Private Bank", ltp: 1302.00, pct: 1.25, rank: "24", stars: 3, intent: "LONG BUILD-UP", vwap: 1290.00, s1: 1296.00, s2: 1278.00, s3: 1265.00, r1: 1315.00, r2: 1325.00, oi: "+5.1%", conv: 84, rr: "1:2.8" }
+    ];
+
+    const BEARISH_STOCKS = [
+      { sym: "PHOENIXLTD", sec: "Real Estate", ltp: 1552.20, pct: -2.66, rank: "01", stars: 4, intent: "SHORT BUILD-UP", vwap: 1575.00, s1: 1535.00, s2: 1515.00, s3: 1490.00, r1: 1565.00, r2: 1585.00, oi: "+8.9%", conv: 91, rr: "1:3.2" },
+      { sym: "COALINDIA", sec: "Oil & Gas", ltp: 422.50, pct: -3.16, rank: "02", stars: 5, intent: "SHORT BUILD-UP", vwap: 432.00, s1: 416.00, s2: 410.00, s3: 402.00, r1: 428.00, r2: 435.00, oi: "+11.4%", conv: 94, rr: "1:3.8" },
+      { sym: "TECHM", sec: "IT", ltp: 1642.20, pct: -2.75, rank: "03", stars: 4, intent: "SHORT BUILD-UP", vwap: 1670.00, s1: 1625.00, s2: 1605.00, s3: 1585.00, r1: 1658.00, r2: 1675.00, oi: "+9.2%", conv: 90, rr: "1:3.4" },
+      { sym: "FEDERALBNK", sec: "Private Bank", ltp: 125.00, pct: -2.25, rank: "04", stars: 4, intent: "SHORT BUILD-UP", vwap: 127.20, s1: 123.50, s2: 121.80, s3: 119.50, r1: 126.20, r2: 127.80, oi: "+6.8%", conv: 87, rr: "1:2.9" },
+      { sym: "BANDHANBNK", sec: "Private Bank", ltp: 161.00, pct: -2.45, rank: "05", stars: 4, intent: "SHORT BUILD-UP", vwap: 164.20, s1: 158.80, s2: 156.50, s3: 154.00, r1: 162.80, r2: 165.00, oi: "+7.5%", conv: 88, rr: "1:3.0" },
+      { sym: "UJJIVANSFB", sec: "Financial", ltp: 42.10, pct: -2.10, rank: "06", stars: 3, intent: "SHORT BUILD-UP", vwap: 42.80, s1: 41.50, s2: 40.80, s3: 39.90, r1: 42.50, r2: 43.10, oi: "+5.1%", conv: 83, rr: "1:2.5" },
+      { sym: "NATIONALUM", sec: "Metal", ltp: 149.00, pct: -1.81, rank: "07", stars: 3, intent: "SHORT BUILD-UP", vwap: 151.20, s1: 147.20, s2: 145.00, s3: 142.80, r1: 150.50, r2: 152.00, oi: "+4.4%", conv: 81, rr: "1:2.6" },
+      { sym: "AMBUJACEM", sec: "Construction", ltp: 374.35, pct: -1.45, rank: "08", stars: 3, intent: "SHORT BUILD-UP", vwap: 378.00, s1: 370.50, s2: 366.00, s3: 361.00, r1: 376.50, r2: 380.00, oi: "+3.8%", conv: 80, rr: "1:2.4" },
+      { sym: "KALYANKJIL", sec: "Consumer Goods", ltp: 564.00, pct: -1.56, rank: "09", stars: 3, intent: "SHORT BUILD-UP", vwap: 571.00, s1: 558.00, s2: 552.00, s3: 544.00, r1: 569.00, r2: 574.00, oi: "+4.2%", conv: 82, rr: "1:2.5" },
+      { sym: "ULTRACEMCO", sec: "Construction", ltp: 11025.00, pct: -1.17, rank: "10", stars: 3, intent: "SHORT BUILD-UP", vwap: 11120.00, s1: 10940.00, s2: 10850.00, s3: 10700.00, r1: 11080.00, r2: 11150.00, oi: "+3.2%", conv: 79, rr: "1:2.3" },
+      { sym: "COFORGE", sec: "IT", ltp: 7118.00, pct: -1.12, rank: "11", stars: 3, intent: "SHORT BUILD-UP", vwap: 7180.00, s1: 7060.00, s2: 6980.00, s3: 6900.00, r1: 7160.00, r2: 7210.00, oi: "+3.5%", conv: 80, rr: "1:2.4" },
+      { sym: "WIPRO", sec: "IT", ltp: 524.30, pct: -1.95, rank: "12", stars: 4, intent: "SHORT BUILD-UP", vwap: 532.00, s1: 518.00, s2: 512.00, s3: 504.00, r1: 528.50, r2: 534.00, oi: "+6.9%", conv: 86, rr: "1:2.9" },
+      { sym: "ITC", sec: "FMCG", ltp: 482.10, pct: -1.45, rank: "13", stars: 3, intent: "SHORT BUILD-UP", vwap: 488.00, s1: 478.00, s2: 473.00, s3: 468.00, r1: 485.00, r2: 490.00, oi: "+4.8%", conv: 82, rr: "1:2.5" },
+      { sym: "MCX", sec: "Capital Markets", ltp: 3263.50, pct: -3.45, rank: "14", stars: 5, intent: "SHORT BUILD-UP", vwap: 3340.00, s1: 3210.00, s2: 3160.00, s3: 3100.00, r1: 3310.00, r2: 3360.00, oi: "+13.8%", conv: 95, rr: "1:4.0" }
+    ];
+
+    const SECTOR_LEADERBOARD = [
+      { name: "TELECOM", chg: "+2.58%", bull: true, score: 92 },
+      { name: "CONSUMER", chg: "+2.17%", bull: true, score: 88 },
+      { name: "CAP MKTS", chg: "+2.21%", bull: true, score: 86 },
+      { name: "INSURANCE", chg: "+1.84%", bull: true, score: 79 },
+      { name: "FMCG", chg: "+1.72%", bull: true, score: 76 },
+      { name: "NEW-AGE", chg: "+1.68%", bull: true, score: 74 },
+      { name: "CAP GOODS", chg: "+1.65%", bull: true, score: 73 },
+      { name: "OIL & GAS", chg: "+1.57%", bull: true, score: 70 },
+      { name: "DEFENCE", chg: "+1.33%", bull: true, score: 68 },
+      { name: "AUTO", chg: "+1.18%", bull: true, score: 65 },
+      { name: "CHEM", chg: "+1.05%", bull: true, score: 62 },
+      { name: "PHARMA", chg: "+0.91%", bull: true, score: 58 },
+      { name: "POWER", chg: "+0.89%", bull: true, score: 54 },
+      { name: "LOGISTICS", chg: "+0.76%", bull: true, score: 50 },
+      { name: "METAL", chg: "+0.38%", bull: true, score: 45 },
+      { name: "BANK", chg: "+0.26%", bull: true, score: 42 },
+      { name: "NBFC", chg: "+0.12%", bull: true, score: 38 }
+    ];
+
+    // =========================================================================
+    // 2. RENDERING THE DENSE ORDER BLOCK CARDS (Matrix Grid View)
+    // =========================================================================
+    function createVolumeProfileSVG(isBull) {
+      let rects = '';
+      const barColor = isBull ? '#34d399' : '#f87171';
+      for (let i = 0; i < 9; i++) {
+        const y = i * 3.5;
+        const w = Math.floor(Math.sin((i + 1) / 3) * 35 + Math.random() * 20 + 8);
+        rects += `<rect x="0" y="${y}" width="${w}" height="2.2" fill="${barColor}" rx="0.5" opacity="0.85"/>`;
+      }
+      return `<svg class="mini-profile-svg" viewBox="0 0 65 32">${rects}<line x1="0" y1="16" x2="65" y2="16" stroke="#0f172a" stroke-width="1" stroke-dasharray="2,2"/></svg>`;
+    }
+
+    function renderMatrixView() {
+      const bullGrid = document.getElementById('grid-bullish-cards');
+      const bearGrid = document.getElementById('grid-bearish-cards');
+
+      bullGrid.innerHTML = BULLISH_STOCKS.map(s => `
+        <div class="stock-card card-bull" onmouseenter="showInspector('${s.sym}', event)">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1.5">
+              <span class="font-black text-xs text-slate-900 tracking-tight">${s.sym}</span>
+              <span class="rank-tag rank-bull">${s.rank}</span>
+            </div>
+            <span class="font-extrabold text-xs text-emerald-600">+${s.pct.toFixed(2)}%</span>
+          </div>
+
+          <div class="flex items-end justify-between mt-1">
+            <div>
+              <span class="intent-text text-emerald-700">${s.intent}</span>
+              <div class="text-[9px] text-slate-400 font-mono">₹${s.ltp.toFixed(2)}</div>
+            </div>
+            ${createVolumeProfileSVG(true)}
+          </div>
+        </div>
+      `).join('');
+
+      bearGrid.innerHTML = BEARISH_STOCKS.map(s => `
+        <div class="stock-card card-bear" onmouseenter="showInspector('${s.sym}', event)">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1.5">
+              <span class="font-black text-xs text-slate-900 tracking-tight">${s.sym}</span>
+              <span class="rank-tag rank-bear">${s.rank}</span>
+            </div>
+            <span class="font-extrabold text-xs text-rose-600">${s.pct.toFixed(2)}%</span>
+          </div>
+
+          <div class="flex items-end justify-between mt-1">
+            <div>
+              <span class="intent-text text-rose-700">${s.intent}</span>
+              <div class="text-[9px] text-slate-400 font-mono">₹${s.ltp.toFixed(2)}</div>
+            </div>
+            ${createVolumeProfileSVG(false)}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 3. SECTOR STREAM & FANNING FLOW CANVAS (Screenshot 1000190440)
+    // =========================================================================
+    function renderStreamView() {
+      const secList = document.getElementById('stream-sector-list');
+      secList.innerHTML = SECTOR_LEADERBOARD.map(sec => `
+        <div class="sector-item-row bg-slate-50 border border-slate-200">
+          <span class="text-slate-700 font-bold">${sec.name}</span>
+          <span class="text-emerald-600 font-extrabold">${sec.chg}</span>
+        </div>
+      `).join('');
+
+      drawStreamCanvas();
+    }
+
+    function drawStreamCanvas() {
+      const canvas = document.getElementById('canvas-stream-flow');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw middle horizontal zero line
+      const midY = h * 0.62;
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, midY);
+      ctx.lineTo(w, midY);
+      ctx.stroke();
+
+      // Draw fanning green multi-stream curves (Bullish expansion)
+      const numLines = 28;
+      for (let i = 0; i < numLines; i++) {
+        const startY = midY;
+        const endY = 40 + (i * 12);
+        const curvePoint = w * 0.45;
+
+        ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 + (i / numLines) * 0.45})`;
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(30, startY);
+        ctx.bezierCurveTo(curvePoint, startY - (i * 4), curvePoint + 40, endY + 20, w - 160, endY);
+        ctx.stroke();
+      }
+
+      // Draw fanning red multi-stream curves (Bearish downward displacement)
+      const numBearLines = 16;
+      for (let i = 0; i < numBearLines; i++) {
+        const startY = midY;
+        const endY = midY + 40 + (i * 10);
+        const curvePoint = w * 0.5;
+
+        ctx.strokeStyle = `rgba(239, 68, 68, ${0.18 + (i / numBearLines) * 0.45})`;
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(30, startY);
+        ctx.bezierCurveTo(curvePoint, startY + 10, curvePoint + 30, endY - 10, w - 160, endY);
+        ctx.stroke();
+      }
+
+      // Draw Right Vertical Volume Profile Tower (Screenshots 1000190440 & 1000190436)
+      const towerX = w - 150;
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
+      ctx.fillRect(towerX, 30, 80, midY - 30);
+      ctx.strokeStyle = '#10b981';
+      ctx.strokeRect(towerX, 30, 80, midY - 30);
+
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
+      ctx.fillRect(towerX, midY + 10, 80, h - midY - 30);
+      ctx.strokeStyle = '#ef4444';
+      ctx.strokeRect(towerX, midY + 10, 80, h - midY - 30);
+
+      // Flow volume bars inside the tower
+      for (let y = 35; y < midY - 30; y += 5) {
+        const barW = Math.sin(y / 20) * 50 + 20;
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.6)';
+        ctx.fillRect(towerX + 2, y, barW, 3);
+      }
+      for (let y = midY + 15; y < h - 30; y += 6) {
+        const barW = Math.sin(y / 15) * 45 + 15;
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.6)';
+        ctx.fillRect(towerX + 2, y, barW, 3);
+      }
+    }
+
+    // =========================================================================
+    // 4. FLOATING STEPPED ORDER BLOCKS CHART HUD (Screenshots 1000190434 & 1000190435)
+    // =========================================================================
+    function drawInspectorSteppedChart(s) {
+      const canvas = document.getElementById('inspector-canvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.lineWidth = 1;
+      for (let y = 20; y < h; y += 35) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      const ltp = s.ltp;
+      const high = s.r2 || ltp * 1.015;
+      const low = s.s3 || ltp * 0.985;
+      const range = (high - low) || 1;
+      const getY = (val) => h - 30 - ((val - low) / range) * (h - 60);
+
+      // DRAW SHADED STEPPED ORDER BLOCKS (From Screenshot 1000190434)
+      const isBull = s.pct >= 0;
+      const drawBlock = (yTopVal, yBotVal, label, startX, endX) => {
+        const yTop = getY(yTopVal);
+        const yBot = getY(yBotVal);
+        const bH = Math.max(8, Math.abs(yBot - yTop));
+
+        ctx.fillStyle = isBull ? 'rgba(16, 185, 129, 0.18)' : 'rgba(239, 68, 68, 0.18)';
+        ctx.fillRect(startX, Math.min(yTop, yBot), endX - startX, bH);
+        ctx.strokeStyle = isBull ? '#10b981' : '#ef4444';
+        ctx.strokeRect(startX, Math.min(yTop, yBot), endX - startX, bH);
+
+        ctx.fillStyle = isBull ? '#065f46' : '#9f1239';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText(`${label} ${yBotVal.toFixed(2)}`, startX + 5, Math.min(yTop, yBot) + 8);
+      };
+
+      // Shaded Order Block 3 (Base)
+      drawBlock(s.s3 + 3.0, s.s3, "S3", 40, w * 0.55);
+
+      // Shaded Order Block 2 (Intermediate)
+      drawBlock(s.s2 + 2.5, s.s2, "S2", w * 0.35, w * 0.75);
+
+      // Shaded Order Block 1 (Recent Breakout Base Z/S1)
+      drawBlock(s.s1 + 2.0, s.s1, "Z/S1", w * 0.55, w - 30);
+
+      // Dotted VWAP Line
+      const yVwap = getY(s.vwap);
+      ctx.strokeStyle = '#3b82f6';
+      ctx.setLineDash([3, 3]);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(30, yVwap);
+      ctx.lineTo(w - 20, yVwap);
+      ctx.stroke();
+      ctx.fillStyle = '#2563eb';
+      ctx.font = '9px monospace';
+      ctx.fillText(`VWAP: ${s.vwap.toFixed(2)}`, 35, yVwap - 4);
+      ctx.setLineDash([]);
+
+      // Stepped Resistance Levels (R1, R2)
+      const yR1 = getY(s.r1);
+      ctx.strokeStyle = '#94a3b8';
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath(); ctx.moveTo(w * 0.6, yR1); ctx.lineTo(w - 20, yR1); ctx.stroke();
+      ctx.fillStyle = '#64748b';
+      ctx.fillText(`R1 ${s.r1.toFixed(2)}`, w - 80, yR1 - 3);
+
+      const yR2 = getY(s.r2);
+      ctx.beginPath(); ctx.moveTo(w * 0.65, yR2); ctx.lineTo(w - 20, yR2); ctx.stroke();
+      ctx.fillText(`R2 ${s.r2.toFixed(2)}`, w - 80, yR2 - 3);
+      ctx.setLineDash([]);
+
+      // Draw Candlestick Stair-Climb Progression (Screenshot 1000190435)
+      const numCandles = 28;
+      const cW = Math.max(3, (w - 100) / numCandles - 3);
+      let cur = s.s3 * 1.002;
+
+      for (let i = 0; i < numCandles; i++) {
+        const x = 40 + i * (cW + 3);
+        const step = (Math.sin(i / 3) * 0.4 + (isBull ? 0.35 : -0.35)) * ((high - low) / 12);
+        const o = cur;
+        let c = cur + step;
+        if (i === numCandles - 1) c = ltp;
+
+        const cHigh = Math.min(high, Math.max(o, c) + Math.random() * ((high - low) / 25));
+        const cLow = Math.max(low, Math.min(o, c) - Math.random() * ((high - low) / 25));
+        cur = c;
+
+        const bull = c >= o;
+        const color = bull ? '#10b981' : '#ef4444';
+
+        // Wick
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(x + cW / 2, getY(cHigh));
+        ctx.lineTo(x + cW / 2, getY(cLow));
+        ctx.stroke();
+
+        // Body
+        ctx.fillStyle = color;
+        ctx.fillRect(x, Math.min(getY(o), getY(c)), cW, Math.max(2, Math.abs(getY(c) - getY(o))));
+      }
+    }
+
+    function showInspector(sym, event) {
+      const stock = [...BULLISH_STOCKS, ...BEARISH_STOCKS].find(s => s.sym === sym);
+      if (!stock) return;
+
+      const modal = document.getElementById('hover-inspector-modal');
+      const isBull = stock.pct >= 0;
+
+      document.getElementById('hud-initials').textContent = stock.sym.substring(0, 2);
+      document.getElementById('hud-symbol').textContent = stock.sym;
+      document.getElementById('hud-company').textContent = `${stock.sym} • ${stock.sec.toUpperCase()}`;
+      document.getElementById('hud-rank').textContent = `p99.8 • #${stock.rank}/${isBull ? '145' : '68'}`;
+      
+      const oiEl = document.getElementById('hud-oi');
+      oiEl.textContent = `${stock.oi} • ${stock.intent}`;
+      oiEl.className = isBull ? "hud-val text-emerald-600 font-black" : "hud-val text-rose-600 font-black";
+
+      document.getElementById('hud-vwap').textContent = stock.vwap.toFixed(2);
+      document.getElementById('hud-zs1').textContent = `${stock.s1.toFixed(2)} • ${(stock.s1 - 2.5).toFixed(2)}`;
+      document.getElementById('hud-rr').textContent = stock.rr;
+
+      const badge = document.getElementById('hud-badge-status');
+      badge.textContent = isBull ? `BULLISH ${stock.conv} ★` : `BEARISH ${stock.conv} ★`;
+      badge.className = isBull ? "text-[10px] font-black px-2 py-0.5 rounded uppercase bg-emerald-100 text-emerald-800" : "text-[10px] font-black px-2 py-0.5 rounded uppercase bg-rose-100 text-rose-800";
+
+      const pctEl = document.getElementById('hud-pct');
+      pctEl.textContent = `${isBull ? '+' : ''}${stock.pct.toFixed(2)}%`;
+      pctEl.className = isBull ? "text-2xl font-black mt-1 text-emerald-600" : "text-2xl font-black mt-1 text-rose-600";
+
+      document.getElementById('hud-ltp').textContent = `₹${stock.ltp.toFixed(2)}`;
+      document.getElementById('hud-pick').textContent = `PICK: ${isBull ? 'BULLISH' : 'BEARISH'} #${stock.rank}`;
+
+      // Floating position clamping
+      let x = event.clientX + 20;
+      let y = event.clientY - 120;
+      if (x + 560 > window.innerWidth) x = event.clientX - 580;
+      if (x < 10) x = 10;
+      if (y < 20) y = 20;
+      if (y + 440 > window.innerHeight) y = window.innerHeight - 450;
+
+      modal.style.left = `${x}px`;
+      modal.style.top = `${y}px`;
+      modal.style.display = 'block';
+
+      setTimeout(() => drawInspectorSteppedChart(stock), 20);
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#hover-inspector-modal') && !e.target.closest('.stock-card')) {
+        document.getElementById('hover-inspector-modal').style.display = 'none';
+      }
+    });
+
+    function toggleView(view) {
+      const vMatrix = document.getElementById('container-matrix');
+      const vStream = document.getElementById('container-stream');
+      const bMatrix = document.getElementById('btn-view-matrix');
+      const bStream = document.getElementById('btn-view-stream');
+
+      if (view === 'matrix') {
+        vMatrix.classList.remove('hidden');
+        vStream.classList.add('hidden');
+        bMatrix.className = "px-2.5 py-1 rounded bg-white text-slate-900 shadow-sm";
+        bStream.className = "px-2.5 py-1 rounded text-slate-500 hover:text-slate-900";
+      } else {
+        vMatrix.classList.add('hidden');
+        vStream.classList.remove('hidden');
+        bStream.className = "px-2.5 py-1 rounded bg-white text-slate-900 shadow-sm";
+        bMatrix.className = "px-2.5 py-1 rounded text-slate-500 hover:text-slate-900";
+        renderStreamView();
+      }
+    }
+
+    // Init
+    window.onload = function() {
+      renderMatrixView();
+    };
+  </script>
+</body>
+</html>
