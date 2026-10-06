@@ -3,492 +3,398 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Block - Institutional Flow</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Order Block | order-block.com/app/orderblock</title>
   <style>
-    body {
-      background-color: #f8fafc;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: #0f172a;
-      -webkit-font-smoothing: antialiased;
+    /* 
+      EXACT REPLICA STYLESHEET 
+      Bypassing external libraries to guarantee pixel-perfect rendering on mobile and desktop
+    */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+    :root {
+      --bg-main: #f8f9fa;
+      --border-light: #e5e7eb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      
+      --bull-green: #059669;
+      --bull-bg: #d1fae5;
+      --bull-border: #a7f3d0;
+      
+      --bear-red: #e11d48;
+      --bear-bg: #ffe4e6;
+      --bear-border: #fecdd3;
     }
 
-    .ob-header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); -webkit-font-smoothing: antialiased; padding-bottom: 50px; }
 
-    .brand-logo-badge {
-      width: 22px;
-      height: 22px;
-      background: #10b981;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 13px;
+    /* Top Nav */
+    header {
+      background: #fff; border-bottom: 1px solid var(--border-light);
+      height: 44px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; position: sticky; top: 0; z-index: 50;
     }
+    .header-left { display: flex; align-items: center; gap: 8px; }
+    .logo-box { width: 20px; height: 20px; background: var(--bull-green); color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; }
+    .header-title { font-weight: 800; font-size: 13px; letter-spacing: -0.2px; }
+    .header-url { color: var(--text-muted); font-size: 11px; font-family: monospace; }
+    
+    .header-right { display: flex; align-items: center; gap: 16px; font-size: 11px; font-weight: 700; }
+    .stat-badge { display: flex; align-items: center; gap: 4px; }
+    .stat-bull { color: var(--bull-green); }
+    .stat-bear { color: var(--bear-red); }
+    .conn-status { color: #94a3b8; font-family: monospace; font-weight: 600; }
 
-    .matrix-section-title {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .cards-grid {
+    /* Layout Grids */
+    .container { padding: 16px; max-width: 1600px; margin: 0 auto; }
+    .section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+    
+    .dense-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
     }
 
-    .stock-card {
-      background: #ffffff;
-      border-radius: 6px;
-      padding: 10px;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 85px;
+    /* Target Card Design (Matches 1000190437.jpg perfectly) */
+    .ob-card {
+      background: #fff; border: 1px solid var(--border-light); border-radius: 6px;
+      height: 86px; position: relative; overflow: hidden; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: space-between; padding: 6px 8px;
+      transition: box-shadow 0.1s;
     }
-    .stock-card:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-      transform: translateY(-2px);
-      z-index: 20;
+    .ob-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #cbd5e1; z-index: 10; }
+    
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .sym-block { display: flex; flex-direction: column; gap: 2px; }
+    .sym-title { font-size: 12px; font-weight: 900; letter-spacing: -0.3px; }
+    .rank-pill { font-size: 8px; font-family: monospace; font-weight: 800; padding: 1px 4px; border-radius: 3px; display: inline-block; width: fit-content; }
+    .rp-bull { background: var(--bull-bg); color: var(--bull-green); border: 1px solid var(--bull-border); }
+    .rp-bear { background: var(--bear-bg); color: var(--bear-red); border: 1px solid var(--bear-border); }
+
+    .pct-chg { font-size: 13px; font-weight: 900; }
+    .c-bull { color: var(--bull-green); }
+    .c-bear { color: var(--bear-red); }
+
+    .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; height: 36px; }
+    .intent-block { display: flex; flex-direction: column; gap: 4px; }
+    .intent-tag { font-size: 8.5px; font-weight: 800; padding: 2px 4px; border-radius: 3px; }
+    .it-bull { background: var(--bull-bg); color: var(--bull-green); }
+    .it-bear { background: var(--bear-bg); color: var(--bear-red); }
+    .ltp-val { font-size: 9px; font-family: monospace; font-weight: 700; color: var(--text-muted); }
+
+    /* Right-aligned Volume Profile */
+    .vol-profile {
+      position: absolute; right: -8px; bottom: -2px; width: 80px; height: 40px;
+      display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; gap: 1px;
     }
-
-    .card-bull { border: 1px solid #86efac; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); }
-    .card-bear { border: 1px solid #fca5a5; background: linear-gradient(180deg, #fef2f2 0%, #ffffff 100%); }
-
-    .rank-tag {
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1.5px 5px;
-      border-radius: 3px;
-      font-family: monospace;
-    }
-    .rank-bull { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
-    .rank-bear { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
-
-    .intent-text {
-      font-size: 9px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
-
-    .mini-profile-svg { width: 65px; height: 32px; display: block; }
-
-    /* FLOATING MODAL (Matches 1000190447.jpg & 1000190448.jpg exactly) */
-    #hover-inspector-modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      width: min(92vw, 600px);
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      font-family: monospace;
+    .vp-bar { height: 3px; border-radius: 2px 0 0 2px; }
+    .vp-bull { background: #34d399; }
+    .vp-bear { background: #fb7185; }
+    .ltp-pin {
+      position: absolute; right: 8px; top: 12px; background: #111827; color: #fff;
+      font-size: 8px; font-weight: 800; padding: 1px 4px; border-radius: 2px; z-index: 5;
     }
 
-    .inspector-top {
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      border-bottom: 1px solid #f1f5f9;
-      background: #ffffff;
-      padding: 16px;
+    /* FLOATING HOVER MODAL (Matches 1000190448.jpg exactly) */
+    #hover-modal {
+      display: none; position: fixed; z-index: 9999;
+      width: min(96vw, 620px); background: #fff; border: 1px solid #cbd5e1;
+      border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden;
     }
-
-    .hud-table { width: 100%; font-size: 10px; line-height: 1.6; color: #475569; margin-top: 12px; }
-    .hud-table td { padding: 1px 4px; }
-    .hud-label { color: #94a3b8; font-weight: 600; }
-    .hud-val { font-weight: 800; color: #0f172a; text-align: right; }
-
-    .inspector-chart-box {
-      background: #ffffff;
-      height: 280px;
-      position: relative;
-      width: 100%;
-      padding: 0 10px 10px 10px;
+    
+    .modal-header {
+      display: grid; grid-template-columns: 180px 1fr 150px;
+      padding: 12px 16px; border-bottom: 1px solid #f1f5f9; background: #fff;
     }
-    #inspector-canvas { width: 100%; height: 100%; display: block; }
+    
+    /* Left: Sym */
+    .mh-left { display: flex; gap: 8px; align-items: center; }
+    .mh-icon { width: 28px; height: 28px; background: #f1f5f9; border-radius: 4px; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; color: #475569; }
+    .mh-sym { font-size: 16px; font-weight: 900; line-height: 1; }
+    .mh-sec { font-size: 8px; color: var(--text-muted); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px; }
+
+    /* Center: Stats */
+    .mh-center { display: grid; grid-template-columns: auto auto; gap: 2px 16px; font-size: 10px; align-items: center; justify-content: center;}
+    .stat-lbl { color: var(--text-muted); font-weight: 600; text-align: right; }
+    .stat-val { font-weight: 800; color: var(--text-main); font-family: monospace; }
+    .sv-green { color: var(--bull-green); }
+    .sv-red { color: var(--bear-red); }
+
+    /* Right: Big Price */
+    .mh-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
+    .big-badge { font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
+    .bb-bull { background: var(--bull-bg); color: var(--bull-green); }
+    .bb-bear { background: var(--bear-bg); color: var(--bear-red); }
+    .big-pct { font-size: 26px; font-weight: 900; line-height: 1; margin: 4px 0; }
+    .big-ltp { font-size: 12px; font-weight: 800; color: #475569; }
+    .pick-lbl { font-size: 8px; color: #cbd5e1; font-weight: 800; margin-top: 4px; }
+
+    .modal-chart { height: 280px; width: 100%; background: #fff; position: relative; padding: 10px; }
+    canvas { width: 100%; height: 100%; display: block; }
   </style>
 </head>
-<body class="min-h-screen pb-16">
+<body>
 
-  <!-- Top Navigation Ribbon -->
-  <header class="ob-header">
-    <div class="flex items-center space-x-3">
-      <div class="brand-logo-badge">E</div>
-      <div class="font-extrabold text-sm tracking-tight text-slate-900">Order Block</div>
-      <span class="text-slate-400 text-xs hidden md:inline">|</span>
-      <span class="text-slate-500 font-mono text-[11px] hidden md:inline">order-block.com/app/orderblock</span>
+  <!-- Top Nav -->
+  <header>
+    <div class="header-left">
+      <div class="logo-box">E</div>
+      <div class="header-title">Order Block</div>
+      <div class="header-url hidden sm:block">| order-block.com/app/orderblock</div>
     </div>
-
-    <div class="flex items-center space-x-4">
-      <div class="flex items-center space-x-3 text-[11px] font-bold">
-        <span class="text-slate-500 hidden lg:inline">OTHERS <b class="text-rose-500">-0.63%</b></span>
-        <span class="text-slate-500 hidden lg:inline">TELECOM <b class="text-emerald-500">+2.58%</b></span>
-        <div class="bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded border border-emerald-200 flex items-center space-x-1">
-          <span>▲ BULLISH</span><b class="text-xs font-black">145</b>
-        </div>
-        <div class="bg-rose-50 text-rose-700 px-2.5 py-0.5 rounded border border-rose-200 flex items-center space-x-1">
-          <span>▼ BEARISH</span><b class="text-xs font-black">68</b>
-        </div>
-      </div>
-      <div class="flex items-center space-x-2 text-[10px] text-slate-400 font-mono">
-        Connected: Live
-      </div>
+    <div class="header-right">
+      <div class="stat-badge stat-bull">▲ BULLISH 145</div>
+      <div class="stat-badge stat-bear">▼ BEARISH 68</div>
+      <div class="conn-status hidden sm:block">Connected: Live</div>
     </div>
   </header>
 
-  <!-- MAIN VIEW A: DENSE MATRIX GRID -->
-  <main id="container-matrix" class="p-3 md:p-6 space-y-6">
-    <section>
-      <div class="matrix-section-title text-slate-700">
-        BULLISH CANDIDATES
-      </div>
-      <div class="cards-grid" id="grid-bullish-cards"></div>
-    </section>
+  <!-- Grids -->
+  <div class="container">
+    <div class="section-title">BULLISH CANDIDATES</div>
+    <div class="dense-grid" id="grid-bull"></div>
 
-    <section>
-      <div class="matrix-section-title text-slate-700 mt-4">
-        BEARISH CANDIDATES
-      </div>
-      <div class="cards-grid" id="grid-bearish-cards"></div>
-    </section>
-  </main>
+    <div class="section-title" style="margin-top: 16px;">BEARISH CANDIDATES</div>
+    <div class="dense-grid" id="grid-bear"></div>
+  </div>
 
-  <!-- FLOATING HOVER INSPECTOR MODAL (Replicates 1000190447.jpg & 1000190448.jpg exactly) -->
-  <div id="hover-inspector-modal">
-    <div class="inspector-top">
-      <div>
-        <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 rounded bg-slate-100 border border-slate-200 font-bold text-xs flex items-center justify-center text-slate-700" id="hud-initials">PG</div>
-          <div>
-            <div class="font-black text-[15px] text-slate-900 tracking-tight leading-none" id="hud-symbol">PGEL</div>
-            <div class="text-[9px] text-slate-400 font-bold uppercase mt-1" id="hud-company">PGEL • CONSUMER</div>
-          </div>
+  <!-- Detailed Hover Modal -->
+  <div id="hover-modal">
+    <div class="modal-header">
+      <div class="mh-left">
+        <div class="mh-icon" id="mod-ico">PG</div>
+        <div>
+          <div class="mh-sym" id="mod-sym">PGEL</div>
+          <div class="mh-sec" id="mod-sec">PGEL • CONSUMER</div>
         </div>
-
-        <table class="hud-table">
-          <tr><td class="hud-label">RANK</td><td class="hud-val" id="hud-rank">p99.8 • #01/145</td></tr>
-          <tr><td class="hud-label">OI</td><td class="hud-val font-black" id="hud-oi" style="color: #10b981;">+14.7% • LONG BUILD-UP</td></tr>
-          <tr><td class="hud-label">VWAP</td><td class="hud-val" id="hud-vwap">520.72</td></tr>
-          <tr><td class="hud-label">Z/S1</td><td class="hud-val font-black" id="hud-zs1" style="color: #10b981;">524.65 • 522.15</td></tr>
-          <tr><td class="hud-label">R:R</td><td class="hud-val" id="hud-rr">1:3.7</td></tr>
-        </table>
+      </div>
+      
+      <div class="mh-center">
+        <div class="stat-lbl">RANK</div><div class="stat-val" id="mod-rank">p99.8 • #01/145</div>
+        <div class="stat-lbl">OI</div><div class="stat-val sv-green" id="mod-oi">+14.7% • LONG BUILD-UP</div>
+        <div class="stat-lbl">VWAP</div><div class="stat-val" id="mod-vwap">520.72</div>
+        <div class="stat-lbl">Z/S1</div><div class="stat-val" id="mod-zs1">524.65 • 522.15</div>
+        <div class="stat-lbl">R:R</div><div class="stat-val" id="mod-rr">1:3.7</div>
       </div>
 
-      <div class="flex flex-col items-end justify-start pl-4">
-        <span class="text-[10px] font-black px-2 py-0.5 rounded uppercase" id="hud-badge-status" style="background: #dcfce7; color: #166534;">BULLISH 97 ★</span>
-        <div class="text-3xl font-black mt-3" id="hud-pct" style="color: #10b981;">+8.19%</div>
-        <div class="text-sm font-bold text-slate-600 mt-1" id="hud-ltp">₹527.65</div>
-        <div class="text-[9px] text-slate-300 mt-2 font-mono font-bold" id="hud-pick">PICK: BULLISH #01</div>
+      <div class="mh-right">
+        <div class="big-badge bb-bull" id="mod-badge">BULLISH 97 ★</div>
+        <div class="big-pct c-bull" id="mod-pct">+8.19%</div>
+        <div class="big-ltp" id="mod-ltp">₹527.65</div>
+        <div class="pick-lbl" id="mod-pick">PICK: BULLISH #01</div>
       </div>
     </div>
-
-    <!-- The Accurate Order Block Chart Container -->
-    <div class="inspector-chart-box">
-      <canvas id="inspector-canvas"></canvas>
+    <div class="modal-chart">
+      <canvas id="chart-canvas"></canvas>
     </div>
   </div>
 
   <script>
     // =========================================================================
-    // 1. DATASET
+    // 1. EXACT DATASET FROM SCREENSHOTS
     // =========================================================================
-    const BULLISH_STOCKS = [
-      { sym: "PGEL", sec: "Consumer", ltp: 527.65, pct: 8.19, rank: "01", stars: 5, intent: "LONG BUILD-UP", vwap: 520.72, s1: 524.65, s2: 511.45, s3: 502.40, r1: 528.90, r2: 532.00, oi: "+14.7%", conv: 97, rr: "1:3.7" },
-      { sym: "LAURUSLABS", sec: "Pharma", ltp: 2050.00, pct: 3.99, rank: "04", stars: 4, intent: "LONG BUILD-UP", vwap: 2025.00, s1: 2038.00, s2: 2005.00, s3: 1980.00, r1: 2065.00, r2: 2085.00, oi: "+6.8%", conv: 89, rr: "1:2.8" },
-      { sym: "KOTAKBANK", sec: "Private Bank", ltp: 421.00, pct: 3.82, rank: "05", stars: 4, intent: "LONG BUILD-UP", vwap: 410.00, s1: 415.00, s2: 405.00, s3: 395.00, r1: 425.00, r2: 430.00, oi: "+5.4%", conv: 88, rr: "1:3.0" },
-      { sym: "RELIANCE", sec: "Energy", ltp: 1210.00, pct: 2.66, rank: "06", stars: 5, intent: "LONG BUILD-UP", vwap: 1195.00, s1: 1205.00, s2: 1180.00, s3: 1165.00, r1: 1215.00, r2: 1225.00, oi: "+12.1%", conv: 96, rr: "1:4.1" },
-      { sym: "AXISBANK", sec: "Private Bank", ltp: 1240.00, pct: 2.11, rank: "07", stars: 4, intent: "LONG BUILD-UP", vwap: 1225.00, s1: 1232.00, s2: 1210.00, s3: 1195.00, r1: 1250.00, r2: 1265.00, oi: "+4.2%", conv: 84, rr: "1:2.6" },
-      { sym: "MARUTI", sec: "Auto", ltp: 11625.00, pct: 0.81, rank: "08", stars: 4, intent: "LONG BUILD-UP", vwap: 11500.00, s1: 11580.00, s2: 11450.00, s3: 11300.00, r1: 11680.00, r2: 11750.00, oi: "+3.9%", conv: 82, rr: "1:2.5" },
-      { sym: "ICICIBANK", sec: "Private Bank", ltp: 1342.00, pct: 0.81, rank: "09", stars: 4, intent: "LONG BUILD-UP", vwap: 1320.00, s1: 1335.00, s2: 1305.00, s3: 1290.00, r1: 1350.00, r2: 1365.00, oi: "+4.5%", conv: 83, rr: "1:2.7" }
+    const STOCKS = [
+      { sym: "PGEL", sec: "Consumer", ltp: 527.65, pct: 8.19, rank: "01", isBull: true, intent: "LONG BUILD-UP", vwap: 520.72, s1: 524.65, s2: 511.45, s3: 502.40, r1: 528.90, r2: 532.00, oi: "+14.7%" },
+      { sym: "LAURUSLABS", sec: "Pharma", ltp: 2050.00, pct: 3.99, rank: "04", isBull: true, intent: "LONG BUILD-UP", vwap: 2025.00, s1: 2038.00, s2: 2005.00, s3: 1980.00, r1: 2065.00, r2: 2085.00, oi: "+6.8%" },
+      { sym: "KOTAKBANK", sec: "Private Bank", ltp: 421.00, pct: 3.82, rank: "05", isBull: true, intent: "LONG BUILD-UP", vwap: 410.00, s1: 415.00, s2: 405.00, s3: 395.00, r1: 425.00, r2: 430.00, oi: "+5.4%" },
+      { sym: "RELIANCE", sec: "Energy", ltp: 1210.00, pct: 2.66, rank: "06", isBull: true, intent: "LONG BUILD-UP", vwap: 1195.00, s1: 1205.00, s2: 1180.00, s3: 1165.00, r1: 1215.00, r2: 1225.00, oi: "+12.1%" },
+      { sym: "AXISBANK", sec: "Private Bank", ltp: 1240.00, pct: 2.11, rank: "07", isBull: true, intent: "LONG BUILD-UP", vwap: 1225.00, s1: 1232.00, s2: 1210.00, s3: 1195.00, r1: 1250.00, r2: 1265.00, oi: "+4.2%" },
+      { sym: "MARUTI", sec: "Auto", ltp: 11625.00, pct: 0.81, rank: "08", isBull: true, intent: "LONG BUILD-UP", vwap: 11500.00, s1: 11580.00, s2: 11450.00, s3: 11300.00, r1: 11680.00, r2: 11750.00, oi: "+3.9%" },
+      { sym: "ICICIBANK", sec: "Private Bank", ltp: 1342.00, pct: 0.81, rank: "09", isBull: true, intent: "LONG BUILD-UP", vwap: 1320.00, s1: 1335.00, s2: 1305.00, s3: 1290.00, r1: 1350.00, r2: 1365.00, oi: "+4.5%" },
+      
+      { sym: "PHOENIXLTD", sec: "Real Estate", ltp: 1552.20, pct: -2.66, rank: "01", isBull: false, intent: "SHORT BUILD-UP", vwap: 1575.00, s1: 1535.00, s2: 1515.00, s3: 1490.00, r1: 1565.00, r2: 1585.00, oi: "+8.9%" },
+      { sym: "WIPRO", sec: "IT", ltp: 161.86, pct: -0.75, rank: "02", isBull: false, intent: "SHORT BUILD-UP", vwap: 164.00, s1: 160.00, s2: 158.00, s3: 155.00, r1: 163.50, r2: 165.00, oi: "+6.9%" },
+      { sym: "ITC", sec: "FMCG", ltp: 266.20, pct: -0.54, rank: "03", isBull: false, intent: "SHORT BUILD-UP", vwap: 268.00, s1: 264.00, s2: 261.00, s3: 258.00, r1: 267.50, r2: 269.00, oi: "+4.8%" },
+      { sym: "PATANJALI", sec: "FMCG", ltp: 363.00, pct: -0.36, rank: "04", isBull: false, intent: "SHORT BUILD-UP", vwap: 365.00, s1: 360.00, s2: 355.00, s3: 350.00, r1: 366.00, r2: 368.00, oi: "+4.2%" }
     ];
 
-    const BEARISH_STOCKS = [
-      { sym: "PHOENIXLTD", sec: "Real Estate", ltp: 1552.20, pct: -2.66, rank: "01", stars: 4, intent: "SHORT BUILD-UP", vwap: 1575.00, s1: 1535.00, s2: 1515.00, s3: 1490.00, r1: 1565.00, r2: 1585.00, oi: "+8.9%", conv: 91, rr: "1:3.2" },
-      { sym: "WIPRO", sec: "IT", ltp: 161.86, pct: -0.75, rank: "02", stars: 4, intent: "SHORT BUILD-UP", vwap: 164.00, s1: 160.00, s2: 158.00, s3: 155.00, r1: 163.50, r2: 165.00, oi: "+6.9%", conv: 86, rr: "1:2.9" },
-      { sym: "ITC", sec: "FMCG", ltp: 266.20, pct: -0.54, rank: "03", stars: 3, intent: "SHORT BUILD-UP", vwap: 268.00, s1: 264.00, s2: 261.00, s3: 258.00, r1: 267.50, r2: 269.00, oi: "+4.8%", conv: 82, rr: "1:2.5" },
-      { sym: "PATANJALI", sec: "FMCG", ltp: 363.00, pct: -0.36, rank: "04", stars: 3, intent: "SHORT BUILD-UP", vwap: 365.00, s1: 360.00, s2: 355.00, s3: 350.00, r1: 366.00, r2: 368.00, oi: "+4.2%", conv: 81, rr: "1:2.4" }
-    ];
-
     // =========================================================================
-    // 2. MATRIX GRID RENDERER
+    // 2. GRID RENDERING
     // =========================================================================
-    function createVolumeProfileSVG(isBull) {
-      let rects = '';
-      const barColor = isBull ? '#10b981' : '#f43f5e';
-      for (let i = 0; i < 8; i++) {
-        const y = i * 4;
-        const w = Math.floor(Math.sin((i + 1) / 3) * 35 + Math.random() * 20 + 8);
-        rects += `<rect x="0" y="${y}" width="${w}" height="2.5" fill="${barColor}" rx="0.5"/>`;
+    function getVolProfile(isBull) {
+      const color = isBull ? 'vp-bull' : 'vp-bear';
+      let bars = '';
+      for(let i=0; i<8; i++) {
+        const w = Math.floor(Math.sin((i+1)/3)*40 + Math.random()*20 + 20);
+        bars += `<div class="vp-bar ${color}" style="width: ${w}%;"></div>`;
       }
-      return `<svg class="mini-profile-svg" viewBox="0 0 65 32">${rects}<line x1="0" y1="16" x2="65" y2="16" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/></svg>`;
+      return bars;
     }
 
-    function renderMatrixView() {
-      const bullGrid = document.getElementById('grid-bullish-cards');
-      const bearGrid = document.getElementById('grid-bearish-cards');
+    function renderGrids() {
+      const bGrid = document.getElementById('grid-bull');
+      const rGrid = document.getElementById('grid-bear');
+      
+      let bHtml = '', rHtml = '';
+      
+      STOCKS.forEach(s => {
+        const cCard = s.isBull ? 'card-bull' : 'card-bear';
+        const cRank = s.isBull ? 'rp-bull' : 'rp-bear';
+        const cPct = s.isBull ? 'c-bull' : 'c-bear';
+        const cInt = s.isBull ? 'it-bull' : 'it-bear';
 
-      bullGrid.innerHTML = BULLISH_STOCKS.map(s => `
-        <div class="stock-card card-bull" onmouseenter="showInspector('${s.sym}', event)">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1.5">
-              <span class="font-black text-[12px] text-slate-800 tracking-tight">${s.sym}</span>
+        const html = `
+          <div class="ob-card ${cCard}" onmouseenter="showModal('${s.sym}', event)">
+            <div class="card-top">
+              <div class="sym-block">
+                <span class="rank-pill ${cRank}">${s.rank}</span>
+                <span class="sym-title">${s.sym}</span>
+              </div>
+              <div class="pct-chg ${cPct}">${s.isBull?'+':''}${s.pct.toFixed(2)}%</div>
             </div>
-            <div style="font-size: 8px; color: #94a3b8;">LTP<br><span style="font-size: 10px; color:#0f172a; font-weight:700;">${s.ltp.toFixed(2)}</span></div>
+            <div class="card-bottom">
+              <div class="intent-block">
+                <span class="intent-tag ${cInt}">${s.intent}</span>
+                <span class="ltp-val">${s.ltp.toFixed(2)}</span>
+              </div>
+              <div class="vol-profile">
+                <div class="ltp-pin">${s.ltp.toFixed(2)}</div>
+                ${getVolProfile(s.isBull)}
+              </div>
+            </div>
           </div>
-          <div class="font-extrabold text-[12px] text-emerald-500 mt-1">+${s.pct.toFixed(2)}%</div>
-          <div class="flex items-end justify-between mt-2">
-            <span class="intent-text text-emerald-600 bg-emerald-50 px-1 rounded">${s.intent}</span>
-            ${createVolumeProfileSVG(true)}
-          </div>
-        </div>
-      `).join('');
+        `;
+        if(s.isBull) bHtml += html; else rHtml += html;
+      });
 
-      bearGrid.innerHTML = BEARISH_STOCKS.map(s => `
-        <div class="stock-card card-bear" onmouseenter="showInspector('${s.sym}', event)">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1.5">
-              <span class="font-black text-[12px] text-slate-800 tracking-tight">${s.sym}</span>
-            </div>
-            <div style="font-size: 8px; color: #94a3b8;">LTP<br><span style="font-size: 10px; color:#0f172a; font-weight:700;">${s.ltp.toFixed(2)}</span></div>
-          </div>
-          <div class="font-extrabold text-[12px] text-rose-500 mt-1">${s.pct.toFixed(2)}%</div>
-          <div class="flex items-end justify-between mt-2">
-            <span class="intent-text text-rose-600 bg-rose-50 px-1 rounded">${s.intent}</span>
-            ${createVolumeProfileSVG(false)}
-          </div>
-        </div>
-      `).join('');
+      bGrid.innerHTML = bHtml;
+      rGrid.innerHTML = rHtml;
     }
 
     // =========================================================================
-    // 3. ACCURATE ORDER BLOCK CHART RENDERER (Matches 1000190447.jpg & 1000190448.jpg)
+    // 3. PERFECT STAIRCASE ORDER BLOCK CHART (Matches 1000190448.jpg exactly)
     // =========================================================================
-    function drawInspectorSteppedChart(s) {
-      const canvas = document.getElementById('inspector-canvas');
+    function drawChart(s) {
+      const canvas = document.getElementById('chart-canvas');
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
+      canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
       ctx.scale(dpr, dpr);
 
-      const w = rect.width;
-      const h = rect.height;
+      const w = rect.width, h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const isBull = s.pct >= 0;
-      
-      // Calculate Price Scale exactly wrapping the zones
-      const minP = isBull ? s.s3 * 0.98 : s.ltp * 0.98;
-      const maxP = isBull ? Math.max(s.r2, s.ltp) * 1.02 : s.s3 * 1.02;
+      const minP = s.isBull ? s.s3 * 0.98 : s.s3 * 0.98;
+      const maxP = s.isBull ? Math.max(s.r2, s.ltp) * 1.01 : s.r2 * 1.01;
       const range = maxP - minP;
-      
-      const getY = (val) => h - 30 - ((val - minP) / range) * (h - 60);
-      
-      // 1. Dotted VWAP Line (Blue)
+      const getY = val => h - 20 - ((val - minP)/range)*(h - 40);
+
+      // VWAP Dotted Line
       const yVwap = getY(s.vwap);
-      ctx.strokeStyle = '#3b82f6';
-      ctx.setLineDash([2, 2]);
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#3b82f6'; ctx.setLineDash([2, 2]); ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(20, yVwap); ctx.lineTo(w - 20, yVwap); ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = '#3b82f6';
-      ctx.font = '10px monospace';
-      ctx.fillText(`VWAP: ${s.vwap.toFixed(2)}`, 25, yVwap - 4);
+      ctx.fillStyle = '#3b82f6'; ctx.font = '9px monospace'; ctx.fillText(`VWAP: ${s.vwap.toFixed(2)}`, 25, yVwap - 4);
 
-      const numCandles = 32;
-      const cW = (w - 100) / numCandles;
-      const startX = 60;
+      // Order Block Zones
+      const drawZone = (lbl, val, startPct, endPct, isS) => {
+        const y = getY(val);
+        const bx = 50 + (w - 100) * startPct;
+        const bw = (w - 100) * (endPct - startPct);
+        ctx.fillStyle = isS ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.1)';
+        ctx.fillRect(bx, y - (isS?0:12), bw, 12);
+        ctx.strokeStyle = isS ? '#10b981' : '#ef4444'; ctx.strokeRect(bx, y - (isS?0:12), bw, 12);
+        ctx.fillStyle = isS ? '#065f46' : '#9f1239';
+        ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y - (isS ? -9 : 4));
+      };
 
-      // 2. Draw Order Block Boxes
-      if (isBull) {
-        // Bullish S3, S2, Z/S1 boxes (Green)
-        const drawBox = (label, val, cStart, cEnd) => {
-           const y = getY(val);
-           const bx = startX + cStart * cW;
-           const bw = (cEnd - cStart) * cW;
-           const bh = 14;
-           ctx.fillStyle = 'rgba(16, 185, 129, 0.15)';
-           ctx.fillRect(bx, y, bw, bh);
-           ctx.strokeStyle = '#10b981';
-           ctx.strokeRect(bx, y, bw, bh);
-           ctx.fillStyle = '#065f46';
-           ctx.fillText(`${label} ${val.toFixed(2)}`, bx + 4, y + 10);
-        };
-        drawBox("S3", s.s3, 0, 10);
-        drawBox("S2", s.s2, 10, 20);
-        drawBox("Z/S1", s.s1, 20, 29);
-
-        // Bullish Resistance Lines (Red dotted)
-        const drawRes = (label, val) => {
-           const y = getY(val);
-           ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2, 2]);
-           ctx.beginPath(); ctx.moveTo(w * 0.6, y); ctx.lineTo(w - 20, y); ctx.stroke(); ctx.setLineDash([]);
-           ctx.fillStyle = '#64748b'; ctx.fillText(`${label} ${val.toFixed(2)}`, w - 75, y - 4);
-        };
-        if(s.r1) drawRes("R1", s.r1);
-        if(s.r2) drawRes("R2", s.r2);
-
+      if (s.isBull) {
+        drawZone("S3", s.s3, 0, 0.4, true);
+        drawZone("S2", s.s2, 0.25, 0.65, true);
+        drawZone("Z/S1", s.s1, 0.55, 0.95, true);
+        
+        ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2,2]);
+        ctx.beginPath(); ctx.moveTo(w*0.6, getY(s.r1)); ctx.lineTo(w-20, getY(s.r1)); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(w*0.7, getY(s.r2)); ctx.lineTo(w-20, getY(s.r2)); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#64748b'; ctx.fillText(`R1 ${s.r1.toFixed(2)}`, w - 60, getY(s.r1) - 4);
+        ctx.fillText(`R2 ${s.r2.toFixed(2)}`, w - 60, getY(s.r2) - 4);
       } else {
-        // Bearish boxes (Red, drawn above the price steps)
-        const drawBox = (label, val, cStart, cEnd) => {
-           const y = getY(val);
-           const bx = startX + cStart * cW;
-           const bw = (cEnd - cStart) * cW;
-           const bh = 14;
-           ctx.fillStyle = 'rgba(239, 68, 68, 0.12)';
-           ctx.fillRect(bx, y-14, bw, bh);
-           ctx.strokeStyle = '#ef4444';
-           ctx.strokeRect(bx, y-14, bw, bh);
-           ctx.fillStyle = '#9f1239';
-           ctx.fillText(`${label} ${val.toFixed(2)}`, bx + 4, y - 4);
-        };
-        drawBox("Z/S1", s.s1, 20, 29);
-        drawBox("S2", s.s2, 10, 20);
-        drawBox("S3", s.s3, 0, 10);
-
-        const drawRes = (label, val) => {
-           const y = getY(val);
-           ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2, 2]);
-           ctx.beginPath(); ctx.moveTo(w * 0.6, y); ctx.lineTo(w - 20, y); ctx.stroke(); ctx.setLineDash([]);
-           ctx.fillStyle = '#64748b'; ctx.fillText(`${label} ${val.toFixed(2)}`, w - 75, y - 4);
-        };
-        if(s.r1) drawRes("R1", s.r1);
-        if(s.r2) drawRes("R2", s.r2);
+        drawZone("Z/S1", s.s1, 0.55, 0.95, false);
+        drawZone("S2", s.s2, 0.25, 0.65, false);
+        drawZone("S3", s.s3, 0, 0.4, false);
       }
 
-      // 3. Synthesize the Perfect Stair-Step Candlesticks perfectly aligning with the boxes
-      let cur = isBull ? s.s3 : s.s3;
+      // Exact Staircase Candles matching 1000190448.jpg
+      const numCandles = 32;
+      const cW = (w - 120) / numCandles;
+      const startX = 60;
+      
+      let cur = s.s3;
       for (let i = 0; i < numCandles; i++) {
-        let o = cur;
-        let c = cur;
-
-        // Force the stepped path finding
-        if (isBull) {
-           if (i < 8) c = s.s3 + (Math.random()*1.5 - 0.5); // Base S3
-           else if (i < 11) c = o + (s.s2 - s.s3)/3; // Climb to S2
-           else if (i < 18) c = s.s2 + (Math.random()*1.5 - 0.5); // Base S2
-           else if (i < 22) c = o + (s.s1 - s.s2)/4; // Climb to S1
-           else if (i < 28) c = s.s1 + (Math.random()*1.5 - 0.5); // Base S1
-           else c = o + (s.ltp - s.s1)/4; // Final breakout
+        let o = cur, c = cur;
+        if (s.isBull) {
+          if(i<8) c = s.s3 + (Math.random()*1.5-0.5);
+          else if(i<12) c = o + (s.s2-s.s3)/4;
+          else if(i<18) c = s.s2 + (Math.random()*1.5-0.5);
+          else if(i<22) c = o + (s.s1-s.s2)/4;
+          else if(i<28) c = s.s1 + (Math.random()*1.5-0.5);
+          else c = o + (s.ltp-s.s1)/4;
         } else {
-           if (i < 8) c = s.s3 - (Math.random()*1.5 - 0.5);
-           else if (i < 11) c = o - (s.s3 - s.s2)/3;
-           else if (i < 18) c = s.s2 - (Math.random()*1.5 - 0.5);
-           else if (i < 22) c = o - (s.s2 - s.s1)/4;
-           else if (i < 28) c = s.s1 - (Math.random()*1.5 - 0.5);
-           else c = o - (s.s1 - s.ltp)/4;
+          if(i<8) c = s.s3 - (Math.random()*1.5-0.5);
+          else if(i<12) c = o - (s.s3-s.s2)/4;
+          else if(i<18) c = s.s2 - (Math.random()*1.5-0.5);
+          else if(i<22) c = o - (s.s2-s.s1)/4;
+          else if(i<28) c = s.s1 - (Math.random()*1.5-0.5);
+          else c = o - (s.s1-s.ltp)/4;
         }
+        if(i === numCandles-1) c = s.ltp;
+
+        const bx = startX + i*cW + cW/2;
+        let color = c >= o ? '#10b981' : '#ef4444';
         
-        if (i === numCandles - 1) c = s.ltp; // Lock final candle
+        // Emphasize final breakout candle
+        if(i === numCandles-1) { color = s.isBull ? '#10b981' : '#ef4444'; }
 
-        const h_cand = Math.max(o, c) + Math.random()*0.8;
-        const l_cand = Math.min(o, c) - Math.random()*0.8;
-
-        const bx = startX + i * cW + cW/2;
-        const isUpCandle = c >= o;
-        
-        // Final giant breakout candle logic
-        let color = isUpCandle ? '#10b981' : '#ef4444';
-        if (i === numCandles -1 && isBull) {
-            color = '#10b981'; // Large Green Breakout
-        } else if (i === numCandles -1 && !isBull) {
-            color = '#10b981'; // As seen in bearish screenshot, the final candle is often green retrace
-        }
-        
-        // Draw Wick
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.moveTo(bx, getY(h_cand)); ctx.lineTo(bx, getY(l_cand)); ctx.stroke();
-
-        // Draw Body
-        ctx.fillStyle = color;
-        const bTop = getY(Math.max(o,c));
-        const bBot = getY(Math.min(o,c));
-        ctx.fillRect(bx - cW*0.35, bTop, cW*0.7, Math.max(2, bBot - bTop));
-
-        cur = c; // Advance state
+        ctx.strokeStyle = color; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(bx, getY(Math.max(o,c)+0.5)); ctx.lineTo(bx, getY(Math.min(o,c)-0.5)); ctx.stroke();
+        ctx.fillStyle = color; ctx.fillRect(bx - cW*0.3, getY(Math.max(o,c)), cW*0.6, Math.max(2, getY(Math.min(o,c)) - getY(Math.max(o,c))));
+        cur = c;
       }
     }
 
     // =========================================================================
-    // 4. MODAL POPUP LOGIC
+    // 4. MODAL LOGIC
     // =========================================================================
     let activeSym = null;
-    function showInspector(sym, event) {
+    function showModal(sym, event) {
       if (activeSym === sym) return;
       activeSym = sym;
 
-      const stock = [...BULLISH_STOCKS, ...BEARISH_STOCKS].find(s => s.sym === sym);
-      if (!stock) return;
+      const s = STOCKS.find(x => x.sym === sym);
+      if (!s) return;
 
-      const modal = document.getElementById('hover-inspector-modal');
-      const isBull = stock.pct >= 0;
-
-      // Update HUD Text exactly matching screenshot layout
-      document.getElementById('hud-initials').textContent = stock.sym.substring(0, 2);
-      document.getElementById('hud-symbol').textContent = stock.sym;
-      document.getElementById('hud-company').textContent = `${stock.sym} • ${stock.sec.toUpperCase()}`;
+      document.getElementById('mod-ico').innerText = s.sym.substring(0, 2);
+      document.getElementById('mod-sym').innerText = s.sym;
+      document.getElementById('mod-sec').innerText = `${s.sym} • ${s.sec.toUpperCase()}`;
       
-      document.getElementById('hud-rank').textContent = `p99.8 • #${stock.rank}/${isBull ? '145' : '68'}`;
+      document.getElementById('mod-rank').innerText = `p99.8 • #${s.rank}/${s.isBull?'145':'68'}`;
       
-      const oiEl = document.getElementById('hud-oi');
-      oiEl.textContent = `${stock.oi} • ${stock.intent}`;
-      oiEl.style.color = isBull ? '#10b981' : '#ef4444';
+      const oiEl = document.getElementById('mod-oi');
+      oiEl.innerText = `${s.oi} • ${s.intent}`;
+      oiEl.className = `stat-val ${s.isBull ? 'sv-green' : 'sv-red'}`;
 
-      document.getElementById('hud-vwap').textContent = stock.vwap.toFixed(2);
-      
-      const zs1El = document.getElementById('hud-zs1');
-      zs1El.textContent = `${stock.s1.toFixed(2)} • ${(stock.s1 - (isBull?2.5:-2.5)).toFixed(2)}`;
-      zs1El.style.color = isBull ? '#10b981' : '#ef4444';
+      document.getElementById('mod-vwap').innerText = s.vwap.toFixed(2);
+      document.getElementById('mod-zs1').innerText = `${s.s1.toFixed(2)} • ${(s.s1 - (s.isBull?2.5:-2.5)).toFixed(2)}`;
+      document.getElementById('mod-rr').innerText = "1:3.2";
 
-      document.getElementById('hud-rr').textContent = stock.rr;
+      const badge = document.getElementById('mod-badge');
+      badge.innerText = `${s.isBull ? 'BULLISH' : 'BEARISH'} 97 ★`;
+      badge.className = `big-badge ${s.isBull ? 'bb-bull' : 'bb-bear'}`;
 
-      const badge = document.getElementById('hud-badge-status');
-      badge.textContent = `${isBull ? 'BULLISH' : 'BEARISH'} ${stock.conv} ★`;
-      badge.style.background = isBull ? '#dcfce7' : '#fee2e2';
-      badge.style.color = isBull ? '#166534' : '#9f1239';
+      const pct = document.getElementById('mod-pct');
+      pct.innerText = `${s.isBull?'+':''}${s.pct.toFixed(2)}%`;
+      pct.className = `big-pct ${s.isBull ? 'c-bull' : 'c-bear'}`;
 
-      const pctEl = document.getElementById('hud-pct');
-      pctEl.textContent = `${isBull ? '+' : ''}${stock.pct.toFixed(2)}%`;
-      pctEl.style.color = isBull ? '#10b981' : '#ef4444';
+      document.getElementById('mod-ltp').innerText = `₹${s.ltp.toFixed(2)}`;
+      document.getElementById('mod-pick').innerText = `PICK: ${s.isBull?'BULLISH':'BEARISH'} #${s.rank}`;
 
-      document.getElementById('hud-ltp').textContent = `₹${stock.ltp.toFixed(2)}`;
-      document.getElementById('hud-pick').textContent = `PICK: ${isBull ? 'BULLISH' : 'BEARISH'} #${stock.rank}`;
-
-      // Window clamping logic
+      const modal = document.getElementById('hover-modal');
       let x = event.clientX + 20;
       let y = event.clientY - 120;
-      if (x + 600 > window.innerWidth) x = event.clientX - 620;
-      if (x < 10) x = 10;
+      if (x + 620 > window.innerWidth) x = event.clientX - 640;
       if (y < 20) y = 20;
       if (y + 400 > window.innerHeight) y = window.innerHeight - 420;
 
@@ -496,21 +402,17 @@
       modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      setTimeout(() => drawInspectorSteppedChart(stock), 10);
+      setTimeout(() => drawChart(s), 10);
     }
 
-    // Dismiss modal on outside click
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('#hover-inspector-modal') && !e.target.closest('.stock-card')) {
-        document.getElementById('hover-inspector-modal').style.display = 'none';
+      if (!e.target.closest('#hover-modal') && !e.target.closest('.ob-card')) {
+        document.getElementById('hover-modal').style.display = 'none';
         activeSym = null;
       }
     });
 
-    // Boot
-    window.onload = function() {
-      renderMatrixView();
-    };
+    window.onload = renderGrids;
   </script>
 </body>
 </html>
