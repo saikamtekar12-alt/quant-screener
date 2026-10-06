@@ -1,11 +1,12 @@
 import json
 import os
+import time
 from datetime import datetime, timedelta, timezone
 import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Official Option Chain Universe
+# Complete Active Option Chain Universe
 OPTION_CHAIN_UNIVERSE = [
     {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Private Bank"},
     {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Private Bank"},
@@ -41,7 +42,7 @@ def run_quant_engine():
     now_ist = datetime.now(ist)
     current_time_str = now_ist.strftime("%H:%M")
 
-    # PRESERVE INITIAL TIMESTAMPS FOR 4/4 ENGINES ONLY
+    # Preserve initial qualification timestamps for the 4/4 Momentum Matrix only
     stored_timestamps = {}
     if os.path.exists("screener.json"):
         try:
@@ -115,6 +116,28 @@ def run_quant_engine():
             max_hf = round(hyperflow * 1.6, 1)
             min_hf = round(max(1.0, hyperflow * 0.55), 1)
 
+            # SMC Order Block Calculation (Support = Demand OB Top, Resistance = Supply OB Bottom)
+            try:
+                down_candles = today_5m[today_5m['Close'] < today_5m['Open']]
+                up_candles = today_5m[today_5m['Close'] > today_5m['Open']]
+                
+                # Demand OB = Highest point of the lowest bearish candle
+                if not down_candles.empty:
+                    dem_idx = down_candles['Low'].idxmin()
+                    ob_support = max(today_5m.loc[dem_idx, 'Open'], today_5m.loc[dem_idx, 'Close'])
+                else:
+                    ob_support = day_low * 1.002
+                    
+                # Supply OB = Lowest point of the highest bullish candle
+                if not up_candles.empty:
+                    sup_idx = up_candles['High'].idxmax()
+                    ob_resistance = min(today_5m.loc[sup_idx, 'Open'], today_5m.loc[sup_idx, 'Close'])
+                else:
+                    ob_resistance = day_high * 0.998
+            except Exception:
+                ob_support = day_low
+                ob_resistance = day_high
+
             # Strict 4/4 Matrix Rules
             r_bull_breakout = (ltp > orb_high) and (ltp > vwap)
             r_bull_volume   = (rvat >= 1.25)
@@ -178,14 +201,13 @@ def run_quant_engine():
                 ob_signal, ob_desc, ob_color = "Negative Gamma", "Dealers forced to hedge directionally, driving trend extension.", "tag-purple"
 
             if ob_signal:
-                # DYNAMIC REFRESH TIMING FOR ORDER BLOCKS ONLY
                 ob_row = dict(base_row)
-                ob_row["listed_at"] = current_time_str  
+                ob_row["listed_at"] = current_time_str  # Dynamic refresh timing
                 ob_row["ob_signal"] = ob_signal
                 ob_row["ob_desc"] = ob_desc
                 ob_row["ob_color"] = ob_color
                 ob_row["ob_rating"] = ob_rating
-                ob_row["ob_sup_res"] = f"S: {day_low:.1f} | R: {day_high:.1f}"
+                ob_row["ob_sup_res"] = f"S: {ob_support:.1f} | R: {ob_resistance:.1f}"
                 ob_row["ob_4x4"] = "4/4 BULL" if bull_score == 4 else ("4/4 BEAR" if bear_score == 4 else "PENDING")
                 order_block_concepts.append(ob_row)
 
@@ -206,7 +228,9 @@ def run_quant_engine():
         except Exception:
             continue
 
-    # INJECTION FOR MARKET CLOSED TESTING (Matches your specific screenshots exactly)
+    # ==========================================
+    # FALLBACK DATA INJECTION (FOR MARKET CLOSED)
+    # ==========================================
     def build_candidate(name, sec, chg, tm, hf, is_news=False):
         k = f"mock_{name}"
         matched = next((x for x in valid_scanned if x["symbol"] == name), None)
@@ -214,6 +238,10 @@ def run_quant_engine():
         cands = matched["candles"] if matched else []
         dh = matched["day_high"] if matched else round(ltp_val * 1.015, 2)
         dl = matched["day_low"] if matched else round(ltp_val * 0.985, 2)
+        
+        # Order block fallback proxies
+        ob_sup = round(ltp_val * 0.988, 1)
+        ob_res = round(ltp_val * 1.012, 1)
 
         return {
             "symbol": name, "sector": sec, "ltp": ltp_val, "pct_chg": chg, "pct_display": f"{abs(chg):.2f}",
@@ -221,10 +249,10 @@ def run_quant_engine():
             "hyperflow": hf, "max_hyperflow": "12.4x", "min_hyperflow": "2.1x",
             "listed_at": stored_timestamps.get(k, tm), "has_news": is_news, "candles": cands,
             "bull_score": "4/4" if chg > 0 else "1/4", "bear_score": "4/4" if chg < 0 else "1/4",
-            "rules_bull": {"Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES"},
-            "rules_bear": {"Breakout": "YES" if chg < 0 else "NO", "VWAP": "YES" if chg < 0 else "NO", "DL": "YES" if chg < 0 else "NO", "PDL": "YES" if chg < 0 else "NO"},
+            "rules_bull": { "Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES" },
+            "rules_bear": { "Breakout": "YES", "VWAP": "YES", "DL": "YES", "PDL": "YES" },
             "ob_rating": 4 if chg > 0 else -4,
-            "ob_sup_res": f"S: {dl} | R: {dh}",
+            "ob_sup_res": f"S: {ob_sup} | R: {ob_res}",
             "ob_4x4": "4/4 BULL" if chg > 0 else "4/4 BEAR"
         }
 
@@ -233,40 +261,25 @@ def run_quant_engine():
             build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
             build_candidate("VEDL", "Metal", 0.94, "09:30", "10.6x", True),
             build_candidate("BLUESTARCO", "Consumer Durables", 1.22, "09:40", "5.0x", False),
-            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False),
-            build_candidate("LAURUSLABS", "Pharma", 0.47, "10:07", "1.4x", False)
+            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False)
         ])
-
-    if not titan_bullish:
-        titan_bullish.extend([
-            build_candidate("TRENT", "Retail", 2.14, "09:18", "16.8x", True),
-            build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
-            build_candidate("KOTAKBANK", "Private Bank", 0.85, "09:35", "4.6x", False)
-        ])
-
     if not titan_bearish:
         titan_bearish.extend([
             build_candidate("ITC", "FMCG", -0.54, "09:40", "8.2x", True),
             build_candidate("WIPRO", "IT", -0.75, "09:26", "6.4x", True),
-            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False),
-            build_candidate("HCLTECH", "IT", -0.78, "09:59", "4.1x", False),
-            build_candidate("TECHM", "IT", -0.75, "09:28", "3.6x", True)
+            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False)
         ])
-
     if not order_block_concepts:
         ob1 = build_candidate("RELIANCE", "Energy", 2.11, current_time_str, "5.8x", True)
-        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price testing High Volume Node (real support).", "ob_color": "tag-cyan", "listed_at": current_time_str})
+        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price consolidating at High Volume Node.", "ob_color": "tag-cyan", "ob_rating": 3, "listed_at": current_time_str})
         
         ob2 = build_candidate("HDFCBANK", "Private Bank", -2.04, current_time_str, "6.2x", True)
-        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tight spread. Buyers absorbing.", "ob_color": "tag-green", "ob_rating": -4, "ob_4x4": "PENDING", "listed_at": current_time_str})
+        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tiny spread. Limit buyers absorbing.", "ob_color": "tag-green", "ob_rating": -3, "ob_4x4": "PENDING", "listed_at": current_time_str})
         
         ob3 = build_candidate("TATASTEEL", "Metal", 2.71, current_time_str, "8.1x", False)
-        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Price transitioned from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
+        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Auction Market Theory breakout from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
 
-        ob4 = build_candidate("MCX", "Capital Markets", -3.16, current_time_str, "7.4x", True)
-        ob4.update({"ob_signal": "Negative Gamma", "ob_desc": "Dealers forced to hedge directionally, trending.", "ob_color": "tag-purple", "ob_rating": -5, "listed_at": current_time_str})
-
-        order_block_concepts.extend([ob1, ob2, ob3, ob4])
+        order_block_concepts.extend([ob1, ob2, ob3])
 
     for board in [sonic_bullish, sonic_bearish, titan_bullish, titan_bearish, order_block_concepts]:
         board.sort(key=lambda x: float(str(x.get("hyperflow", "1x")).replace("x", "")), reverse=True)
@@ -291,7 +304,7 @@ def run_quant_engine():
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] Engine complete. Tables populated.")
+    print(f"[{output['sync_time']}] Engine complete. Order Block Support/Resistance mapped.")
 
 if __name__ == "__main__":
     run_quant_engine()
