@@ -32,30 +32,24 @@ OPTION_CHAIN_UNIVERSE = [
     {"sym": "BLUESTARCO.NS", "name": "BLUESTARCO", "sector": "Consumer Durables"},
     {"sym": "POLICYBZR.NS", "name": "POLICYBZR", "sector": "Financial Services"},
     {"sym": "LAURUSLABS.NS", "name": "LAURUSLABS", "sector": "Pharma"},
-    {"sym": "MCX.NS", "name": "MCX", "sector": "Capital Markets"},
-    {"sym": "OFSS.NS", "name": "OFSS", "sector": "IT"},
-    {"sym": "PERSISTENT.NS", "name": "PERSISTENT", "sector": "IT"},
-    {"sym": "COALINDIA.NS", "name": "COALINDIA", "sector": "Oil & Gas"},
-    {"sym": "ADANIPOWER.NS", "name": "ADANIPOWER", "sector": "Power"},
-    {"sym": "DIXON.NS", "name": "DIXON", "sector": "Consumer Durables"},
-    {"sym": "DABUR.NS", "name": "DABUR", "sector": "FMCG"},
-    {"sym": "HEROMOTOCO.NS", "name": "HEROMOTOCO", "sector": "Auto"}
+    {"sym": "MCX.NS", "name": "MCX", "sector": "Capital Markets"}
 ]
 
-NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX", "RELIANCE"}
+NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX"}
 
 def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
     current_time_str = now_ist.strftime("%H:%M")
 
-    # Preserve initial qualification timestamps across refreshes
+    # Preserve initial qualification timestamps for the 4/4 Momentum Matrix only
     stored_timestamps = {}
     if os.path.exists("screener.json"):
         try:
             with open("screener.json", "r") as f:
                 prev = json.load(f)
-                for engine in ["sonic_bullish", "sonic_bearish", "titan_bullish", "titan_bearish", "order_block_concepts"]:
+                # We specifically DO NOT load 'order_block_concepts' times here so they update dynamically
+                for engine in ["sonic_bullish", "sonic_bearish", "titan_bullish", "titan_bearish"]:
                     for item in prev.get(engine, []):
                         key = f"{engine}_{item['symbol']}"
                         stored_timestamps[key] = item.get("listed_at", current_time_str)
@@ -65,7 +59,7 @@ def run_quant_engine():
     tickers = [u["sym"] for u in OPTION_CHAIN_UNIVERSE]
     meta_map = {u["sym"]: u for u in OPTION_CHAIN_UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live derivative data for {len(tickers)} stocks...")
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live derivative data...")
     data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
@@ -83,12 +77,10 @@ def run_quant_engine():
         sec = meta["sector"]
 
         try:
-            if sym not in data_daily.columns.levels[0] or sym not in data_5m.columns.levels[0]:
-                continue
+            if sym not in data_daily.columns.levels[0] or sym not in data_5m.columns.levels[0]: continue
             df_d = data_daily[sym].dropna()
             df_5 = data_5m[sym].dropna()
-            if len(df_d) < 2 or len(df_5) < 3:
-                continue
+            if len(df_d) < 2 or len(df_5) < 3: continue
 
             prev_close = float(df_d["Close"].iloc[-2])
             pdh = float(df_d["High"].iloc[-2])
@@ -97,16 +89,13 @@ def run_quant_engine():
             df_5.index = df_5.index.tz_convert(ist)
             latest_date = df_5.index[-1].date()
             today_5m = df_5[df_5.index.date == latest_date]
-            if len(today_5m) < 2:
-                today_5m = df_5.iloc[-30:]
+            if len(today_5m) < 2: today_5m = df_5.iloc[-30:]
 
             ltp = round(float(today_5m["Close"].iloc[-1]), 2)
             pct_chg = round(((ltp - prev_close) / prev_close) * 100, 2)
 
-            if pct_chg >= 0:
-                advances += 1
-            else:
-                declines += 1
+            if pct_chg >= 0: advances += 1
+            else: declines += 1
             sector_deltas.setdefault(sec, []).append(pct_chg)
 
             day_high = round(float(today_5m["High"].max()), 2)
@@ -128,7 +117,7 @@ def run_quant_engine():
             max_hf = round(hyperflow * 1.6, 1)
             min_hf = round(max(1.0, hyperflow * 0.55), 1)
 
-            # Strict 4/4 Rule Engine
+            # Strict 4/4 Matrix Rules
             r_bull_breakout = (ltp > orb_high) and (ltp > vwap)
             r_bull_volume   = (rvat >= 1.25)
             r_bull_pdh      = (ltp >= pdh)
@@ -141,118 +130,87 @@ def run_quant_engine():
             r_bear_pdl      = (ltp <= pdl)
             bear_score = sum([r_bear_breakout, r_bear_vwap, r_bear_dl, r_bear_pdl])
 
+            # Signal Conviction Rating Math (-5 to +5)
+            if pct_chg >= 0:
+                base_rating = 1
+                if ltp > vwap: base_rating += 1
+                if rvat >= 1.3: base_rating += 1
+                if bull_score >= 3: base_rating += 1
+                if bull_score == 4: base_rating += 1
+                ob_rating = min(5, base_rating)
+            else:
+                base_rating = -1
+                if ltp < vwap: base_rating -= 1
+                if rvat >= 1.3: base_rating -= 1
+                if bear_score >= 3: base_rating -= 1
+                if bear_score == 4: base_rating -= 1
+                ob_rating = max(-5, base_rating)
+
             candles_payload = []
             for _, r in today_5m.tail(32).iterrows():
                 candles_payload.append({
-                    "o": round(float(r["Open"]), 2),
-                    "h": round(float(r["High"]), 2),
-                    "l": round(float(r["Low"]), 2),
-                    "c": round(float(r["Close"]), 2),
-                    "v": round(float(r["Volume"]), 0)
+                    "o": round(float(r["Open"]), 2), "h": round(float(r["High"]), 2),
+                    "l": round(float(r["Low"]), 2), "c": round(float(r["Close"]), 2), "v": round(float(r["Volume"]), 0)
                 })
 
             base_row = {
-                "symbol": clean_sym,
-                "sector": sec,
-                "ltp": ltp,
-                "pct_chg": pct_chg,
-                "pct_display": f"{abs(pct_chg):.2f}",
-                "day_high": day_high,
-                "day_low": day_low,
-                "vwap": round(vwap, 2),
-                "vwap_gap": vwap_gap,
-                "hyperflow": f"{hyperflow}x",
-                "max_hyperflow": f"{max_hf}x",
-                "min_hyperflow": f"{min_hf}x",
-                "has_news": clean_sym in NEWS_SYMBOLS,
-                "candles": candles_payload,
-                "bull_score": f"{bull_score}/4",
-                "bear_score": f"{bear_score}/4",
-                "rules_bull": {
-                    "Breakout": "YES" if r_bull_breakout else "NO",
-                    "Volume": "YES" if r_bull_volume else "NO",
-                    "PDH": "YES" if r_bull_pdh else "NO",
-                    "Range": "YES" if r_bull_range else "NO"
-                },
-                "rules_bear": {
-                    "Breakout": "YES" if r_bear_breakout else "NO",
-                    "VWAP": "YES" if r_bear_vwap else "NO",
-                    "DL": "YES" if r_bear_dl else "NO",
-                    "PDL": "YES" if r_bear_pdl else "NO"
-                }
+                "symbol": clean_sym, "sector": sec, "ltp": ltp, "pct_chg": pct_chg, "pct_display": f"{abs(pct_chg):.2f}",
+                "day_high": day_high, "day_low": day_low, "vwap": round(vwap, 2), "vwap_gap": vwap_gap,
+                "hyperflow": f"{hyperflow}x", "max_hyperflow": f"{max_hf}x", "min_hyperflow": f"{min_hf}x",
+                "has_news": clean_sym in NEWS_SYMBOLS, "candles": candles_payload,
+                "bull_score": f"{bull_score}/4", "bear_score": f"{bear_score}/4",
+                "rules_bull": { "Breakout": "YES" if r_bull_breakout else "NO", "Volume": "YES" if r_bull_volume else "NO", "PDH": "YES" if r_bull_pdh else "NO", "Range": "YES" if r_bull_range else "NO" },
+                "rules_bear": { "Breakout": "YES" if r_bear_breakout else "NO", "VWAP": "YES" if r_bear_vwap else "NO", "DL": "YES" if r_bear_dl else "NO", "PDL": "YES" if r_bear_pdl else "NO" }
             }
             valid_scanned.append(base_row)
 
-            # -------------------------------------------------------------
-            # 5 ORDER FLOW CONCEPTS (Video Transcription Engine)
-            # -------------------------------------------------------------
+            # 5 Video Order Flow Concepts
             ob_signal, ob_desc, ob_color = None, None, ""
             last_3 = today_5m.tail(3)
             
-            # 1. Delta Divergence: Price rallying, but smart money selling into pump
-            if pct_chg > 1.2 and all(c['Close'] < c['Open'] for _, c in last_3.iterrows()) and rvat > 1.2:
-                ob_signal = "Delta Divergence"
-                ob_desc = "Price up, Delta negative. Smart money selling into the pump."
-                ob_color = "tag-red"
-            # 2. Absorption: High volume at low with tight spread (Passive buyers absorbing)
-            elif ltp <= day_low * 1.008 and rvat > 1.3 and abs(today_5m["Close"].iloc[-1] - today_5m["Open"].iloc[-1]) < (day_high - day_low) * 0.15:
-                ob_signal = "Absorption"
-                ob_desc = "High volume at low, tight spread. Limit buyers absorbing sellers."
-                ob_color = "tag-green"
-            # 3. Volume Profile HVN: Heavy volume consolidation at POC / VWAP node
-            elif abs(vwap_gap) <= 0.25 and cum_vol > avg_vol * 25:
-                ob_signal = "Volume Profile (HVN)"
-                ob_desc = "Price testing High Volume Node (real institutional support/resistance)."
-                ob_color = "tag-cyan"
-            # 4. Imbalance (AMT): Auction Market Theory trend expansion outside balance
-            elif (ltp > orb_high * 1.008 or ltp < orb_low * 0.992) and rvat > 1.4:
-                ob_signal = "Imbalance (AMT)"
-                ob_desc = "Price transitioned from Balance (Range) to Imbalance (Trend)."
-                ob_color = "tag-amber"
-            # 5. Gamma Levels: Volatility expansion forcing dealer trend hedging
-            elif abs(pct_chg) > 2.5:
-                ob_signal = "Negative Gamma"
-                ob_desc = "Dealers forced to hedge directionally, driving momentum trend."
-                ob_color = "tag-purple"
+            if pct_chg > 1.5 and all(c['Close'] < c['Open'] for _, c in last_3.iterrows()) and rvat > 1.3:
+                ob_signal, ob_desc, ob_color = "Delta Divergence", "Price up, Delta negative. Smart money selling into the pump.", "tag-red"
+            elif ltp <= day_low * 1.005 and rvat > 1.5 and abs(today_5m["Close"].iloc[-1] - today_5m["Open"].iloc[-1]) < (day_high - day_low) * 0.1:
+                ob_signal, ob_desc, ob_color = "Absorption", "High volume at low, tiny spread. Limit buyers absorbing sellers.", "tag-green"
+            elif abs(vwap_gap) <= 0.15 and cum_vol > avg_vol * 30:
+                ob_signal, ob_desc, ob_color = "Volume Profile (HVN)", "Price consolidating at High Volume Node (real support/resistance).", "tag-cyan"
+            elif (ltp > orb_high * 1.01 or ltp < orb_low * 0.99) and rvat > 1.8:
+                ob_signal, ob_desc, ob_color = "Imbalance (AMT)", "Price transitioned from Balance (Range) to Imbalance (Trend).", "tag-amber"
+            elif abs(pct_chg) > 3.0:
+                ob_signal, ob_desc, ob_color = "Negative Gamma", "Dealers forced to hedge directionally, driving trend extension.", "tag-purple"
 
             if ob_signal:
-                k_ob = f"order_block_concepts_{clean_sym}"
                 ob_row = dict(base_row)
-                ob_row["listed_at"] = stored_timestamps.get(k_ob, current_time_str)
-                ob_row["ob_signal"], ob_row["ob_desc"], ob_row["ob_color"] = ob_signal, ob_desc, ob_color
+                # CRITICAL: Order Block Concept strictly uses the LIVE refresh time
+                ob_row["listed_at"] = current_time_str  
+                ob_row["ob_signal"] = ob_signal
+                ob_row["ob_desc"] = ob_desc
+                ob_row["ob_color"] = ob_color
+                ob_row["ob_rating"] = ob_rating
+                ob_row["ob_sup_res"] = f"S: {pdl:.1f} | R: {pdh:.1f}"
+                ob_row["ob_4x4"] = "4/4 BULL" if bull_score == 4 else ("4/4 BEAR" if bear_score == 4 else "PENDING")
                 order_block_concepts.append(ob_row)
 
-            # Strict 4/4 Qualification
+            # Strict Additions (Persistent Timestamps)
             if bull_score == 4 and rvat >= 1.25:
                 k = f"sonic_bullish_{clean_sym}"
-                row = dict(base_row)
-                row["listed_at"] = stored_timestamps.get(k, current_time_str)
-                sonic_bullish.append(row)
-
+                row = dict(base_row); row["listed_at"] = stored_timestamps.get(k, current_time_str); sonic_bullish.append(row)
             if bear_score == 4 and rvat >= 1.25:
                 k = f"sonic_bearish_{clean_sym}"
-                row = dict(base_row)
-                row["listed_at"] = stored_timestamps.get(k, current_time_str)
-                sonic_bearish.append(row)
-
+                row = dict(base_row); row["listed_at"] = stored_timestamps.get(k, current_time_str); sonic_bearish.append(row)
             if bull_score == 4 and hyperflow >= 2.0:
                 k = f"titan_bullish_{clean_sym}"
-                row = dict(base_row)
-                row["listed_at"] = stored_timestamps.get(k, current_time_str)
-                titan_bullish.append(row)
-
+                row = dict(base_row); row["listed_at"] = stored_timestamps.get(k, current_time_str); titan_bullish.append(row)
             if bear_score == 4 and hyperflow >= 2.0:
                 k = f"titan_bearish_{clean_sym}"
-                row = dict(base_row)
-                row["listed_at"] = stored_timestamps.get(k, current_time_str)
-                titan_bearish.append(row)
+                row = dict(base_row); row["listed_at"] = stored_timestamps.get(k, current_time_str); titan_bearish.append(row)
 
         except Exception:
             continue
 
-    # =========================================================================
-    # PRODUCTION SEED FALLBACK (Ensures non-empty UI during closed market hours)
-    # =========================================================================
+    # ==========================================
+    # FALLBACK DATA INJECTION (FOR MARKET CLOSED)
+    # ==========================================
     def build_candidate(name, sec, chg, tm, hf, is_news=False):
         k = f"mock_{name}"
         matched = next((x for x in valid_scanned if x["symbol"] == name), None)
@@ -260,79 +218,46 @@ def run_quant_engine():
         cands = matched["candles"] if matched else []
         dh = matched["day_high"] if matched else round(ltp_val * 1.015, 2)
         dl = matched["day_low"] if matched else round(ltp_val * 0.985, 2)
+        pdh_f = round(ltp_val * 1.02, 2)
+        pdl_f = round(ltp_val * 0.98, 2)
 
         return {
-            "symbol": name,
-            "sector": sec,
-            "ltp": ltp_val,
-            "pct_chg": chg,
-            "pct_display": f"{abs(chg):.2f}",
-            "day_high": dh,
-            "day_low": dl,
-            "vwap": round(ltp_val * 0.998, 2),
-            "vwap_gap": 0.45,
-            "hyperflow": hf,
-            "max_hyperflow": "12.4x",
-            "min_hyperflow": "2.1x",
-            "listed_at": stored_timestamps.get(k, tm),
-            "has_news": is_news,
-            "candles": cands,
-            "bull_score": "4/4" if chg > 0 else "1/4",
-            "bear_score": "4/4" if chg < 0 else "1/4",
-            "rules_bull": {"Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES"},
-            "rules_bear": {"Breakout": "YES" if chg < 0 else "NO", "VWAP": "YES" if chg < 0 else "NO", "DL": "YES" if chg < 0 else "NO", "PDL": "YES" if chg < 0 else "NO"}
+            "symbol": name, "sector": sec, "ltp": ltp_val, "pct_chg": chg, "pct_display": f"{abs(chg):.2f}",
+            "day_high": dh, "day_low": dl, "vwap": round(ltp_val * 0.998, 2), "vwap_gap": 0.4,
+            "hyperflow": hf, "max_hyperflow": "12.4x", "min_hyperflow": "2.1x",
+            "listed_at": stored_timestamps.get(k, tm), "has_news": is_news, "candles": cands,
+            "bull_score": "4/4" if chg > 0 else "1/4", "bear_score": "4/4" if chg < 0 else "1/4",
+            "rules_bull": { "Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES" },
+            "rules_bear": { "Breakout": "YES", "VWAP": "YES", "DL": "YES", "PDL": "YES" },
+            "ob_rating": 4 if chg > 0 else -4,
+            "ob_sup_res": f"S: {pdl_f} | R: {pdh_f}",
+            "ob_4x4": "4/4 BULL" if chg > 0 else "4/4 BEAR"
         }
 
-    # Reference candidate board populations from user screenshots
     if not sonic_bullish:
         sonic_bullish.extend([
             build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
             build_candidate("VEDL", "Metal", 0.94, "09:30", "10.6x", True),
             build_candidate("BLUESTARCO", "Consumer Durables", 1.22, "09:40", "5.0x", False),
-            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False),
-            build_candidate("LAURUSLABS", "Pharma", 0.47, "10:07", "1.4x", False)
+            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False)
         ])
-
-    if not titan_bullish:
-        titan_bullish.extend([
-            build_candidate("TRENT", "Retail", 2.14, "09:18", "16.8x", True),
-            build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
-            build_candidate("KOTAKBANK", "Private Bank", 0.85, "09:35", "4.6x", False)
-        ])
-
-    if not sonic_bearish:
-        sonic_bearish.extend([
-            build_candidate("ITC", "FMCG", -0.54, "09:40", "8.2x", True),
-            build_candidate("WIPRO", "IT", -0.75, "09:26", "6.4x", True),
-            build_candidate("TECHM", "IT", -0.75, "09:28", "3.6x", True)
-        ])
-
     if not titan_bearish:
         titan_bearish.extend([
             build_candidate("ITC", "FMCG", -0.54, "09:40", "8.2x", True),
             build_candidate("WIPRO", "IT", -0.75, "09:26", "6.4x", True),
-            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False),
-            build_candidate("HCLTECH", "IT", -0.78, "09:59", "4.1x", False),
-            build_candidate("TECHM", "IT", -0.75, "09:28", "3.6x", True)
+            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False)
         ])
-
     if not order_block_concepts:
-        ob1 = build_candidate("RELIANCE", "Energy", 2.15, "09:25", "5.8x", True)
-        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price consolidating at High Volume Node (real institutional support).", "ob_color": "tag-cyan"})
+        ob1 = build_candidate("RELIANCE", "Energy", 2.15, current_time_str, "5.8x", True)
+        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price consolidating at High Volume Node (real support).", "ob_color": "tag-cyan", "ob_rating": 3, "listed_at": current_time_str})
         
-        ob2 = build_candidate("HDFCBANK", "Private Bank", -1.85, "09:40", "6.2x", True)
-        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tiny spread. Limit buyers actively absorbing sellers.", "ob_color": "tag-green"})
+        ob2 = build_candidate("HDFCBANK", "Private Bank", -1.85, current_time_str, "6.2x", True)
+        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tiny spread. Limit buyers absorbing sellers.", "ob_color": "tag-green", "ob_rating": -2, "listed_at": current_time_str})
         
-        ob3 = build_candidate("INFY", "IT", 1.65, "09:55", "4.3x", False)
-        ob3.update({"ob_signal": "Delta Divergence", "ob_desc": "Price rallied into resistance, but Delta is negative. Smart money selling pump.", "ob_color": "tag-red"})
-        
-        ob4 = build_candidate("TATASTEEL", "Metal", 3.20, "10:05", "8.1x", False)
-        ob4.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Auction Market Theory breakout from Balance (Range) into Imbalance (Trend).", "ob_color": "tag-amber"})
+        ob3 = build_candidate("TATASTEEL", "Metal", 3.20, current_time_str, "8.1x", False)
+        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Auction Market Theory breakout from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
 
-        ob5 = build_candidate("MCX", "Capital Markets", -3.45, "10:18", "7.4x", True)
-        ob5.update({"ob_signal": "Negative Gamma", "ob_desc": "Dealers forced to hedge directionally, driving trending volatility.", "ob_color": "tag-purple"})
-
-        order_block_concepts.extend([ob1, ob2, ob3, ob4, ob5])
+        order_block_concepts.extend([ob1, ob2, ob3])
 
     for board in [sonic_bullish, sonic_bearish, titan_bullish, titan_bearish, order_block_concepts]:
         board.sort(key=lambda x: float(str(x.get("hyperflow", "1")).replace("x", "")), reverse=True)
@@ -344,21 +269,13 @@ def run_quant_engine():
     output = {
         "sync_time": now_ist.strftime("%d %b %Y, %I:%M %p IST"),
         "market_summary": {
-            "nifty_spot": 22776.10,
-            "nifty_pct": -0.55,
-            "india_vix": 13.61,
-            "vix_pct": 0.52,
-            "advances": advances or 42,
-            "declines": declines or 146,
-            "strongest_sector": strongest_sec,
-            "weakest_sector": weakest_sec,
-            "nifty_pcr": 0.88,
-            "max_pain": 22800
+            "nifty_spot": 22776.10, "nifty_pct": -0.55, "india_vix": 13.61, "vix_pct": 0.52,
+            "advances": advances or 38, "declines": declines or 148,
+            "strongest_sector": strongest_sec, "weakest_sector": weakest_sec,
+            "nifty_pcr": 0.88, "max_pain": 22800
         },
-        "sonic_bullish": sonic_bullish,
-        "sonic_bearish": sonic_bearish,
-        "titan_bullish": titan_bullish,
-        "titan_bearish": titan_bearish,
+        "sonic_bullish": sonic_bullish, "sonic_bearish": sonic_bearish,
+        "titan_bullish": titan_bullish, "titan_bearish": titan_bearish,
         "order_block_concepts": order_block_concepts
     }
 
