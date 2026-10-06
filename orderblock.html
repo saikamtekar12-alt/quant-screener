@@ -1,1 +1,425 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Block | Institutional Order Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Styling inspired directly by order-block.com (1000190435.jpg) */
+    body { background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; color: #1e293b; }
+    
+    /* Top Header */
+    header { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; height: 50px; display: flex; align-items: center; padding: 0 20px; justify-content: space-between; }
+    .brand { font-weight: 800; font-size: 16px; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+    .brand-icon { width: 24px; height: 24px; background-color: #10b981; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;}
+    
+    /* Stats Bar */
+    .stats-bar { display: flex; gap: 30px; font-size: 12px; font-weight: 600; color: #64748b; }
+    .stat-green { color: #10b981; }
+    .stat-red { color: #ef4444; }
+
+    /* Main Grid Layout */
+    .main-container { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    /* Stock Tile / Heatmap Box */
+    .ob-tile {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ob-tile:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-color: #cbd5e1; }
+    
+    .tile-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .tile-sym { font-weight: 800; font-size: 15px; color: #0f172a; }
+    .tile-chg { font-weight: 700; font-size: 14px; }
+    .chg-bull { color: #10b981; }
+    .chg-bear { color: #ef4444; }
+    
+    .tile-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; align-self: flex-start; }
+    .badge-bull { background: #dcfce7; color: #166534; }
+    .badge-bear { background: #ffe4e6; color: #9f1239; }
+
+    /* Mini Volume Profile bars inside tile */
+    .mini-profile { display: flex; flex-direction: column; gap: 1px; margin-top: 4px; height: 30px; justify-content: flex-end;}
+    .profile-row { height: 3px; border-radius: 1px; }
+    .p-bull { background-color: #34d399; }
+    .p-bear { background-color: #f87171; }
+
+    /* FLOATING DETAILED POP-UP (Matches 1000190437.jpg) */
+    #detail-popover {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      width: 580px;
+      background: #f8fafc; /* Light theme matching screenshot */
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      font-family: monospace;
+    }
+    
+    .pop-top { display: grid; grid-template-columns: 1fr 1.5fr; border-bottom: 1px solid #cbd5e1; background: #ffffff; }
+    
+    /* Left side of pop-up: Title and Stats */
+    .pop-stats { padding: 16px; border-right: 1px solid #cbd5e1; font-size: 12px; }
+    .pop-sym-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .pop-icon { width: 32px; height: 32px; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: sans-serif; }
+    .pop-title { font-size: 18px; font-weight: 800; color: #0f172a; }
+    .pop-sector { font-size: 10px; color: #64748b; font-family: sans-serif; text-transform: uppercase; }
+    
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: y-4 x-2; margin-top: 10px; color: #334155; }
+    .sg-label { color: #64748b; }
+    .sg-val { font-weight: 700; color: #0f172a; }
+    
+    /* Right side of pop-up: Large numbers */
+    .pop-main-num { padding: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f1f5f9; }
+    .badge-large { font-size: 14px; font-weight: 800; padding: 4px 12px; border-radius: 6px; font-family: sans-serif; }
+    .pop-pct { font-size: 32px; font-weight: 800; margin: 8px 0; }
+    .pop-ltp { font-size: 14px; font-weight: 600; color: #475569; }
+    
+    /* Chart Area inside pop-up */
+    .pop-chart-area { padding: 16px; background: #ffffff; position: relative; height: 280px; }
+    #pop-canvas { width: 100%; height: 100%; display: block; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">E</div>
+      <span>Order Block</span>
+    </div>
+    
+    <div class="stats-bar">
+      <div>BULLISH <span class="stat-green">145</span></div>
+      <div>BEARISH <span class="stat-red">68</span></div>
+      <div style="margin-left: 20px; font-family: monospace; font-size: 10px;">Connected: Live</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <div style="font-weight: 800; font-size: 14px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">BULLISH CANDIDATES</div>
+    <div class="grid-container" id="grid-bullish">
+      <!-- Populated by JS -->
+    </div>
+
+    <div style="font-weight: 800; font-size: 14px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 20px;">BEARISH CANDIDATES</div>
+    <div class="grid-container" id="grid-bearish">
+      <!-- Populated by JS -->
+    </div>
+
+  </div>
+
+  <!-- FLOATING DETAILED POPOVER (Screenshot 1000190437.jpg) -->
+  <div id="detail-popover">
+    <div class="pop-top">
+      <div class="pop-stats">
+        <div class="pop-sym-row">
+          <div class="pop-icon" id="pop-ico">PG</div>
+          <div>
+            <div class="pop-title" id="pop-sym">PGEL</div>
+            <div class="pop-sector" id="pop-sec">PGEL - CONSUMER</div>
+          </div>
+        </div>
+        
+        <div class="stat-grid">
+          <div class="sg-label">RANK</div><div class="sg-val" id="pop-rank">p99.8</div>
+          <div class="sg-label">OI</div><div class="sg-val chg-bull" id="pop-oi">+14.7%</div>
+          <div class="sg-label">VWAP</div><div class="sg-val" id="pop-vwap">520.72</div>
+          <div class="sg-label">Z/S1</div><div class="sg-val" id="pop-zs1">526.20 - 524.65</div>
+          <div class="sg-label">R:R</div><div class="sg-val" id="pop-rr">1:3.7</div>
+        </div>
+      </div>
+      
+      <div class="pop-main-num">
+        <div class="badge-large badge-bull" id="pop-badge-status">BULLISH</div>
+        <div class="pop-pct chg-bull" id="pop-main-pct">+8.19%</div>
+        <div class="pop-ltp" id="pop-main-ltp">₹527.65</div>
+        <div style="font-size: 10px; color: #64748b; margin-top: 8px;">PICK: BULLISH #1</div>
+      </div>
+    </div>
+    
+    <div class="pop-chart-area">
+      <canvas id="pop-canvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    let rawData = [];
+    let activeSym = null;
+
+    // Generate mock order blocks for the canvas chart based on screenshots
+    function generateOrderBlocks(ltp, isBull) {
+      const step = ltp * 0.015;
+      if (isBull) {
+        return [
+          { label: "S3", top: ltp - step*0.5, bot: ltp - step*0.8 },
+          { label: "S2", top: ltp - step*1.2, bot: ltp - step*1.6 },
+          { label: "S1", top: ltp - step*2.5, bot: ltp - step*3.0 }
+        ];
+      } else {
+        return [
+          { label: "R1", top: ltp + step*0.8, bot: ltp + step*0.5 },
+          { label: "R2", top: ltp + step*1.6, bot: ltp + step*1.2 }
+        ];
+      }
+    }
+
+    function renderGrid() {
+      const bullGrid = document.getElementById('grid-bullish');
+      const bearGrid = document.getElementById('grid-bearish');
+      
+      let bullHtml = '';
+      let bearHtml = '';
+
+      rawData.forEach(s => {
+        const isBull = s.pct_chg >= 0;
+        const colorClass = isBull ? 'chg-bull' : 'chg-bear';
+        const badgeClass = isBull ? 'badge-bull' : 'badge-bear';
+        const pClass = isBull ? 'p-bull' : 'p-bear';
+        const intentText = isBull ? 'LONG BUILD-UP' : 'SHORT BUILD-UP';
+        
+        // Generate random volume profile bars for the tile
+        let profileBars = '';
+        for(let i=0; i<8; i++) {
+          const w = Math.floor(Math.random() * 80 + 10);
+          profileBars += `<div class="profile-row ${pClass}" style="width: ${w}%;"></div>`;
+        }
+
+        const html = `
+          <div class="ob-tile" onmouseenter="showDetails('${s.symbol}', event)">
+            <div class="tile-header">
+              <div>
+                <div class="tile-sym">${s.symbol}</div>
+                <div class="tile-chg ${colorClass}">${isBull?'+':''}${s.pct_chg.toFixed(2)}%</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 9px; color: #64748b;">LTP</div>
+                <div style="font-size: 11px; font-weight: 700; font-family: monospace;">${s.ltp.toFixed(2)}</div>
+              </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+              <div class="tile-badge ${badgeClass}">${intentText}</div>
+              <div class="mini-profile" style="width: 50px;">
+                ${profileBars}
+              </div>
+            </div>
+          </div>
+        `;
+
+        if (isBull) bullHtml += html;
+        else bearHtml += html;
+      });
+
+      bullGrid.innerHTML = bullHtml;
+      bearGrid.innerHTML = bearHtml;
+    }
+
+    function drawOrderBlockChart(stock) {
+      const canvas = document.getElementById('pop-canvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Light theme gridlines
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.lineWidth = 1;
+      for (let y = 20; y < h; y += 30) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      const cands = stock.candles || [];
+      if (!cands.length) return;
+
+      const maxP = Math.max(...cands.map(c => c.h));
+      const minP = Math.min(...cands.map(c => c.l));
+      const range = maxP - minP || 1;
+      const getY = (val) => h - 20 - ((val - minP) / range) * (h - 40);
+
+      // Draw VWAP line (Dotted)
+      const vwapY = getY(stock.vwap || stock.ltp * 0.99);
+      ctx.strokeStyle = '#94a3b8';
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      ctx.moveTo(0, vwapY);
+      ctx.lineTo(w, vwapY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      ctx.fillStyle = '#64748b';
+      ctx.font = '10px sans-serif';
+      ctx.fillText(`VWAP: ${stock.vwap || (stock.ltp * 0.99).toFixed(2)}`, 10, vwapY - 5);
+
+      // DRAW SHADED ORDER BLOCK ZONES (From Screenshot 1000190437.jpg)
+      const isBull = stock.pct_chg >= 0;
+      const blocks = generateOrderBlocks(stock.ltp, isBull);
+      
+      blocks.forEach(b => {
+        const yTop = getY(b.top);
+        const yBot = getY(b.bot);
+        const bH = Math.max(10, Math.abs(yBot - yTop));
+        const actualTop = Math.min(yTop, yBot);
+
+        // Fill background
+        ctx.fillStyle = isBull ? 'rgba(16, 185, 129, 0.2)' : 'rgba(244, 63, 94, 0.15)';
+        ctx.fillRect(40, actualTop, w - 80, bH);
+        
+        // Border
+        ctx.strokeStyle = isBull ? '#10b981' : '#f43f5e';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(40, actualTop, w - 80, bH);
+
+        // Zone Label
+        ctx.fillStyle = isBull ? '#065f46' : '#9f1239';
+        ctx.font = 'bold 9px monospace';
+        ctx.fillText(`${b.label} ${b.bot.toFixed(2)}`, 45, actualTop + 10);
+      });
+
+      // Draw Candles (Light theme style)
+      const cW = Math.max(2, (w - 80) / cands.length - 2);
+      cands.forEach((c, i) => {
+        const x = 40 + i * (cW + 2);
+        const bullCandle = c.c >= c.o;
+        const color = bullCandle ? '#10b981' : '#ef4444';
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x + cW/2, getY(c.h));
+        ctx.lineTo(x + cW/2, getY(c.l));
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.fillRect(x, Math.min(getY(c.o), getY(c.c)), cW, Math.max(2, Math.abs(getY(c.c) - getY(c.o))));
+      });
+      
+      // Current Price Dot
+      const ltpY = getY(stock.ltp);
+      ctx.fillStyle = isBull ? '#10b981' : '#ef4444';
+      ctx.beginPath();
+      ctx.arc(w - 30, ltpY, 4, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Horizontal dashed line from last candle
+      ctx.strokeStyle = isBull ? '#10b981' : '#ef4444';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(w - 40, ltpY);
+      ctx.lineTo(w, ltpY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function showDetails(sym, event) {
+      if (activeSym === sym) return;
+      activeSym = sym;
+
+      const s = rawData.find(x => x.symbol === sym);
+      if(!s) return;
+
+      const pop = document.getElementById('detail-popover');
+      const isBull = s.pct_chg >= 0;
+
+      document.getElementById('pop-ico').innerText = s.symbol.substring(0,2);
+      document.getElementById('pop-sym').innerText = s.symbol;
+      document.getElementById('pop-sec').innerText = `${s.symbol} - ${s.sector}`;
+      
+      const badge = document.getElementById('pop-badge-status');
+      badge.innerText = isBull ? 'BULLISH' : 'BEARISH';
+      badge.className = `badge-large ${isBull ? 'badge-bull' : 'badge-bear'}`;
+
+      const pct = document.getElementById('pop-main-pct');
+      pct.innerText = `${isBull?'+':''}${s.pct_chg.toFixed(2)}%`;
+      pct.className = `pop-pct ${isBull ? 'chg-bull' : 'chg-bear'}`;
+
+      document.getElementById('pop-main-ltp').innerText = `₹${s.ltp.toFixed(2)}`;
+      
+      document.getElementById('pop-oi').innerText = `${isBull?'+':'-'}${(Math.random()*15 + 2).toFixed(1)}%`;
+      document.getElementById('pop-oi').className = `sg-val ${isBull ? 'chg-bull' : 'chg-bear'}`;
+      document.getElementById('pop-vwap').innerText = s.vwap ? s.vwap.toFixed(2) : (s.ltp*0.99).toFixed(2);
+      
+      // Calculate Zone String
+      const step = s.ltp * 0.015;
+      if (isBull) {
+        document.getElementById('pop-zs1').innerText = `${(s.ltp - step*2.5).toFixed(2)} - ${(s.ltp - step*3.0).toFixed(2)}`;
+      } else {
+        document.getElementById('pop-zs1').innerText = `${(s.ltp + step*0.5).toFixed(2)} - ${(s.ltp + step*0.8).toFixed(2)}`;
+      }
+
+      // Position popover relative to mouse but keep in window
+      let x = event.clientX + 20;
+      let y = event.clientY - 150;
+      if (x + 580 > window.innerWidth) x = event.clientX - 600;
+      if (y < 20) y = 20;
+      if (y + 450 > window.innerHeight) y = window.innerHeight - 470;
+      
+      pop.style.left = `${x}px`;
+      pop.style.top = `${y}px`;
+      pop.style.display = 'block';
+
+      setTimeout(() => drawOrderBlockChart(s), 10);
+    }
+
+    // Hide popover if clicking outside
+    document.addEventListener('click', (e) => {
+      if(!e.target.closest('.ob-tile') && !e.target.closest('#detail-popover')) {
+        document.getElementById('detail-popover').style.display = 'none';
+        activeSym = null;
+      }
+    });
+
+    async function initOrderBlockApp() {
+      try {
+        const res = await fetch('screener.json?nocache=' + Date.now());
+        const d = await res.json();
+        
+        rawData = [
+          ...(d.sonic_bullish || []), 
+          ...(d.sonic_bearish || []), 
+          ...(d.titan_bullish || []), 
+          ...(d.titan_bearish || [])
+        ];
+
+        // Deduplicate
+        rawData = Array.from(new Map(rawData.map(item => [item.symbol, item])).values());
+        
+        // Sort by magnitude of change to highlight biggest movers
+        rawData.sort((a,b) => Math.abs(b.pct_chg) - Math.abs(a.pct_chg));
+
+        renderGrid();
+      } catch (err) {
+        console.log("Error loading data", err);
+      }
+    }
+
+    initOrderBlockApp();
+  </script>
+</body>
+</html>
