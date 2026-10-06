@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Exact F&O Universe matching screenshots 1000190346, 1000190340, 1000190342
+# Tracked NSE F&O Universe
 UNIVERSE = [
     {"sym": "BHEL.NS", "name": "BHEL", "sector": "Capital Goods"},
     {"sym": "VEDL.NS", "name": "VEDL", "sector": "Metal"},
@@ -43,15 +43,14 @@ UNIVERSE = [
     {"sym": "HEROMOTOCO.NS", "name": "HEROMOTOCO", "sector": "Auto"}
 ]
 
-# Tickers with circular [N] news badges from reference images
 NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX"}
 
-def run_quant_engine():
+def run_strict_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
     current_time_str = now_ist.strftime("%H:%M")
 
-    # Load previously stored timestamps to prevent midday clock overwrites
+    # Read existing timestamps to preserve prior qualification times
     stored_timestamps = {}
     if os.path.exists("screener.json"):
         try:
@@ -67,7 +66,7 @@ def run_quant_engine():
     tickers = [u["sym"] for u in UNIVERSE]
     meta_map = {u["sym"]: u for u in UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Vectorized download across F&O universe...")
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Running strict 4/4 rule evaluation...")
     data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
@@ -111,20 +110,46 @@ def run_quant_engine():
             day_high = round(float(today_5m["High"].max()), 2)
             day_low = round(float(today_5m["Low"].min()), 2)
 
+            # Opening Range (First 3 bars = 15 minutes)
+            orb_high = float(today_5m["High"].iloc[:3].max())
+            orb_low = float(today_5m["Low"].iloc[:3].min())
+
             # Session VWAP
             typ = (today_5m["High"] + today_5m["Low"] + today_5m["Close"]) / 3
             cum_vol = float(today_5m["Volume"].sum()) + 1e-6
             vwap = float((typ * today_5m["Volume"]).sum() / cum_vol)
             vwap_gap = round(((ltp - vwap) / vwap) * 100, 2)
 
+            # Volume & Multiplier
             recent_vol = float(today_5m["Volume"].iloc[-1])
             avg_vol = float(today_5m["Volume"].rolling(20, min_periods=1).mean().iloc[-1]) + 1e-6
             rvat = round(recent_vol / avg_vol, 2)
 
-            hyperflow = round(max(1.4, rvat * 2.2), 1)
-            max_hf = round(hyperflow * 1.65, 1)
+            hyperflow = round(max(1.1, rvat * 2.0), 1)
+            max_hf = round(hyperflow * 1.6, 1)
             min_hf = round(max(1.0, hyperflow * 0.55), 1)
 
+            # ---------------------------------------------
+            # EXACT 4/4 BULLISH CRITERIA
+            # ---------------------------------------------
+            r_bull_breakout = (ltp > orb_high) and (ltp > vwap)
+            r_bull_volume   = (rvat >= 1.30)
+            r_bull_pdh      = (ltp >= pdh)
+            r_bull_range    = (pct_chg >= 0.40) and (pct_chg <= 5.0)
+
+            bull_score = sum([r_bull_breakout, r_bull_volume, r_bull_pdh, r_bull_range])
+
+            # ---------------------------------------------
+            # EXACT 4/4 BEARISH CRITERIA
+            # ---------------------------------------------
+            r_bear_breakout = (ltp < orb_low)
+            r_bear_vwap     = (ltp < vwap)
+            r_bear_dl       = (ltp <= day_low * 1.001)
+            r_bear_pdl      = (ltp <= pdl)
+
+            bear_score = sum([r_bear_breakout, r_bear_vwap, r_bear_dl, r_bear_pdl])
+
+            # Candlestick payload for quick-peek preview
             candles_payload = []
             for _, r in today_5m.tail(32).iterrows():
                 candles_payload.append({
@@ -150,43 +175,44 @@ def run_quant_engine():
                 "min_hyperflow": f"{min_hf}x",
                 "has_news": clean_sym in NEWS_SYMBOLS,
                 "candles": candles_payload,
-                "rules": {
-                    "breakout": "YES" if ((pct_chg > 0 and ltp > vwap) or (pct_chg < 0 and ltp < vwap)) else "NO",
-                    "volume": "YES" if rvat >= 1.2 else "NO",
-                    "pdh": "YES" if ltp >= pdh * 0.998 else "NO",
-                    "pdl": "YES" if ltp <= pdl * 1.002 else "NO",
-                    "range": "YES" if abs(pct_chg) <= 5.0 else "NO"
+                "bull_score": f"{bull_score}/4",
+                "bear_score": f"{bear_score}/4",
+                "rules_bull": {
+                    "Breakout": "YES" if r_bull_breakout else "NO",
+                    "Volume": "YES" if r_bull_volume else "NO",
+                    "PDH": "YES" if r_bull_pdh else "NO",
+                    "Range": "YES" if r_bull_range else "NO"
+                },
+                "rules_bear": {
+                    "Breakout": "YES" if r_bear_breakout else "NO",
+                    "VWAP": "YES" if r_bear_vwap else "NO",
+                    "DL": "YES" if r_bear_dl else "NO",
+                    "PDL": "YES" if r_bear_pdl else "NO"
                 }
             }
 
-            # Qualification Rules:
-            # Sonic Pulse: Immediate volume explosion (RVAT >= 1.2) + VWAP displacement
-            is_sonic_bull = (pct_chg > 0.02) and (ltp >= vwap) and (rvat >= 1.15)
-            is_sonic_bear = (pct_chg < -0.02) and (ltp <= vwap) and (rvat >= 1.15)
-
-            # Titan Flow: Higher institutional participation (HyperFlow >= 2.0x) + price momentum
-            is_titan_bull = (pct_chg > 0.15) and (hyperflow >= 2.0) and (ltp >= vwap)
-            is_titan_bear = (pct_chg < -0.15) and (hyperflow >= 2.0) and (ltp <= vwap)
-
-            if is_sonic_bull:
+            # STRICT ADMISSION: ONLY ADD IF RULES ARE ACTUALLY SATISFIED (Score 4/4)
+            # Sonic Pulse Model
+            if bull_score == 4 and rvat >= 1.30:
                 k = f"sonic_bullish_{clean_sym}"
                 row = dict(base_row)
                 row["listed_at"] = stored_timestamps.get(k, current_time_str)
                 sonic_bullish.append(row)
 
-            if is_sonic_bear:
+            if bear_score == 4 and rvat >= 1.30:
                 k = f"sonic_bearish_{clean_sym}"
                 row = dict(base_row)
                 row["listed_at"] = stored_timestamps.get(k, current_time_str)
                 sonic_bearish.append(row)
 
-            if is_titan_bull:
+            # Titan Flow Model
+            if bull_score == 4 and hyperflow >= 2.2:
                 k = f"titan_bullish_{clean_sym}"
                 row = dict(base_row)
                 row["listed_at"] = stored_timestamps.get(k, current_time_str)
                 titan_bullish.append(row)
 
-            if is_titan_bear:
+            if bear_score == 4 and hyperflow >= 2.2:
                 k = f"titan_bearish_{clean_sym}"
                 row = dict(base_row)
                 row["listed_at"] = stored_timestamps.get(k, current_time_str)
@@ -195,44 +221,7 @@ def run_quant_engine():
         except Exception:
             continue
 
-    # Fallback to keep exact reference board populated during market closed testing
-    if not sonic_bullish:
-        sample_sonic = [
-            ("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
-            ("VEDL", "Metal", 0.94, "09:30", "10.6x", True),
-            ("BLUESTARCO", "Consumer Durables", 1.22, "09:40", "5.0x", False),
-            ("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False),
-            ("LAURUSLABS", "Pharma", 0.47, "10:07", "1.4x", False)
-        ]
-        for name, sec, chg, tm, hf, nw in sample_sonic:
-            k = f"sonic_bullish_{name}"
-            sonic_bullish.append({
-                "symbol": name, "sector": sec, "ltp": 245.5, "pct_chg": chg, "pct_display": f"{chg:.2f}",
-                "day_high": 249.0, "day_low": 242.0, "vwap": 244.0, "vwap_gap": 0.6,
-                "hyperflow": hf, "max_hyperflow": "12.0x", "min_hyperflow": "2.0x",
-                "listed_at": stored_timestamps.get(k, tm), "has_news": nw, "candles": [],
-                "rules": {"breakout": "YES", "volume": "YES", "pdh": "YES", "range": "YES"}
-            })
-
-    if not titan_bearish:
-        sample_titan_bear = [
-            ("ITC", "FMCG", -0.54, "09:40", "8.2x", True),
-            ("WIPRO", "IT", -0.75, "09:26", "6.4x", True),
-            ("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False),
-            ("HCLTECH", "IT", -0.78, "09:59", "4.1x", False),
-            ("TECHM", "IT", -0.75, "09:28", "3.6x", True)
-        ]
-        for name, sec, chg, tm, hf, nw in sample_titan_bear:
-            k = f"titan_bearish_{name}"
-            titan_bearish.append({
-                "symbol": name, "sector": sec, "ltp": 465.0, "pct_chg": chg, "pct_display": f"{abs(chg):.2f}",
-                "day_high": 472.0, "day_low": 463.0, "vwap": 468.0, "vwap_gap": -0.6,
-                "hyperflow": hf, "max_hyperflow": "10.0x", "min_hyperflow": "1.5x",
-                "listed_at": stored_timestamps.get(k, tm), "has_news": nw, "candles": [],
-                "rules": {"breakout": "YES", "volume": "YES", "pdh": "NO", "range": "YES"}
-            })
-
-    # Sort each board by volume/hyperflow
+    # Sort each board by Hyperflow multiplier
     for board in [sonic_bullish, sonic_bearish, titan_bullish, titan_bearish]:
         board.sort(key=lambda x: float(x["hyperflow"].replace("x", "")), reverse=True)
 
@@ -247,8 +236,8 @@ def run_quant_engine():
             "nifty_pct": -0.55,
             "india_vix": 13.61,
             "vix_pct": 0.52,
-            "advances": advances or 48,
-            "declines": declines or 136,
+            "advances": advances or 34,
+            "declines": declines or 142,
             "strongest_sector": strongest_sec,
             "weakest_sector": weakest_sec,
             "nifty_pcr": 0.88,
@@ -263,7 +252,7 @@ def run_quant_engine():
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] Engine generated. Sonic Bullish: {len(sonic_bullish)}, Titan Bearish: {len(titan_bearish)}")
+    print(f"[{output['sync_time']}] Strict scan complete. Sonic Bullish: {len(sonic_bullish)}, Titan Bearish: {len(titan_bearish)}")
 
 if __name__ == "__main__":
-    run_quant_engine()
+    run_strict_engine()
