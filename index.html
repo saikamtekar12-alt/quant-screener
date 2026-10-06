@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener | Live NSE Market Screener</title>
+  <title>Quant Screener | Live NSE Option Chain Market Screener</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #030713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
+    .nav-sidebar { width: 220px; background-color: #030610; border-right: 1px solid #0d1527; }
     .card-navy { background-color: #050d1e; border: 1px solid #0d1a36; }
     .table-head { background-color: #08142d; border-bottom: 1px solid #13274e; }
     
@@ -26,7 +27,7 @@
     .tag-red { color: #f87171; }
     .tag-cyan { color: #22d3ee; }
 
-    /* Circular [N] Badge (Screenshots 1000190346.jpg & 1000190340.jpg) */
+    /* Circular [N] Badge */
     .news-badge {
       display: inline-flex;
       align-items: center;
@@ -60,17 +61,18 @@
       overflow: hidden;
     }
 
-    /* ON-CHART DUAL RULE STATUS MATRIX (Screenshot 1000187996.jpg) */
+    /* ON-CHART DUAL RULE STATUS MATRIX (Screenshot 1000190348.jpg) */
     .onchart-matrix-card {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      bottom: 12px;
+      right: 12px;
       background: #07132a;
       border: 1px solid #19356d;
-      border-radius: 5px;
+      border-radius: 6px;
       overflow: hidden;
       z-index: 20;
-      width: 150px;
+      width: 255px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
     }
     .rule-table-grid { width: 100%; border-collapse: collapse; font-size: 10px; }
     .rule-table-grid th, .rule-table-grid td { padding: 3px 6px; border: 1px solid #13274f; }
@@ -78,14 +80,45 @@
     .rule-th-pe { background: #ffe4e6; color: #9f1239; font-weight: 800; }
     .status-yes { background: #059669; color: #ffffff; font-weight: 800; text-align: center; }
     .status-no  { background: #dc2626; color: #ffffff; font-weight: 800; text-align: center; }
-    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2px 4px; font-weight: 600; }
+    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2.5px 4px; font-weight: 600; }
   </style>
 </head>
-<body class="p-2 md:p-6 pb-24 text-xs">
-  <div class="max-w-7xl mx-auto space-y-6">
+<body class="flex min-h-screen text-xs">
 
-    <!-- Top Real-Time Indices Ribbon -->
-    <header class="flex items-center justify-between border-b border-blue-950 pb-2.5 text-[11px]">
+  <!-- Left Sidebar Navigation -->
+  <aside class="nav-sidebar p-3 flex-shrink-0 hidden md:flex flex-col space-y-4">
+    <div class="flex items-center space-x-2 px-2 py-1">
+      <div class="w-5 h-5 bg-amber-500 rounded flex items-center justify-center font-black text-slate-950 text-xs">Q</div>
+      <span class="font-bold text-sm tracking-wide text-white">Quant Screener</span>
+    </div>
+
+    <div class="space-y-1 text-[11px]">
+      <div class="bg-[#0b1b3d] text-amber-400 font-bold px-3 py-1.5 rounded flex items-center space-x-2">
+        <span>⌂</span><span>Home</span>
+      </div>
+    </div>
+
+    <div class="space-y-1 text-[11px]">
+      <div class="text-[9px] text-amber-400/80 font-bold uppercase tracking-wider px-2">CANDIDATE ENGINES</div>
+      <div class="px-3 py-1 text-slate-300">Titan Flow</div>
+      <div class="px-3 py-1 text-slate-300">Sonic Pulse</div>
+      <div class="px-3 py-1 text-slate-500">Strong Intraday</div>
+      <div class="px-3 py-1 text-slate-500">Option Chain Flow</div>
+    </div>
+
+    <div class="space-y-1 text-[11px]">
+      <div class="text-[9px] text-amber-400/80 font-bold uppercase tracking-wider px-2">MARKET STRUCTURE</div>
+      <div class="px-3 py-1 text-slate-400">NIFTY</div>
+      <div class="px-3 py-1 text-slate-400">Sector Rank</div>
+      <div class="px-3 py-1 text-slate-400">Heatmap</div>
+    </div>
+  </aside>
+
+  <!-- Main View Area -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- Top Header Bar -->
+    <header class="h-10 bg-[#030712] border-b border-blue-950 px-4 flex items-center justify-between text-[11px]">
       <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap">
         <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">● LIVE</span>
         <div><span class="text-slate-400">NIFTY 50</span> <b class="text-white" id="hdr-n50">22,776.1</b> <span class="tag-red font-semibold" id="hdr-n50-chg">▼ -0.55%</span></div>
@@ -95,178 +128,177 @@
       <div class="text-slate-500 text-[10px]" id="sync-time-stamp">Syncing...</div>
     </header>
 
-    <!-- Top Summary 4-Cards Grid (Screenshot 1000190335.jpg) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-      
-      <!-- Card 1: Market Summary -->
-      <div class="card-navy p-3.5 rounded space-y-2">
-        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
-        <div>
-          <div class="text-[11px] text-slate-400">NIFTY 50</div>
-          <div class="text-2xl font-bold text-white" id="card-spot">22,776.1</div>
-          <div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div>
-        </div>
-        <div class="border-t border-blue-950 pt-2 flex justify-between items-center text-[11px]">
-          <span class="text-slate-400">India VIX</span>
-          <span class="font-bold text-amber-300" id="card-vix">13.61</span>
-        </div>
-      </div>
+    <main class="p-3 md:p-6 space-y-6 overflow-y-auto">
 
-      <!-- Card 2: Breadth -->
-      <div class="card-navy p-3.5 rounded space-y-2">
-        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
-        <div class="grid grid-cols-2 gap-2 pt-1">
-          <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
-            <div class="text-[10px] text-slate-400">Advances</div>
-            <div class="text-xl font-bold tag-green" id="card-adv">0</div>
+      <!-- Top 4 Summary Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        
+        <div class="card-navy p-3.5 rounded space-y-2">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
+          <div>
+            <div class="text-[11px] text-slate-400">NIFTY 50</div>
+            <div class="text-2xl font-bold text-white" id="card-spot">22,776.1</div>
+            <div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div>
           </div>
-          <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
-            <div class="text-[10px] text-slate-400">Declines</div>
-            <div class="text-xl font-bold tag-red" id="card-dec">0</div>
+          <div class="border-t border-blue-950 pt-2 flex justify-between items-center text-[11px]">
+            <span class="text-slate-400">India VIX</span>
+            <span class="font-bold text-amber-300" id="card-vix">13.61</span>
           </div>
         </div>
-        <div class="text-[10px] text-slate-500 text-center pt-1">Full NSE F&O Universe Scan</div>
-      </div>
 
-      <!-- Card 3: Sectors -->
-      <div class="card-navy p-3.5 rounded space-y-2">
-        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
-        <div class="space-y-1.5 pt-1">
-          <div class="flex justify-between items-center">
-            <span class="text-slate-400">Strongest:</span>
-            <span class="font-bold text-cyan-300" id="card-top-sec">--</span>
+        <div class="card-navy p-3.5 rounded space-y-2">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
+              <div class="text-[10px] text-slate-400">Advances</div>
+              <div class="text-xl font-bold tag-green" id="card-adv">0</div>
+            </div>
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
+              <div class="text-[10px] text-slate-400">Declines</div>
+              <div class="text-xl font-bold tag-red" id="card-dec">0</div>
+            </div>
           </div>
-          <div class="flex justify-between items-center">
-            <span class="text-slate-400">Weakest:</span>
-            <span class="font-bold text-rose-300" id="card-weak-sec">--</span>
+          <div class="text-[10px] text-slate-500 text-center pt-1">Full NSE Option Chain Universe</div>
+        </div>
+
+        <div class="card-navy p-3.5 rounded space-y-2">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
+          <div class="space-y-1.5 pt-1">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">Strongest:</span>
+              <span class="font-bold text-cyan-300" id="card-top-sec">--</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">Weakest:</span>
+              <span class="font-bold text-rose-300" id="card-weak-sec">--</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Card 4: NIFTY PCR -->
-      <div class="card-navy p-3.5 rounded space-y-2">
-        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">NIFTY PCR</div>
-        <div class="space-y-1.5 pt-1">
-          <div class="flex justify-between items-center">
-            <span class="text-slate-400">Nearest expiry PCR:</span>
-            <span class="font-bold text-white" id="card-pcr">0.88</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-slate-400">Max pain strike:</span>
-            <span class="font-bold text-amber-300" id="card-maxpain">22,800</span>
+        <div class="card-navy p-3.5 rounded space-y-2">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">NIFTY PCR</div>
+          <div class="space-y-1.5 pt-1">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">Nearest expiry PCR:</span>
+              <span class="font-bold text-white" id="card-pcr">0.88</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">Max pain strike:</span>
+              <span class="font-bold text-amber-300" id="card-maxpain">22,800</span>
+            </div>
           </div>
         </div>
+
       </div>
 
-    </div>
+      <div class="text-[11px] text-slate-400">
+        CANDIDATE ENGINES · FILTERED STRICTLY BY FULL 4/4 QUANT CRITERIA
+      </div>
 
-    <div class="text-[11px] text-slate-400">
-      CANDIDATE ENGINES · CLICK ANY STOCK TO OPEN 5-MINUTE TAPE &amp; RULE CONFIRMATION MATRIX
-    </div>
+      <!-- ENGINE 1: Sonic Pulse Model BULLISH -->
+      <section class="space-y-2">
+        <div class="flex items-center space-x-2">
+          <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
+          <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
+        </div>
+        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+          <table class="w-full text-left whitespace-nowrap text-xs">
+            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+              <tr>
+                <th class="py-2.5 px-3 text-center w-8">ADD</th>
+                <th class="py-2.5 px-3">SYMBOL</th>
+                <th class="py-2.5 px-3">SECTOR</th>
+                <th class="py-2.5 px-3 text-center">LISTED AT</th>
+                <th class="py-2.5 px-3 text-right">% CHANGE</th>
+                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-sonic-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <!-- ENGINE 1: Sonic Pulse Model BULLISH (Screenshot 1000190340.jpg) -->
-    <section class="space-y-2">
-      <div class="flex items-center space-x-2">
-        <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
-        <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
-      </div>
-      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-        <table class="w-full text-left whitespace-nowrap text-xs">
-          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-            <tr>
-              <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
-              <th class="py-2.5 px-3">SECTOR</th>
-              <th class="py-2.5 px-3 text-center">LISTED AT</th>
-              <th class="py-2.5 px-3 text-right">% CHANGE</th>
-              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-            </tr>
-          </thead>
-          <tbody id="tbl-sonic-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-        </table>
-      </div>
-    </section>
+      <!-- ENGINE 2: Sonic Pulse Model BEARISH -->
+      <section class="space-y-2">
+        <div class="flex items-center space-x-2">
+          <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
+          <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
+        </div>
+        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+          <table class="w-full text-left whitespace-nowrap text-xs">
+            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+              <tr>
+                <th class="py-2.5 px-3 text-center w-8">ADD</th>
+                <th class="py-2.5 px-3">SYMBOL</th>
+                <th class="py-2.5 px-3">SECTOR</th>
+                <th class="py-2.5 px-3 text-center">LISTED AT</th>
+                <th class="py-2.5 px-3 text-right">% CHANGE</th>
+                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-sonic-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <!-- ENGINE 2: Sonic Pulse Model BEARISH -->
-    <section class="space-y-2">
-      <div class="flex items-center space-x-2">
-        <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
-        <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
-      </div>
-      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-        <table class="w-full text-left whitespace-nowrap text-xs">
-          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-            <tr>
-              <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
-              <th class="py-2.5 px-3">SECTOR</th>
-              <th class="py-2.5 px-3 text-center">LISTED AT</th>
-              <th class="py-2.5 px-3 text-right">% CHANGE</th>
-              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-            </tr>
-          </thead>
-          <tbody id="tbl-sonic-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-        </table>
-      </div>
-    </section>
+      <!-- ENGINE 3: Titan Flow Model BULLISH -->
+      <section class="space-y-2">
+        <div class="flex items-center space-x-2">
+          <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
+          <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
+        </div>
+        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+          <table class="w-full text-left whitespace-nowrap text-xs">
+            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+              <tr>
+                <th class="py-2.5 px-3 text-center w-8">ADD</th>
+                <th class="py-2.5 px-3">SYMBOL</th>
+                <th class="py-2.5 px-3">SECTOR</th>
+                <th class="py-2.5 px-3 text-center">LISTED AT</th>
+                <th class="py-2.5 px-3 text-right">% CHANGE</th>
+                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-titan-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <!-- ENGINE 3: Titan Flow Model BULLISH (Screenshot 1000190346.jpg) -->
-    <section class="space-y-2">
-      <div class="flex items-center space-x-2">
-        <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
-        <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
-      </div>
-      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-        <table class="w-full text-left whitespace-nowrap text-xs">
-          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-            <tr>
-              <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
-              <th class="py-2.5 px-3">SECTOR</th>
-              <th class="py-2.5 px-3 text-center">LISTED AT</th>
-              <th class="py-2.5 px-3 text-right">% CHANGE</th>
-              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-            </tr>
-          </thead>
-          <tbody id="tbl-titan-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-        </table>
-      </div>
-    </section>
+      <!-- ENGINE 4: Titan Flow Model BEARISH -->
+      <section class="space-y-2">
+        <div class="flex items-center space-x-2">
+          <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
+          <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
+        </div>
+        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+          <table class="w-full text-left whitespace-nowrap text-xs">
+            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+              <tr>
+                <th class="py-2.5 px-3 text-center w-8">ADD</th>
+                <th class="py-2.5 px-3">SYMBOL</th>
+                <th class="py-2.5 px-3">SECTOR</th>
+                <th class="py-2.5 px-3 text-center">LISTED AT</th>
+                <th class="py-2.5 px-3 text-right">% CHANGE</th>
+                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-titan-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <!-- ENGINE 4: Titan Flow Model BEARISH (Screenshot 1000190342.jpg) -->
-    <section class="space-y-2">
-      <div class="flex items-center space-x-2">
-        <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
-        <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
-      </div>
-      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-        <table class="w-full text-left whitespace-nowrap text-xs">
-          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-            <tr>
-              <th class="py-2.5 px-3 text-center w-8">ADD</th>
-              <th class="py-2.5 px-3">SYMBOL</th>
-              <th class="py-2.5 px-3">SECTOR</th>
-              <th class="py-2.5 px-3 text-center">LISTED AT</th>
-              <th class="py-2.5 px-3 text-right">% CHANGE</th>
-              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-            </tr>
-          </thead>
-          <tbody id="tbl-titan-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-        </table>
-      </div>
-    </section>
-
+    </main>
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW WITH CE/PE ENGINE & DAY HIGH/LOW -->
+  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
   <div id="chart-hover-modal">
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
@@ -290,22 +322,24 @@
         <div><span class="text-slate-400 uppercase text-[9px]">DAY LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b> <span class="text-[9px] text-rose-500">▼</span></div>
       </div>
       <div class="flex items-center space-x-2">
-        <span class="text-slate-400 uppercase text-[9px]">ACTIVE SETUP:</span> 
+        <span class="text-slate-400 uppercase text-[9px]">SETUP:</span> 
         <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
       </div>
     </div>
 
-    <!-- Canvas Container with Embedded CE / PE Matrix Box -->
+    <!-- Canvas Container with Embedded Dual Matrix Box (Screenshot 1000190348.jpg) -->
     <div class="relative w-full h-[380px] bg-[#030b1e]">
       <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
 
-      <!-- ON-CHART DUAL RULE STATUS MATRIX (Screenshot 1000187996.jpg) -->
+      <!-- ON-CHART DUAL RULE STATUS MATRIX -->
       <div class="onchart-matrix-card">
         <table class="rule-table-grid">
           <thead>
             <tr id="qp-matrix-head">
-              <th class="rule-th-ce">RULE CE</th>
-              <th class="rule-th-ce" style="text-align: center;">STATUS</th>
+              <th class="rule-th-ce">BULLISH</th>
+              <th class="rule-th-ce" style="text-align: center;">4/4</th>
+              <th class="rule-th-pe">BEARISH</th>
+              <th class="rule-th-pe" style="text-align: center;">1/4</th>
             </tr>
           </thead>
           <tbody id="qp-matrix-body"></tbody>
@@ -352,9 +386,9 @@
       const totalRange = maxVal - minVal;
 
       const getY = (val) => h - 50 - ((val - minVal) / totalRange) * (h - 80);
-      const startX = 170;
+      const startX = 20;
       const num = candles.length;
-      const candleWidth = Math.max(3, (w - 190) / num - 3);
+      const candleWidth = Math.max(3, (w - 290) / num - 3);
 
       // Day High Green Line
       const yHigh = getY(high);
@@ -363,21 +397,21 @@
       ctx.lineWidth = 1.4;
       ctx.beginPath();
       ctx.moveTo(startX, yHigh);
-      ctx.lineTo(w - 15, yHigh);
+      ctx.lineTo(w - 275, yHigh);
       ctx.stroke();
       ctx.fillStyle = '#00e676';
       ctx.font = '10px monospace';
-      ctx.fillText(`Day High: ₹${high}`, w - 120, yHigh - 5);
+      ctx.fillText(`Day High: ₹${high}`, w - 370, yHigh - 5);
 
       // Day Low Red Line
       const yLow = getY(low);
       ctx.strokeStyle = '#ef4444';
       ctx.beginPath();
       ctx.moveTo(startX, yLow);
-      ctx.lineTo(w - 15, yLow);
+      ctx.lineTo(w - 275, yLow);
       ctx.stroke();
       ctx.fillStyle = '#ef4444';
-      ctx.fillText(`Day Low: ₹${low}`, w - 120, yLow + 12);
+      ctx.fillText(`Day Low: ₹${low}`, w - 370, yLow + 12);
       ctx.setLineDash([]);
 
       const maxVol = Math.max(...candles.map(c => c.v), 1);
@@ -388,7 +422,6 @@
         const bull = cd.c >= cd.o;
         const color = bull ? '#00e5ff' : '#f43f5e';
 
-        // Wick
         ctx.strokeStyle = color;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
@@ -396,13 +429,11 @@
         ctx.lineTo(x + candleWidth / 2, getY(cd.l));
         ctx.stroke();
 
-        // Body
         const yO = getY(cd.o);
         const yC = getY(cd.c);
         ctx.fillStyle = color;
         ctx.fillRect(x, Math.min(yO, yC), candleWidth, Math.max(2, Math.abs(yO - yC)));
 
-        // Floor Volume
         const volH = (cd.v / maxVol) * 35;
         ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
         ctx.fillRect(x, h - volH - 5, candleWidth, volH);
@@ -429,36 +460,46 @@
 
       const isBull = (stock.pct_chg || 0) >= 0;
       const tag = document.getElementById('qp-setup-tag');
-      tag.textContent = isBull ? "RULE CE (CALL)" : "RULE PE (PUT)";
+      tag.textContent = isBull ? "BULLISH 4/4" : "BEARISH 4/4";
       tag.className = isBull 
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      // On-Chart Active Matrix (Screenshot 1000187996.jpg)
+      // Dual status table matching Screenshot 1000190348.jpg
+      const rBull = stock.rules_bull || { Breakout: "YES", Volume: "YES", PDH: "YES", Range: "YES" };
+      const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "YES", DL: "NO", PDL: "NO" };
+
+      const bScore = stock.bull_score || (isBull ? "4/4" : "1/4");
+      const beScore = stock.bear_score || (!isBull ? "4/4" : "1/4");
+
       const head = document.getElementById('qp-matrix-head');
       const body = document.getElementById('qp-matrix-body');
-      const r = stock.rules || { breakout: "NO", volume: "NO", pdh: "NO", range: "NO" };
 
-      if (isBull) {
-        head.innerHTML = `<th class="rule-th-ce">RULE CE</th><th class="rule-th-ce" style="text-align: center;">STATUS</th>`;
-        body.innerHTML = `
-          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
-          <tr><td>Volume</td><td class="${r.volume === 'YES' ? 'status-yes' : 'status-no'}">${r.volume}</td></tr>
-          <tr><td>PDH</td><td class="${r.pdh === 'YES' ? 'status-yes' : 'status-no'}">${r.pdh}</td></tr>
-          <tr><td>Range</td><td class="${r.range === 'YES' ? 'status-yes' : 'status-no'}">${r.range}</td></tr>
-        `;
-      } else {
-        head.innerHTML = `<th class="rule-th-pe">RULE PE</th><th class="rule-th-pe" style="text-align: center;">STATUS</th>`;
-        const peVwap = (stock.vwap_gap < 0) ? "YES" : "NO";
-        const peDL = (stock.ltp <= (stock.day_low * 1.002)) ? "YES" : "NO";
-        const pePDL = (stock.ltp <= stock.day_low) ? "YES" : "NO";
-        body.innerHTML = `
-          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
-          <tr><td>VWAP</td><td class="${peVwap === 'YES' ? 'status-yes' : 'status-no'}">${peVwap}</td></tr>
-          <tr><td>DL</td><td class="${peDL === 'YES' ? 'status-yes' : 'status-no'}">${peDL}</td></tr>
-          <tr><td>PDL</td><td class="${pePDL === 'YES' ? 'status-yes' : 'status-no'}">${pePDL}</td></tr>
-        `;
-      }
+      head.innerHTML = `
+        <th class="rule-th-ce">BULLISH</th>
+        <th class="rule-th-ce" style="text-align: center;">${bScore}</th>
+        <th class="rule-th-pe">BEARISH</th>
+        <th class="rule-th-pe" style="text-align: center;">${beScore}</th>
+      `;
+
+      body.innerHTML = `
+        <tr>
+          <td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td>
+          <td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td>
+        </tr>
+        <tr>
+          <td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td>
+          <td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td>
+        </tr>
+        <tr>
+          <td>PDH</td><td class="${rBull.PDH === 'YES' ? 'status-yes' : 'status-no'}">${rBull.PDH}</td>
+          <td>DL</td><td class="${rBear.DL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.DL}</td>
+        </tr>
+        <tr>
+          <td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td>
+          <td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td>
+        </tr>
+      `;
 
       const x = Math.min(window.innerWidth - 750, Math.max(10, (event.clientX || window.innerWidth / 2) - 360));
       const y = Math.min(window.innerHeight - 480, Math.max(50, (event.clientY || 200) - 180));
@@ -479,7 +520,7 @@
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        // Index all engine symbols for fast lookup
+        // Index all engine symbols
         [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || [])].forEach(s => {
           screenerDataMap[s.symbol] = s;
         });
@@ -497,7 +538,7 @@
         document.getElementById('card-pcr').textContent = ms.nifty_pcr || "0.88";
         document.getElementById('card-maxpain').textContent = ms.max_pain?.toLocaleString() || "22,800";
 
-        // Table Row Renderer matching Screenshots 1000190346.jpg, 1000190340.jpg, 1000190344.jpg
+        // Row renderer matching reference UI
         const renderRow = (s) => {
           const newsBadge = s.has_news ? `<span class="news-badge" title="Recent breaking news">N</span>` : '';
           const isUp = (s.pct_chg || 0) >= 0;
@@ -531,9 +572,10 @@
           `;
         };
 
+        // Official platform notice for boards with 0 qualifying stocks (Screenshot 1000190342.jpg)
         const emptyNotice = `
           <tr>
-            <td colspan="8" class="py-4 text-center text-slate-400 font-medium">
+            <td colspan="8" class="py-5 text-center text-slate-400 font-medium">
               No stocks are on this board right now. Names are added through the session as they qualify, and removed when they stop qualifying.
             </td>
           </tr>
