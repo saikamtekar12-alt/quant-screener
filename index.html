@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener | Order Flow & Momentum Matrix</title>
+  <title>Quant Screener | Live Option Chain Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #030713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
@@ -92,16 +92,23 @@
     </div>
 
     <div class="space-y-1 text-[11px]">
-      <div class="bg-[#0b1b3d] text-amber-400 font-bold px-3 py-1.5 rounded flex items-center space-x-2">
+      <div onclick="switchTab('matrix')" class="bg-[#0b1b3d] text-amber-400 font-bold px-3 py-1.5 rounded flex items-center space-x-2 cursor-pointer">
         <span>⌂</span><span>Home</span>
       </div>
     </div>
 
     <div class="space-y-1 text-[11px]">
       <div class="text-[9px] text-amber-400/80 font-bold uppercase tracking-wider px-2">CANDIDATE ENGINES</div>
-      <div class="px-3 py-1 text-slate-300">Titan Flow</div>
-      <div class="px-3 py-1 text-slate-300">Sonic Pulse</div>
-      <div class="px-3 py-1 text-slate-500">Option Chain Flow</div>
+      <div onclick="switchTab('matrix')" class="px-3 py-1 text-slate-300 hover:text-white cursor-pointer">Titan Flow</div>
+      <div onclick="switchTab('matrix')" class="px-3 py-1 text-slate-300 hover:text-white cursor-pointer">Sonic Pulse</div>
+      <div onclick="switchTab('obc')" class="px-3 py-1 text-cyan-400 hover:text-cyan-300 font-bold cursor-pointer">Order Block Concept ★</div>
+    </div>
+
+    <div class="space-y-1 text-[11px]">
+      <div class="text-[9px] text-amber-400/80 font-bold uppercase tracking-wider px-2">MARKET STRUCTURE</div>
+      <div class="px-3 py-1 text-slate-400">NIFTY</div>
+      <div class="px-3 py-1 text-slate-400">Sector Rank</div>
+      <div class="px-3 py-1 text-slate-400">Heatmap</div>
     </div>
   </aside>
 
@@ -120,7 +127,7 @@
 
     <main class="p-3 md:p-6 space-y-6 overflow-y-auto">
 
-      <!-- Top Summary Cards Grid -->
+      <!-- Top 4 Summary Cards Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
@@ -130,6 +137,7 @@
             <div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div>
           </div>
         </div>
+
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
           <div class="grid grid-cols-2 gap-2 pt-1">
@@ -143,6 +151,7 @@
             </div>
           </div>
         </div>
+
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
           <div class="space-y-1.5 pt-1">
@@ -150,6 +159,7 @@
             <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">--</span></div>
           </div>
         </div>
+
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">NIFTY PCR</div>
           <div class="space-y-1.5 pt-1">
@@ -165,12 +175,11 @@
         <button id="btn-tab-obc" onclick="switchTab('obc')" class="px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800">ORDER BLOCK CONCEPT</button>
       </div>
 
-      <!-- VIEW A: EXACT 4/4 QUANT MOMENTUM MATRIX -->
+      <!-- TAB A: 4/4 QUANT MOMENTUM MATRIX (Exact Official QuantScreener UI) -->
       <div id="view-matrix" class="space-y-6">
-        <div class="text-[11px] text-slate-400">
-          CANDIDATE ENGINES · FILTERED STRICTLY BY FULL 4/4 QUANT CRITERIA
-        </div>
+        <div class="text-[11px] text-slate-400">CANDIDATE ENGINES · FILTERED STRICTLY BY FULL 4/4 QUANT CRITERIA</div>
 
+        <!-- ENGINE 1: Sonic Pulse Model BULLISH -->
         <section class="space-y-2">
           <div class="flex items-center space-x-2">
             <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
@@ -195,6 +204,7 @@
           </div>
         </section>
 
+        <!-- ENGINE 2: Sonic Pulse Model BEARISH -->
         <section class="space-y-2">
           <div class="flex items-center space-x-2">
             <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
@@ -219,6 +229,7 @@
           </div>
         </section>
 
+        <!-- ENGINE 3: Titan Flow Model BULLISH -->
         <section class="space-y-2">
           <div class="flex items-center space-x-2">
             <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
@@ -243,6 +254,7 @@
           </div>
         </section>
 
+        <!-- ENGINE 4: Titan Flow Model BEARISH -->
         <section class="space-y-2">
           <div class="flex items-center space-x-2">
             <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
@@ -268,7 +280,7 @@
         </section>
       </div>
 
-      <!-- VIEW B: NEW ORDER BLOCK CONCEPT (From Video Details) -->
+      <!-- TAB B: ORDER BLOCK CONCEPT (Video Order Flow Concepts) -->
       <div id="view-obc" class="hidden space-y-4">
         <div class="text-[11px] text-slate-400">
           ORDER FLOW CONCEPTS · 5/5 STRATEGIES (VOLUME PROFILE, ABSORPTION, DELTA, IMBALANCE, GAMMA)
@@ -375,8 +387,7 @@
       canvas.height = rect.height * dpr;
       ctx.scale(dpr, dpr);
 
-      const w = rect.width;
-      const h = rect.height;
+      const w = rect.width, h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
       ctx.strokeStyle = '#0e2248';
@@ -391,17 +402,10 @@
       const candles = stock.candles || [];
       if (!candles.length) return;
 
-      const high = stock.day_high;
-      const low = stock.day_low;
-      const range = (high - low) || 1;
-      const minVal = low - range * 0.05;
-      const maxVal = high + range * 0.05;
-      const totalRange = maxVal - minVal;
-
+      const high = stock.day_high, low = stock.day_low, range = (high - low) || 1;
+      const minVal = low - range * 0.05, maxVal = high + range * 0.05, totalRange = maxVal - minVal;
       const getY = (val) => h - 50 - ((val - minVal) / totalRange) * (h - 80);
-      const startX = 20;
-      const num = candles.length;
-      const candleWidth = Math.max(3, (w - 290) / num - 3);
+      const startX = 20, num = candles.length, candleWidth = Math.max(3, (w - 290) / num - 3);
 
       const yHigh = getY(high);
       ctx.strokeStyle = '#00e676';
@@ -426,13 +430,8 @@
       ctx.setLineDash([]);
 
       const maxVol = Math.max(...candles.map(c => c.v), 1);
-
       for (let i = 0; i < num; i++) {
-        const cd = candles[i];
-        const x = startX + i * (candleWidth + 3);
-        const bull = cd.c >= cd.o;
-        const color = bull ? '#00e5ff' : '#f43f5e';
-
+        const cd = candles[i], x = startX + i * (candleWidth + 3), bull = cd.c >= cd.o, color = bull ? '#00e5ff' : '#f43f5e';
         ctx.strokeStyle = color;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
@@ -440,11 +439,8 @@
         ctx.lineTo(x + candleWidth / 2, getY(cd.l));
         ctx.stroke();
 
-        const yO = getY(cd.o);
-        const yC = getY(cd.c);
         ctx.fillStyle = color;
-        ctx.fillRect(x, Math.min(yO, yC), candleWidth, Math.max(2, Math.abs(yO - yC)));
-
+        ctx.fillRect(x, Math.min(getY(cd.o), getY(cd.c)), candleWidth, Math.max(2, Math.abs(getY(cd.o) - getY(cd.c))));
         const volH = (cd.v / maxVol) * 35;
         ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
         ctx.fillRect(x, h - volH - 5, candleWidth, volH);
@@ -459,8 +455,8 @@
       const stock = screenerDataMap[sym] || {};
 
       document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
-
       document.getElementById('qp-ltp').textContent = `₹${(stock.ltp || 0).toFixed(2)}`;
+      
       const qpChg = document.getElementById('qp-chg');
       qpChg.textContent = `${stock.pct_chg >= 0 ? '+' : ''}${stock.pct_chg}%`;
       qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
@@ -475,7 +471,6 @@
         ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
         : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      // Dual status table matching Screenshot 1000190348.jpg
       const rBull = stock.rules_bull || { Breakout: "YES", Volume: "YES", PDH: "YES", Range: "YES" };
       const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "YES", DL: "NO", PDL: "NO" };
       const bScore = stock.bull_score || (isBull ? "4/4" : "1/4");
@@ -484,30 +479,12 @@
       const head = document.getElementById('qp-matrix-head');
       const body = document.getElementById('qp-matrix-body');
 
-      head.innerHTML = `
-        <th class="rule-th-ce">BULLISH</th>
-        <th class="rule-th-ce" style="text-align: center;">${bScore}</th>
-        <th class="rule-th-pe">BEARISH</th>
-        <th class="rule-th-pe" style="text-align: center;">${beScore}</th>
-      `;
-
+      head.innerHTML = `<th class="rule-th-ce">BULLISH</th><th class="rule-th-ce" style="text-align: center;">${bScore}</th><th class="rule-th-pe">BEARISH</th><th class="rule-th-pe" style="text-align: center;">${beScore}</th>`;
       body.innerHTML = `
-        <tr>
-          <td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td>
-          <td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td>
-        </tr>
-        <tr>
-          <td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td>
-          <td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td>
-        </tr>
-        <tr>
-          <td>PDH</td><td class="${rBull.PDH === 'YES' ? 'status-yes' : 'status-no'}">${rBull.PDH}</td>
-          <td>DL</td><td class="${rBear.DL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.DL}</td>
-        </tr>
-        <tr>
-          <td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td>
-          <td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td>
-        </tr>
+        <tr><td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td><td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td></tr>
+        <tr><td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td><td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td></tr>
+        <tr><td>PDH</td><td class="${rBull.PDH === 'YES' ? 'status-yes' : 'status-no'}">${rBull.PDH}</td><td>DL</td><td class="${rBear.DL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.DL}</td></tr>
+        <tr><td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td><td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td></tr>
       `;
 
       const x = Math.min(window.innerWidth - 750, Math.max(10, (event.clientX || window.innerWidth / 2) - 360));
@@ -529,7 +506,6 @@
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        // Index all engine symbols
         [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || []), ...(d.order_block_concepts || [])].forEach(s => {
           screenerDataMap[s.symbol] = s;
         });
@@ -549,29 +525,15 @@
         const renderRow = (s) => {
           const newsBadge = s.has_news ? `<span class="news-badge" title="Breaking news">N</span>` : '';
           const isUp = (s.pct_chg || 0) >= 0;
-          const pctColor = isUp ? 'tag-cyan' : 'tag-red';
-
           return `
             <tr class="hover:bg-blue-900/30 transition-colors">
               <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
               <td class="py-2.5 px-3 font-bold text-white flex items-center">
-                <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
-                      onmouseenter="showQuickChart('${s.symbol}', event)" 
-                      onclick="showQuickChart('${s.symbol}', event)">
-                  ${s.symbol}
-                </span>
-                ${newsBadge}
+                <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol}</span>${newsBadge}
               </td>
-              <td class="py-2.5 px-3">
-                <span class="sector-pill">
-                  <span class="sector-name">${s.sector}</span>
-                  <span class="sector-val ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</span>
-                </span>
-              </td>
+              <td class="py-2.5 px-3"><span class="sector-pill"><span class="sector-name">${s.sector}</span><span class="sector-val ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</span></span></td>
               <td class="py-2.5 px-3 text-center font-bold text-slate-200">${s.listed_at}</td>
-              <td class="py-2.5 px-3 text-right font-black ${pctColor} text-xs">
-                ${s.pct_display || Math.abs(s.pct_chg).toFixed(2)}
-              </td>
+              <td class="py-2.5 px-3 text-right font-black ${isUp ? 'tag-cyan' : 'tag-red'} text-xs">${s.pct_display || Math.abs(s.pct_chg).toFixed(2)}</td>
               <td class="py-2.5 px-3 text-right font-bold text-slate-200">${s.hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
@@ -580,11 +542,8 @@
         };
 
         const emptyNotice = `<tr><td colspan="8" class="py-5 text-center text-slate-400 font-medium">No stocks are on this board right now. Names are added through the session as they qualify, and removed when they stop qualifying.</td></tr>`;
-
         const fillTable = (id, list) => {
-          const el = document.getElementById(id);
-          if (!list || !list.length) el.innerHTML = emptyNotice;
-          else el.innerHTML = list.map(renderRow).join('');
+          document.getElementById(id).innerHTML = (!list || !list.length) ? emptyNotice : list.map(renderRow).join('');
         };
 
         fillTable('tbl-sonic-bullish', d.sonic_bullish);
@@ -592,18 +551,14 @@
         fillTable('tbl-titan-bullish', d.titan_bullish);
         fillTable('tbl-titan-bearish', d.titan_bearish);
 
-        // Order Block Concepts Render (New 5 Video Filters)
+        // Order Block Concepts Render (5 Video Setups)
         const renderObcRow = (s, idx) => {
           const isUp = (s.pct_chg || 0) >= 0;
           return `
             <tr class="hover:bg-blue-900/30 transition-colors">
               <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
               <td class="py-2.5 px-3 font-bold text-white">
-                <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
-                      onmouseenter="showQuickChart('${s.symbol}', event)" 
-                      onclick="showQuickChart('${s.symbol}', event)">
-                  ${s.symbol} ↗
-                </span>
+                <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span>
               </td>
               <td class="py-2.5 px-3 text-slate-300">${s.sector}</td>
               <td class="py-2.5 px-3 text-center font-bold text-slate-400">${s.listed_at}</td>
@@ -617,7 +572,7 @@
 
         const obcEl = document.getElementById('tbl-order-blocks');
         if (!d.order_block_concepts || !d.order_block_concepts.length) {
-          obcEl.innerHTML = `<tr><td colspan="8" class="py-5 text-center text-slate-400 font-medium">No active Order Flow / Concept patterns detected right now.</td></tr>`;
+          obcEl.innerHTML = `<tr><td colspan="8" class="py-5 text-center text-slate-400 font-medium">No active Order Flow concepts detected right now.</td></tr>`;
         } else {
           obcEl.innerHTML = d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('');
         }
