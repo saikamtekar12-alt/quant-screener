@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener - Institutional Momentum & Multi-Condition Matrix</title>
+  <title>Quant Screener | Live NSE Market Screener</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #020713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
-    .card-navy { background-color: #07132a; border: 1px solid #13274f; }
-    .table-head { background-color: #0a1b3d; border-bottom: 2px solid #19356d; }
+    body { background-color: #030713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
+    .card-navy { background-color: #050d1e; border: 1px solid #0d1a36; }
+    .table-head { background-color: #08142d; border-bottom: 1px solid #13274e; }
     
     .sector-pill {
       display: inline-flex;
@@ -20,72 +20,30 @@
       font-size: 11px;
     }
     .sector-name { padding: 2px 7px; color: #38bdf8; font-weight: 600; }
-    .sector-val {
-      background-color: #021a24;
-      padding: 2px 7px;
-      font-weight: 700;
-      border-left: 1px solid #065975;
-    }
-
-    .intent-pill {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 4px;
-      min-width: 105px;
-    }
-    .bull-strong { background-color: #064e3b; color: #34d399; border: 1px solid #059669; }
-    .bull-cover  { background-color: #062f4f; color: #38bdf8; border: 1px solid #0284c7; }
-    .bear-strong { background-color: #4c0519; color: #fb7185; border: 1px solid #e11d48; }
-    .bear-weak   { background-color: #3b1803; color: #fb923c; border: 1px solid #ea580c; }
-
-    .star-pill {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 800;
-      font-size: 11px;
-      min-width: 65px;
-    }
-    .star-bull { background-color: #064e3b; color: #fbbf24; border: 1px solid #047857; }
-    .star-bear { background-color: #4c0519; color: #f87171; border: 1px solid #be123c; }
+    .sector-val { background-color: #021a24; padding: 2px 7px; font-weight: 700; border-left: 1px solid #065975; }
 
     .tag-green { color: #34d399; }
     .tag-red { color: #f87171; }
+    .tag-cyan { color: #22d3ee; }
 
+    /* Circular [N] Badge (Screenshots 1000190346.jpg & 1000190340.jpg) */
     .news-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
-      height: 16px;
+      width: 17px;
+      height: 17px;
       border-radius: 9999px;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
       margin-left: 6px;
       cursor: pointer;
       user-select: none;
       vertical-align: middle;
-      transition: transform 0.15s ease-in-out;
-    }
-    .news-badge:hover { transform: scale(1.2); }
-    .news-bull { background-color: #064e3b; color: #34d399; border: 1px solid #10b981; }
-    .news-bear { background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; }
-
-    #news-hover-card {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      width: 320px;
-      background-color: #071533;
-      border: 1px solid #1e3a8a;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.95);
-      border-radius: 6px;
-      padding: 10px;
-      pointer-events: auto;
+      background-color: #4c0519;
+      color: #f87171;
+      border: 1px solid #f43f5e;
+      box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
     }
 
     /* Floating Quick-Peek Chart Window */
@@ -93,8 +51,8 @@
       display: none;
       position: fixed;
       z-index: 9999;
-      width: min(94vw, 740px);
-      height: 480px;
+      width: min(94vw, 730px);
+      height: 470px;
       background: #061229;
       border: 1px solid #38bdf8;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95);
@@ -102,305 +60,214 @@
       overflow: hidden;
     }
 
-    /* DUAL ON-CHART RULE MATRIX (Screenshot 1000187996.jpg) */
+    /* ON-CHART DUAL RULE STATUS MATRIX (Screenshot 1000187996.jpg) */
     .onchart-matrix-card {
       position: absolute;
       top: 10px;
       left: 10px;
       background: #07132a;
       border: 1px solid #19356d;
-      border-radius: 6px;
+      border-radius: 5px;
       overflow: hidden;
       z-index: 20;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.85);
-      width: 155px;
+      width: 150px;
     }
-    .rule-table-grid {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 10px;
-    }
-    .rule-table-grid th, .rule-table-grid td {
-      padding: 3px 6px;
-      border: 1px solid #13274f;
-    }
+    .rule-table-grid { width: 100%; border-collapse: collapse; font-size: 10px; }
+    .rule-table-grid th, .rule-table-grid td { padding: 3px 6px; border: 1px solid #13274f; }
     .rule-th-ce { background: #dcfce7; color: #166534; font-weight: 800; }
     .rule-th-pe { background: #ffe4e6; color: #9f1239; font-weight: 800; }
     .status-yes { background: #059669; color: #ffffff; font-weight: 800; text-align: center; }
     .status-no  { background: #dc2626; color: #ffffff; font-weight: 800; text-align: center; }
-    .rule-disclaimer {
-      background: #1e293b;
-      color: #94a3b8;
-      font-size: 8.5px;
-      text-align: center;
-      padding: 2.5px 4px;
-      font-weight: 600;
-    }
-
-    /* Smart Money Footprint Styles */
-    .sm-stat-box {
-      background-color: #06152d;
-      border: 1px solid #102a56;
-      border-radius: 6px;
-      padding: 6px 12px;
-      text-align: center;
-    }
-    .badge-surge { background-color: #3b1419; color: #fb7185; border: 1px solid #9f1239; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
-    .badge-streak { background-color: #064e3b; color: #34d399; border: 1px solid #059669; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
-    .badge-above { background-color: #0b2546; color: #38bdf8; border: 1px solid #0284c7; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
-    .cap-tag-s { background-color: #032b43; color: #38bdf8; padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 9px; }
-    .cap-tag-m { background-color: #451a03; color: #fb923c; padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 9px; }
-    .cap-tag-l { background-color: #064e3b; color: #34d399; padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 9px; }
+    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2px 4px; font-weight: 600; }
   </style>
 </head>
 <body class="p-2 md:p-6 pb-24 text-xs">
-  <div class="max-w-7xl mx-auto space-y-5">
+  <div class="max-w-7xl mx-auto space-y-6">
 
     <!-- Top Real-Time Indices Ribbon -->
-    <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap border-b border-blue-950 pb-2.5 text-[11px]">
-      <div><span class="text-slate-400">NIFTY 50</span> <span id="n50-ltp" class="font-bold">22,780.2</span> <span id="n50-chg" class="tag-red font-bold">▼ 125.40 (-0.55%)</span></div>
-      <div><span class="text-slate-400">NIFTY BANK</span> <span id="nbk-ltp" class="font-bold">50,840.65</span> <span id="nbk-chg" class="tag-red font-bold">▼ 320.10 (-0.63%)</span></div>
-      <div><span class="text-slate-400">NIFTY FIN SERVICE</span> <span id="nfin-ltp" class="font-bold">23,410.35</span> <span id="nfin-chg" class="tag-red font-bold">▼ 118.40 (-0.50%)</span></div>
-      <div><span class="text-slate-400">NIFTY IT</span> <span id="nit-ltp" class="font-bold">38,437.45</span> <span id="nit-chg" class="tag-green font-bold">▲ 144.65 (0.38%)</span></div>
-    </div>
+    <header class="flex items-center justify-between border-b border-blue-950 pb-2.5 text-[11px]">
+      <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap">
+        <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">● LIVE</span>
+        <div><span class="text-slate-400">NIFTY 50</span> <b class="text-white" id="hdr-n50">22,776.1</b> <span class="tag-red font-semibold" id="hdr-n50-chg">▼ -0.55%</span></div>
+        <div><span class="text-slate-400">NIFTY IT</span> <b class="text-white">38,136.05</b> <span class="tag-red font-semibold">▼ -0.59%</span></div>
+        <div><span class="text-slate-400">INDIA VIX</span> <b class="text-amber-300" id="hdr-vix">13.61</b> <span class="tag-green font-semibold">▲ +0.52%</span></div>
+      </div>
+      <div class="text-slate-500 text-[10px]" id="sync-time-stamp">Syncing...</div>
+    </header>
 
-    <!-- Macro Metric Tiles (Screenshots 1000186986.jpg & 1000186987.jpg) -->
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">NIFTY 50 SPOT</div>
-        <div class="text-lg font-bold text-white mt-1" id="tile-spot">22,780.2</div>
-        <div class="text-[10px] tag-red font-bold" id="tile-spot-chg">▼ 0.55%</div>
-      </div>
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">ADVANCES</div>
-        <div class="text-xl font-bold tag-green mt-1" id="tile-adv">0</div>
-      </div>
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">DECLINES</div>
-        <div class="text-xl font-bold tag-red mt-1" id="tile-dec">0</div>
-      </div>
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">TRACKED SYMBOLS</div>
-        <div class="text-xl font-bold text-white mt-1" id="tile-track">185</div>
-      </div>
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">TOP SECTOR</div>
-        <div class="text-base font-bold text-cyan-300 mt-1" id="tile-top-sec">Energy</div>
-      </div>
-      <div class="card-navy p-3 rounded text-center">
-        <div class="text-[10px] text-slate-400 uppercase tracking-wider">WEAKEST SECTOR</div>
-        <div class="text-base font-bold text-rose-300 mt-1" id="tile-weak-sec">Financial Services</div>
-      </div>
-    </div>
-
-    <!-- Market Summary Strip & View Toggle -->
-    <div class="card-navy px-4 py-2.5 rounded flex flex-wrap items-center justify-between gap-2 text-[11px]">
-      <div class="flex items-center space-x-4">
-        <div><span class="text-slate-400 uppercase text-[9px]">INDIA VIX:</span> <b id="vix-val" class="text-amber-300">13.64</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">TOP BULLISH:</span> <b id="sum-bull" class="text-emerald-400">OFSS</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">TOP BEARISH:</span> <b id="sum-bear" class="text-rose-400">RADICO</b></div>
-      </div>
-      <div class="flex items-center space-x-3">
-        <div class="bg-[#030d22] p-0.5 rounded border border-blue-900 flex space-x-1">
-          <button id="btn-tab-matrix" onclick="switchTab('matrix')" class="px-3 py-1 rounded font-bold text-xs bg-cyan-600 text-white">MOMENTUM MATRIX</button>
-          <button id="btn-tab-sm" onclick="switchTab('sm')" class="px-3 py-1 rounded font-bold text-xs text-slate-400 hover:text-white">INSTITUTIONAL FOOTPRINT</button>
+    <!-- Top Summary 4-Cards Grid (Screenshot 1000190335.jpg) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      
+      <!-- Card 1: Market Summary -->
+      <div class="card-navy p-3.5 rounded space-y-2">
+        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
+        <div>
+          <div class="text-[11px] text-slate-400">NIFTY 50</div>
+          <div class="text-2xl font-bold text-white" id="card-spot">22,776.1</div>
+          <div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div>
         </div>
-        <div class="text-slate-500 text-[10px]">Sync: <span id="sync-time" class="text-slate-300">Syncing...</span></div>
-      </div>
-    </div>
-
-    <!-- TAB 1: MOMENTUM MATRIX VIEW (Exact QuantScreener UI) -->
-    <div id="tab-content-matrix" class="space-y-5">
-
-      <!-- SECTION 1: BULLISH MATRIX TABLE -->
-      <div class="space-y-2">
-        <div class="flex items-center space-x-2 px-1">
-          <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
-          <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
-        </div>
-
-        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-          <table class="w-full text-left whitespace-nowrap text-xs">
-            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-              <tr>
-                <th class="py-2.5 px-3 text-center w-8">ADD</th>
-                <th class="py-2.5 px-3">SYMBOL (HOVER CHART)</th>
-                <th class="py-2.5 px-3">SECTOR</th>
-                <th class="py-2.5 px-3 text-center">LISTED AT</th>
-                <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
-                <th class="py-2.5 px-3 text-right">CHG%</th>
-                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
-                <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
-                <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
-                <th class="py-2.5 px-3 text-center">INTENT MATRIX</th>
-                <th class="py-2.5 px-3 text-center">RATING</th>
-              </tr>
-            </thead>
-            <tbody id="bullish-table" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-          </table>
+        <div class="border-t border-blue-950 pt-2 flex justify-between items-center text-[11px]">
+          <span class="text-slate-400">India VIX</span>
+          <span class="font-bold text-amber-300" id="card-vix">13.61</span>
         </div>
       </div>
 
-      <!-- SECTION 2: BEARISH MATRIX TABLE -->
-      <div class="space-y-2 pt-2">
-        <div class="flex items-center space-x-2 px-1">
-          <span class="font-bold text-sm tracking-wider text-white">Momentum Matrix</span>
-          <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
-        </div>
-
-        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-          <table class="w-full text-left whitespace-nowrap text-xs">
-            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-              <tr>
-                <th class="py-2.5 px-3 text-center w-8">ADD</th>
-                <th class="py-2.5 px-3">SYMBOL (HOVER CHART)</th>
-                <th class="py-2.5 px-3">SECTOR</th>
-                <th class="py-2.5 px-3 text-center">LISTED AT</th>
-                <th class="py-2.5 px-3 text-right">MARKET PRICE</th>
-                <th class="py-2.5 px-3 text-right">CHG%</th>
-                <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
-                <th class="py-2.5 px-3 text-right">VWAP GAP %</th>
-                <th class="py-2.5 px-3 text-right">FUTURES OI %</th>
-                <th class="py-2.5 px-3 text-left pl-4">OI BEHAVIOUR</th>
-                <th class="py-2.5 px-3 text-center">INTENT MATRIX</th>
-                <th class="py-2.5 px-3 text-center">RATING</th>
-              </tr>
-            </thead>
-            <tbody id="bearish-table" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- SECTION 3: MULTI-CONDITION RULE MATRIX (Screenshot 1000186991.jpg) -->
-      <div class="mt-6 border border-blue-900/60 rounded bg-[#061229] p-4">
-        <div class="flex items-center justify-between mb-3 border-b border-blue-900/60 pb-2">
-          <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Multi-Condition Rule Matrix</h3>
-          <span class="text-[10px] text-emerald-400 font-bold">STATUS CONFIRMATION ENGINE</span>
-        </div>
-        <div id="rule-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs"></div>
-      </div>
-
-      <!-- SECTION 4: PHASE 05 / 06 FOCUS (Screenshot 1000186991.jpg) -->
-      <div class="border border-amber-500/40 rounded bg-[#07132a] p-4 space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-blue-900 pb-2">
-          <div>
-            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">PHASE 05 / 06 FOCUS</span>
-            <h3 class="text-sm md:text-base font-bold text-white">PROGRESSIVE CANDIDATE FUNNEL</h3>
+      <!-- Card 2: Breadth -->
+      <div class="card-navy p-3.5 rounded space-y-2">
+        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
+            <div class="text-[10px] text-slate-400">Advances</div>
+            <div class="text-xl font-bold tag-green" id="card-adv">0</div>
           </div>
-          <span class="text-slate-400 text-xs">Systematically eliminating market noise</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="space-y-2 card-navy p-3 rounded text-xs">
-            <div class="text-[11px] font-bold text-slate-300">APPLY STOCK SELECTION STRATEGY</div>
-            <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>HyperFlow™ momentum confirmation</span></div>
-            <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Sector ranking relative strength</span></div>
-            <div class="flex items-center space-x-2 text-emerald-400"><span>☑</span> <span>Defined intraday risk-to-reward ratio</span></div>
+          <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center">
+            <div class="text-[10px] text-slate-400">Declines</div>
+            <div class="text-xl font-bold tag-red" id="card-dec">0</div>
           </div>
+        </div>
+        <div class="text-[10px] text-slate-500 text-center pt-1">Full NSE F&O Universe Scan</div>
+      </div>
 
-          <div class="border border-amber-500 rounded p-4 text-center bg-[#0a1836] flex flex-col justify-center items-center">
-            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">PHASE 06 / FOCUS (1 STOCK)</span>
-            <div class="text-2xl font-black text-amber-400 mt-1" id="focus-sym">OFSS</div>
-            <div class="text-slate-300 text-xs mt-1" id="focus-meta">IT · +0.45% · HyperFlow 7.8x</div>
-            <button class="mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-1.5 rounded uppercase tracking-wider text-xs shadow-lg">
-              EXECUTE
-            </button>
+      <!-- Card 3: Sectors -->
+      <div class="card-navy p-3.5 rounded space-y-2">
+        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
+        <div class="space-y-1.5 pt-1">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Strongest:</span>
+            <span class="font-bold text-cyan-300" id="card-top-sec">--</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Weakest:</span>
+            <span class="font-bold text-rose-300" id="card-weak-sec">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: NIFTY PCR -->
+      <div class="card-navy p-3.5 rounded space-y-2">
+        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">NIFTY PCR</div>
+        <div class="space-y-1.5 pt-1">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Nearest expiry PCR:</span>
+            <span class="font-bold text-white" id="card-pcr">0.88</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Max pain strike:</span>
+            <span class="font-bold text-amber-300" id="card-maxpain">22,800</span>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- TAB 2: SMART MONEY FOOTPRINT VIEW (Screenshot 1000188454.jpg) -->
-    <div id="tab-content-sm" class="hidden space-y-4">
+    <div class="text-[11px] text-slate-400">
+      CANDIDATE ENGINES · CLICK ANY STOCK TO OPEN 5-MINUTE TAPE &amp; RULE CONFIRMATION MATRIX
+    </div>
+
+    <!-- ENGINE 1: Sonic Pulse Model BULLISH (Screenshot 1000190340.jpg) -->
+    <section class="space-y-2">
       <div class="flex items-center space-x-2">
-        <span class="font-bold text-sm text-slate-200">Smart Money Footprint</span>
-        <span class="text-slate-400">— Institutional Activity Scanner</span>
+        <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
+        <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
       </div>
-
-      <!-- Stats Banner -->
-      <div class="grid grid-cols-3 sm:grid-cols-7 gap-2">
-        <div class="sm-stat-box"><div class="text-lg font-bold text-cyan-400" id="sm-stat-univ">2055</div><div class="text-[9px] text-slate-400 uppercase">UNIVERSE</div></div>
-        <div class="sm-stat-box"><div class="text-lg font-bold text-cyan-400" id="sm-stat-filt">0</div><div class="text-[9px] text-slate-400 uppercase">FILTERED</div></div>
-        <div class="sm-stat-box"><div class="text-sm font-bold text-cyan-300 mt-1" id="sm-stat-date">Today</div><div class="text-[9px] text-slate-400 uppercase">SELECTED DATE</div></div>
-        <div class="sm-stat-box"><div class="text-lg font-bold text-cyan-400" id="sm-stat-score6">0</div><div class="text-[9px] text-slate-400 uppercase">SCORE 6+</div></div>
-        <div class="sm-stat-box"><div class="text-lg font-bold text-emerald-400" id="sm-stat-streak">0</div><div class="text-[9px] text-slate-400 uppercase">2-DAY STREAK</div></div>
-        <div class="sm-stat-box"><div class="text-lg font-bold text-rose-400" id="sm-stat-surge">0</div><div class="text-[9px] text-slate-400 uppercase">SURGE DAY</div></div>
-        <div class="sm-stat-box flex flex-col justify-center items-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-700">● LIVE MODE</span></div>
-      </div>
-
-      <!-- Quick Filter Strip -->
-      <div class="card-navy p-3 rounded space-y-3">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center space-x-2">
-            <span class="text-slate-400 text-[10px] uppercase">QUICK FILTERS:</span>
-            <button onclick="setSmFilter('all')" id="qf-all" class="px-2.5 py-0.5 rounded text-xs bg-cyan-600 text-white font-bold">All</button>
-            <button onclick="setSmFilter('hot')" id="qf-hot" class="px-2.5 py-0.5 rounded text-xs bg-[#0b2447] text-orange-400 border border-orange-500/50 font-bold">🔥 Hot</button>
-            <button onclick="setSmFilter('multi')" id="qf-multi" class="px-2.5 py-0.5 rounded text-xs bg-[#0b2447] text-emerald-400 border border-emerald-500/50 font-bold">☑ Multi-Day</button>
-            <button onclick="setSmFilter('surge')" id="qf-surge" class="px-2.5 py-0.5 rounded text-xs bg-[#0b2447] text-rose-400 border border-rose-500/50 font-bold">⚡ Surge</button>
-            <button onclick="setSmFilter('fno')" id="qf-fno" class="px-2.5 py-0.5 rounded text-xs bg-[#0b2447] text-cyan-300 border border-cyan-500/50 font-bold">F&O Only</button>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span class="text-slate-400 text-[10px]">MIN SCORE: <b id="val-min-score" class="text-cyan-400">6.0</b></span>
-            <input type="range" id="slider-min-score" min="0" max="25" step="0.5" value="6.0" oninput="updateSmSliders()" class="w-20 accent-cyan-400">
-            <span class="text-slate-400 text-[10px]">MIN 4-DAY AVG: <b id="val-min-4d" class="text-cyan-400">4.0</b></span>
-            <input type="range" id="slider-min-4d" min="0" max="20" step="0.5" value="4.0" oninput="updateSmSliders()" class="w-20 accent-cyan-400">
-          </div>
-        </div>
-        <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-blue-900/50">
-          <select id="sm-sel-sector" onchange="renderSmTable()" class="bg-[#030d22] border border-blue-900 px-2 py-1 rounded text-xs text-slate-200">
-            <option value="ALL">All Sectors</option>
-          </select>
-          <input type="text" id="sm-search" placeholder="Search symbol..." oninput="renderSmTable()" class="bg-[#030d22] border border-blue-900 px-3 py-1 rounded text-xs text-white">
-        </div>
-      </div>
-
-      <!-- Smart Money Table -->
       <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
         <table class="w-full text-left whitespace-nowrap text-xs">
           <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
             <tr>
-              <th class="py-2.5 px-2 text-center w-6">#</th>
-              <th class="py-2.5 px-3">SYMBOL ↑</th>
-              <th class="py-2.5 px-3">SECTOR ↑</th>
-              <th class="py-2.5 px-2 text-center">SEG</th>
-              <th class="py-2.5 px-3">MKT CAP ↑</th>
-              <th class="py-2.5 px-3 text-right text-cyan-400 font-bold">SCORE</th>
-              <th class="py-2.5 px-3 text-right">PREV DAY ↑</th>
-              <th class="py-2.5 px-3 text-right">4-DAY AVG</th>
-              <th class="py-2.5 px-3 text-right">10-DAY AVG ↑</th>
-              <th class="py-2.5 px-3 text-center">STREAK</th>
-              <th class="py-2.5 px-3 text-center">10-DAY TREND</th>
-              <th class="py-2.5 px-3 text-left">SIGNALS</th>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">% CHANGE</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
             </tr>
           </thead>
-          <tbody id="sm-table-body" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+          <tbody id="tbl-sonic-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
         </table>
       </div>
-    </div>
+    </section>
 
-  </div>
-
-  <!-- FLOATING NEWS CARD MODAL -->
-  <div id="news-hover-card">
-    <div class="flex justify-between items-center border-b border-blue-900 pb-1 mb-2">
-      <div class="flex items-center space-x-1.5">
-        <span id="news-card-sym" class="font-bold text-white uppercase text-xs">SYMBOL</span>
-        <span id="news-card-count" class="text-[10px] text-slate-400 font-medium">stories</span>
+    <!-- ENGINE 2: Sonic Pulse Model BEARISH -->
+    <section class="space-y-2">
+      <div class="flex items-center space-x-2">
+        <h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2>
+        <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
       </div>
-      <button onclick="hideNewsCard()" class="text-slate-400 hover:text-white px-1 text-xs font-bold">✕</button>
-    </div>
-    <div id="news-card-list" class="space-y-2 text-[11px]"></div>
+      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+        <table class="w-full text-left whitespace-nowrap text-xs">
+          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">% CHANGE</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-sonic-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ENGINE 3: Titan Flow Model BULLISH (Screenshot 1000190346.jpg) -->
+    <section class="space-y-2">
+      <div class="flex items-center space-x-2">
+        <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
+        <span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span>
+      </div>
+      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+        <table class="w-full text-left whitespace-nowrap text-xs">
+          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">% CHANGE</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-titan-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ENGINE 4: Titan Flow Model BEARISH (Screenshot 1000190342.jpg) -->
+    <section class="space-y-2">
+      <div class="flex items-center space-x-2">
+        <h2 class="font-bold text-sm text-white">Titan Flow Model</h2>
+        <span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span>
+      </div>
+      <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
+        <table class="w-full text-left whitespace-nowrap text-xs">
+          <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="py-2.5 px-3 text-center w-8">ADD</th>
+              <th class="py-2.5 px-3">SYMBOL</th>
+              <th class="py-2.5 px-3">SECTOR</th>
+              <th class="py-2.5 px-3 text-center">LISTED AT</th>
+              <th class="py-2.5 px-3 text-right">% CHANGE</th>
+              <th class="py-2.5 px-3 text-right">HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th>
+              <th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-titan-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
+        </table>
+      </div>
+    </section>
+
   </div>
 
   <!-- FLOATING QUICK-PEEK CHART WINDOW WITH CE/PE ENGINE & DAY HIGH/LOW -->
   <div id="chart-hover-modal">
-    <!-- Header -->
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
         <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
@@ -408,7 +275,7 @@
       </div>
       <div class="flex items-center space-x-2">
         <a id="tv-open-link" href="#" target="_blank" class="text-[10px] bg-blue-600 hover:bg-blue-500 text-white font-bold px-2 py-0.5 rounded">
-          Open Full TV ↗
+          Open TV ↗
         </a>
         <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
       </div>
@@ -423,13 +290,13 @@
         <div><span class="text-slate-400 uppercase text-[9px]">DAY LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b> <span class="text-[9px] text-rose-500">▼</span></div>
       </div>
       <div class="flex items-center space-x-2">
-        <span class="text-slate-400 uppercase text-[9px]">TREND SETUP:</span> 
+        <span class="text-slate-400 uppercase text-[9px]">ACTIVE SETUP:</span> 
         <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
       </div>
     </div>
 
     <!-- Canvas Container with Embedded CE / PE Matrix Box -->
-    <div class="relative w-full h-[395px] bg-[#030b1e]">
+    <div class="relative w-full h-[380px] bg-[#030b1e]">
       <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
 
       <!-- ON-CHART DUAL RULE STATUS MATRIX (Screenshot 1000187996.jpg) -->
@@ -450,188 +317,7 @@
 
   <script>
     let screenerDataMap = {};
-    let rawSmartMoneyStocks = [];
     let activeQuickSymbol = null;
-    let smFilterMode = 'all';
-
-    function switchTab(t) {
-      const vMatrix = document.getElementById('tab-content-matrix');
-      const vSm = document.getElementById('tab-content-sm');
-      const bMatrix = document.getElementById('btn-tab-matrix');
-      const bSm = document.getElementById('btn-tab-sm');
-
-      if (t === 'matrix') {
-        vMatrix.classList.remove('hidden');
-        vSm.classList.add('hidden');
-        bMatrix.className = "px-3 py-1 rounded font-bold text-xs bg-cyan-600 text-white";
-        bSm.className = "px-3 py-1 rounded font-bold text-xs text-slate-400 hover:text-white";
-      } else {
-        vMatrix.classList.add('hidden');
-        vSm.classList.remove('hidden');
-        bSm.className = "px-3 py-1 rounded font-bold text-xs bg-cyan-600 text-white";
-        bMatrix.className = "px-3 py-1 rounded font-bold text-xs text-slate-400 hover:text-white";
-        renderSmTable();
-      }
-    }
-
-    function setSmFilter(f) {
-      smFilterMode = f;
-      ['all', 'hot', 'multi', 'surge', 'fno'].forEach(x => {
-        const el = document.getElementById(`qf-${x}`);
-        if (!el) return;
-        el.className = (x === f) 
-          ? "px-2.5 py-0.5 rounded text-xs bg-cyan-600 text-white font-bold" 
-          : "px-2.5 py-0.5 rounded text-xs bg-[#0b2447] text-slate-300 border border-blue-900 font-bold";
-      });
-      renderSmTable();
-    }
-
-    function updateSmSliders() {
-      document.getElementById('val-min-score').textContent = parseFloat(document.getElementById('slider-min-score').value).toFixed(1);
-      document.getElementById('val-min-4d').textContent = parseFloat(document.getElementById('slider-min-4d').value).toFixed(1);
-      renderSmTable();
-    }
-
-    function renderSparklineSvg(bars) {
-      if (!bars || !bars.length) return '';
-      const maxVal = Math.max(...bars, 8.0);
-      const h = 18;
-      const svgBars = bars.map((b, i) => {
-        const bH = Math.max(3, Math.round((b / maxVal) * (h - 2)));
-        const y = h - bH;
-        let c = '#38bdf8';
-        if (b >= 10.0) c = '#22d3ee';
-        if (b < 4.0) c = '#eab308';
-        return `<rect x="${i * 5}" y="${y}" width="3.5" height="${bH}" fill="${c}" rx="0.5"/>`;
-      }).join('');
-      return `<svg width="50" height="${h}" class="inline-block">${svgBars}</svg>`;
-    }
-
-    function renderSmTable() {
-      const minScore = parseFloat(document.getElementById('slider-min-score').value);
-      const min4d = parseFloat(document.getElementById('slider-min-4d').value);
-      const selSector = document.getElementById('sm-sel-sector').value;
-      const query = document.getElementById('sm-search').value.trim().toUpperCase();
-
-      const filtered = rawSmartMoneyStocks.filter(s => {
-        const sc = s.sm_score || (s.rvat * 4.5);
-        const f4d = s.sm_4d_avg || (sc * 0.85);
-
-        if (sc < minScore || f4d < min4d) return false;
-        if (selSector !== 'ALL' && s.sector !== selSector) return false;
-        if (query && !s.symbol.includes(query)) return false;
-
-        if (smFilterMode === 'hot' && sc < 10.0) return false;
-        if (smFilterMode === 'multi' && parseInt(s.sm_streak || "1") < 2) return false;
-        if (smFilterMode === 'surge' && !s.sm_signals?.includes('⚡ surge')) return false;
-        if (smFilterMode === 'fno' && (s.seg || 'F&O') !== 'F&O') return false;
-        return true;
-      });
-
-      document.getElementById('sm-stat-filt').textContent = filtered.length;
-
-      document.getElementById('sm-table-body').innerHTML = filtered.map((s, idx) => {
-        const sc = s.sm_score || (s.rvat * 4.5);
-        const prevDelta = s.sm_prev_delta || (s.pct_chg * 2.1);
-        const dColor = prevDelta >= 0 ? 'text-emerald-400' : 'text-rose-400';
-        const dSign = prevDelta >= 0 ? '▲ +' : '▼ ';
-        const streak = s.sm_streak || (s.pct_chg >= 0 ? '2d' : '1d');
-
-        const signals = (s.sm_signals && s.sm_signals.length) ? s.sm_signals : ['⚡ surge', '↑ above avg'];
-        const sigHtml = signals.map(sig => {
-          if (sig.includes('surge')) return `<span class="badge-surge">${sig}</span>`;
-          if (sig.includes('d')) return `<span class="badge-streak">${sig}</span>`;
-          return `<span class="badge-above">${sig}</span>`;
-        }).join(' ');
-
-        return `
-          <tr class="hover:bg-blue-900/30 transition-colors">
-            <td class="py-2 px-2 text-center text-slate-500 font-bold">${idx + 1}</td>
-            <td class="py-2 px-3 font-bold text-white cursor-pointer hover:text-cyan-400"
-                onmouseenter="showQuickChart('${s.symbol}', event)" 
-                onclick="showQuickChart('${s.symbol}', event)">
-              ${s.symbol}
-            </td>
-            <td class="py-2 px-3 text-slate-300">${s.sector}</td>
-            <td class="py-2 px-2 text-center text-slate-400 font-bold text-[10px]">${s.seg || 'F&O'}</td>
-            <td class="py-2 px-3 text-slate-200"><span class="cap-tag-s">${s.mkt_cap_type || 'L'}</span> ${s.mkt_cap_val || '₹10k Cr'}</td>
-            <td class="py-2 px-3 text-right font-black text-cyan-300 text-sm">${sc.toFixed(2)}</td>
-            <td class="py-2 px-3 text-right font-bold ${dColor}">${dSign}${Math.abs(prevDelta).toFixed(2)}</td>
-            <td class="py-2 px-3 text-right text-slate-300">${(s.sm_4d_avg || sc * 0.8).toFixed(2)}</td>
-            <td class="py-2 px-3 text-right text-slate-400">${(s.sm_10d_avg || sc * 0.65).toFixed(2)}</td>
-            <td class="py-2 px-3 text-center"><span class="badge-streak">${streak}</span></td>
-            <td class="py-2 px-3 text-center">${renderSparklineSvg(s.sm_trend_bars || [4, 6, 8, 12, 14, 11, 15, 18, 22])}</td>
-            <td class="py-2 px-3 space-x-1">${sigHtml}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    // ON-CHART QUICK-PEEK CANVAS (Screenshots 1000187996.jpg & 1000186522.jpg)
-    function showQuickChart(sym, event) {
-      if (activeQuickSymbol === sym) return;
-      activeQuickSymbol = sym;
-
-      const modal = document.getElementById('chart-hover-modal');
-      const stock = screenerDataMap[sym] || {};
-
-      document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
-      document.getElementById('tv-open-link').href = `https://in.tradingview.com/chart/?symbol=NSE:${sym}`;
-
-      document.getElementById('qp-ltp').textContent = `₹${stock.ltp.toFixed(2)}`;
-      const qpChg = document.getElementById('qp-chg');
-      qpChg.textContent = `${stock.pct_chg >= 0 ? '+' : ''}${stock.pct_chg}%`;
-      qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
-
-      document.getElementById('qp-high').textContent = `₹${stock.day_high}`;
-      document.getElementById('qp-low').textContent = `₹${stock.day_low}`;
-
-      const isBull = stock.pct_chg >= 0;
-      const tag = document.getElementById('qp-setup-tag');
-      tag.textContent = isBull ? "RULE CE (CALL)" : "RULE PE (PUT)";
-      tag.className = isBull 
-        ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
-        : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
-
-      // Render Active Rule Side Only (Screenshot 1000187996.jpg)
-      const head = document.getElementById('qp-matrix-head');
-      const body = document.getElementById('qp-matrix-body');
-      const r = stock.rules || { breakout: "NO", volume: "NO", pdh: "NO", range: "NO", final: "NO" };
-
-      if (isBull) {
-        head.innerHTML = `<th class="rule-th-ce">RULE CE</th><th class="rule-th-ce" style="text-align: center;">STATUS</th>`;
-        body.innerHTML = `
-          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
-          <tr><td>Volume</td><td class="${r.volume === 'YES' ? 'status-yes' : 'status-no'}">${r.volume}</td></tr>
-          <tr><td>PDH</td><td class="${r.pdh === 'YES' ? 'status-yes' : 'status-no'}">${r.pdh}</td></tr>
-          <tr><td>Range</td><td class="${r.range === 'YES' ? 'status-yes' : 'status-no'}">${r.range}</td></tr>
-        `;
-      } else {
-        head.innerHTML = `<th class="rule-th-pe">RULE PE</th><th class="rule-th-pe" style="text-align: center;">STATUS</th>`;
-        const peVwap = (stock.vwap_gap < 0) ? "YES" : "NO";
-        const peDL = (stock.ltp <= stock.day_low * 1.002) ? "YES" : "NO";
-        const pePDL = (stock.ltp <= stock.day_low) ? "YES" : "NO";
-        body.innerHTML = `
-          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
-          <tr><td>VWAP</td><td class="${peVwap === 'YES' ? 'status-yes' : 'status-no'}">${peVwap}</td></tr>
-          <tr><td>DL</td><td class="${peDL === 'YES' ? 'status-yes' : 'status-no'}">${peDL}</td></tr>
-          <tr><td>PDL</td><td class="${pePDL === 'YES' ? 'status-yes' : 'status-no'}">${pePDL}</td></tr>
-        `;
-      }
-
-      const x = Math.min(window.innerWidth - 750, Math.max(10, (event.clientX || window.innerWidth / 2) - 350));
-      const y = Math.min(window.innerHeight - 500, Math.max(50, (event.clientY || 200) - 180));
-      modal.style.left = `${x}px`;
-      modal.style.top = `${y}px`;
-      modal.style.display = 'block';
-
-      setTimeout(() => drawQuickCandles(stock), 20);
-    }
-
-    function hideQuickChart() {
-      document.getElementById('chart-hover-modal').style.display = 'none';
-      activeQuickSymbol = null;
-    }
 
     function drawQuickCandles(stock) {
       const canvas = document.getElementById('quick-candle-canvas');
@@ -646,7 +332,6 @@
       const h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Grid
       ctx.strokeStyle = '#0e2248';
       ctx.lineWidth = 1;
       for (let y = 30; y < h; y += 40) {
@@ -666,10 +351,10 @@
       const maxVal = high + range * 0.05;
       const totalRange = maxVal - minVal;
 
-      const getY = (val) => h - 60 - ((val - minVal) / totalRange) * (h - 90);
-      const startX = 175; // Clear space for on-chart rule card
+      const getY = (val) => h - 50 - ((val - minVal) / totalRange) * (h - 80);
+      const startX = 170;
       const num = candles.length;
-      const candleWidth = Math.max(3, (w - 200) / num - 3);
+      const candleWidth = Math.max(3, (w - 190) / num - 3);
 
       // Day High Green Line
       const yHigh = getY(high);
@@ -697,7 +382,6 @@
 
       const maxVol = Math.max(...candles.map(c => c.v), 1);
 
-      // Candlesticks
       for (let i = 0; i < num; i++) {
         const cd = candles[i];
         const x = startX + i * (candleWidth + 3);
@@ -719,89 +403,105 @@
         ctx.fillRect(x, Math.min(yO, yC), candleWidth, Math.max(2, Math.abs(yO - yC)));
 
         // Floor Volume
-        const volH = (cd.v / maxVol) * 40;
+        const volH = (cd.v / maxVol) * 35;
         ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
         ctx.fillRect(x, h - volH - 5, candleWidth, volH);
       }
     }
 
-    function showNewsCard(sym, event) {
-      event.stopPropagation();
-      const stock = screenerDataMap[sym];
-      if (!stock || !stock.news || !stock.news.stories.length) return;
+    function showQuickChart(sym, event) {
+      if (activeQuickSymbol === sym) return;
+      activeQuickSymbol = sym;
 
-      const card = document.getElementById('news-hover-card');
-      document.getElementById('news-card-sym').textContent = `${sym}`;
-      document.getElementById('news-card-count').textContent = `${stock.news.stories.length} stories`;
+      const modal = document.getElementById('chart-hover-modal');
+      const stock = screenerDataMap[sym] || {};
 
-      card.style.display = 'block';
-      const x = Math.min(window.innerWidth - 330, Math.max(10, event.clientX + 10));
-      const y = Math.min(window.innerHeight - 250, Math.max(20, event.clientY - 40));
-      card.style.left = `${x}px`;
-      card.style.top = `${y}px`;
+      document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
+      document.getElementById('tv-open-link').href = `https://in.tradingview.com/chart/?symbol=NSE:${sym}`;
 
-      document.getElementById('news-card-list').innerHTML = stock.news.stories.map(s => `
-        <div class="border-b border-blue-950 pb-1.5 last:border-b-0">
-          <div class="text-[9px] text-slate-400 flex justify-between">
-            <span class="font-bold text-cyan-300">${s.time}</span>
-            <span class="text-slate-500">${s.publisher}</span>
-          </div>
-          <div class="font-semibold text-slate-200 mt-0.5 leading-tight">${s.title}</div>
-        </div>
-      `).join('');
+      document.getElementById('qp-ltp').textContent = `₹${(stock.ltp || 0).toFixed(2)}`;
+      const qpChg = document.getElementById('qp-chg');
+      qpChg.textContent = `${stock.pct_chg >= 0 ? '+' : ''}${stock.pct_chg}%`;
+      qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
+
+      document.getElementById('qp-high').textContent = `₹${stock.day_high || 0}`;
+      document.getElementById('qp-low').textContent = `₹${stock.day_low || 0}`;
+
+      const isBull = (stock.pct_chg || 0) >= 0;
+      const tag = document.getElementById('qp-setup-tag');
+      tag.textContent = isBull ? "RULE CE (CALL)" : "RULE PE (PUT)";
+      tag.className = isBull 
+        ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" 
+        : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
+
+      // On-Chart Active Matrix (Screenshot 1000187996.jpg)
+      const head = document.getElementById('qp-matrix-head');
+      const body = document.getElementById('qp-matrix-body');
+      const r = stock.rules || { breakout: "NO", volume: "NO", pdh: "NO", range: "NO" };
+
+      if (isBull) {
+        head.innerHTML = `<th class="rule-th-ce">RULE CE</th><th class="rule-th-ce" style="text-align: center;">STATUS</th>`;
+        body.innerHTML = `
+          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
+          <tr><td>Volume</td><td class="${r.volume === 'YES' ? 'status-yes' : 'status-no'}">${r.volume}</td></tr>
+          <tr><td>PDH</td><td class="${r.pdh === 'YES' ? 'status-yes' : 'status-no'}">${r.pdh}</td></tr>
+          <tr><td>Range</td><td class="${r.range === 'YES' ? 'status-yes' : 'status-no'}">${r.range}</td></tr>
+        `;
+      } else {
+        head.innerHTML = `<th class="rule-th-pe">RULE PE</th><th class="rule-th-pe" style="text-align: center;">STATUS</th>`;
+        const peVwap = (stock.vwap_gap < 0) ? "YES" : "NO";
+        const peDL = (stock.ltp <= (stock.day_low * 1.002)) ? "YES" : "NO";
+        const pePDL = (stock.ltp <= stock.day_low) ? "YES" : "NO";
+        body.innerHTML = `
+          <tr><td>Breakout</td><td class="${r.breakout === 'YES' ? 'status-yes' : 'status-no'}">${r.breakout}</td></tr>
+          <tr><td>VWAP</td><td class="${peVwap === 'YES' ? 'status-yes' : 'status-no'}">${peVwap}</td></tr>
+          <tr><td>DL</td><td class="${peDL === 'YES' ? 'status-yes' : 'status-no'}">${peDL}</td></tr>
+          <tr><td>PDL</td><td class="${pePDL === 'YES' ? 'status-yes' : 'status-no'}">${pePDL}</td></tr>
+        `;
+      }
+
+      const x = Math.min(window.innerWidth - 750, Math.max(10, (event.clientX || window.innerWidth / 2) - 360));
+      const y = Math.min(window.innerHeight - 480, Math.max(50, (event.clientY || 200) - 180));
+      modal.style.left = `${x}px`;
+      modal.style.top = `${y}px`;
+      modal.style.display = 'block';
+
+      setTimeout(() => drawQuickCandles(stock), 20);
     }
 
-    function hideNewsCard() {
-      document.getElementById('news-hover-card').style.display = 'none';
+    function hideQuickChart() {
+      document.getElementById('chart-hover-modal').style.display = 'none';
+      activeQuickSymbol = null;
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('#news-hover-card') && !e.target.closest('.news-badge')) hideNewsCard();
-    });
-
-    async function initApp() {
+    async function initQuantScreener() {
       try {
         const res = await fetch('screener.json?nocache=' + Date.now());
         const d = await res.json();
 
-        rawSmartMoneyStocks = d.smart_money_stocks || [];
-        rawSmartMoneyStocks.forEach(s => { screenerDataMap[s.symbol] = s; });
-        (d.bullish_stocks || []).forEach(s => { screenerDataMap[s.symbol] = s; });
-        (d.bearish_stocks || []).forEach(s => { screenerDataMap[s.symbol] = s; });
+        // Index all engine symbols for fast lookup
+        [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || [])].forEach(s => {
+          screenerDataMap[s.symbol] = s;
+        });
 
-        document.getElementById('sync-time').textContent = d.sync_time;
-        document.getElementById('n50-ltp').textContent = d.indices.nifty50.ltp.toLocaleString();
-        document.getElementById('nbk-ltp').textContent = d.indices.banknifty.ltp.toLocaleString();
-        document.getElementById('nfin-ltp').textContent = d.indices.finnifty.ltp.toLocaleString();
-        document.getElementById('nit-ltp').textContent = d.indices.niftyit.ltp.toLocaleString();
+        document.getElementById('sync-time-stamp').textContent = `Last sync: ${d.sync_time}`;
+        const ms = d.market_summary || {};
+        document.getElementById('hdr-n50').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
+        document.getElementById('card-spot').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
+        document.getElementById('hdr-vix').textContent = ms.india_vix || "13.61";
+        document.getElementById('card-vix').textContent = ms.india_vix || "13.61";
+        document.getElementById('card-adv').textContent = ms.advances || 0;
+        document.getElementById('card-dec').textContent = ms.declines || 0;
+        document.getElementById('card-top-sec').textContent = ms.strongest_sector || "Capital Goods";
+        document.getElementById('card-weak-sec').textContent = ms.weakest_sector || "IT";
+        document.getElementById('card-pcr').textContent = ms.nifty_pcr || "0.88";
+        document.getElementById('card-maxpain').textContent = ms.max_pain?.toLocaleString() || "22,800";
 
-        document.getElementById('tile-spot').textContent = d.indices.nifty50.ltp.toLocaleString();
-        document.getElementById('tile-spot-chg').textContent = `${d.indices.nifty50.pct >= 0 ? '▲' : '▼'} ${d.indices.nifty50.pct}%`;
-        document.getElementById('tile-adv').textContent = d.market_cards.advances;
-        document.getElementById('tile-dec').textContent = d.market_cards.declines;
-        document.getElementById('tile-track').textContent = d.market_cards.tracked;
-        document.getElementById('tile-top-sec').textContent = d.market_cards.top_sector;
-        document.getElementById('tile-weak-sec').textContent = d.market_cards.weak_sector;
-
-        document.getElementById('vix-val').textContent = d.indices.vix.val;
-        document.getElementById('sum-bull').textContent = d.bullish_stocks[0]?.symbol || "N/A";
-        document.getElementById('sum-bear').textContent = d.bearish_stocks[0]?.symbol || "N/A";
-
-        if (d.focus_stock) {
-          document.getElementById('focus-sym').textContent = d.focus_stock.symbol;
-          document.getElementById('focus-meta').textContent = `${d.focus_stock.sector} · ${d.focus_stock.pct_chg >= 0 ? '+' : ''}${d.focus_stock.pct_chg}% · HyperFlow ${d.focus_stock.hyperflow}`;
-        }
-
+        // Table Row Renderer matching Screenshots 1000190346.jpg, 1000190340.jpg, 1000190344.jpg
         const renderRow = (s) => {
-          let newsBadgeHtml = '';
-          if (s.news && s.news.has_news) {
-            const newsClass = s.news.sentiment === 'bearish' ? 'news-bear' : 'news-bull';
-            newsBadgeHtml = `
-              <span class="news-badge ${newsClass}" 
-                    onmouseenter="showNewsCard('${s.symbol}', event)" 
-                    onclick="showNewsCard('${s.symbol}', event)">N</span>
-            `;
-          }
+          const newsBadge = s.has_news ? `<span class="news-badge" title="Recent breaking news">N</span>` : '';
+          const isUp = (s.pct_chg || 0) >= 0;
+          const pctColor = isUp ? 'tag-cyan' : 'tag-red';
 
           return `
             <tr class="hover:bg-blue-900/30 transition-colors">
@@ -810,94 +510,55 @@
                 <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" 
                       onmouseenter="showQuickChart('${s.symbol}', event)" 
                       onclick="showQuickChart('${s.symbol}', event)">
-                  ${s.symbol} ↗
+                  ${s.symbol}
                 </span>
-                ${newsBadgeHtml}
+                ${newsBadge}
               </td>
               <td class="py-2.5 px-3">
                 <span class="sector-pill">
                   <span class="sector-name">${s.sector}</span>
-                  <span class="sector-val ${s.sector_pct >= 0 ? 'tag-green' : 'tag-red'}">${s.sector_pct >= 0 ? '+' : ''}${s.sector_pct}%</span>
+                  <span class="sector-val ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</span>
                 </span>
               </td>
-              <td class="py-2.5 px-3 text-center text-slate-400 font-medium">${s.listed_at}</td>
-              <td class="py-2.5 px-3 text-right font-medium text-slate-200">₹${s.ltp.toFixed(2)}</td>
-              <td class="py-2.5 px-3 text-right font-bold ${s.pct_chg >= 0 ? 'tag-green' : 'tag-red'}">
-                ${s.pct_chg >= 0 ? '+' : ''}${s.pct_chg}%
+              <td class="py-2.5 px-3 text-center font-bold text-slate-200">${s.listed_at}</td>
+              <td class="py-2.5 px-3 text-right font-black ${pctColor} text-xs">
+                ${s.pct_display || Math.abs(s.pct_chg).toFixed(2)}
               </td>
-              <td class="py-2.5 px-3 text-right font-bold text-amber-300">${s.hyperflow}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-slate-200">${s.hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
               <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
-              <td class="py-2.5 px-3 text-right font-medium ${s.vwap_gap >= 0 ? 'tag-green' : 'tag-red'}">${s.vwap_gap >= 0 ? '+' : ''}${s.vwap_gap}%</td>
-              <td class="py-2.5 px-3 text-right font-medium ${s.futures_oi >= 0 ? 'tag-green' : 'tag-red'}">${s.futures_oi >= 0 ? '+' : ''}${s.futures_oi}%</td>
-              <td class="py-2.5 px-3 text-left pl-4 font-semibold text-blue-200">${s.oi_behavior}</td>
-              <td class="py-2 px-3 text-center">
-                <span class="intent-pill ${s.matrix_tone}">
-                  <span class="font-black text-[10px]">${s.matrix_intent}</span>
-                  <span class="text-[9px] opacity-90 tracking-tighter">${s.matrix_pulse}</span>
-                </span>
-              </td>
-              <td class="py-2 px-3 text-center">
-                <span class="star-pill ${s.star_score > 0 ? 'star-bull' : 'star-bear'}">
-                  <span>${s.star_display}</span>
-                  <span class="text-[8px] opacity-80">${s.star_label}</span>
-                </span>
-              </td>
             </tr>
           `;
         };
 
-        document.getElementById('bullish-table').innerHTML = (d.bullish_stocks || []).map(renderRow).join('');
-        document.getElementById('bearish-table').innerHTML = (d.bearish_stocks || []).map(renderRow).join('');
+        const emptyNotice = `
+          <tr>
+            <td colspan="8" class="py-4 text-center text-slate-400 font-medium">
+              No stocks are on this board right now. Names are added through the session as they qualify, and removed when they stop qualifying.
+            </td>
+          </tr>
+        `;
 
-        // Bottom Rule Cards
-        const topSet = [...(d.bullish_stocks || []), ...(d.bearish_stocks || [])].slice(0, 4);
-        document.getElementById('rule-cards').innerHTML = topSet.map(c => `
-          <div class="card-navy rounded border border-blue-900/60 overflow-hidden">
-            <div class="p-2 bg-[#091b3d] flex justify-between items-center border-b border-blue-900/60">
-              <span class="font-bold text-white">${c.symbol}</span>
-              <span class="text-[10px] text-slate-400">${c.sector}</span>
-            </div>
-            <table class="w-full text-[11px] divide-y divide-blue-950/60">
-              <tr class="bg-[#0b1d44] text-[10px] uppercase text-slate-400 font-semibold">
-                <th class="py-1 px-3">RULE</th>
-                <th class="py-1 px-3 text-right">STATUS</th>
-              </tr>
-              <tr><td class="py-1 px-3 text-slate-400">Breakout</td><td class="py-1 px-3 text-right font-bold ${c.rules.breakout === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.breakout}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">Volume</td><td class="py-1 px-3 text-right font-bold ${c.rules.volume === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.volume}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">PDH</td><td class="py-1 px-3 text-right font-bold ${c.rules.pdh === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.pdh}</td></tr>
-              <tr><td class="py-1 px-3 text-slate-400">Range</td><td class="py-1 px-3 text-right font-bold ${c.rules.range === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.range}</td></tr>
-              <tr class="bg-emerald-950/30 border-t border-emerald-900/60">
-                <td class="py-1.5 px-3 font-bold text-white">Final</td>
-                <td class="py-1.5 px-3 text-right font-black ${c.rules.final === 'YES' ? 'tag-green' : 'tag-red'}">${c.rules.final}</td>
-              </tr>
-            </table>
-          </div>
-        `).join('');
+        const fillTable = (id, list) => {
+          const el = document.getElementById(id);
+          if (!list || !list.length) {
+            el.innerHTML = emptyNotice;
+          } else {
+            el.innerHTML = list.map(renderRow).join('');
+          }
+        };
 
-        // Populate SM View
-        if (d.sm_stats) {
-          document.getElementById('sm-stat-univ').textContent = d.sm_stats.universe_count || 2055;
-          document.getElementById('sm-stat-score6').textContent = d.sm_stats.score_6_plus || 0;
-          document.getElementById('sm-stat-streak').textContent = d.sm_stats.streak_2d || 0;
-          document.getElementById('sm-stat-surge').textContent = d.sm_stats.surge_day || 0;
-        }
-        document.getElementById('sm-stat-date').textContent = d.selected_date || 'Today';
-
-        const secSet = new Set(rawSmartMoneyStocks.map(s => s.sector));
-        const secSelect = document.getElementById('sm-sel-sector');
-        secSet.forEach(sec => {
-          const opt = document.createElement('option');
-          opt.value = sec;
-          opt.textContent = sec;
-          secSelect.appendChild(opt);
-        });
+        fillTable('tbl-sonic-bullish', d.sonic_bullish);
+        fillTable('tbl-sonic-bearish', d.sonic_bearish);
+        fillTable('tbl-titan-bullish', d.titan_bullish);
+        fillTable('tbl-titan-bearish', d.titan_bearish);
 
       } catch (err) {
-        console.error(err);
+        console.error("Error reading screener.json", err);
       }
     }
-    initApp();
+
+    initQuantScreener();
   </script>
 </body>
 </html>
