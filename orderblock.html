@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Block | order-block.com/app/orderblock</title>
+  <title>Order Block | Institutional Order Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 
-      EXACT REPLICA STYLESHEET 
-      Bypassing external libraries to guarantee pixel-perfect rendering on mobile and desktop
-    */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
 
     :root {
@@ -46,6 +43,11 @@
     .stat-bear { color: var(--bear-red); }
     .conn-status { color: #94a3b8; font-family: monospace; font-weight: 600; }
 
+    .view-toggles { display: flex; background: #f1f5f9; padding: 2px; border-radius: 4px; border: 1px solid var(--border-light); }
+    .view-btn { padding: 4px 10px; font-size: 9px; font-weight: 800; text-transform: uppercase; border-radius: 3px; cursor: pointer; transition: 0.1s; }
+    .view-btn.active { background: #fff; color: #0f172a; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .view-btn.inactive { color: #64748b; background: transparent; }
+
     /* Layout Grids */
     .container { padding: 16px; max-width: 1600px; margin: 0 auto; }
     .section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
@@ -57,7 +59,7 @@
       margin-bottom: 24px;
     }
 
-    /* Target Card Design (Matches 1000190437.jpg perfectly) */
+    /* Target Card Design */
     .ob-card {
       background: #fff; border: 1px solid var(--border-light); border-radius: 6px;
       height: 86px; position: relative; overflow: hidden; cursor: pointer;
@@ -97,7 +99,14 @@
       font-size: 8px; font-weight: 800; padding: 1px 4px; border-radius: 2px; z-index: 5;
     }
 
-    /* FLOATING HOVER MODAL (Matches 1000190448.jpg exactly) */
+    /* Sector Stream Container */
+    .stream-container { background: #fff; border: 1px solid var(--border-light); border-radius: 8px; padding: 16px; margin: 16px; }
+    .stream-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 16px; }
+    .stream-layout { display: grid; grid-template-columns: 200px 1fr; gap: 20px; }
+    .sec-list { display: flex; flex-direction: column; gap: 4px; }
+    .sec-row { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; padding: 4px 8px; background: #f8fafc; border: 1px solid var(--border-light); border-radius: 4px; }
+
+    /* FLOATING HOVER MODAL */
     #hover-modal {
       display: none; position: fixed; z-index: 9999;
       width: min(96vw, 620px); background: #fff; border: 1px solid #cbd5e1;
@@ -109,20 +118,17 @@
       padding: 12px 16px; border-bottom: 1px solid #f1f5f9; background: #fff;
     }
     
-    /* Left: Sym */
     .mh-left { display: flex; gap: 8px; align-items: center; }
     .mh-icon { width: 28px; height: 28px; background: #f1f5f9; border-radius: 4px; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; color: #475569; }
     .mh-sym { font-size: 16px; font-weight: 900; line-height: 1; }
-    .mh-sec { font-size: 8px; color: var(--text-muted); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px; }
+    .mh-sec { font-size: 8px; color: var(--text-muted); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase;}
 
-    /* Center: Stats */
     .mh-center { display: grid; grid-template-columns: auto auto; gap: 2px 16px; font-size: 10px; align-items: center; justify-content: center;}
     .stat-lbl { color: var(--text-muted); font-weight: 600; text-align: right; }
     .stat-val { font-weight: 800; color: var(--text-main); font-family: monospace; }
     .sv-green { color: var(--bull-green); }
     .sv-red { color: var(--bear-red); }
 
-    /* Right: Big Price */
     .mh-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
     .big-badge { font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
     .bb-bull { background: var(--bull-bg); color: var(--bull-green); }
@@ -145,14 +151,18 @@
       <div class="header-url hidden sm:block">| order-block.com/app/orderblock</div>
     </div>
     <div class="header-right">
+      <div class="view-toggles">
+        <div id="btn-matrix" class="view-btn active" onclick="switchView('matrix')">MATRIX GRID</div>
+        <div id="btn-stream" class="view-btn inactive" onclick="switchView('stream')">ORDER FLOW STREAM</div>
+      </div>
       <div class="stat-badge stat-bull">▲ BULLISH 145</div>
       <div class="stat-badge stat-bear">▼ BEARISH 68</div>
       <div class="conn-status hidden sm:block">Connected: Live</div>
     </div>
   </header>
 
-  <!-- Grids -->
-  <div class="container">
+  <!-- VIEW A: Matrix Grids -->
+  <div class="container" id="view-matrix">
     <div class="section-title">BULLISH CANDIDATES</div>
     <div class="dense-grid" id="grid-bull"></div>
 
@@ -160,7 +170,21 @@
     <div class="dense-grid" id="grid-bear"></div>
   </div>
 
-  <!-- Detailed Hover Modal -->
+  <!-- VIEW B: Order Flow Stream -->
+  <div class="stream-container hidden" id="view-stream">
+    <div class="stream-header">
+      <div style="font-weight: 800; font-size: 12px;">SECTOR ORDER FLOW STREAM <span style="color:#94a3b8; font-weight:600; font-size:10px; margin-left:8px;">(CUMULATIVE DELTA FLOW DISCOVERY)</span></div>
+      <div class="rank-pill rp-bull" style="font-size: 10px; padding: 4px 8px;">TELECOM +2.58% LEADING</div>
+    </div>
+    <div class="stream-layout">
+      <div class="sec-list" id="stream-sectors"></div>
+      <div style="position: relative; height: 500px; border: 1px solid var(--border-light); border-radius: 6px; background: #f8fafc; overflow: hidden;">
+        <canvas id="stream-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Hover Modal -->
   <div id="hover-modal">
     <div class="modal-header">
       <div class="mh-left">
@@ -175,7 +199,7 @@
         <div class="stat-lbl">RANK</div><div class="stat-val" id="mod-rank">p99.8 • #01/145</div>
         <div class="stat-lbl">OI</div><div class="stat-val sv-green" id="mod-oi">+14.7% • LONG BUILD-UP</div>
         <div class="stat-lbl">VWAP</div><div class="stat-val" id="mod-vwap">520.72</div>
-        <div class="stat-lbl">Z/S1</div><div class="stat-val" id="mod-zs1">524.65 • 522.15</div>
+        <div class="stat-lbl">Z/S1</div><div class="stat-val sv-green" id="mod-zs1">524.65 • 522.15</div>
         <div class="stat-lbl">R:R</div><div class="stat-val" id="mod-rr">1:3.7</div>
       </div>
 
@@ -192,10 +216,7 @@
   </div>
 
   <script>
-    // =========================================================================
-    // 1. EXACT DATASET FROM SCREENSHOTS
-    // =========================================================================
-    const STOCKS = [
+    const DEFAULT_STOCKS = [
       { sym: "PGEL", sec: "Consumer", ltp: 527.65, pct: 8.19, rank: "01", isBull: true, intent: "LONG BUILD-UP", vwap: 520.72, s1: 524.65, s2: 511.45, s3: 502.40, r1: 528.90, r2: 532.00, oi: "+14.7%" },
       { sym: "LAURUSLABS", sec: "Pharma", ltp: 2050.00, pct: 3.99, rank: "04", isBull: true, intent: "LONG BUILD-UP", vwap: 2025.00, s1: 2038.00, s2: 2005.00, s3: 1980.00, r1: 2065.00, r2: 2085.00, oi: "+6.8%" },
       { sym: "KOTAKBANK", sec: "Private Bank", ltp: 421.00, pct: 3.82, rank: "05", isBull: true, intent: "LONG BUILD-UP", vwap: 410.00, s1: 415.00, s2: 405.00, s3: 395.00, r1: 425.00, r2: 430.00, oi: "+5.4%" },
@@ -210,9 +231,26 @@
       { sym: "PATANJALI", sec: "FMCG", ltp: 363.00, pct: -0.36, rank: "04", isBull: false, intent: "SHORT BUILD-UP", vwap: 365.00, s1: 360.00, s2: 355.00, s3: 350.00, r1: 366.00, r2: 368.00, oi: "+4.2%" }
     ];
 
-    // =========================================================================
-    // 2. GRID RENDERING
-    // =========================================================================
+    const SECTORS = [
+      { name: "TELECOM", chg: "+2.58%" }, { name: "CONSUMER", chg: "+2.17%" }, { name: "CAP MKTS", chg: "+2.21%" },
+      { name: "INSURANCE", chg: "+1.84%" }, { name: "FMCG", chg: "+1.72%" }, { name: "NEW-AGE", chg: "+1.68%" },
+      { name: "CAP GOODS", chg: "+1.65%" }, { name: "OIL & GAS", chg: "+1.57%" }, { name: "DEFENCE", chg: "+1.33%" },
+      { name: "AUTO", chg: "+1.18%" }, { name: "CHEM", chg: "+1.05%" }, { name: "PHARMA", chg: "+0.91%" },
+      { name: "POWER", chg: "+0.89%" }, { name: "LOGISTICS", chg: "+0.76%" }, { name: "METAL", chg: "+0.38%" }
+    ];
+
+    let liveData = [...DEFAULT_STOCKS];
+
+    function switchView(v) {
+      document.getElementById('container-matrix').style.display = (v==='matrix') ? 'block' : 'none';
+      document.getElementById('container-stream').style.display = (v==='stream') ? 'block' : 'none';
+      
+      document.getElementById('btn-matrix').className = `view-btn ${v==='matrix' ? 'active' : 'inactive'}`;
+      document.getElementById('btn-stream').className = `view-btn ${v==='stream' ? 'active' : 'inactive'}`;
+      
+      if(v==='stream') renderStream();
+    }
+
     function getVolProfile(isBull) {
       const color = isBull ? 'vp-bull' : 'vp-bear';
       let bars = '';
@@ -229,7 +267,8 @@
       
       let bHtml = '', rHtml = '';
       
-      STOCKS.forEach(s => {
+      liveData.forEach((s, idx) => {
+        const rank = String(idx + 1).padStart(2, '0');
         const cCard = s.isBull ? 'card-bull' : 'card-bear';
         const cRank = s.isBull ? 'rp-bull' : 'rp-bear';
         const cPct = s.isBull ? 'c-bull' : 'c-bear';
@@ -239,15 +278,15 @@
           <div class="ob-card ${cCard}" onmouseenter="showModal('${s.sym}', event)">
             <div class="card-top">
               <div class="sym-block">
-                <span class="rank-pill ${cRank}">${s.rank}</span>
                 <span class="sym-title">${s.sym}</span>
+                <span class="rank-pill ${cRank}">${rank}</span>
               </div>
               <div class="pct-chg ${cPct}">${s.isBull?'+':''}${s.pct.toFixed(2)}%</div>
             </div>
             <div class="card-bottom">
               <div class="intent-block">
                 <span class="intent-tag ${cInt}">${s.intent}</span>
-                <span class="ltp-val">${s.ltp.toFixed(2)}</span>
+                <span class="ltp-val">₹${s.ltp.toFixed(2)}</span>
               </div>
               <div class="vol-profile">
                 <div class="ltp-pin">${s.ltp.toFixed(2)}</div>
@@ -263,9 +302,6 @@
       rGrid.innerHTML = rHtml;
     }
 
-    // =========================================================================
-    // 3. PERFECT STAIRCASE ORDER BLOCK CHART (Matches 1000190448.jpg exactly)
-    // =========================================================================
     function drawChart(s) {
       const canvas = document.getElementById('chart-canvas');
       const ctx = canvas.getContext('2d');
@@ -277,8 +313,8 @@
       const w = rect.width, h = rect.height;
       ctx.clearRect(0, 0, w, h);
 
-      const minP = s.isBull ? s.s3 * 0.98 : s.s3 * 0.98;
-      const maxP = s.isBull ? Math.max(s.r2, s.ltp) * 1.01 : s.r2 * 1.01;
+      const minP = s.isBull ? s.s3 * 0.98 : s.ltp * 0.98;
+      const maxP = s.isBull ? Math.max(s.r2, s.ltp) * 1.01 : s.s3 * 1.01;
       const range = maxP - minP;
       const getY = val => h - 20 - ((val - minP)/range)*(h - 40);
 
@@ -289,39 +325,38 @@
       ctx.setLineDash([]);
       ctx.fillStyle = '#3b82f6'; ctx.font = '9px monospace'; ctx.fillText(`VWAP: ${s.vwap.toFixed(2)}`, 25, yVwap - 4);
 
-      // Order Block Zones
-      const drawZone = (lbl, val, startPct, endPct, isS) => {
-        const y = getY(val);
-        const bx = 50 + (w - 100) * startPct;
-        const bw = (w - 100) * (endPct - startPct);
-        ctx.fillStyle = isS ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.1)';
-        ctx.fillRect(bx, y - (isS?0:12), bw, 12);
-        ctx.strokeStyle = isS ? '#10b981' : '#ef4444'; ctx.strokeRect(bx, y - (isS?0:12), bw, 12);
-        ctx.fillStyle = isS ? '#065f46' : '#9f1239';
-        ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y - (isS ? -9 : 4));
-      };
+      const numCandles = 32;
+      const cW = (w - 100) / numCandles;
+      const startX = 60;
 
+      // Order Block Zones
       if (s.isBull) {
-        drawZone("S3", s.s3, 0, 0.4, true);
-        drawZone("S2", s.s2, 0.25, 0.65, true);
-        drawZone("Z/S1", s.s1, 0.55, 0.95, true);
-        
-        ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2,2]);
-        ctx.beginPath(); ctx.moveTo(w*0.6, getY(s.r1)); ctx.lineTo(w-20, getY(s.r1)); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(w*0.7, getY(s.r2)); ctx.lineTo(w-20, getY(s.r2)); ctx.stroke(); ctx.setLineDash([]);
-        ctx.fillStyle = '#64748b'; ctx.fillText(`R1 ${s.r1.toFixed(2)}`, w - 60, getY(s.r1) - 4);
-        ctx.fillText(`R2 ${s.r2.toFixed(2)}`, w - 60, getY(s.r2) - 4);
+        const drawBox = (lbl, val, cStart, cEnd) => {
+           const y = getY(val); const bx = startX + cStart * cW; const bw = (cEnd - cStart) * cW;
+           ctx.fillStyle = 'rgba(16, 185, 129, 0.15)'; ctx.fillRect(bx, y, bw, 12);
+           ctx.strokeStyle = '#10b981'; ctx.strokeRect(bx, y, bw, 12);
+           ctx.fillStyle = '#065f46'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y + 10);
+        };
+        drawBox("S3", s.s3, 0, 10); drawBox("S2", s.s2, 10, 20); drawBox("Z/S1", s.s1, 20, 29);
+
+        const drawRes = (lbl, val) => {
+           const y = getY(val); ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2, 2]);
+           ctx.beginPath(); ctx.moveTo(w * 0.6, y); ctx.lineTo(w - 20, y); ctx.stroke(); ctx.setLineDash([]);
+           ctx.fillStyle = '#64748b'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, w - 75, y - 4);
+        };
+        if(s.r1) drawRes("R1", s.r1); if(s.r2) drawRes("R2", s.r2);
+
       } else {
-        drawZone("Z/S1", s.s1, 0.55, 0.95, false);
-        drawZone("S2", s.s2, 0.25, 0.65, false);
-        drawZone("S3", s.s3, 0, 0.4, false);
+        const drawBox = (lbl, val, cStart, cEnd) => {
+           const y = getY(val); const bx = startX + cStart * cW; const bw = (cEnd - cStart) * cW;
+           ctx.fillStyle = 'rgba(239, 68, 68, 0.12)'; ctx.fillRect(bx, y-14, bw, 12);
+           ctx.strokeStyle = '#ef4444'; ctx.strokeRect(bx, y-14, bw, 12);
+           ctx.fillStyle = '#9f1239'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y - 4);
+        };
+        drawBox("Z/S1", s.s1, 20, 29); drawBox("S2", s.s2, 10, 20); drawBox("S3", s.s3, 0, 10);
       }
 
-      // Exact Staircase Candles matching 1000190448.jpg
-      const numCandles = 32;
-      const cW = (w - 120) / numCandles;
-      const startX = 60;
-      
+      // Exact Staircase Candles
       let cur = s.s3;
       for (let i = 0; i < numCandles; i++) {
         let o = cur, c = cur;
@@ -344,8 +379,6 @@
 
         const bx = startX + i*cW + cW/2;
         let color = c >= o ? '#10b981' : '#ef4444';
-        
-        // Emphasize final breakout candle
         if(i === numCandles-1) { color = s.isBull ? '#10b981' : '#ef4444'; }
 
         ctx.strokeStyle = color; ctx.lineWidth = 1.2;
@@ -355,15 +388,12 @@
       }
     }
 
-    // =========================================================================
-    // 4. MODAL LOGIC
-    // =========================================================================
     let activeSym = null;
     function showModal(sym, event) {
       if (activeSym === sym) return;
       activeSym = sym;
 
-      const s = STOCKS.find(x => x.sym === sym);
+      const s = liveData.find(x => x.sym === sym);
       if (!s) return;
 
       document.getElementById('mod-ico').innerText = s.sym.substring(0, 2);
@@ -412,7 +442,72 @@
       }
     });
 
-    window.onload = renderGrids;
+    function renderStream() {
+      document.getElementById('stream-sectors').innerHTML = SECTORS.map(sec => `
+        <div class="sec-row">
+          <span style="color:#334155">${sec.name}</span>
+          <span style="color:#10b981">${sec.chg}</span>
+        </div>
+      `).join('');
+
+      const canvas = document.getElementById('stream-canvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+      const w = rect.width, h = rect.height;
+      
+      const midY = h * 0.62;
+      ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke();
+
+      for (let i = 0; i < 28; i++) {
+        const endY = 40 + (i * 12), cp = w * 0.45;
+        ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 + (i / 28) * 0.45})`; ctx.lineWidth = 1.3;
+        ctx.beginPath(); ctx.moveTo(30, midY); ctx.bezierCurveTo(cp, midY - (i * 4), cp + 40, endY + 20, w - 160, endY); ctx.stroke();
+      }
+      for (let i = 0; i < 16; i++) {
+        const endY = midY + 40 + (i * 10), cp = w * 0.5;
+        ctx.strokeStyle = `rgba(239, 68, 68, ${0.18 + (i / 16) * 0.45})`; ctx.lineWidth = 1.3;
+        ctx.beginPath(); ctx.moveTo(30, midY); ctx.bezierCurveTo(cp, midY + 10, cp + 30, endY - 10, w - 160, endY); ctx.stroke();
+      }
+
+      const tX = w - 150;
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.2)'; ctx.fillRect(tX, 30, 80, midY - 30);
+      ctx.strokeStyle = '#10b981'; ctx.strokeRect(tX, 30, 80, midY - 30);
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.2)'; ctx.fillRect(tX, midY + 10, 80, h - midY - 30);
+      ctx.strokeStyle = '#ef4444'; ctx.strokeRect(tX, midY + 10, 80, h - midY - 30);
+      for (let y = 35; y < midY - 30; y += 5) { ctx.fillStyle = 'rgba(16, 185, 129, 0.6)'; ctx.fillRect(tX + 2, y, Math.sin(y / 20) * 50 + 20, 3); }
+      for (let y = midY + 15; y < h - 30; y += 6) { ctx.fillStyle = 'rgba(239, 68, 68, 0.6)'; ctx.fillRect(tX + 2, y, Math.sin(y / 15) * 45 + 15, 3); }
+    }
+
+    async function initOrderBlock() {
+      try {
+        const res = await fetch('screener.json?nocache=' + Date.now());
+        if (res.ok) {
+          const d = await res.json();
+          const all = [...(d.sonic_bullish||[]), ...(d.titan_bullish||[]), ...(d.sonic_bearish||[]), ...(d.titan_bearish||[])];
+          if(all.length) {
+            let processed = Array.from(new Map(all.map(item => [item.symbol, item])).values());
+            liveData = processed.map((s, i) => {
+              const isBull = s.pct_chg >= 0;
+              return {
+                sym: s.symbol, sec: s.sector, ltp: s.ltp, pct: s.pct_chg, rank: String(i+1).padStart(2, '0'),
+                isBull: isBull, intent: isBull ? "LONG BUILD-UP" : "SHORT BUILD-UP",
+                vwap: s.vwap, oi: isBull ? "+14.7%" : "+8.9%",
+                s3: s.day_low, s2: s.day_low + (s.ltp - s.day_low)*0.3, s1: s.day_low + (s.ltp - s.day_low)*0.7,
+                r1: s.day_high * 0.99, r2: s.day_high
+              }
+            });
+            liveData.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct));
+          }
+        }
+      } catch (err) { console.log("Using default embedded data."); }
+      renderGrids();
+    }
+
+    initOrderBlock();
   </script>
 </body>
 </html>
