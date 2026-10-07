@@ -1,12 +1,12 @@
 {
-  "sync_time": "07 Oct 2026, 09:34 IST",
+  "sync_time": "07 Oct 2026, 09:41 IST",
   "market_summary": {
     "nifty_spot": 22776.1,
     "nifty_pct": -0.55,
     "india_vix": 13.61,
     "vix_pct": 0.52,
-    "advances": 13,
-    "declines": 52,
+    "advances": 12,
+    "declines": 53,
     "strongest_sector": "Pharma",
     "weakest_sector": "Consumer",
     "nifty_pcr": 0.88,
@@ -14,51 +14,23 @@
   },
   "sonic_bullish": [
     {
-      "symbol": "PFC",
-      "sector": "Finance",
-      "ltp": 331.4,
-      "pct_chg": 2.92,
-      "pct_display": "2.92",
-      "day_high": 332.25,
-      "day_low": 322.15,
-      "vwap": 329.19,
-      "vwap_gap": 0.67,
-      "hyperflow": "3.5x",
-      "max_hyperflow": "5.6x",
-      "min_hyperflow": "1.9x",
+      "symbol": "SBILIFE",
+      "sector": "Insurance",
+      "ltp": 420.0,
+      "pct_chg": 2.37,
+      "pct_display": "2.37",
+      "day_high": 426.3,
+      "day_low": 413.7,
+      "vwap": 419.16,
+      "vwap_gap": 0.45,
+      "hyperflow": "17.9x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
       "has_news": false,
-      "candles": [
-        {
-          "o": 323.05,
-          "h": 324.15,
-          "l": 322.15,
-          "c": 324.05,
-          "v": 88591.0
-        },
-        {
-          "o": 323.7,
-          "h": 328.15,
-          "l": 323.65,
-          "c": 327.6,
-          "v": 357377.0
-        },
-        {
-          "o": 327.6,
-          "h": 331.3,
-          "l": 327.6,
-          "c": 330.95,
-          "v": 322173.0
-        },
-        {
-          "o": 330.75,
-          "h": 332.25,
-          "l": 330.0,
-          "c": 331.4,
-          "v": 609925.0
-        }
-      ],
+      "candles": [],
       "bull_score": "4/4",
-      "bear_score": "0/4",
+      "bear_score": "1/4",
       "rules_bull": {
         "Breakout": "YES",
         "Volume": "YES",
@@ -71,7 +43,625 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "09:34"
+      "ob_rating": 5,
+      "ob_sup_res": "S: 413.7 | R: 426.3",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "BRITANNIA",
+      "sector": "FMCG",
+      "ltp": 4821.3,
+      "pct_chg": 2.21,
+      "pct_display": "2.21",
+      "day_high": 4870.5,
+      "day_low": 4797.1,
+      "vwap": 4811.66,
+      "vwap_gap": 0.45,
+      "hyperflow": "14.1x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": true,
+      "candles": [
+        {
+          "o": 4870.5,
+          "h": 4870.5,
+          "l": 4802.1,
+          "c": 4802.1,
+          "v": 4479.0
+        },
+        {
+          "o": 4802.2,
+          "h": 4817.0,
+          "l": 4797.1,
+          "c": 4817.0,
+          "v": 2379.0
+        },
+        {
+          "o": 4819.5,
+          "h": 4826.6,
+          "l": 4816.0,
+          "c": 4825.4,
+          "v": 1725.0
+        },
+        {
+          "o": 4828.0,
+          "h": 4836.5,
+          "l": 4825.7,
+          "c": 4835.0,
+          "v": 1190.0
+        },
+        {
+          "o": 4835.8,
+          "h": 4835.8,
+          "l": 4821.0,
+          "c": 4823.8,
+          "v": 1498.0
+        },
+        {
+          "o": 4821.3,
+          "h": 4821.3,
+          "l": 4821.3,
+          "c": 4821.3,
+          "v": 0.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 4797.1 | R: 4870.5",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "SIEMENS",
+      "sector": "Cap Goods",
+      "ltp": 3807.2,
+      "pct_chg": 4.13,
+      "pct_display": "4.13",
+      "day_high": 3833.6,
+      "day_low": 3802.0,
+      "vwap": 3799.59,
+      "vwap_gap": 0.45,
+      "hyperflow": "12.5x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 3833.6,
+          "h": 3833.6,
+          "l": 3802.0,
+          "c": 3808.0,
+          "v": 6508.0
+        },
+        {
+          "o": 3809.8,
+          "h": 3824.8,
+          "l": 3808.5,
+          "c": 3810.1,
+          "v": 3021.0
+        },
+        {
+          "o": 3809.6,
+          "h": 3825.4,
+          "l": 3804.5,
+          "c": 3824.5,
+          "v": 3255.0
+        },
+        {
+          "o": 3824.3,
+          "h": 3829.9,
+          "l": 3813.5,
+          "c": 3814.6,
+          "v": 2287.0
+        },
+        {
+          "o": 3812.9,
+          "h": 3812.9,
+          "l": 3804.0,
+          "c": 3807.6,
+          "v": 2012.0
+        },
+        {
+          "o": 3807.2,
+          "h": 3819.7,
+          "l": 3807.2,
+          "c": 3807.2,
+          "v": 2818.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 3802.0 | R: 3833.6",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "DRREDDY",
+      "sector": "Pharma",
+      "ltp": 1216.7,
+      "pct_chg": 0.42,
+      "pct_display": "0.42",
+      "day_high": 1222.5,
+      "day_low": 1212.3,
+      "vwap": 1214.27,
+      "vwap_gap": 0.45,
+      "hyperflow": "12.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1212.3,
+          "h": 1221.7,
+          "l": 1212.3,
+          "c": 1218.7,
+          "v": 52507.0
+        },
+        {
+          "o": 1219.4,
+          "h": 1221.6,
+          "l": 1219.4,
+          "c": 1221.1,
+          "v": 42596.0
+        },
+        {
+          "o": 1221.1,
+          "h": 1221.5,
+          "l": 1219.3,
+          "c": 1220.9,
+          "v": 31373.0
+        },
+        {
+          "o": 1221.5,
+          "h": 1222.5,
+          "l": 1215.7,
+          "c": 1215.7,
+          "v": 49201.0
+        },
+        {
+          "o": 1215.9,
+          "h": 1215.9,
+          "l": 1212.4,
+          "c": 1212.7,
+          "v": 30220.0
+        },
+        {
+          "o": 1215.7,
+          "h": 1217.1,
+          "l": 1214.5,
+          "c": 1216.7,
+          "v": 16854.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1212.3 | R: 1222.5",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "sector": "Bank",
+      "ltp": 429.45,
+      "pct_chg": 3.82,
+      "pct_display": "3.82",
+      "day_high": 432.45,
+      "day_low": 429.3,
+      "vwap": 428.59,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.5x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "18:14",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 431.9,
+          "h": 432.45,
+          "l": 430.4,
+          "c": 431.65,
+          "v": 383908.0
+        },
+        {
+          "o": 431.55,
+          "h": 431.55,
+          "l": 430.45,
+          "c": 431.0,
+          "v": 132693.0
+        },
+        {
+          "o": 430.8,
+          "h": 430.95,
+          "l": 430.2,
+          "c": 430.25,
+          "v": 141721.0
+        },
+        {
+          "o": 430.2,
+          "h": 430.8,
+          "l": 429.85,
+          "c": 430.0,
+          "v": 136114.0
+        },
+        {
+          "o": 430.0,
+          "h": 430.1,
+          "l": 429.4,
+          "c": 429.45,
+          "v": 113511.0
+        },
+        {
+          "o": 429.4,
+          "h": 429.45,
+          "l": 429.3,
+          "c": 429.45,
+          "v": 221348.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 429.3 | R: 432.45",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "sector": "Consumer",
+      "ltp": 2382.0,
+      "pct_chg": 2.46,
+      "pct_display": "2.46",
+      "day_high": 2391.6,
+      "day_low": 2378.4,
+      "vwap": 2377.24,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": true,
+      "candles": [
+        {
+          "o": 2391.6,
+          "h": 2391.6,
+          "l": 2382.0,
+          "c": 2384.1,
+          "v": 16066.0
+        },
+        {
+          "o": 2385.9,
+          "h": 2386.7,
+          "l": 2379.9,
+          "c": 2383.0,
+          "v": 11733.0
+        },
+        {
+          "o": 2383.0,
+          "h": 2385.7,
+          "l": 2380.0,
+          "c": 2383.5,
+          "v": 6004.0
+        },
+        {
+          "o": 2383.9,
+          "h": 2383.9,
+          "l": 2380.6,
+          "c": 2381.0,
+          "v": 6752.0
+        },
+        {
+          "o": 2381.0,
+          "h": 2381.4,
+          "l": 2378.4,
+          "c": 2380.7,
+          "v": 6488.0
+        },
+        {
+          "o": 2380.2,
+          "h": 2382.0,
+          "l": 2380.2,
+          "c": 2382.0,
+          "v": 603.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 2378.4 | R: 2391.6",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "sector": "Pharma",
+      "ltp": 1789.2,
+      "pct_chg": 1.37,
+      "pct_display": "1.37",
+      "day_high": 1804.1,
+      "day_low": 1786.1,
+      "vwap": 1785.62,
+      "vwap_gap": 0.45,
+      "hyperflow": "8.6x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1793.6,
+          "h": 1804.1,
+          "l": 1792.3,
+          "c": 1797.6,
+          "v": 17227.0
+        },
+        {
+          "o": 1797.0,
+          "h": 1798.2,
+          "l": 1793.8,
+          "c": 1794.6,
+          "v": 7519.0
+        },
+        {
+          "o": 1794.0,
+          "h": 1794.8,
+          "l": 1792.3,
+          "c": 1794.7,
+          "v": 6268.0
+        },
+        {
+          "o": 1794.6,
+          "h": 1794.6,
+          "l": 1790.9,
+          "c": 1791.4,
+          "v": 8743.0
+        },
+        {
+          "o": 1791.0,
+          "h": 1791.8,
+          "l": 1786.9,
+          "c": 1786.9,
+          "v": 8114.0
+        },
+        {
+          "o": 1786.1,
+          "h": 1790.0,
+          "l": 1786.1,
+          "c": 1789.2,
+          "v": 837.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1786.1 | R: 1804.1",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "sector": "Telecom",
+      "ltp": 1822.8,
+      "pct_chg": 1.72,
+      "pct_display": "1.72",
+      "day_high": 1827.0,
+      "day_low": 1811.0,
+      "vwap": 1819.15,
+      "vwap_gap": 0.45,
+      "hyperflow": "8.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1811.0,
+          "h": 1824.4,
+          "l": 1811.0,
+          "c": 1819.8,
+          "v": 346641.0
+        },
+        {
+          "o": 1819.5,
+          "h": 1827.0,
+          "l": 1816.5,
+          "c": 1822.1,
+          "v": 396292.0
+        },
+        {
+          "o": 1822.8,
+          "h": 1825.0,
+          "l": 1820.8,
+          "c": 1823.4,
+          "v": 124396.0
+        },
+        {
+          "o": 1823.4,
+          "h": 1823.9,
+          "l": 1818.8,
+          "c": 1821.1,
+          "v": 185232.0
+        },
+        {
+          "o": 1821.7,
+          "h": 1824.8,
+          "l": 1821.3,
+          "c": 1822.8,
+          "v": 73210.0
+        },
+        {
+          "o": 1822.6,
+          "h": 1823.4,
+          "l": 1822.4,
+          "c": 1822.8,
+          "v": 8940.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1811.0 | R: 1827.0",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "sector": "Metal",
+      "ltp": 1240.4,
+      "pct_chg": 2.16,
+      "pct_display": "2.16",
+      "day_high": 1249.6,
+      "day_low": 1239.6,
+      "vwap": 1237.92,
+      "vwap_gap": 0.45,
+      "hyperflow": "6.9x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1249.6,
+          "h": 1249.6,
+          "l": 1243.0,
+          "c": 1245.0,
+          "v": 11532.0
+        },
+        {
+          "o": 1245.2,
+          "h": 1246.7,
+          "l": 1240.8,
+          "c": 1241.9,
+          "v": 6607.0
+        },
+        {
+          "o": 1241.3,
+          "h": 1242.2,
+          "l": 1241.0,
+          "c": 1242.1,
+          "v": 6505.0
+        },
+        {
+          "o": 1242.2,
+          "h": 1243.0,
+          "l": 1240.5,
+          "c": 1240.8,
+          "v": 7507.0
+        },
+        {
+          "o": 1240.6,
+          "h": 1242.1,
+          "l": 1239.6,
+          "c": 1240.4,
+          "v": 34011.0
+        },
+        {
+          "o": 1240.3,
+          "h": 1241.2,
+          "l": 1240.3,
+          "c": 1240.4,
+          "v": 851.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1239.6 | R: 1249.6",
+      "ob_4x4": "4/4 BULL"
     }
   ],
   "sonic_bearish": [
@@ -112,12 +702,12 @@
     {
       "symbol": "WIPRO",
       "sector": "IT",
-      "ltp": 161.19,
+      "ltp": 160.7,
       "pct_chg": -0.75,
       "pct_display": "0.75",
       "day_high": 161.96,
-      "day_low": 160.82,
-      "vwap": 160.87,
+      "day_low": 160.7,
+      "vwap": 160.38,
       "vwap_gap": 0.45,
       "hyperflow": "8.4x",
       "max_hyperflow": "12.4x",
@@ -149,9 +739,23 @@
         {
           "o": 160.96,
           "h": 161.4,
-          "l": 160.96,
-          "c": 161.19,
-          "v": 125632.0
+          "l": 160.91,
+          "c": 160.91,
+          "v": 189997.0
+        },
+        {
+          "o": 160.99,
+          "h": 161.05,
+          "l": 160.75,
+          "c": 160.8,
+          "v": 179299.0
+        },
+        {
+          "o": 160.83,
+          "h": 160.84,
+          "l": 160.7,
+          "c": 160.7,
+          "v": 24266.0
         }
       ],
       "bull_score": "1/4",
@@ -169,57 +773,72 @@
         "PDL": "YES"
       },
       "ob_rating": -5,
-      "ob_sup_res": "S: 160.82 | R: 161.96",
+      "ob_sup_res": "S: 160.7 | R: 161.96",
       "ob_4x4": "4/4 BEAR"
     }
   ],
   "titan_bullish": [
     {
-      "symbol": "PFC",
-      "sector": "Finance",
-      "ltp": 331.4,
-      "pct_chg": 2.92,
-      "pct_display": "2.92",
-      "day_high": 332.25,
-      "day_low": 322.15,
-      "vwap": 329.19,
-      "vwap_gap": 0.67,
-      "hyperflow": "3.5x",
-      "max_hyperflow": "5.6x",
-      "min_hyperflow": "1.9x",
-      "has_news": false,
+      "symbol": "ASIANPAINT",
+      "sector": "Consumer",
+      "ltp": 2382.0,
+      "pct_chg": 2.46,
+      "pct_display": "2.46",
+      "day_high": 2391.6,
+      "day_low": 2378.4,
+      "vwap": 2377.24,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": true,
       "candles": [
         {
-          "o": 323.05,
-          "h": 324.15,
-          "l": 322.15,
-          "c": 324.05,
-          "v": 88591.0
+          "o": 2391.6,
+          "h": 2391.6,
+          "l": 2382.0,
+          "c": 2384.1,
+          "v": 16066.0
         },
         {
-          "o": 323.7,
-          "h": 328.15,
-          "l": 323.65,
-          "c": 327.6,
-          "v": 357377.0
+          "o": 2385.9,
+          "h": 2386.7,
+          "l": 2379.9,
+          "c": 2383.0,
+          "v": 11733.0
         },
         {
-          "o": 327.6,
-          "h": 331.3,
-          "l": 327.6,
-          "c": 330.95,
-          "v": 322173.0
+          "o": 2383.0,
+          "h": 2385.7,
+          "l": 2380.0,
+          "c": 2383.5,
+          "v": 6004.0
         },
         {
-          "o": 330.75,
-          "h": 332.25,
-          "l": 330.0,
-          "c": 331.4,
-          "v": 609925.0
+          "o": 2383.9,
+          "h": 2383.9,
+          "l": 2380.6,
+          "c": 2381.0,
+          "v": 6752.0
+        },
+        {
+          "o": 2381.0,
+          "h": 2381.4,
+          "l": 2378.4,
+          "c": 2380.7,
+          "v": 6488.0
+        },
+        {
+          "o": 2380.2,
+          "h": 2382.0,
+          "l": 2380.2,
+          "c": 2382.0,
+          "v": 603.0
         }
       ],
       "bull_score": "4/4",
-      "bear_score": "0/4",
+      "bear_score": "1/4",
       "rules_bull": {
         "Breakout": "YES",
         "Volume": "YES",
@@ -232,19 +851,175 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "09:34"
+      "ob_rating": 5,
+      "ob_sup_res": "S: 2378.4 | R: 2391.6",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "sector": "Pharma",
+      "ltp": 1789.2,
+      "pct_chg": 1.37,
+      "pct_display": "1.37",
+      "day_high": 1804.1,
+      "day_low": 1786.1,
+      "vwap": 1785.62,
+      "vwap_gap": 0.45,
+      "hyperflow": "8.6x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1793.6,
+          "h": 1804.1,
+          "l": 1792.3,
+          "c": 1797.6,
+          "v": 17227.0
+        },
+        {
+          "o": 1797.0,
+          "h": 1798.2,
+          "l": 1793.8,
+          "c": 1794.6,
+          "v": 7519.0
+        },
+        {
+          "o": 1794.0,
+          "h": 1794.8,
+          "l": 1792.3,
+          "c": 1794.7,
+          "v": 6268.0
+        },
+        {
+          "o": 1794.6,
+          "h": 1794.6,
+          "l": 1790.9,
+          "c": 1791.4,
+          "v": 8743.0
+        },
+        {
+          "o": 1791.0,
+          "h": 1791.8,
+          "l": 1786.9,
+          "c": 1786.9,
+          "v": 8114.0
+        },
+        {
+          "o": 1786.1,
+          "h": 1790.0,
+          "l": 1786.1,
+          "c": 1789.2,
+          "v": 837.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1786.1 | R: 1804.1",
+      "ob_4x4": "4/4 BULL"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "sector": "Bank",
+      "ltp": 429.45,
+      "pct_chg": 3.82,
+      "pct_display": "3.82",
+      "day_high": 432.45,
+      "day_low": 429.3,
+      "vwap": 428.59,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.5x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "18:14",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 431.9,
+          "h": 432.45,
+          "l": 430.4,
+          "c": 431.65,
+          "v": 383908.0
+        },
+        {
+          "o": 431.55,
+          "h": 431.55,
+          "l": 430.45,
+          "c": 431.0,
+          "v": 132693.0
+        },
+        {
+          "o": 430.8,
+          "h": 430.95,
+          "l": 430.2,
+          "c": 430.25,
+          "v": 141721.0
+        },
+        {
+          "o": 430.2,
+          "h": 430.8,
+          "l": 429.85,
+          "c": 430.0,
+          "v": 136114.0
+        },
+        {
+          "o": 430.0,
+          "h": 430.1,
+          "l": 429.4,
+          "c": 429.45,
+          "v": 113511.0
+        },
+        {
+          "o": 429.4,
+          "h": 429.45,
+          "l": 429.3,
+          "c": 429.45,
+          "v": 221348.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 429.3 | R: 432.45",
+      "ob_4x4": "4/4 BULL"
     }
   ],
   "titan_bearish": [
     {
       "symbol": "ITC",
       "sector": "FMCG",
-      "ltp": 264.35,
+      "ltp": 263.85,
       "pct_chg": -0.54,
       "pct_display": "0.54",
       "day_high": 265.7,
-      "day_low": 264.3,
-      "vwap": 263.82,
+      "day_low": 263.8,
+      "vwap": 263.32,
       "vwap_gap": 0.45,
       "hyperflow": "7.1x",
       "max_hyperflow": "12.4x",
@@ -276,9 +1051,23 @@
         {
           "o": 264.6,
           "h": 264.6,
-          "l": 264.3,
-          "c": 264.35,
-          "v": 109891.0
+          "l": 264.25,
+          "c": 264.25,
+          "v": 129695.0
+        },
+        {
+          "o": 264.25,
+          "h": 264.3,
+          "l": 263.9,
+          "c": 263.9,
+          "v": 105055.0
+        },
+        {
+          "o": 263.8,
+          "h": 263.9,
+          "l": 263.8,
+          "c": 263.85,
+          "v": 31409.0
         }
       ],
       "bull_score": "1/4",
@@ -296,7 +1085,7 @@
         "PDL": "YES"
       },
       "ob_rating": -5,
-      "ob_sup_res": "S: 264.3 | R: 265.7",
+      "ob_sup_res": "S: 263.8 | R: 265.7",
       "ob_4x4": "4/4 BEAR"
     },
     {
@@ -338,15 +1127,15 @@
     {
       "symbol": "TITAN",
       "sector": "Consumer",
-      "ltp": 4385.3,
-      "pct_chg": -3.62,
-      "pct_display": "3.62",
+      "ltp": 4362.6,
+      "pct_chg": -4.12,
+      "pct_display": "4.12",
       "day_high": 4439.6,
       "day_low": 4337.9,
-      "vwap": 4372.78,
-      "vwap_gap": 0.29,
-      "hyperflow": "1.7x",
-      "max_hyperflow": "2.7x",
+      "vwap": 4371.92,
+      "vwap_gap": -0.21,
+      "hyperflow": "1.1x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.0x",
       "has_news": false,
       "candles": [
@@ -375,12 +1164,26 @@
           "o": 4353.6,
           "h": 4390.0,
           "l": 4344.8,
-          "c": 4385.3,
-          "v": 160466.0
+          "c": 4382.8,
+          "v": 182292.0
+        },
+        {
+          "o": 4381.8,
+          "h": 4384.8,
+          "l": 4358.0,
+          "c": 4359.0,
+          "v": 82074.0
+        },
+        {
+          "o": 4359.7,
+          "h": 4364.0,
+          "l": 4358.4,
+          "c": 4362.6,
+          "v": 14942.0
         }
       ],
       "bull_score": "0/4",
-      "bear_score": "1/4",
+      "bear_score": "2/4",
       "rules_bull": {
         "Breakout": "NO",
         "Volume": "NO",
@@ -389,29 +1192,29 @@
       },
       "rules_bear": {
         "Breakout": "NO",
-        "VWAP": "NO",
+        "VWAP": "YES",
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "09:34",
+      "listed_at": "09:41",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
-      "ob_rating": -1,
+      "ob_rating": -2,
       "ob_sup_res": "S: 4337.9 | R: 4439.6",
       "ob_4x4": "PENDING"
     },
     {
       "symbol": "DIVISLAB",
       "sector": "Pharma",
-      "ltp": 9537.0,
-      "pct_chg": 3.71,
-      "pct_display": "3.71",
+      "ltp": 9533.0,
+      "pct_chg": 3.66,
+      "pct_display": "3.66",
       "day_high": 9575.5,
-      "day_low": 9527.5,
-      "vwap": 9551.05,
+      "day_low": 9516.0,
+      "vwap": 9547.41,
       "vwap_gap": -0.15,
-      "hyperflow": "1.5x",
-      "max_hyperflow": "2.4x",
+      "hyperflow": "1.1x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.0x",
       "has_news": false,
       "candles": [
@@ -440,12 +1243,26 @@
           "o": 9556.0,
           "h": 9559.5,
           "l": 9527.5,
-          "c": 9537.0,
-          "v": 4004.0
+          "c": 9534.5,
+          "v": 4293.0
+        },
+        {
+          "o": 9534.5,
+          "h": 9546.5,
+          "l": 9516.0,
+          "c": 9519.0,
+          "v": 2818.0
+        },
+        {
+          "o": 9522.5,
+          "h": 9533.0,
+          "l": 9522.0,
+          "c": 9533.0,
+          "v": 755.0
         }
       ],
       "bull_score": "2/4",
-      "bear_score": "2/4",
+      "bear_score": "1/4",
       "rules_bull": {
         "Breakout": "NO",
         "Volume": "NO",
@@ -455,64 +1272,79 @@
       "rules_bear": {
         "Breakout": "NO",
         "VWAP": "YES",
-        "DL": "YES",
+        "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "09:34",
+      "listed_at": "09:41",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 1,
-      "ob_sup_res": "S: 9527.5 | R: 9575.5",
+      "ob_sup_res": "S: 9516.0 | R: 9575.5",
       "ob_4x4": "PENDING"
     }
   ],
   "combine_3": [
     {
-      "symbol": "PFC",
-      "sector": "Finance",
-      "ltp": 331.4,
-      "pct_chg": 2.92,
-      "pct_display": "2.92",
-      "day_high": 332.25,
-      "day_low": 322.15,
-      "vwap": 329.19,
-      "vwap_gap": 0.67,
-      "hyperflow": "3.5x",
-      "max_hyperflow": "5.6x",
-      "min_hyperflow": "1.9x",
+      "symbol": "KOTAKBANK",
+      "sector": "Bank",
+      "ltp": 429.45,
+      "pct_chg": 3.82,
+      "pct_display": "3.82",
+      "day_high": 432.45,
+      "day_low": 429.3,
+      "vwap": 428.59,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.5x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "18:14",
       "has_news": false,
       "candles": [
         {
-          "o": 323.05,
-          "h": 324.15,
-          "l": 322.15,
-          "c": 324.05,
-          "v": 88591.0
+          "o": 431.9,
+          "h": 432.45,
+          "l": 430.4,
+          "c": 431.65,
+          "v": 383908.0
         },
         {
-          "o": 323.7,
-          "h": 328.15,
-          "l": 323.65,
-          "c": 327.6,
-          "v": 357377.0
+          "o": 431.55,
+          "h": 431.55,
+          "l": 430.45,
+          "c": 431.0,
+          "v": 132693.0
         },
         {
-          "o": 327.6,
-          "h": 331.3,
-          "l": 327.6,
-          "c": 330.95,
-          "v": 322173.0
+          "o": 430.8,
+          "h": 430.95,
+          "l": 430.2,
+          "c": 430.25,
+          "v": 141721.0
         },
         {
-          "o": 330.75,
-          "h": 332.25,
-          "l": 330.0,
-          "c": 331.4,
-          "v": 609925.0
+          "o": 430.2,
+          "h": 430.8,
+          "l": 429.85,
+          "c": 430.0,
+          "v": 136114.0
+        },
+        {
+          "o": 430.0,
+          "h": 430.1,
+          "l": 429.4,
+          "c": 429.45,
+          "v": 113511.0
+        },
+        {
+          "o": 429.4,
+          "h": 429.45,
+          "l": 429.3,
+          "c": 429.45,
+          "v": 221348.0
         }
       ],
       "bull_score": "4/4",
-      "bear_score": "0/4",
+      "bear_score": "1/4",
       "rules_bull": {
         "Breakout": "YES",
         "Volume": "YES",
@@ -525,12 +1357,618 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "09:34",
+      "ob_rating": 5,
+      "ob_sup_res": "S: 429.3 | R: 432.45",
+      "ob_4x4": "4/4 BULL",
       "combine_score": "2/3",
       "combine_val": 2,
       "ob_signal": "MOMENTUM CORE",
-      "ob_color": "tag-cyan",
-      "ob_rating": 5
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "sector": "Consumer",
+      "ltp": 2382.0,
+      "pct_chg": 2.46,
+      "pct_display": "2.46",
+      "day_high": 2391.6,
+      "day_low": 2378.4,
+      "vwap": 2377.24,
+      "vwap_gap": 0.45,
+      "hyperflow": "9.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": true,
+      "candles": [
+        {
+          "o": 2391.6,
+          "h": 2391.6,
+          "l": 2382.0,
+          "c": 2384.1,
+          "v": 16066.0
+        },
+        {
+          "o": 2385.9,
+          "h": 2386.7,
+          "l": 2379.9,
+          "c": 2383.0,
+          "v": 11733.0
+        },
+        {
+          "o": 2383.0,
+          "h": 2385.7,
+          "l": 2380.0,
+          "c": 2383.5,
+          "v": 6004.0
+        },
+        {
+          "o": 2383.9,
+          "h": 2383.9,
+          "l": 2380.6,
+          "c": 2381.0,
+          "v": 6752.0
+        },
+        {
+          "o": 2381.0,
+          "h": 2381.4,
+          "l": 2378.4,
+          "c": 2380.7,
+          "v": 6488.0
+        },
+        {
+          "o": 2380.2,
+          "h": 2382.0,
+          "l": 2380.2,
+          "c": 2382.0,
+          "v": 603.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 2378.4 | R: 2391.6",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "2/3",
+      "combine_val": 2,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "sector": "Pharma",
+      "ltp": 1789.2,
+      "pct_chg": 1.37,
+      "pct_display": "1.37",
+      "day_high": 1804.1,
+      "day_low": 1786.1,
+      "vwap": 1785.62,
+      "vwap_gap": 0.45,
+      "hyperflow": "8.6x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1793.6,
+          "h": 1804.1,
+          "l": 1792.3,
+          "c": 1797.6,
+          "v": 17227.0
+        },
+        {
+          "o": 1797.0,
+          "h": 1798.2,
+          "l": 1793.8,
+          "c": 1794.6,
+          "v": 7519.0
+        },
+        {
+          "o": 1794.0,
+          "h": 1794.8,
+          "l": 1792.3,
+          "c": 1794.7,
+          "v": 6268.0
+        },
+        {
+          "o": 1794.6,
+          "h": 1794.6,
+          "l": 1790.9,
+          "c": 1791.4,
+          "v": 8743.0
+        },
+        {
+          "o": 1791.0,
+          "h": 1791.8,
+          "l": 1786.9,
+          "c": 1786.9,
+          "v": 8114.0
+        },
+        {
+          "o": 1786.1,
+          "h": 1790.0,
+          "l": 1786.1,
+          "c": 1789.2,
+          "v": 837.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1786.1 | R: 1804.1",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "2/3",
+      "combine_val": 2,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "SBILIFE",
+      "sector": "Insurance",
+      "ltp": 420.0,
+      "pct_chg": 2.37,
+      "pct_display": "2.37",
+      "day_high": 426.3,
+      "day_low": 413.7,
+      "vwap": 419.16,
+      "vwap_gap": 0.45,
+      "hyperflow": "17.9x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 413.7 | R: 426.3",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "BRITANNIA",
+      "sector": "FMCG",
+      "ltp": 4821.3,
+      "pct_chg": 2.21,
+      "pct_display": "2.21",
+      "day_high": 4870.5,
+      "day_low": 4797.1,
+      "vwap": 4811.66,
+      "vwap_gap": 0.45,
+      "hyperflow": "14.1x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": true,
+      "candles": [
+        {
+          "o": 4870.5,
+          "h": 4870.5,
+          "l": 4802.1,
+          "c": 4802.1,
+          "v": 4479.0
+        },
+        {
+          "o": 4802.2,
+          "h": 4817.0,
+          "l": 4797.1,
+          "c": 4817.0,
+          "v": 2379.0
+        },
+        {
+          "o": 4819.5,
+          "h": 4826.6,
+          "l": 4816.0,
+          "c": 4825.4,
+          "v": 1725.0
+        },
+        {
+          "o": 4828.0,
+          "h": 4836.5,
+          "l": 4825.7,
+          "c": 4835.0,
+          "v": 1190.0
+        },
+        {
+          "o": 4835.8,
+          "h": 4835.8,
+          "l": 4821.0,
+          "c": 4823.8,
+          "v": 1498.0
+        },
+        {
+          "o": 4821.3,
+          "h": 4821.3,
+          "l": 4821.3,
+          "c": 4821.3,
+          "v": 0.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 4797.1 | R: 4870.5",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "SIEMENS",
+      "sector": "Cap Goods",
+      "ltp": 3807.2,
+      "pct_chg": 4.13,
+      "pct_display": "4.13",
+      "day_high": 3833.6,
+      "day_low": 3802.0,
+      "vwap": 3799.59,
+      "vwap_gap": 0.45,
+      "hyperflow": "12.5x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 3833.6,
+          "h": 3833.6,
+          "l": 3802.0,
+          "c": 3808.0,
+          "v": 6508.0
+        },
+        {
+          "o": 3809.8,
+          "h": 3824.8,
+          "l": 3808.5,
+          "c": 3810.1,
+          "v": 3021.0
+        },
+        {
+          "o": 3809.6,
+          "h": 3825.4,
+          "l": 3804.5,
+          "c": 3824.5,
+          "v": 3255.0
+        },
+        {
+          "o": 3824.3,
+          "h": 3829.9,
+          "l": 3813.5,
+          "c": 3814.6,
+          "v": 2287.0
+        },
+        {
+          "o": 3812.9,
+          "h": 3812.9,
+          "l": 3804.0,
+          "c": 3807.6,
+          "v": 2012.0
+        },
+        {
+          "o": 3807.2,
+          "h": 3819.7,
+          "l": 3807.2,
+          "c": 3807.2,
+          "v": 2818.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 3802.0 | R: 3833.6",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "DRREDDY",
+      "sector": "Pharma",
+      "ltp": 1216.7,
+      "pct_chg": 0.42,
+      "pct_display": "0.42",
+      "day_high": 1222.5,
+      "day_low": 1212.3,
+      "vwap": 1214.27,
+      "vwap_gap": 0.45,
+      "hyperflow": "12.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1212.3,
+          "h": 1221.7,
+          "l": 1212.3,
+          "c": 1218.7,
+          "v": 52507.0
+        },
+        {
+          "o": 1219.4,
+          "h": 1221.6,
+          "l": 1219.4,
+          "c": 1221.1,
+          "v": 42596.0
+        },
+        {
+          "o": 1221.1,
+          "h": 1221.5,
+          "l": 1219.3,
+          "c": 1220.9,
+          "v": 31373.0
+        },
+        {
+          "o": 1221.5,
+          "h": 1222.5,
+          "l": 1215.7,
+          "c": 1215.7,
+          "v": 49201.0
+        },
+        {
+          "o": 1215.9,
+          "h": 1215.9,
+          "l": 1212.4,
+          "c": 1212.7,
+          "v": 30220.0
+        },
+        {
+          "o": 1215.7,
+          "h": 1217.1,
+          "l": 1214.5,
+          "c": 1216.7,
+          "v": 16854.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1212.3 | R: 1222.5",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "sector": "Telecom",
+      "ltp": 1822.8,
+      "pct_chg": 1.72,
+      "pct_display": "1.72",
+      "day_high": 1827.0,
+      "day_low": 1811.0,
+      "vwap": 1819.15,
+      "vwap_gap": 0.45,
+      "hyperflow": "8.4x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1811.0,
+          "h": 1824.4,
+          "l": 1811.0,
+          "c": 1819.8,
+          "v": 346641.0
+        },
+        {
+          "o": 1819.5,
+          "h": 1827.0,
+          "l": 1816.5,
+          "c": 1822.1,
+          "v": 396292.0
+        },
+        {
+          "o": 1822.8,
+          "h": 1825.0,
+          "l": 1820.8,
+          "c": 1823.4,
+          "v": 124396.0
+        },
+        {
+          "o": 1823.4,
+          "h": 1823.9,
+          "l": 1818.8,
+          "c": 1821.1,
+          "v": 185232.0
+        },
+        {
+          "o": 1821.7,
+          "h": 1824.8,
+          "l": 1821.3,
+          "c": 1822.8,
+          "v": 73210.0
+        },
+        {
+          "o": 1822.6,
+          "h": 1823.4,
+          "l": 1822.4,
+          "c": 1822.8,
+          "v": 8940.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1811.0 | R: 1827.0",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "sector": "Metal",
+      "ltp": 1240.4,
+      "pct_chg": 2.16,
+      "pct_display": "2.16",
+      "day_high": 1249.6,
+      "day_low": 1239.6,
+      "vwap": 1237.92,
+      "vwap_gap": 0.45,
+      "hyperflow": "6.9x",
+      "max_hyperflow": "12.4x",
+      "min_hyperflow": "2.1x",
+      "listed_at": "06:44",
+      "has_news": false,
+      "candles": [
+        {
+          "o": 1249.6,
+          "h": 1249.6,
+          "l": 1243.0,
+          "c": 1245.0,
+          "v": 11532.0
+        },
+        {
+          "o": 1245.2,
+          "h": 1246.7,
+          "l": 1240.8,
+          "c": 1241.9,
+          "v": 6607.0
+        },
+        {
+          "o": 1241.3,
+          "h": 1242.2,
+          "l": 1241.0,
+          "c": 1242.1,
+          "v": 6505.0
+        },
+        {
+          "o": 1242.2,
+          "h": 1243.0,
+          "l": 1240.5,
+          "c": 1240.8,
+          "v": 7507.0
+        },
+        {
+          "o": 1240.6,
+          "h": 1242.1,
+          "l": 1239.6,
+          "c": 1240.4,
+          "v": 34011.0
+        },
+        {
+          "o": 1240.3,
+          "h": 1241.2,
+          "l": 1240.3,
+          "c": 1240.4,
+          "v": 851.0
+        }
+      ],
+      "bull_score": "4/4",
+      "bear_score": "1/4",
+      "rules_bull": {
+        "Breakout": "YES",
+        "Volume": "YES",
+        "PDH": "YES",
+        "Range": "YES"
+      },
+      "rules_bear": {
+        "Breakout": "NO",
+        "VWAP": "NO",
+        "DL": "NO",
+        "PDL": "NO"
+      },
+      "ob_rating": 5,
+      "ob_sup_res": "S: 1239.6 | R: 1249.6",
+      "ob_4x4": "4/4 BULL",
+      "combine_score": "1/3",
+      "combine_val": 1,
+      "ob_signal": "MOMENTUM CORE",
+      "ob_color": "tag-cyan"
     },
     {
       "symbol": "PHOENIXLTD",
@@ -573,12 +2011,12 @@
     {
       "symbol": "WIPRO",
       "sector": "IT",
-      "ltp": 161.19,
+      "ltp": 160.7,
       "pct_chg": -0.75,
       "pct_display": "0.75",
       "day_high": 161.96,
-      "day_low": 160.82,
-      "vwap": 160.87,
+      "day_low": 160.7,
+      "vwap": 160.38,
       "vwap_gap": 0.45,
       "hyperflow": "8.4x",
       "max_hyperflow": "12.4x",
@@ -610,9 +2048,23 @@
         {
           "o": 160.96,
           "h": 161.4,
-          "l": 160.96,
-          "c": 161.19,
-          "v": 125632.0
+          "l": 160.91,
+          "c": 160.91,
+          "v": 189997.0
+        },
+        {
+          "o": 160.99,
+          "h": 161.05,
+          "l": 160.75,
+          "c": 160.8,
+          "v": 179299.0
+        },
+        {
+          "o": 160.83,
+          "h": 160.84,
+          "l": 160.7,
+          "c": 160.7,
+          "v": 24266.0
         }
       ],
       "bull_score": "1/4",
@@ -630,7 +2082,7 @@
         "PDL": "YES"
       },
       "ob_rating": -5,
-      "ob_sup_res": "S: 160.82 | R: 161.96",
+      "ob_sup_res": "S: 160.7 | R: 161.96",
       "ob_4x4": "4/4 BEAR",
       "combine_score": "1/3",
       "combine_val": 1,
@@ -640,12 +2092,12 @@
     {
       "symbol": "ITC",
       "sector": "FMCG",
-      "ltp": 264.35,
+      "ltp": 263.85,
       "pct_chg": -0.54,
       "pct_display": "0.54",
       "day_high": 265.7,
-      "day_low": 264.3,
-      "vwap": 263.82,
+      "day_low": 263.8,
+      "vwap": 263.32,
       "vwap_gap": 0.45,
       "hyperflow": "7.1x",
       "max_hyperflow": "12.4x",
@@ -677,9 +2129,23 @@
         {
           "o": 264.6,
           "h": 264.6,
-          "l": 264.3,
-          "c": 264.35,
-          "v": 109891.0
+          "l": 264.25,
+          "c": 264.25,
+          "v": 129695.0
+        },
+        {
+          "o": 264.25,
+          "h": 264.3,
+          "l": 263.9,
+          "c": 263.9,
+          "v": 105055.0
+        },
+        {
+          "o": 263.8,
+          "h": 263.9,
+          "l": 263.8,
+          "c": 263.85,
+          "v": 31409.0
         }
       ],
       "bull_score": "1/4",
@@ -697,7 +2163,7 @@
         "PDL": "YES"
       },
       "ob_rating": -5,
-      "ob_sup_res": "S: 264.3 | R: 265.7",
+      "ob_sup_res": "S: 263.8 | R: 265.7",
       "ob_4x4": "4/4 BEAR",
       "combine_score": "1/3",
       "combine_val": 1,
@@ -745,15 +2211,15 @@
     {
       "symbol": "TITAN",
       "sector": "Consumer",
-      "ltp": 4385.3,
-      "pct_chg": -3.62,
-      "pct_display": "3.62",
+      "ltp": 4362.6,
+      "pct_chg": -4.12,
+      "pct_display": "4.12",
       "day_high": 4439.6,
       "day_low": 4337.9,
-      "vwap": 4372.78,
-      "vwap_gap": 0.29,
-      "hyperflow": "1.7x",
-      "max_hyperflow": "2.7x",
+      "vwap": 4371.92,
+      "vwap_gap": -0.21,
+      "hyperflow": "1.1x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.0x",
       "has_news": false,
       "candles": [
@@ -782,12 +2248,26 @@
           "o": 4353.6,
           "h": 4390.0,
           "l": 4344.8,
-          "c": 4385.3,
-          "v": 160466.0
+          "c": 4382.8,
+          "v": 182292.0
+        },
+        {
+          "o": 4381.8,
+          "h": 4384.8,
+          "l": 4358.0,
+          "c": 4359.0,
+          "v": 82074.0
+        },
+        {
+          "o": 4359.7,
+          "h": 4364.0,
+          "l": 4358.4,
+          "c": 4362.6,
+          "v": 14942.0
         }
       ],
       "bull_score": "0/4",
-      "bear_score": "1/4",
+      "bear_score": "2/4",
       "rules_bull": {
         "Breakout": "NO",
         "Volume": "NO",
@@ -796,14 +2276,14 @@
       },
       "rules_bear": {
         "Breakout": "NO",
-        "VWAP": "NO",
+        "VWAP": "YES",
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "09:34",
+      "listed_at": "09:41",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
-      "ob_rating": -1,
+      "ob_rating": -2,
       "ob_sup_res": "S: 4337.9 | R: 4439.6",
       "ob_4x4": "PENDING",
       "combine_score": "1/3",
@@ -812,15 +2292,15 @@
     {
       "symbol": "DIVISLAB",
       "sector": "Pharma",
-      "ltp": 9537.0,
-      "pct_chg": 3.71,
-      "pct_display": "3.71",
+      "ltp": 9533.0,
+      "pct_chg": 3.66,
+      "pct_display": "3.66",
       "day_high": 9575.5,
-      "day_low": 9527.5,
-      "vwap": 9551.05,
+      "day_low": 9516.0,
+      "vwap": 9547.41,
       "vwap_gap": -0.15,
-      "hyperflow": "1.5x",
-      "max_hyperflow": "2.4x",
+      "hyperflow": "1.1x",
+      "max_hyperflow": "1.8x",
       "min_hyperflow": "1.0x",
       "has_news": false,
       "candles": [
@@ -849,12 +2329,26 @@
           "o": 9556.0,
           "h": 9559.5,
           "l": 9527.5,
-          "c": 9537.0,
-          "v": 4004.0
+          "c": 9534.5,
+          "v": 4293.0
+        },
+        {
+          "o": 9534.5,
+          "h": 9546.5,
+          "l": 9516.0,
+          "c": 9519.0,
+          "v": 2818.0
+        },
+        {
+          "o": 9522.5,
+          "h": 9533.0,
+          "l": 9522.0,
+          "c": 9533.0,
+          "v": 755.0
         }
       ],
       "bull_score": "2/4",
-      "bear_score": "2/4",
+      "bear_score": "1/4",
       "rules_bull": {
         "Breakout": "NO",
         "Volume": "NO",
@@ -864,14 +2358,14 @@
       "rules_bear": {
         "Breakout": "NO",
         "VWAP": "YES",
-        "DL": "YES",
+        "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "09:34",
+      "listed_at": "09:41",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 1,
-      "ob_sup_res": "S: 9527.5 | R: 9575.5",
+      "ob_sup_res": "S: 9516.0 | R: 9575.5",
       "ob_4x4": "PENDING",
       "combine_score": "1/3",
       "combine_val": 1
