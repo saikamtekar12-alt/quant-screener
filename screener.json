@@ -1,5 +1,5 @@
 {
-  "sync_time": "07 Oct 2026, 08:48 IST",
+  "sync_time": "07 Oct 2026, 08:54 IST",
   "market_summary": {
     "nifty_spot": 22776.1,
     "nifty_pct": -0.55,
@@ -11101,7 +11101,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -11363,7 +11363,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -11625,7 +11625,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -11887,7 +11887,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -12149,7 +12149,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -12411,7 +12411,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -12673,7 +12673,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -12935,7 +12935,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -13197,7 +13197,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -13459,7 +13459,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -13721,7 +13721,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -13983,7 +13983,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -14245,7 +14245,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -14507,7 +14507,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -14769,7 +14769,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -15031,7 +15031,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -15293,7 +15293,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -15555,7 +15555,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -15817,7 +15817,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -16079,7 +16079,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -16341,7 +16341,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -16603,7 +16603,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -16865,7 +16865,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -17127,7 +17127,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -17389,7 +17389,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -17651,7 +17651,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -17913,7 +17913,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -18175,7 +18175,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -18437,7 +18437,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -18699,7 +18699,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Imbalance (AMT)",
       "ob_desc": "Price transitioned from Balance (Range) to Imbalance (Trend).",
       "ob_color": "tag-amber",
@@ -24785,7 +24785,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -25049,7 +25049,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -25313,7 +25313,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -25577,7 +25577,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -25841,7 +25841,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -26105,7 +26105,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -26369,7 +26369,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -26633,7 +26633,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -26897,7 +26897,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -27161,7 +27161,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Absorption",
       "ob_desc": "High volume at low, tight spread. Buyers absorbing sellers.",
       "ob_color": "tag-green",
@@ -27425,7 +27425,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -27689,7 +27689,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -27953,7 +27953,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
@@ -28217,7 +28217,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -28481,7 +28481,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -28745,7 +28745,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -29009,7 +29009,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -29273,7 +29273,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Volume Profile (HVN)",
       "ob_desc": "Price testing High Volume Node (real support/resistance).",
       "ob_color": "tag-cyan",
@@ -29537,7 +29537,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "08:48",
+      "listed_at": "08:54",
       "ob_signal": "Negative Gamma",
       "ob_desc": "Dealers forced to hedge directionally, driving trend extension.",
       "ob_color": "tag-purple",
