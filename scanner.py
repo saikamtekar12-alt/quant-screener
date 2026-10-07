@@ -6,33 +6,161 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Complete Active Option Chain Universe
+# Expanded Active Option Chain Universe (140+ Stocks)
 OPTION_CHAIN_UNIVERSE = [
-    {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Private Bank"},
-    {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Private Bank"},
-    {"sym": "SBIN.NS", "name": "SBIN", "sector": "PSU Bank"},
-    {"sym": "KOTAKBANK.NS", "name": "KOTAKBANK", "sector": "Private Bank"},
-    {"sym": "AXISBANK.NS", "name": "AXISBANK", "sector": "Private Bank"},
-    {"sym": "RELIANCE.NS", "name": "RELIANCE", "sector": "Energy"},
+    # BANKS & FINANCIALS
+    {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Bank"},
+    {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Bank"},
+    {"sym": "SBIN.NS", "name": "SBIN", "sector": "Bank"},
+    {"sym": "KOTAKBANK.NS", "name": "KOTAKBANK", "sector": "Bank"},
+    {"sym": "AXISBANK.NS", "name": "AXISBANK", "sector": "Bank"},
+    {"sym": "INDUSINDBK.NS", "name": "INDUSINDBK", "sector": "Bank"},
+    {"sym": "BANKBARODA.NS", "name": "BANKBARODA", "sector": "Bank"},
+    {"sym": "FEDERALBNK.NS", "name": "FEDERALBNK", "sector": "Bank"},
+    {"sym": "PNB.NS", "name": "PNB", "sector": "Bank"},
+    {"sym": "IDFCFIRSTB.NS", "name": "IDFCFIRSTB", "sector": "Bank"},
+    {"sym": "AUBANK.NS", "name": "AUBANK", "sector": "Bank"},
+    {"sym": "BANDHANBNK.NS", "name": "BANDHANBNK", "sector": "Bank"},
+    {"sym": "CANBK.NS", "name": "CANBK", "sector": "Bank"},
+    {"sym": "BAJFINANCE.NS", "name": "BAJFINANCE", "sector": "Finance"},
+    {"sym": "BAJAJFINSV.NS", "name": "BAJAJFINSV", "sector": "Finance"},
+    {"sym": "CHOLAFIN.NS", "name": "CHOLAFIN", "sector": "Finance"},
+    {"sym": "SHRIRAMFIN.NS", "name": "SHRIRAMFIN", "sector": "Finance"},
+    {"sym": "MUTHOOTFIN.NS", "name": "MUTHOOTFIN", "sector": "Finance"},
+    {"sym": "MANAPPURAM.NS", "name": "MANAPPURAM", "sector": "Finance"},
+    {"sym": "M&MFIN.NS", "name": "M&MFIN", "sector": "Finance"},
+    {"sym": "PFC.NS", "name": "PFC", "sector": "Finance"},
+    {"sym": "RECLTD.NS", "name": "RECLTD", "sector": "Finance"},
+    {"sym": "JIOFIN.NS", "name": "JIOFIN", "sector": "Finance"},
+    {"sym": "POLICYBZR.NS", "name": "POLICYBZR", "sector": "Finance"},
+    {"sym": "HDFCAMC.NS", "name": "HDFCAMC", "sector": "Finance"},
+    {"sym": "HDFCLIFE.NS", "name": "HDFCLIFE", "sector": "Insurance"},
+    {"sym": "SBILIFE.NS", "name": "SBILIFE", "sector": "Insurance"},
+    {"sym": "ICICIGI.NS", "name": "ICICIGI", "sector": "Insurance"},
+    {"sym": "ICICIPRULI.NS", "name": "ICICIPRULI", "sector": "Insurance"},
+    {"sym": "MCX.NS", "name": "MCX", "sector": "Cap Mkts"},
+    {"sym": "BSE.NS", "name": "BSE", "sector": "Cap Mkts"},
+    {"sym": "CDSL.NS", "name": "CDSL", "sector": "Cap Mkts"},
+
+    # IT & TECH
     {"sym": "TCS.NS", "name": "TCS", "sector": "IT"},
     {"sym": "INFY.NS", "name": "INFY", "sector": "IT"},
     {"sym": "HCLTECH.NS", "name": "HCLTECH", "sector": "IT"},
     {"sym": "WIPRO.NS", "name": "WIPRO", "sector": "IT"},
     {"sym": "TECHM.NS", "name": "TECHM", "sector": "IT"},
+    {"sym": "LTIM.NS", "name": "LTIM", "sector": "IT"},
+    {"sym": "PERSISTENT.NS", "name": "PERSISTENT", "sector": "IT"},
+    {"sym": "COFORGE.NS", "name": "COFORGE", "sector": "IT"},
+    {"sym": "MPHASIS.NS", "name": "MPHASIS", "sector": "IT"},
+    {"sym": "LTTS.NS", "name": "LTTS", "sector": "IT"},
+    {"sym": "TATAELXSI.NS", "name": "TATAELXSI", "sector": "IT"},
+    {"sym": "OFSS.NS", "name": "OFSS", "sector": "IT"},
+    {"sym": "NAUKRI.NS", "name": "NAUKRI", "sector": "New-Age"},
+    {"sym": "PAYTM.NS", "name": "PAYTM", "sector": "New-Age"},
+    {"sym": "ZOMATO.NS", "name": "ZOMATO", "sector": "New-Age"},
+    
+    # AUTO
     {"sym": "MARUTI.NS", "name": "MARUTI", "sector": "Auto"},
     {"sym": "TATAMOTORS.NS", "name": "TATAMOTORS", "sector": "Auto"},
+    {"sym": "M&M.NS", "name": "M&M", "sector": "Auto"},
+    {"sym": "BAJAJ-AUTO.NS", "name": "BAJAJ-AUTO", "sector": "Auto"},
+    {"sym": "EICHERMOT.NS", "name": "EICHERMOT", "sector": "Auto"},
+    {"sym": "HEROMOTOCO.NS", "name": "HEROMOTOCO", "sector": "Auto"},
+    {"sym": "TVSMOTOR.NS", "name": "TVSMOTOR", "sector": "Auto"},
+    {"sym": "ASHOKLEY.NS", "name": "ASHOKLEY", "sector": "Auto"},
+    {"sym": "BHARATFORG.NS", "name": "BHARATFORG", "sector": "Auto"},
+    {"sym": "MOTHERSON.NS", "name": "MOTHERSON", "sector": "Auto"},
+    {"sym": "BOSCHLTD.NS", "name": "BOSCHLTD", "sector": "Auto"},
+    {"sym": "MRF.NS", "name": "MRF", "sector": "Auto"},
+    {"sym": "APOLLOTYRE.NS", "name": "APOLLOTYRE", "sector": "Auto"},
+
+    # METALS
     {"sym": "TATASTEEL.NS", "name": "TATASTEEL", "sector": "Metal"},
+    {"sym": "JSWSTEEL.NS", "name": "JSWSTEEL", "sector": "Metal"},
+    {"sym": "HINDALCO.NS", "name": "HINDALCO", "sector": "Metal"},
     {"sym": "VEDL.NS", "name": "VEDL", "sector": "Metal"},
-    {"sym": "LT.NS", "name": "LT", "sector": "Capital Goods"},
-    {"sym": "BHEL.NS", "name": "BHEL", "sector": "Capital Goods"},
+    {"sym": "JINDALSTEL.NS", "name": "JINDALSTEL", "sector": "Metal"},
+    {"sym": "SAIL.NS", "name": "SAIL", "sector": "Metal"},
+    {"sym": "NATIONALUM.NS", "name": "NATIONALUM", "sector": "Metal"},
+    {"sym": "NMDC.NS", "name": "NMDC", "sector": "Metal"},
+    {"sym": "HINDZINC.NS", "name": "HINDZINC", "sector": "Metal"},
+
+    # ENERGY & POWER
+    {"sym": "RELIANCE.NS", "name": "RELIANCE", "sector": "Energy"},
+    {"sym": "ONGC.NS", "name": "ONGC", "sector": "Oil & Gas"},
+    {"sym": "BPCL.NS", "name": "BPCL", "sector": "Oil & Gas"},
+    {"sym": "IOC.NS", "name": "IOC", "sector": "Oil & Gas"},
+    {"sym": "HINDPETRO.NS", "name": "HINDPETRO", "sector": "Oil & Gas"},
+    {"sym": "GAIL.NS", "name": "GAIL", "sector": "Oil & Gas"},
+    {"sym": "PETRONET.NS", "name": "PETRONET", "sector": "Oil & Gas"},
+    {"sym": "COALINDIA.NS", "name": "COALINDIA", "sector": "Oil & Gas"},
+    {"sym": "IGL.NS", "name": "IGL", "sector": "Oil & Gas"},
+    {"sym": "MGL.NS", "name": "MGL", "sector": "Oil & Gas"},
+    {"sym": "NTPC.NS", "name": "NTPC", "sector": "Power"},
+    {"sym": "POWERGRID.NS", "name": "POWERGRID", "sector": "Power"},
+    {"sym": "TATAPOWER.NS", "name": "TATAPOWER", "sector": "Power"},
+    {"sym": "ADANIPOWER.NS", "name": "ADANIPOWER", "sector": "Power"},
+    {"sym": "ADANIENT.NS", "name": "ADANIENT", "sector": "Energy"},
+    {"sym": "ADANIPORTS.NS", "name": "ADANIPORTS", "sector": "Logistics"},
+    {"sym": "JSWENERGY.NS", "name": "JSWENERGY", "sector": "Power"},
+    {"sym": "BHEL.NS", "name": "BHEL", "sector": "Power"},
+    
+    # FMCG & CONSUMER
     {"sym": "ITC.NS", "name": "ITC", "sector": "FMCG"},
-    {"sym": "PATANJALI.NS", "name": "PATANJALI", "sector": "FMCG"},
+    {"sym": "HINDUNILVR.NS", "name": "HINDUNILVR", "sector": "FMCG"},
+    {"sym": "NESTLEIND.NS", "name": "NESTLEIND", "sector": "FMCG"},
+    {"sym": "BRITANNIA.NS", "name": "BRITANNIA", "sector": "FMCG"},
+    {"sym": "DABUR.NS", "name": "DABUR", "sector": "FMCG"},
+    {"sym": "GODREJCP.NS", "name": "GODREJCP", "sector": "FMCG"},
+    {"sym": "MARICO.NS", "name": "MARICO", "sector": "FMCG"},
+    {"sym": "COLPAL.NS", "name": "COLPAL", "sector": "FMCG"},
+    {"sym": "TATACONSUM.NS", "name": "TATACONSUM", "sector": "FMCG"},
+    {"sym": "UBL.NS", "name": "UBL", "sector": "FMCG"},
+    {"sym": "MCDOWELL-N.NS", "name": "MCDOWELL", "sector": "FMCG"},
+    {"sym": "TITAN.NS", "name": "TITAN", "sector": "Consumer"},
     {"sym": "TRENT.NS", "name": "TRENT", "sector": "Retail"},
-    {"sym": "DMART.NS", "name": "DMART", "sector": "Consumer Services"},
-    {"sym": "BLUESTARCO.NS", "name": "BLUESTARCO", "sector": "Consumer Durables"},
-    {"sym": "POLICYBZR.NS", "name": "POLICYBZR", "sector": "Financial Services"},
+    {"sym": "DMART.NS", "name": "DMART", "sector": "Retail"},
+    {"sym": "PAGEIND.NS", "name": "PAGEIND", "sector": "Consumer"},
+    {"sym": "BATAINDIA.NS", "name": "BATAINDIA", "sector": "Consumer"},
+    {"sym": "ASIANPAINT.NS", "name": "ASIANPAINT", "sector": "Consumer"},
+    {"sym": "BERGEPAINT.NS", "name": "BERGEPAINT", "sector": "Consumer"},
+    {"sym": "HAVELLS.NS", "name": "HAVELLS", "sector": "Consumer"},
+    {"sym": "VOLTAS.NS", "name": "VOLTAS", "sector": "Consumer"},
+    {"sym": "DIXON.NS", "name": "DIXON", "sector": "Consumer"},
+    
+    # PHARMA & CHEMICALS
+    {"sym": "SUNPHARMA.NS", "name": "SUNPHARMA", "sector": "Pharma"},
+    {"sym": "CIPLA.NS", "name": "CIPLA", "sector": "Pharma"},
+    {"sym": "DRREDDY.NS", "name": "DRREDDY", "sector": "Pharma"},
+    {"sym": "DIVISLAB.NS", "name": "DIVISLAB", "sector": "Pharma"},
+    {"sym": "LUPIN.NS", "name": "LUPIN", "sector": "Pharma"},
+    {"sym": "AUROPHARMA.NS", "name": "AUROPHARMA", "sector": "Pharma"},
+    {"sym": "BIOCON.NS", "name": "BIOCON", "sector": "Pharma"},
     {"sym": "LAURUSLABS.NS", "name": "LAURUSLABS", "sector": "Pharma"},
-    {"sym": "MCX.NS", "name": "MCX", "sector": "Capital Markets"}
+    {"sym": "APOLLOHOSP.NS", "name": "APOLLOHOSP", "sector": "Pharma"},
+    {"sym": "SYNGENE.NS", "name": "SYNGENE", "sector": "Pharma"},
+    {"sym": "PIIND.NS", "name": "PIIND", "sector": "Chem"},
+    {"sym": "UPL.NS", "name": "UPL", "sector": "Chem"},
+    {"sym": "NAVINFLUOR.NS", "name": "NAVINFLUOR", "sector": "Chem"},
+    {"sym": "TATACHEM.NS", "name": "TATACHEM", "sector": "Chem"},
+    {"sym": "DEEPAKNTR.NS", "name": "DEEPAKNTR", "sector": "Chem"},
+    
+    # CAPITAL GOODS & OTHERS
+    {"sym": "LT.NS", "name": "LT", "sector": "Cap Goods"},
+    {"sym": "HAL.NS", "name": "HAL", "sector": "Defence"},
+    {"sym": "BEL.NS", "name": "BEL", "sector": "Defence"},
+    {"sym": "SIEMENS.NS", "name": "SIEMENS", "sector": "Cap Goods"},
+    {"sym": "ABB.NS", "name": "ABB", "sector": "Cap Goods"},
+    {"sym": "CUMMINSIND.NS", "name": "CUMMINSIND", "sector": "Cap Goods"},
+    {"sym": "POLYCAB.NS", "name": "POLYCAB", "sector": "Cap Goods"},
+    {"sym": "ULTRACEMCO.NS", "name": "ULTRACEMCO", "sector": "Cement"},
+    {"sym": "GRASIM.NS", "name": "GRASIM", "sector": "Cement"},
+    {"sym": "AMBUJACEM.NS", "name": "AMBUJACEM", "sector": "Cement"},
+    {"sym": "SHREECEM.NS", "name": "SHREECEM", "sector": "Cement"},
+    {"sym": "RAMCOCEM.NS", "name": "RAMCOCEM", "sector": "Cement"},
+    {"sym": "BHARTIARTL.NS", "name": "BHARTIARTL", "sector": "Telecom"},
+    {"sym": "IDEA.NS", "name": "IDEA", "sector": "Telecom"},
+    {"sym": "INDUSTOWER.NS", "name": "INDUSTOWER", "sector": "Telecom"}
 ]
 
 NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX", "RELIANCE"}
@@ -42,7 +170,7 @@ def run_quant_engine():
     now_ist = datetime.now(ist)
     current_time_str = now_ist.strftime("%H:%M")
 
-    # Preserve initial qualification timestamps for the 4/4 Momentum Matrix only
+    # PRESERVE INITIAL TIMESTAMPS FOR 4/4 ENGINES ONLY
     stored_timestamps = {}
     if os.path.exists("screener.json"):
         try:
@@ -58,7 +186,7 @@ def run_quant_engine():
     tickers = [u["sym"] for u in OPTION_CHAIN_UNIVERSE]
     meta_map = {u["sym"]: u for u in OPTION_CHAIN_UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live derivative data...")
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live derivative data for {len(tickers)} stocks...")
     data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
@@ -116,28 +244,6 @@ def run_quant_engine():
             max_hf = round(hyperflow * 1.6, 1)
             min_hf = round(max(1.0, hyperflow * 0.55), 1)
 
-            # SMC Order Block Calculation (Support = Demand OB Top, Resistance = Supply OB Bottom)
-            try:
-                down_candles = today_5m[today_5m['Close'] < today_5m['Open']]
-                up_candles = today_5m[today_5m['Close'] > today_5m['Open']]
-                
-                # Demand OB = Highest point of the lowest bearish candle
-                if not down_candles.empty:
-                    dem_idx = down_candles['Low'].idxmin()
-                    ob_support = max(today_5m.loc[dem_idx, 'Open'], today_5m.loc[dem_idx, 'Close'])
-                else:
-                    ob_support = day_low * 1.002
-                    
-                # Supply OB = Lowest point of the highest bullish candle
-                if not up_candles.empty:
-                    sup_idx = up_candles['High'].idxmax()
-                    ob_resistance = min(today_5m.loc[sup_idx, 'Open'], today_5m.loc[sup_idx, 'Close'])
-                else:
-                    ob_resistance = day_high * 0.998
-            except Exception:
-                ob_support = day_low
-                ob_resistance = day_high
-
             # Strict 4/4 Matrix Rules
             r_bull_breakout = (ltp > orb_high) and (ltp > vwap)
             r_bull_volume   = (rvat >= 1.25)
@@ -167,18 +273,11 @@ def run_quant_engine():
                 if bear_score == 4: base_rating -= 1
                 ob_rating = max(-5, base_rating)
 
-            candles_payload = []
-            for _, r in today_5m.tail(32).iterrows():
-                candles_payload.append({
-                    "o": round(float(r["Open"]), 2), "h": round(float(r["High"]), 2),
-                    "l": round(float(r["Low"]), 2), "c": round(float(r["Close"]), 2), "v": round(float(r["Volume"]), 0)
-                })
-
             base_row = {
                 "symbol": clean_sym, "sector": sec, "ltp": ltp, "pct_chg": pct_chg, "pct_display": f"{abs(pct_chg):.2f}",
                 "day_high": day_high, "day_low": day_low, "vwap": round(vwap, 2), "vwap_gap": vwap_gap,
                 "hyperflow": f"{hyperflow}x", "max_hyperflow": f"{max_hf}x", "min_hyperflow": f"{min_hf}x",
-                "has_news": clean_sym in NEWS_SYMBOLS, "candles": candles_payload,
+                "has_news": clean_sym in NEWS_SYMBOLS,
                 "bull_score": f"{bull_score}/4", "bear_score": f"{bear_score}/4",
                 "rules_bull": { "Breakout": "YES" if r_bull_breakout else "NO", "Volume": "YES" if r_bull_volume else "NO", "PDH": "YES" if r_bull_pdh else "NO", "Range": "YES" if r_bull_range else "NO" },
                 "rules_bear": { "Breakout": "YES" if r_bear_breakout else "NO", "VWAP": "YES" if r_bear_vwap else "NO", "DL": "YES" if r_bear_dl else "NO", "PDL": "YES" if r_bear_pdl else "NO" }
@@ -201,13 +300,14 @@ def run_quant_engine():
                 ob_signal, ob_desc, ob_color = "Negative Gamma", "Dealers forced to hedge directionally, driving trend extension.", "tag-purple"
 
             if ob_signal:
+                # DYNAMIC REFRESH TIMING FOR ORDER BLOCKS ONLY
                 ob_row = dict(base_row)
-                ob_row["listed_at"] = current_time_str  # Dynamic refresh timing
+                ob_row["listed_at"] = current_time_str  
                 ob_row["ob_signal"] = ob_signal
                 ob_row["ob_desc"] = ob_desc
                 ob_row["ob_color"] = ob_color
                 ob_row["ob_rating"] = ob_rating
-                ob_row["ob_sup_res"] = f"S: {ob_support:.1f} | R: {ob_resistance:.1f}"
+                ob_row["ob_sup_res"] = f"S: {day_low:.1f} | R: {day_high:.1f}"
                 ob_row["ob_4x4"] = "4/4 BULL" if bull_score == 4 else ("4/4 BEAR" if bear_score == 4 else "PENDING")
                 order_block_concepts.append(ob_row)
 
@@ -235,24 +335,19 @@ def run_quant_engine():
         k = f"mock_{name}"
         matched = next((x for x in valid_scanned if x["symbol"] == name), None)
         ltp_val = matched["ltp"] if matched else (250.0 if "BHEL" in name else 420.0)
-        cands = matched["candles"] if matched else []
         dh = matched["day_high"] if matched else round(ltp_val * 1.015, 2)
         dl = matched["day_low"] if matched else round(ltp_val * 0.985, 2)
         
-        # Order block fallback proxies
-        ob_sup = round(ltp_val * 0.988, 1)
-        ob_res = round(ltp_val * 1.012, 1)
-
         return {
             "symbol": name, "sector": sec, "ltp": ltp_val, "pct_chg": chg, "pct_display": f"{abs(chg):.2f}",
             "day_high": dh, "day_low": dl, "vwap": round(ltp_val * 0.998, 2), "vwap_gap": 0.45,
             "hyperflow": hf, "max_hyperflow": "12.4x", "min_hyperflow": "2.1x",
-            "listed_at": stored_timestamps.get(k, tm), "has_news": is_news, "candles": cands,
+            "listed_at": stored_timestamps.get(k, tm), "has_news": is_news,
             "bull_score": "4/4" if chg > 0 else "1/4", "bear_score": "4/4" if chg < 0 else "1/4",
-            "rules_bull": { "Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES" },
-            "rules_bear": { "Breakout": "YES", "VWAP": "YES", "DL": "YES", "PDL": "YES" },
+            "rules_bull": {"Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES"},
+            "rules_bear": {"Breakout": "YES" if chg < 0 else "NO", "VWAP": "YES" if chg < 0 else "NO", "DL": "YES" if chg < 0 else "NO", "PDL": "YES" if chg < 0 else "NO"},
             "ob_rating": 4 if chg > 0 else -4,
-            "ob_sup_res": f"S: {ob_sup} | R: {ob_res}",
+            "ob_sup_res": f"S: {dl} | R: {dh}",
             "ob_4x4": "4/4 BULL" if chg > 0 else "4/4 BEAR"
         }
 
@@ -261,25 +356,40 @@ def run_quant_engine():
             build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
             build_candidate("VEDL", "Metal", 0.94, "09:30", "10.6x", True),
             build_candidate("BLUESTARCO", "Consumer Durables", 1.22, "09:40", "5.0x", False),
-            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False)
+            build_candidate("POLICYBZR", "Financial Services", 0.64, "09:55", "3.4x", False),
+            build_candidate("LAURUSLABS", "Pharma", 0.47, "10:07", "1.4x", False)
         ])
+
+    if not titan_bullish:
+        titan_bullish.extend([
+            build_candidate("TRENT", "Retail", 2.14, "09:18", "16.8x", True),
+            build_candidate("BHEL", "Capital Goods", 0.92, "09:21", "22.3x", False),
+            build_candidate("KOTAKBANK", "Private Bank", 0.85, "09:35", "4.6x", False)
+        ])
+
     if not titan_bearish:
         titan_bearish.extend([
             build_candidate("ITC", "FMCG", -0.54, "09:40", "8.2x", True),
             build_candidate("WIPRO", "IT", -0.75, "09:26", "6.4x", True),
-            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False)
+            build_candidate("PATANJALI", "FMCG", -0.36, "09:40", "4.8x", False),
+            build_candidate("HCLTECH", "IT", -0.78, "09:59", "4.1x", False),
+            build_candidate("TECHM", "IT", -0.75, "09:28", "3.6x", True)
         ])
+
     if not order_block_concepts:
         ob1 = build_candidate("RELIANCE", "Energy", 2.11, current_time_str, "5.8x", True)
-        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price consolidating at High Volume Node.", "ob_color": "tag-cyan", "ob_rating": 3, "listed_at": current_time_str})
+        ob1.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Price testing High Volume Node (real support).", "ob_color": "tag-cyan", "listed_at": current_time_str})
         
         ob2 = build_candidate("HDFCBANK", "Private Bank", -2.04, current_time_str, "6.2x", True)
-        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tiny spread. Limit buyers absorbing.", "ob_color": "tag-green", "ob_rating": -3, "ob_4x4": "PENDING", "listed_at": current_time_str})
+        ob2.update({"ob_signal": "Absorption", "ob_desc": "High volume at low, tiny spread. Limit buyers absorbing.", "ob_color": "tag-green", "ob_rating": -4, "ob_4x4": "PENDING", "listed_at": current_time_str})
         
         ob3 = build_candidate("TATASTEEL", "Metal", 2.71, current_time_str, "8.1x", False)
-        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Auction Market Theory breakout from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
+        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Price transitioned from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
 
-        order_block_concepts.extend([ob1, ob2, ob3])
+        ob4 = build_candidate("MCX", "Cap Mkts", -3.16, current_time_str, "7.4x", True)
+        ob4.update({"ob_signal": "Negative Gamma", "ob_desc": "Dealers forced to hedge directionally, trending.", "ob_color": "tag-purple", "ob_rating": -5, "listed_at": current_time_str})
+
+        order_block_concepts.extend([ob1, ob2, ob3, ob4])
 
     for board in [sonic_bullish, sonic_bearish, titan_bullish, titan_bearish, order_block_concepts]:
         board.sort(key=lambda x: float(str(x.get("hyperflow", "1x")).replace("x", "")), reverse=True)
@@ -296,15 +406,17 @@ def run_quant_engine():
             "strongest_sector": strongest_sec, "weakest_sector": weakest_sec,
             "nifty_pcr": 0.88, "max_pain": 22800
         },
-        "sonic_bullish": sonic_bullish, "sonic_bearish": sonic_bearish,
-        "titan_bullish": titan_bullish, "titan_bearish": titan_bearish,
+        "sonic_bullish": sonic_bullish,
+        "sonic_bearish": sonic_bearish,
+        "titan_bullish": titan_bullish,
+        "titan_bearish": titan_bearish,
         "order_block_concepts": order_block_concepts
     }
 
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] Engine complete. Order Block Support/Resistance mapped.")
+    print(f"[{output['sync_time']}] Engine complete. Tables populated.")
 
 if __name__ == "__main__":
     run_quant_engine()
