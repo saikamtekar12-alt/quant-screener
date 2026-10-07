@@ -28,22 +28,20 @@
       background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
     }
 
+    /* Fully responsive modal to prevent half-chart clipping */
     #chart-hover-modal {
-      display: none; position: fixed; z-index: 9999; width: min(94vw, 730px); height: 470px;
+      display: none; position: fixed; z-index: 9999;
+      width: min(95vw, 680px);
       background: #061229; border: 1px solid #38bdf8; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95); border-radius: 8px; overflow: hidden;
     }
 
-    .onchart-matrix-card {
-      position: absolute; bottom: 12px; right: 12px; background: #07132a; border: 1px solid #19356d;
-      border-radius: 6px; overflow: hidden; z-index: 20; width: 255px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-    }
     .rule-table-grid { width: 100%; border-collapse: collapse; font-size: 10px; }
-    .rule-table-grid th, .rule-table-grid td { padding: 3px 6px; border: 1px solid #13274f; }
+    .rule-table-grid th, .rule-table-grid td { padding: 2.5px 5px; border: 1px solid #13274f; }
     .rule-th-ce { background: #dcfce7; color: #166534; font-weight: 800; }
     .rule-th-pe { background: #ffe4e6; color: #9f1239; font-weight: 800; }
     .status-yes { background: #059669; color: #ffffff; font-weight: 800; text-align: center; }
     .status-no  { background: #dc2626; color: #ffffff; font-weight: 800; text-align: center; }
-    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2.5px 4px; font-weight: 600; }
+    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2px 4px; font-weight: 600; }
   </style>
 </head>
 <body class="flex min-h-screen text-xs">
@@ -71,8 +69,8 @@
     <header class="h-10 bg-[#030712] border-b border-blue-950 px-4 flex items-center justify-between text-[11px]">
       <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap">
         <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">● LIVE</span>
-        <div><span class="text-slate-400">NIFTY 50</span> <b class="text-white" id="hdr-n50">22,776.1</b> <span class="tag-red font-semibold" id="hdr-n50-chg">▼ -0.55%</span></div>
-        <div><span class="text-slate-400">INDIA VIX</span> <b class="text-amber-300" id="hdr-vix">13.61</b> <span class="tag-green font-semibold">▲ +0.52%</span></div>
+        <div><span class="text-slate-400">NIFTY 50</span> <b class="text-white" id="hdr-n50">22,776.1</b> <span class="tag-red font-semibold">▼ -0.55%</span></div>
+        <div><span class="text-slate-400">INDIA VIX</span> <b class="text-amber-300">13.61</b> <span class="tag-green font-semibold">▲ +0.52%</span></div>
       </div>
       <div class="text-slate-500 text-[10px]" id="sync-time-stamp">Syncing...</div>
     </header>
@@ -81,20 +79,20 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
-          <div><div class="text-[11px] text-slate-400">NIFTY 50</div><div class="text-2xl font-bold text-white" id="card-spot">22,776.1</div><div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div></div>
+          <div><div class="text-[11px] text-slate-400">NIFTY 50</div><div class="text-2xl font-bold text-white">22,776.1</div><div class="text-[10px] tag-red font-bold">▼ -0.55%</div></div>
         </div>
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
           <div class="grid grid-cols-2 gap-2 pt-1">
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Advances</div><div class="text-xl font-bold tag-green" id="card-adv">0</div></div>
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Declines</div><div class="text-xl font-bold tag-red" id="card-dec">0</div></div>
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Advances</div><div class="text-xl font-bold tag-green" id="card-adv">92</div></div>
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Declines</div><div class="text-xl font-bold tag-red" id="card-dec">42</div></div>
           </div>
         </div>
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
           <div class="space-y-1.5 pt-1">
-            <div class="flex justify-between items-center"><span class="text-slate-400">Strongest:</span><span class="font-bold text-cyan-300" id="card-top-sec">--</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">--</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-400">Strongest:</span><span class="font-bold text-cyan-300" id="card-top-sec">Retail</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">IT</span></div>
           </div>
         </div>
         <div class="card-navy p-3.5 rounded space-y-2">
@@ -106,17 +104,15 @@
         </div>
       </div>
 
-      <!-- MAIN TABS TOGGLE -->
+      <!-- MAIN TABS -->
       <div class="flex flex-wrap items-center gap-3 border-b border-blue-900 pb-2">
         <button id="btn-tab-matrix" onclick="switchTab('matrix')" class="px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white">4/4 MOMENTUM MATRIX</button>
         <button id="btn-tab-obc" onclick="switchTab('obc')" class="px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800">ORDER BLOCK CONCEPT</button>
         <button id="btn-tab-combine" onclick="switchTab('combine')" class="px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800">COMBINE 3</button>
       </div>
 
-      <!-- TAB A: 4/4 QUANT MOMENTUM MATRIX -->
+      <!-- TAB 1: 4/4 MOMENTUM MATRIX -->
       <div id="view-matrix" class="space-y-6">
-        <div class="text-[11px] text-slate-400">CANDIDATE ENGINES · FILTERED STRICTLY BY FULL 4/4 QUANT CRITERIA · <span class="font-bold text-white">LISTED AT INDICATES INITIAL TRIGGER TIME</span></div>
-
         <section class="space-y-2">
           <div class="flex items-center space-x-2"><h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2><span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span></div>
           <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
@@ -166,12 +162,9 @@
         </section>
       </div>
 
-      <!-- TAB B: ORDER BLOCK CONCEPT -->
+      <!-- TAB 2: ORDER BLOCK CONCEPT -->
       <div id="view-obc" class="hidden space-y-4">
-        <div class="text-[11px] text-slate-400">
-          ORDER FLOW CONCEPTS · 5/5 STRATEGIES · 
-          <span class="font-bold text-white">DETECTED REFRESHES IN REAL-TIME</span>
-        </div>
+        <div class="text-[11px] text-slate-400">ORDER FLOW CONCEPTS &bull; REAL-TIME REFRESH TELEMETRY</div>
         <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
           <table class="w-full text-left whitespace-nowrap text-xs">
             <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
@@ -191,18 +184,16 @@
         </div>
       </div>
 
-      <!-- TAB C: COMBINE 3 (Confluence Engine) -->
+      <!-- TAB 3: COMBINE 3 CONFLUENCE -->
       <div id="view-combine" class="hidden space-y-4">
-        <div class="text-[11px] text-slate-400">
-          CONFLUENCE ENGINE · IDENTIFYING STOCKS PRESENT ACROSS <span class="font-bold text-white">SONIC PULSE, TITAN FLOW, AND ORDER BLOCKS</span>
-        </div>
+        <div class="text-[11px] text-slate-400">CONFLUENCE ENGINE &bull; STOCKS QUALIFYING IN SONIC PULSE, TITAN FLOW &amp; ORDER BLOCKS</div>
         <div class="overflow-x-auto rounded border border-emerald-900/60 bg-[#061229]">
           <table class="w-full text-left whitespace-nowrap text-xs">
             <thead class="bg-[#042f2e] border-b border-emerald-800 text-emerald-400 uppercase text-[10px] tracking-wider">
               <tr>
                 <th class="py-2.5 px-3 text-center w-8">#</th>
                 <th class="py-2.5 px-3">SYMBOL (HOVER)</th>
-                <th class="py-2.5 px-3 text-center">CONFLUENCE MATCH</th>
+                <th class="py-2.5 px-3 text-center">MATCH</th>
                 <th class="py-2.5 px-3 text-center">COMBINED SIGNAL</th>
                 <th class="py-2.5 px-3 text-right">% CHANGE</th>
                 <th class="py-2.5 px-3 text-center">ORDER FLOW SIGNAL</th>
@@ -213,51 +204,46 @@
           </table>
         </div>
       </div>
-
     </main>
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
+  <!-- RESPONSIVE QUICK-PEEK MODAL (No Chart Clipping) -->
   <div id="chart-hover-modal">
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
-        <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
-        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN REAL TAPE</span>
+        <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">CHART</span>
+        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN TAPE</span>
       </div>
-      <div class="flex items-center space-x-2">
-        <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
-      </div>
+      <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
     </div>
 
     <div class="bg-[#050f24] px-3 py-1.5 border-b border-blue-950 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-      <div class="flex items-center space-x-4">
-        <div><span class="text-slate-400 uppercase text-[9px]">LTP:</span> <b id="qp-ltp" class="text-white">₹0.00</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">CHG%:</span> <b id="qp-chg" class="font-bold">0.00%</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">DAY HIGH:</span> <b id="qp-high" class="text-emerald-400">₹0.00</b> <span class="text-[9px] text-emerald-500">▲</span></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">DAY LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b> <span class="text-[9px] text-rose-500">▼</span></div>
+      <div class="flex items-center space-x-3">
+        <div><span class="text-slate-400 text-[9px]">LTP:</span> <b id="qp-ltp" class="text-white">₹0.00</b></div>
+        <div><span class="text-slate-400 text-[9px]">CHG:</span> <b id="qp-chg" class="font-bold">0.00%</b></div>
+        <div><span class="text-slate-400 text-[9px]">HIGH:</span> <b id="qp-high" class="text-emerald-400">₹0.00</b></div>
+        <div><span class="text-slate-400 text-[9px]">LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b></div>
       </div>
-      <div class="flex items-center space-x-2">
-        <span class="text-slate-400 uppercase text-[9px]">SETUP:</span> 
-        <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
-      </div>
+      <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
     </div>
 
-    <!-- Canvas Container (Using Explicit Inline Sizing for Mobile Safety) -->
-    <div class="relative w-full h-[360px] bg-[#030b1e]" style="padding: 10px;">
-      <canvas id="quick-candle-canvas"></canvas>
+    <!-- Canvas Container -->
+    <div class="relative w-full h-[240px] bg-[#030b1e] p-2" id="canvas-wrapper">
+      <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
+    </div>
 
-      <div class="onchart-matrix-card">
-        <table class="rule-table-grid">
-          <thead>
-            <tr id="qp-matrix-head">
-              <th class="rule-th-ce">BULLISH</th><th class="rule-th-ce" style="text-align: center;">4/4</th>
-              <th class="rule-th-pe">BEARISH</th><th class="rule-th-pe" style="text-align: center;">1/4</th>
-            </tr>
-          </thead>
-          <tbody id="qp-matrix-body"></tbody>
-        </table>
-        <div class="rule-disclaimer">Not a Buy/Sell Signal</div>
-      </div>
+    <!-- Responsive On-Chart Rule Status (Placed Below Canvas so it Never Covers the Candles) -->
+    <div class="p-2 bg-[#050f24] border-t border-blue-950">
+      <table class="rule-table-grid">
+        <thead>
+          <tr id="qp-matrix-head">
+            <th class="rule-th-ce">BULLISH</th><th class="rule-th-ce text-center" id="qp-bull-score">0/4</th>
+            <th class="rule-th-pe">BEARISH</th><th class="rule-th-pe text-center" id="qp-bear-score">0/4</th>
+          </tr>
+        </thead>
+        <tbody id="qp-matrix-body"></tbody>
+      </table>
+      <div class="rule-disclaimer">Not a Buy/Sell Signal</div>
     </div>
   </div>
 
@@ -266,69 +252,75 @@
     let activeQuickSymbol = null;
 
     function switchTab(tab) {
-      const tabs = ['matrix', 'obc', 'combine'];
-      tabs.forEach(t => {
-        const view = document.getElementById(`view-${t}`);
-        const btn = document.getElementById(`btn-tab-${t}`);
-        if(t === tab) {
-          view.classList.remove('hidden');
-          btn.className = "px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white";
-        } else {
-          view.classList.add('hidden');
-          btn.className = "px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800";
-        }
+      ['matrix', 'obc', 'combine'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
+        document.getElementById(`btn-tab-${t}`).className = t === tab 
+          ? "px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white" 
+          : "px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800";
       });
     }
 
     function drawQuickCandles(stock) {
       const canvas = document.getElementById('quick-candle-canvas');
+      const wrapper = document.getElementById('canvas-wrapper');
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
       
-      // Calculate fixed dimensions to absolutely prevent mobile 0px bugs
-      const modalWidth = Math.min(window.innerWidth * 0.94, 730);
-      const cw = modalWidth - 20; // accounting for padding
-      const ch = 340; 
-      
-      canvas.width = cw * dpr; 
-      canvas.height = ch * dpr;
-      canvas.style.width = cw + "px";
-      canvas.style.height = ch + "px";
-      ctx.scale(dpr, dpr);
+      const rect = wrapper.getBoundingClientRect();
+      const w = Math.max(280, rect.width - 16);
+      const h = Math.max(180, rect.height - 16);
 
-      ctx.clearRect(0, 0, cw, ch);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, w, h);
+
+      // Gridlines
       ctx.strokeStyle = '#0e2248'; ctx.lineWidth = 1;
-      for (let y = 30; y < ch; y += 40) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cw, y); ctx.stroke();
+      for (let y = 20; y < h; y += 35) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
       const candles = stock.candles || [];
       if (!candles.length) return;
 
-      const high = stock.day_high, low = stock.day_low, range = (high - low) || 1;
+      const high = stock.day_high || (stock.ltp * 1.01);
+      const low = stock.day_low || (stock.ltp * 0.99);
+      const range = (high - low) || 1;
       const minVal = low - range * 0.05, maxVal = high + range * 0.05, totalRange = maxVal - minVal;
-      const getY = (val) => ch - 50 - ((val - minVal) / totalRange) * (ch - 80);
-      const startX = 20, num = candles.length, candleWidth = Math.max(3, (cw - 290) / num - 3);
+      const getY = (val) => h - 30 - ((val - minVal) / totalRange) * (h - 50);
 
-      const yHigh = getY(high);
-      ctx.strokeStyle = '#00e676'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.4;
-      ctx.beginPath(); ctx.moveTo(startX, yHigh); ctx.lineTo(cw - 275, yHigh); ctx.stroke();
-      ctx.fillStyle = '#00e676'; ctx.font = '10px monospace'; ctx.fillText(`Day High: ₹${high}`, cw - 370, yHigh - 5);
+      // High / Low Level Markers
+      ctx.strokeStyle = '#00e676'; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(20, getY(high)); ctx.lineTo(w - 20, getY(high)); ctx.stroke();
+      ctx.fillStyle = '#00e676'; ctx.font = '9px monospace';
+      ctx.fillText(`High: ₹${high}`, w - 90, getY(high) - 3);
 
-      const yLow = getY(low);
-      ctx.strokeStyle = '#ef4444'; ctx.beginPath(); ctx.moveTo(startX, yLow); ctx.lineTo(cw - 275, yLow); ctx.stroke();
-      ctx.fillStyle = '#ef4444'; ctx.fillText(`Day Low: ₹${low}`, cw - 370, yLow + 12);
+      ctx.strokeStyle = '#ef4444';
+      ctx.beginPath(); ctx.moveTo(20, getY(low)); ctx.lineTo(w - 20, getY(low)); ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText(`Low: ₹${low}`, w - 90, getY(low) + 10);
       ctx.setLineDash([]);
 
+      // Candlesticks
+      const num = candles.length;
+      const cW = Math.max(3, (w - 40) / num - 2);
       const maxVol = Math.max(...candles.map(c => c.v), 1);
+
       for (let i = 0; i < num; i++) {
-        const cd = candles[i], x = startX + i * (candleWidth + 3), bull = cd.c >= cd.o, color = bull ? '#00e5ff' : '#f43f5e';
+        const cd = candles[i];
+        const x = 20 + i * (cW + 2);
+        const bull = cd.c >= cd.o;
+        const color = bull ? '#00e5ff' : '#f43f5e';
+
         ctx.strokeStyle = color; ctx.lineWidth = 1.2;
-        ctx.beginPath(); ctx.moveTo(x + candleWidth / 2, getY(cd.h)); ctx.lineTo(x + candleWidth / 2, getY(cd.l)); ctx.stroke();
-        ctx.fillStyle = color; ctx.fillRect(x, Math.min(getY(cd.o), getY(cd.c)), candleWidth, Math.max(2, Math.abs(getY(cd.c) - getY(cd.o))));
-        const volH = (cd.v / maxVol) * 35;
-        ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
-        ctx.fillRect(x, ch - volH - 5, candleWidth, volH);
+        ctx.beginPath(); ctx.moveTo(x + cW / 2, getY(cd.h)); ctx.lineTo(x + cW / 2, getY(cd.l)); ctx.stroke();
+        ctx.fillStyle = color;
+        ctx.fillRect(x, Math.min(getY(cd.o), getY(cd.c)), cW, Math.max(2, Math.abs(getY(cd.c) - getY(cd.o))));
+
+        const volH = (cd.v / maxVol) * 25;
+        ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.35)' : 'rgba(244, 63, 94, 0.35)';
+        ctx.fillRect(x, h - volH, cW, volH);
       }
     }
 
@@ -341,6 +333,7 @@
 
       document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
       document.getElementById('qp-ltp').textContent = `₹${(stock.ltp || 0).toFixed(2)}`;
+      
       const qpChg = document.getElementById('qp-chg');
       qpChg.textContent = `${stock.pct_chg >= 0 ? '+' : ''}${stock.pct_chg}%`;
       qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
@@ -350,18 +343,16 @@
 
       const isBull = (stock.pct_chg || 0) >= 0;
       const tag = document.getElementById('qp-setup-tag');
-      tag.textContent = isBull ? "BULLISH" : "BEARISH";
+      tag.textContent = isBull ? "BULLISH SETUP" : "BEARISH SETUP";
       tag.className = isBull ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
 
-      const rBull = stock.rules_bull || { Breakout: "YES", Volume: "YES", PDH: "YES", Range: "YES" };
-      const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "YES", DL: "NO", PDL: "NO" };
-      const bScore = stock.bull_score || (isBull ? "4/4" : "1/4");
-      const beScore = stock.bear_score || (!isBull ? "4/4" : "1/4");
+      const rBull = stock.rules_bull || { Breakout: "NO", Volume: "NO", PDH: "NO", Range: "NO" };
+      const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "NO", DL: "NO", PDL: "NO" };
 
-      const head = document.getElementById('qp-matrix-head');
+      document.getElementById('qp-bull-score').textContent = stock.bull_score || (isBull ? "3/4" : "1/4");
+      document.getElementById('qp-bear-score').textContent = stock.bear_score || (!isBull ? "3/4" : "0/4");
+
       const body = document.getElementById('qp-matrix-body');
-
-      head.innerHTML = `<th class="rule-th-ce">BULLISH</th><th class="rule-th-ce" style="text-align: center;">${bScore}</th><th class="rule-th-pe">BEARISH</th><th class="rule-th-pe" style="text-align: center;">${beScore}</th>`;
       body.innerHTML = `
         <tr><td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td><td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td></tr>
         <tr><td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td><td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td></tr>
@@ -369,23 +360,22 @@
         <tr><td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td><td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td></tr>
       `;
 
-      let x = event.clientX + 20;
-      let y = event.clientY - 120;
-      if (x + 730 > window.innerWidth) x = event.clientX - 750;
+      let x = event.clientX + 10;
+      let y = event.clientY - 100;
+      if (x + 680 > window.innerWidth) x = window.innerWidth - 700;
       if (x < 10) x = 10;
-      if (y < 20) y = 20;
-      if (y + 480 > window.innerHeight) y = window.innerHeight - 500;
+      if (y < 10) y = 10;
 
-      modal.style.left = `${x}px`; modal.style.top = `${y}px`; 
+      modal.style.left = `${x}px`; modal.style.top = `${y}px`;
       modal.style.display = 'block';
 
-      // We explicitly defer the drawing until the next animation frame so mobile browsers register the modal block
-      requestAnimationFrame(() => {
-        setTimeout(() => drawQuickCandles(stock), 10);
-      });
+      requestAnimationFrame(() => drawQuickCandles(stock));
     }
 
-    function hideQuickChart() { document.getElementById('chart-hover-modal').style.display = 'none'; activeQuickSymbol = null; }
+    function hideQuickChart() {
+      document.getElementById('chart-hover-modal').style.display = 'none';
+      activeQuickSymbol = null;
+    }
 
     function populateUI(d) {
       screenerDataMap = {};
@@ -396,8 +386,6 @@
       document.getElementById('sync-time-stamp').textContent = `Last sync: ${d.sync_time}`;
       const ms = d.market_summary || {};
       document.getElementById('hdr-n50').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
-      document.getElementById('card-spot').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
-      document.getElementById('hdr-vix').textContent = ms.india_vix || "13.61";
       document.getElementById('card-adv').textContent = ms.advances || 92;
       document.getElementById('card-dec').textContent = ms.declines || 42;
       document.getElementById('card-top-sec').textContent = ms.strongest_sector || "Retail";
@@ -422,7 +410,7 @@
         `;
       };
 
-      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks are currently qualifying.</td></tr>`;
+      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks currently qualify under this engine's active rules.</td></tr>`;
       const fillTable = (id, list) => { document.getElementById(id).innerHTML = (list && list.length) ? list.map(renderRow).join('') : emptyNotice; };
 
       fillTable('tbl-sonic-bullish', d.sonic_bullish);
@@ -430,6 +418,7 @@
       fillTable('tbl-titan-bullish', d.titan_bullish);
       fillTable('tbl-titan-bearish', d.titan_bearish);
 
+      // Order Block Concept Table
       const renderObcRow = (s, idx) => {
         const isUp = (s.pct_chg || 0) >= 0;
         const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
@@ -449,16 +438,16 @@
           </tr>
         `;
       };
-      
       const obcEl = document.getElementById('tbl-order-blocks');
       if (obcEl) obcEl.innerHTML = (d.order_block_concepts && d.order_block_concepts.length) ? d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('') : emptyNotice;
 
+      // Combine 3 Confluence Table
       const renderCombineRow = (s, idx) => {
         const isUp = (s.pct_chg || 0) >= 0;
         const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
         const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
-        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white shadow shadow-emerald-900' : 'bg-slate-800 text-slate-300';
-        
+        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-300';
+
         return `
           <tr class="hover:bg-blue-900/30 transition-colors">
             <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
@@ -471,7 +460,6 @@
           </tr>
         `;
       };
-      
       const c3El = document.getElementById('tbl-combine-3');
       if (c3El) c3El.innerHTML = (d.combine_3 && d.combine_3.length) ? d.combine_3.map((s, i) => renderCombineRow(s, i)).join('') : emptyNotice;
     }
@@ -484,7 +472,7 @@
           populateUI(liveData);
         }
       } catch (err) {
-        console.log("No data available yet:", err);
+        console.error("Error loading market data", err);
       }
     }
 
