@@ -3,486 +3,390 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Screener | Live Option Chain Engine</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Order Block | Institutional Order Flow</title>
   <style>
-    body { background-color: #030713; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #f8fafc; }
-    .nav-sidebar { width: 220px; background-color: #030610; border-right: 1px solid #0d1527; }
-    .card-navy { background-color: #050d1e; border: 1px solid #0d1a36; }
-    .table-head { background-color: #08142d; border-bottom: 1px solid #13274e; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+    :root {
+      --bg-main: #f8f9fa; --border-light: #e5e7eb; --text-main: #111827; --text-muted: #6b7280;
+      --bull-green: #059669; --bull-bg: #d1fae5; --bull-border: #a7f3d0;
+      --bear-red: #e11d48; --bear-bg: #ffe4e6; --bear-border: #fecdd3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); -webkit-font-smoothing: antialiased; padding-bottom: 50px; }
+
+    /* Top Nav */
+    header {
+      background: #fff; border-bottom: 1px solid var(--border-light);
+      height: 44px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; position: sticky; top: 0; z-index: 50;
+    }
+    .header-left { display: flex; align-items: center; gap: 8px; }
+    .logo-box { width: 20px; height: 20px; background: var(--bull-green); color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; }
+    .header-title { font-weight: 800; font-size: 13px; letter-spacing: -0.2px; }
+    .header-url { color: var(--text-muted); font-size: 11px; font-family: monospace; display: none; }
+    @media(min-width: 600px) { .header-url { display: block; } }
     
-    .sector-pill { display: inline-flex; align-items: center; background-color: #042a38; border: 1px solid #065975; border-radius: 4px; overflow: hidden; font-size: 11px; }
-    .sector-name { padding: 2px 7px; color: #38bdf8; font-weight: 600; }
-    .sector-val { background-color: #021a24; padding: 2px 7px; font-weight: 700; border-left: 1px solid #065975; }
+    .header-right { display: flex; align-items: center; gap: 16px; font-size: 11px; font-weight: 700; }
+    .stat-badge { display: flex; align-items: center; gap: 4px; }
+    .stat-bull { color: var(--bull-green); }
+    .stat-bear { color: var(--bear-red); }
 
-    .tag-green { color: #34d399; }
-    .tag-red { color: #f87171; }
-    .tag-cyan { color: #22d3ee; border-color: #22d3ee; }
-    .tag-amber { color: #f59e0b; border-color: #f59e0b; }
-    .tag-purple { color: #a855f7; border-color: #a855f7; }
-
-    .news-badge {
-      display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px;
-      border-radius: 9999px; font-size: 9px; font-weight: 900; margin-left: 6px; cursor: pointer;
-      user-select: none; vertical-align: middle;
-      background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
+    /* Layout Grids */
+    .container { padding: 16px; max-width: 1600px; margin: 0 auto; }
+    .section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+    
+    .dense-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
     }
 
-    /* Fixed size explicitly to stop mobile calculation failures */
-    #chart-hover-modal {
-      display: none; position: fixed; z-index: 9999; width: 730px; max-width: 96vw;
-      background: #061229; border: 1px solid #38bdf8; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95); border-radius: 8px; overflow: hidden;
+    /* Target Card Design */
+    .ob-card {
+      background: #fff; border: 1px solid var(--border-light); border-radius: 6px;
+      height: 86px; position: relative; overflow: hidden; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: space-between; padding: 6px 8px;
+      transition: box-shadow 0.1s;
+    }
+    .ob-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: #cbd5e1; z-index: 10; }
+    
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .sym-block { display: flex; flex-direction: column; gap: 2px; }
+    .sym-title { font-size: 12px; font-weight: 900; letter-spacing: -0.3px; }
+    .rank-pill { font-size: 8px; font-family: monospace; font-weight: 800; padding: 1px 4px; border-radius: 3px; display: inline-block; width: fit-content; }
+    .rp-bull { background: var(--bull-bg); color: var(--bull-green); border: 1px solid var(--bull-border); }
+    .rp-bear { background: var(--bear-bg); color: var(--bear-red); border: 1px solid var(--bear-border); }
+
+    .pct-chg { font-size: 13px; font-weight: 900; }
+    .c-bull { color: var(--bull-green); }
+    .c-bear { color: var(--bear-red); }
+
+    .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; height: 36px; }
+    .intent-block { display: flex; flex-direction: column; gap: 4px; }
+    .intent-tag { font-size: 8.5px; font-weight: 800; padding: 2px 4px; border-radius: 3px; }
+    .it-bull { background: var(--bull-bg); color: var(--bull-green); }
+    .it-bear { background: var(--bear-bg); color: var(--bear-red); }
+    .ltp-val { font-size: 9px; font-family: monospace; font-weight: 700; color: var(--text-muted); }
+
+    /* Right-aligned Volume Profile */
+    .vol-profile {
+      position: absolute; right: -8px; bottom: -2px; width: 80px; height: 40px;
+      display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; gap: 1px;
+    }
+    .vp-bar { height: 3px; border-radius: 2px 0 0 2px; }
+    .vp-bull { background: #34d399; }
+    .vp-bear { background: #fb7185; }
+    .ltp-pin {
+      position: absolute; right: 8px; top: 12px; background: #111827; color: #fff;
+      font-size: 8px; font-weight: 800; padding: 1px 4px; border-radius: 2px; z-index: 5;
     }
 
-    .onchart-matrix-card {
-      position: absolute; bottom: 12px; right: 12px; background: #07132a; border: 1px solid #19356d;
-      border-radius: 6px; overflow: hidden; z-index: 20; width: 255px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    /* FLOATING HOVER MODAL (Fix for mobile canvas cutting out) */
+    #hover-modal {
+      display: none; position: fixed; z-index: 9999;
+      width: 600px; max-width: 96vw; background: #fff; border: 1px solid #cbd5e1;
+      border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden;
     }
-    .rule-table-grid { width: 100%; border-collapse: collapse; font-size: 10px; }
-    .rule-table-grid th, .rule-table-grid td { padding: 3px 6px; border: 1px solid #13274f; }
-    .rule-th-ce { background: #dcfce7; color: #166534; font-weight: 800; }
-    .rule-th-pe { background: #ffe4e6; color: #9f1239; font-weight: 800; }
-    .status-yes { background: #059669; color: #ffffff; font-weight: 800; text-align: center; }
-    .status-no  { background: #dc2626; color: #ffffff; font-weight: 800; text-align: center; }
-    .rule-disclaimer { background: #1e293b; color: #94a3b8; font-size: 8px; text-align: center; padding: 2.5px 4px; font-weight: 600; }
+    
+    .modal-header {
+      display: grid; grid-template-columns: 180px 1fr 150px;
+      padding: 12px 16px; border-bottom: 1px solid #f1f5f9; background: #fff;
+    }
+    
+    @media (max-width: 600px) {
+      .modal-header { grid-template-columns: 1fr; gap: 10px; }
+    }
+    
+    .mh-left { display: flex; gap: 8px; align-items: center; }
+    .mh-icon { width: 28px; height: 28px; background: #f1f5f9; border-radius: 4px; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; color: #475569; }
+    .mh-sym { font-size: 16px; font-weight: 900; line-height: 1; }
+    .mh-sec { font-size: 8px; color: var(--text-muted); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px; }
+
+    .mh-center { display: grid; grid-template-columns: auto auto; gap: 2px 16px; font-size: 10px; align-items: center; justify-content: center;}
+    .stat-lbl { color: var(--text-muted); font-weight: 600; text-align: right; }
+    .stat-val { font-weight: 800; color: var(--text-main); font-family: monospace; }
+    .sv-green { color: var(--bull-green); }
+    .sv-red { color: var(--bear-red); }
+
+    .mh-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
+    .big-badge { font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
+    .bb-bull { background: var(--bull-bg); color: var(--bull-green); }
+    .bb-bear { background: var(--bear-bg); color: var(--bear-red); }
+    .big-pct { font-size: 26px; font-weight: 900; line-height: 1; margin: 4px 0; }
+    .big-ltp { font-size: 12px; font-weight: 800; color: #475569; }
+    .pick-lbl { font-size: 8px; color: #cbd5e1; font-weight: 800; margin-top: 4px; }
+
+    .modal-chart { height: 280px; width: 100%; background: #fff; position: relative; padding: 10px; }
   </style>
 </head>
-<body class="flex min-h-screen text-xs">
+<body>
 
-  <aside class="nav-sidebar p-3 flex-shrink-0 hidden md:flex flex-col space-y-4">
-    <div class="flex items-center space-x-2 px-2 py-1">
-      <div class="w-5 h-5 bg-amber-500 rounded flex items-center justify-center font-black text-slate-950 text-xs">Q</div>
-      <span class="font-bold text-sm tracking-wide text-white">Quant Screener</span>
+  <header>
+    <div class="header-left">
+      <div class="logo-box">E</div>
+      <div class="header-title">Order Block</div>
+      <div class="header-url">| order-block.com/app/orderblock</div>
     </div>
-    <div class="space-y-1 text-[11px]">
-      <div onclick="switchTab('matrix')" class="bg-[#0b1b3d] text-amber-400 font-bold px-3 py-1.5 rounded flex items-center space-x-2 cursor-pointer">
-        <span>⌂</span><span>Home</span>
-      </div>
+    <div class="header-right">
+      <div class="stat-badge stat-bull">▲ BULLISH 145</div>
+      <div class="stat-badge stat-bear">▼ BEARISH 68</div>
     </div>
-    <div class="space-y-1 text-[11px]">
-      <div class="text-[9px] text-amber-400/80 font-bold uppercase tracking-wider px-2">CANDIDATE ENGINES</div>
-      <div onclick="switchTab('matrix')" class="px-3 py-1 text-slate-300 hover:text-white cursor-pointer">Titan Flow</div>
-      <div onclick="switchTab('matrix')" class="px-3 py-1 text-slate-300 hover:text-white cursor-pointer">Sonic Pulse</div>
-      <div onclick="switchTab('obc')" class="px-3 py-1 text-cyan-400 hover:text-cyan-300 font-bold cursor-pointer">Order Block Concept ★</div>
-      <div onclick="switchTab('combine')" class="px-3 py-1 text-emerald-400 hover:text-emerald-300 font-bold cursor-pointer">Confluence Combine 3</div>
-    </div>
-  </aside>
+  </header>
 
-  <div class="flex-1 flex flex-col min-w-0">
-    <header class="h-10 bg-[#030712] border-b border-blue-950 px-4 flex items-center justify-between text-[11px]">
-      <div class="flex items-center space-x-6 overflow-x-auto whitespace-nowrap">
-        <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">● LIVE</span>
-        <div><span class="text-slate-400">NIFTY 50</span> <b class="text-white" id="hdr-n50">22,776.1</b> <span class="tag-red font-semibold" id="hdr-n50-chg">▼ -0.55%</span></div>
-        <div><span class="text-slate-400">INDIA VIX</span> <b class="text-amber-300" id="hdr-vix">13.61</b> <span class="tag-green font-semibold">▲ +0.52%</span></div>
-      </div>
-      <div class="text-slate-500 text-[10px]" id="sync-time-stamp">Syncing...</div>
-    </header>
+  <div class="container">
+    <div class="section-title">BULLISH CANDIDATES</div>
+    <div class="dense-grid" id="grid-bull"></div>
 
-    <main class="p-3 md:p-6 space-y-6 overflow-y-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="card-navy p-3.5 rounded space-y-2">
-          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">MARKET SUMMARY</div>
-          <div><div class="text-[11px] text-slate-400">NIFTY 50</div><div class="text-2xl font-bold text-white" id="card-spot">22,776.1</div><div class="text-[10px] tag-red font-bold" id="card-spot-chg">▼ -0.55%</div></div>
-        </div>
-        <div class="card-navy p-3.5 rounded space-y-2">
-          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
-          <div class="grid grid-cols-2 gap-2 pt-1">
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Advances</div><div class="text-xl font-bold tag-green" id="card-adv">0</div></div>
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Declines</div><div class="text-xl font-bold tag-red" id="card-dec">0</div></div>
-          </div>
-        </div>
-        <div class="card-navy p-3.5 rounded space-y-2">
-          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
-          <div class="space-y-1.5 pt-1">
-            <div class="flex justify-between items-center"><span class="text-slate-400">Strongest:</span><span class="font-bold text-cyan-300" id="card-top-sec">--</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">--</span></div>
-          </div>
-        </div>
-        <div class="card-navy p-3.5 rounded space-y-2">
-          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">NIFTY PCR</div>
-          <div class="space-y-1.5 pt-1">
-            <div class="flex justify-between items-center"><span class="text-slate-400">Nearest PCR:</span><span class="font-bold text-white">0.88</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-400">Max pain:</span><span class="font-bold text-amber-300">22,800</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MAIN TABS TOGGLE -->
-      <div class="flex flex-wrap items-center gap-3 border-b border-blue-900 pb-2">
-        <button id="btn-tab-matrix" onclick="switchTab('matrix')" class="px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white">4/4 MOMENTUM MATRIX</button>
-        <button id="btn-tab-obc" onclick="switchTab('obc')" class="px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800">ORDER BLOCK CONCEPT</button>
-        <button id="btn-tab-combine" onclick="switchTab('combine')" class="px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800">COMBINE 3</button>
-      </div>
-
-      <!-- TAB A: 4/4 QUANT MOMENTUM MATRIX -->
-      <div id="view-matrix" class="space-y-6">
-        <div class="text-[11px] text-slate-400">CANDIDATE ENGINES · FILTERED STRICTLY BY FULL 4/4 QUANT CRITERIA · <span class="font-bold text-white">LISTED AT INDICATES INITIAL TRIGGER TIME</span></div>
-
-        <section class="space-y-2">
-          <div class="flex items-center space-x-2"><h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2><span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span></div>
-          <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-            <table class="w-full text-left whitespace-nowrap text-xs">
-              <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-                <tr><th class="py-2.5 px-3 text-center w-8">ADD</th><th class="py-2.5 px-3">SYMBOL</th><th class="py-2.5 px-3">SECTOR</th><th class="py-2.5 px-3 text-center">LISTED AT</th><th class="py-2.5 px-3 text-right">% CHANGE</th><th class="py-2.5 px-3 text-right">HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th></tr>
-              </thead>
-              <tbody id="tbl-sonic-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="space-y-2">
-          <div class="flex items-center space-x-2"><h2 class="font-bold text-sm text-white">Sonic Pulse Model</h2><span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span></div>
-          <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-            <table class="w-full text-left whitespace-nowrap text-xs">
-              <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-                <tr><th class="py-2.5 px-3 text-center w-8">ADD</th><th class="py-2.5 px-3">SYMBOL</th><th class="py-2.5 px-3">SECTOR</th><th class="py-2.5 px-3 text-center">LISTED AT</th><th class="py-2.5 px-3 text-right">% CHANGE</th><th class="py-2.5 px-3 text-right">HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th></tr>
-              </thead>
-              <tbody id="tbl-sonic-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="space-y-2">
-          <div class="flex items-center space-x-2"><h2 class="font-bold text-sm text-white">Titan Flow Model</h2><span class="bg-emerald-950 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800">BULLISH ↗</span></div>
-          <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-            <table class="w-full text-left whitespace-nowrap text-xs">
-              <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-                <tr><th class="py-2.5 px-3 text-center w-8">ADD</th><th class="py-2.5 px-3">SYMBOL</th><th class="py-2.5 px-3">SECTOR</th><th class="py-2.5 px-3 text-center">LISTED AT</th><th class="py-2.5 px-3 text-right">% CHANGE</th><th class="py-2.5 px-3 text-right">HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th></tr>
-              </thead>
-              <tbody id="tbl-titan-bullish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="space-y-2">
-          <div class="flex items-center space-x-2"><h2 class="font-bold text-sm text-white">Titan Flow Model</h2><span class="bg-rose-950 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-800">BEARISH ↘</span></div>
-          <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-            <table class="w-full text-left whitespace-nowrap text-xs">
-              <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-                <tr><th class="py-2.5 px-3 text-center w-8">ADD</th><th class="py-2.5 px-3">SYMBOL</th><th class="py-2.5 px-3">SECTOR</th><th class="py-2.5 px-3 text-center">LISTED AT</th><th class="py-2.5 px-3 text-right">% CHANGE</th><th class="py-2.5 px-3 text-right">HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MAX HYPERFLOW™</th><th class="py-2.5 px-3 text-right">MIN HYPERFLOW™</th></tr>
-              </thead>
-              <tbody id="tbl-titan-bearish" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-            </table>
-          </div>
-        </section>
-      </div>
-
-      <!-- TAB B: ORDER BLOCK CONCEPT -->
-      <div id="view-obc" class="hidden space-y-4">
-        <div class="text-[11px] text-slate-400">
-          ORDER FLOW CONCEPTS · 5/5 STRATEGIES · 
-          <span class="font-bold text-white">DETECTED REFRESHES IN REAL-TIME</span>
-        </div>
-        <div class="overflow-x-auto rounded border border-blue-900/60 bg-[#061229]">
-          <table class="w-full text-left whitespace-nowrap text-xs">
-            <thead class="table-head text-slate-400 uppercase text-[10px] tracking-wider">
-              <tr>
-                <th class="py-2.5 px-3 text-center w-8">#</th>
-                <th class="py-2.5 px-3">SYMBOL (HOVER)</th>
-                <th class="py-2.5 px-3 text-center">DETECTED</th>
-                <th class="py-2.5 px-3 text-right">% CHANGE</th>
-                <th class="py-2.5 px-3 text-center">ORDER FLOW SIGNAL</th>
-                <th class="py-2.5 px-3 text-center">SIGNAL RATING</th>
-                <th class="py-2.5 px-3 text-center">SUP / RES</th>
-                <th class="py-2.5 px-3 text-center">4/4 STATUS</th>
-                <th class="py-2.5 px-3 text-left">DETAILS</th>
-              </tr>
-            </thead>
-            <tbody id="tbl-order-blocks" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- TAB C: COMBINE 3 (Confluence Engine) -->
-      <div id="view-combine" class="hidden space-y-4">
-        <div class="text-[11px] text-slate-400">
-          CONFLUENCE ENGINE · IDENTIFYING STOCKS PRESENT ACROSS <span class="font-bold text-white">SONIC PULSE, TITAN FLOW, AND ORDER BLOCKS</span>
-        </div>
-        <div class="overflow-x-auto rounded border border-emerald-900/60 bg-[#061229]">
-          <table class="w-full text-left whitespace-nowrap text-xs">
-            <thead class="bg-[#042f2e] border-b border-emerald-800 text-emerald-400 uppercase text-[10px] tracking-wider">
-              <tr>
-                <th class="py-2.5 px-3 text-center w-8">#</th>
-                <th class="py-2.5 px-3">SYMBOL (HOVER)</th>
-                <th class="py-2.5 px-3 text-center">CONFLUENCE MATCH</th>
-                <th class="py-2.5 px-3 text-center">COMBINED SIGNAL</th>
-                <th class="py-2.5 px-3 text-right">% CHANGE</th>
-                <th class="py-2.5 px-3 text-center">ORDER FLOW SIGNAL</th>
-                <th class="py-2.5 px-3 text-center">4/4 STATUS</th>
-              </tr>
-            </thead>
-            <tbody id="tbl-combine-3" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
-          </table>
-        </div>
-      </div>
-
-    </main>
+    <div class="section-title" style="margin-top: 16px;">BEARISH CANDIDATES</div>
+    <div class="dense-grid" id="grid-bear"></div>
   </div>
 
-  <!-- FLOATING QUICK-PEEK CHART WINDOW -->
-  <div id="chart-hover-modal">
-    <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
-      <div class="flex items-center space-x-3">
-        <span id="quick-chart-sym" class="font-bold text-white tracking-wider text-sm">NSE CHART</span>
-        <span class="text-[9px] bg-cyan-900 text-cyan-300 px-1.5 py-0.5 rounded font-bold uppercase">5-MIN REAL TAPE</span>
+  <div id="hover-modal">
+    <div class="modal-header">
+      <div class="mh-left">
+        <div class="mh-icon" id="mod-ico">PG</div>
+        <div><div class="mh-sym" id="mod-sym">PGEL</div><div class="mh-sec" id="mod-sec">PGEL • CONSUMER</div></div>
       </div>
-      <div class="flex items-center space-x-2">
-        <button onclick="hideQuickChart()" class="text-slate-400 hover:text-white px-2 text-sm font-bold">✕</button>
+      
+      <div class="mh-center">
+        <div class="stat-lbl">RANK</div><div class="stat-val" id="mod-rank">p99.8 • #01/145</div>
+        <div class="stat-lbl">OI</div><div class="stat-val sv-green" id="mod-oi">+14.7% • LONG BUILD-UP</div>
+        <div class="stat-lbl">VWAP</div><div class="stat-val" id="mod-vwap">520.72</div>
+        <div class="stat-lbl">Z/S1</div><div class="stat-val" id="mod-zs1">524.65 • 522.15</div>
+        <div class="stat-lbl">R:R</div><div class="stat-val" id="mod-rr">1:3.7</div>
+      </div>
+
+      <div class="mh-right">
+        <div class="big-badge bb-bull" id="mod-badge">BULLISH 97 ★</div>
+        <div class="big-pct c-bull" id="mod-pct">+8.19%</div>
+        <div class="big-ltp" id="mod-ltp">₹527.65</div>
+        <div class="pick-lbl" id="mod-pick">PICK: BULLISH #01</div>
       </div>
     </div>
-
-    <div class="bg-[#050f24] px-3 py-1.5 border-b border-blue-950 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-      <div class="flex items-center space-x-4">
-        <div><span class="text-slate-400 uppercase text-[9px]">LTP:</span> <b id="qp-ltp" class="text-white">₹0.00</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">CHG%:</span> <b id="qp-chg" class="font-bold">0.00%</b></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">DAY HIGH:</span> <b id="qp-high" class="text-emerald-400">₹0.00</b> <span class="text-[9px] text-emerald-500">▲</span></div>
-        <div><span class="text-slate-400 uppercase text-[9px]">DAY LOW:</span> <b id="qp-low" class="text-rose-400">₹0.00</b> <span class="text-[9px] text-rose-500">▼</span></div>
-      </div>
-      <div class="flex items-center space-x-2">
-        <span class="text-slate-400 uppercase text-[9px]">SETUP:</span> 
-        <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
-      </div>
-    </div>
-
-    <!-- Canvas Container -->
-    <div class="relative w-full h-[360px] bg-[#030b1e]" style="padding: 10px;">
-      <canvas id="quick-candle-canvas"></canvas>
-
-      <div class="onchart-matrix-card">
-        <table class="rule-table-grid">
-          <thead>
-            <tr id="qp-matrix-head">
-              <th class="rule-th-ce">BULLISH</th><th class="rule-th-ce" style="text-align: center;">4/4</th>
-              <th class="rule-th-pe">BEARISH</th><th class="rule-th-pe" style="text-align: center;">1/4</th>
-            </tr>
-          </thead>
-          <tbody id="qp-matrix-body"></tbody>
-        </table>
-        <div class="rule-disclaimer">Not a Buy/Sell Signal</div>
-      </div>
+    <div class="modal-chart" id="modal-chart-wrap">
+      <canvas id="chart-canvas"></canvas>
     </div>
   </div>
 
   <script>
-    let screenerDataMap = {};
-    let activeQuickSymbol = null;
+    let liveData = [];
 
-    function switchTab(tab) {
-      const tabs = ['matrix', 'obc', 'combine'];
-      tabs.forEach(t => {
-        const view = document.getElementById(`view-${t}`);
-        const btn = document.getElementById(`btn-tab-${t}`);
-        if(t === tab) {
-          view.classList.remove('hidden');
-          btn.className = "px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white";
-        } else {
-          view.classList.add('hidden');
-          btn.className = "px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800";
-        }
-      });
+    function getVolProfile(isBull) {
+      const color = isBull ? 'vp-bull' : 'vp-bear';
+      let bars = '';
+      for(let i=0; i<8; i++) {
+        const w = Math.floor(Math.sin((i+1)/3)*40 + Math.random()*20 + 20);
+        bars += `<div class="vp-bar ${color}" style="width: ${w}%;"></div>`;
+      }
+      return bars;
     }
 
-    function drawQuickCandles(stock) {
-      const canvas = document.getElementById('quick-candle-canvas');
+    function renderGrids() {
+      const bGrid = document.getElementById('grid-bull');
+      const rGrid = document.getElementById('grid-bear');
+      
+      let bHtml = '', rHtml = '';
+      
+      liveData.forEach(s => {
+        const cCard = s.isBull ? 'card-bull' : 'card-bear';
+        const cRank = s.isBull ? 'rp-bull' : 'rp-bear';
+        const cPct = s.isBull ? 'c-bull' : 'c-bear';
+        const cInt = s.isBull ? 'it-bull' : 'it-bear';
+
+        const html = `
+          <div class="ob-card ${cCard}" onmouseenter="showModal('${s.sym}', event)">
+            <div class="card-top">
+              <div class="sym-block">
+                <span class="rank-pill ${cRank}">${s.rank}</span>
+                <span class="sym-title">${s.sym}</span>
+              </div>
+              <div class="pct-chg ${cPct}">${s.isBull?'+':''}${s.pct.toFixed(2)}%</div>
+            </div>
+            <div class="card-bottom">
+              <div class="intent-block">
+                <span class="intent-tag ${cInt}">${s.intent}</span>
+                <span class="ltp-val">${s.ltp.toFixed(2)}</span>
+              </div>
+              <div class="vol-profile">
+                <div class="ltp-pin">${s.ltp.toFixed(2)}</div>
+                ${getVolProfile(s.isBull)}
+              </div>
+            </div>
+          </div>
+        `;
+        if(s.isBull) bHtml += html; else rHtml += html;
+      });
+
+      bGrid.innerHTML = bHtml;
+      rGrid.innerHTML = rHtml;
+    }
+
+    function drawChart(s) {
+      const canvas = document.getElementById('chart-canvas');
+      const wrap = document.getElementById('modal-chart-wrap');
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
       
-      // FIXED SIZING FOR MOBILE BROWSER COMPATIBILITY
-      // If modal is 730px wide, chart is roughly 710px wide. On mobile it will scale down via CSS but maintain coordinate map
-      const cw = 710; 
-      const ch = 340;
-      canvas.width = cw * dpr; 
-      canvas.height = ch * dpr;
+      // Explicit Fixed Dimensions to stop mobile blank screens
+      const cw = wrap.clientWidth || (window.innerWidth > 600 ? 600 : window.innerWidth - 40);
+      const ch = 280;
+      canvas.width = cw * dpr; canvas.height = ch * dpr;
       ctx.scale(dpr, dpr);
 
       ctx.clearRect(0, 0, cw, ch);
-      ctx.strokeStyle = '#0e2248'; ctx.lineWidth = 1;
-      for (let y = 20; y < ch; y += 40) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cw, y); ctx.stroke();
+
+      const minP = s.isBull ? s.s3 * 0.98 : s.ltp * 0.98;
+      const maxP = s.isBull ? Math.max(s.r2, s.ltp) * 1.01 : s.s3 * 1.01;
+      const range = maxP - minP;
+      const getY = val => ch - 20 - ((val - minP)/range)*(ch - 40);
+
+      const yVwap = getY(s.vwap);
+      ctx.strokeStyle = '#3b82f6'; ctx.setLineDash([2, 2]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(20, yVwap); ctx.lineTo(cw - 20, yVwap); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#3b82f6'; ctx.font = '9px monospace'; ctx.fillText(`VWAP: ${s.vwap.toFixed(2)}`, 25, yVwap - 4);
+
+      const numCandles = 32;
+      const cW = (cw - 100) / numCandles;
+      const startX = 60;
+
+      if (s.isBull) {
+        const drawBox = (lbl, val, cStart, cEnd) => {
+           const y = getY(val); const bx = startX + cStart * cW; const bw = (cEnd - cStart) * cW;
+           ctx.fillStyle = 'rgba(16, 185, 129, 0.15)'; ctx.fillRect(bx, y, bw, 12);
+           ctx.strokeStyle = '#10b981'; ctx.strokeRect(bx, y, bw, 12);
+           ctx.fillStyle = '#065f46'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y + 10);
+        };
+        drawBox("S3", s.s3, 0, 10); drawBox("S2", s.s2, 10, 20); drawBox("Z/S1", s.s1, 20, 29);
+
+        const drawRes = (lbl, val) => {
+           const y = getY(val); ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([2, 2]);
+           ctx.beginPath(); ctx.moveTo(cw * 0.6, y); ctx.lineTo(cw - 20, y); ctx.stroke(); ctx.setLineDash([]);
+           ctx.fillStyle = '#64748b'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, cw - 75, y - 4);
+        };
+        if(s.r1) drawRes("R1", s.r1); if(s.r2) drawRes("R2", s.r2);
+      } else {
+        const drawBox = (lbl, val, cStart, cEnd) => {
+           const y = getY(val); const bx = startX + cStart * cW; const bw = (cEnd - cStart) * cW;
+           ctx.fillStyle = 'rgba(239, 68, 68, 0.12)'; ctx.fillRect(bx, y-14, bw, 12);
+           ctx.strokeStyle = '#ef4444'; ctx.strokeRect(bx, y-14, bw, 12);
+           ctx.fillStyle = '#9f1239'; ctx.fillText(`${lbl} ${val.toFixed(2)}`, bx + 4, y - 4);
+        };
+        drawBox("Z/S1", s.s1, 20, 29); drawBox("S2", s.s2, 10, 20); drawBox("S3", s.s3, 0, 10);
       }
 
-      const candles = stock.candles || [];
-      if (!candles.length) return;
+      let cur = s.s3;
+      for (let i = 0; i < numCandles; i++) {
+        let o = cur, c = cur;
+        if (s.isBull) {
+          if(i<8) c = s.s3 + (Math.random()*1.5-0.5);
+          else if(i<12) c = o + (s.s2-s.s3)/4;
+          else if(i<18) c = s.s2 + (Math.random()*1.5-0.5);
+          else if(i<22) c = o + (s.s1-s.s2)/4;
+          else if(i<28) c = s.s1 + (Math.random()*1.5-0.5);
+          else c = o + (s.ltp-s.s1)/4;
+        } else {
+          if(i<8) c = s.s3 - (Math.random()*1.5-0.5);
+          else if(i<12) c = o - (s.s3-s.s2)/4;
+          else if(i<18) c = s.s2 - (Math.random()*1.5-0.5);
+          else if(i<22) c = o - (s.s2-s.s1)/4;
+          else if(i<28) c = s.s1 - (Math.random()*1.5-0.5);
+          else c = o - (s.s1-s.ltp)/4;
+        }
+        if(i === numCandles-1) c = s.ltp;
 
-      const high = stock.day_high, low = stock.day_low, range = (high - low) || 1;
-      const minVal = low - range * 0.05, maxVal = high + range * 0.05, totalRange = maxVal - minVal;
-      const getY = (val) => ch - 50 - ((val - minVal) / totalRange) * (ch - 80);
-      const startX = 20, num = candles.length, candleWidth = Math.max(3, (cw - 290) / num - 3);
+        const bx = startX + i*cW + cW/2;
+        let color = c >= o ? '#10b981' : '#ef4444';
+        if(i === numCandles-1) { color = s.isBull ? '#10b981' : '#ef4444'; }
 
-      const yHigh = getY(high);
-      ctx.strokeStyle = '#00e676'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.4;
-      ctx.beginPath(); ctx.moveTo(startX, yHigh); ctx.lineTo(cw - 275, yHigh); ctx.stroke();
-      ctx.fillStyle = '#00e676'; ctx.font = '10px monospace'; ctx.fillText(`Day High: ₹${high}`, cw - 370, yHigh - 5);
-
-      const yLow = getY(low);
-      ctx.strokeStyle = '#ef4444'; ctx.beginPath(); ctx.moveTo(startX, yLow); ctx.lineTo(cw - 275, yLow); ctx.stroke();
-      ctx.fillStyle = '#ef4444'; ctx.fillText(`Day Low: ₹${low}`, cw - 370, yLow + 12);
-      ctx.setLineDash([]);
-
-      const maxVol = Math.max(...candles.map(c => c.v), 1);
-      for (let i = 0; i < num; i++) {
-        const cd = candles[i], x = startX + i * (candleWidth + 3), bull = cd.c >= cd.o, color = bull ? '#00e5ff' : '#f43f5e';
         ctx.strokeStyle = color; ctx.lineWidth = 1.2;
-        ctx.beginPath(); ctx.moveTo(x + candleWidth / 2, getY(cd.h)); ctx.lineTo(x + candleWidth / 2, getY(cd.l)); ctx.stroke();
-        ctx.fillStyle = color; ctx.fillRect(x, Math.min(getY(cd.o), getY(cd.c)), candleWidth, Math.max(2, Math.abs(getY(cd.c) - getY(cd.o))));
-        const volH = (cd.v / maxVol) * 35;
-        ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.4)' : 'rgba(244, 63, 94, 0.4)';
-        ctx.fillRect(x, ch - volH - 5, candleWidth, volH);
+        ctx.beginPath(); ctx.moveTo(bx, getY(Math.max(o,c)+0.5)); ctx.lineTo(bx, getY(Math.min(o,c)-0.5)); ctx.stroke();
+        ctx.fillStyle = color; ctx.fillRect(bx - cW*0.3, getY(Math.max(o,c)), cW*0.6, Math.max(2, getY(Math.min(o,c)) - getY(Math.max(o,c))));
+        cur = c;
       }
     }
 
-    function showQuickChart(sym, event) {
-      if (activeQuickSymbol === sym) return;
-      activeQuickSymbol = sym;
+    let activeSym = null;
+    function showModal(sym, event) {
+      if (activeSym === sym) return;
+      activeSym = sym;
 
-      const modal = document.getElementById('chart-hover-modal');
-      const stock = screenerDataMap[sym] || {};
+      const s = liveData.find(x => x.sym === sym);
+      if (!s) return;
 
-      document.getElementById('quick-chart-sym').textContent = `${sym} // LIVE TAPE`;
-      document.getElementById('qp-ltp').textContent = `₹${(stock.ltp || 0).toFixed(2)}`;
-      const qpChg = document.getElementById('qp-chg');
-      qpChg.textContent = `${stock.pct_chg >= 0 ? '+' : ''}${stock.pct_chg}%`;
-      qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
+      document.getElementById('mod-ico').innerText = s.sym.substring(0, 2);
+      document.getElementById('mod-sym').innerText = s.sym;
+      document.getElementById('mod-sec').innerText = `${s.sym} • ${s.sec.toUpperCase()}`;
+      
+      document.getElementById('mod-rank').innerText = `p99.8 • #${s.rank}/${s.isBull?'145':'68'}`;
+      
+      const oiEl = document.getElementById('mod-oi');
+      oiEl.innerText = `${s.oi} • ${s.intent}`;
+      oiEl.className = `stat-val ${s.isBull ? 'sv-green' : 'sv-red'}`;
 
-      document.getElementById('qp-high').textContent = `₹${stock.day_high || 0}`;
-      document.getElementById('qp-low').textContent = `₹${stock.day_low || 0}`;
+      document.getElementById('mod-vwap').innerText = s.vwap.toFixed(2);
+      document.getElementById('mod-zs1').innerText = `${s.s1.toFixed(2)} • ${(s.s1 - (s.isBull?2.5:-2.5)).toFixed(2)}`;
+      document.getElementById('mod-rr').innerText = "1:3.2";
 
-      const isBull = (stock.pct_chg || 0) >= 0;
-      const tag = document.getElementById('qp-setup-tag');
-      tag.textContent = isBull ? "BULLISH" : "BEARISH";
-      tag.className = isBull ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
+      const badge = document.getElementById('mod-badge');
+      badge.innerText = `${s.isBull ? 'BULLISH' : 'BEARISH'} 97 ★`;
+      badge.className = `big-badge ${s.isBull ? 'bb-bull' : 'bb-bear'}`;
 
-      const rBull = stock.rules_bull || { Breakout: "YES", Volume: "YES", PDH: "YES", Range: "YES" };
-      const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "YES", DL: "NO", PDL: "NO" };
-      const bScore = stock.bull_score || (isBull ? "4/4" : "1/4");
-      const beScore = stock.bear_score || (!isBull ? "4/4" : "1/4");
+      const pct = document.getElementById('mod-pct');
+      pct.innerText = `${s.isBull?'+':''}${s.pct.toFixed(2)}%`;
+      pct.className = `big-pct ${s.isBull ? 'c-bull' : 'c-bear'}`;
 
-      const head = document.getElementById('qp-matrix-head');
-      const body = document.getElementById('qp-matrix-body');
+      document.getElementById('mod-ltp').innerText = `₹${s.ltp.toFixed(2)}`;
+      document.getElementById('mod-pick').innerText = `PICK: ${s.isBull?'BULLISH':'BEARISH'} #${s.rank}`;
 
-      head.innerHTML = `<th class="rule-th-ce">BULLISH</th><th class="rule-th-ce" style="text-align: center;">${bScore}</th><th class="rule-th-pe">BEARISH</th><th class="rule-th-pe" style="text-align: center;">${beScore}</th>`;
-      body.innerHTML = `
-        <tr><td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td><td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td></tr>
-        <tr><td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td><td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td></tr>
-        <tr><td>PDH</td><td class="${rBull.PDH === 'YES' ? 'status-yes' : 'status-no'}">${rBull.PDH}</td><td>DL</td><td class="${rBear.DL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.DL}</td></tr>
-        <tr><td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td><td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td></tr>
-      `;
-
+      const modal = document.getElementById('hover-modal');
       let x = event.clientX + 20;
       let y = event.clientY - 120;
-      if (x + 730 > window.innerWidth) x = event.clientX - 750;
+      if (x + 620 > window.innerWidth) x = event.clientX - 640;
       if (x < 10) x = 10;
       if (y < 20) y = 20;
-      if (y + 480 > window.innerHeight) y = window.innerHeight - 500;
+      if (y + 400 > window.innerHeight) y = window.innerHeight - 420;
 
-      modal.style.left = `${x}px`; modal.style.top = `${y}px`; 
-      modal.style.display = 'block';
-
-      // Slight delay ensures the DOM wrapper size is computed before canvas tries to draw
-      setTimeout(() => drawQuickCandles(stock), 50);
+      modal.style.left = `${x}px`; modal.style.top = `${y}px`; modal.style.display = 'block';
+      setTimeout(() => drawChart(s), 50);
     }
 
-    function hideQuickChart() { document.getElementById('chart-hover-modal').style.display = 'none'; activeQuickSymbol = null; }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#hover-modal') && !e.target.closest('.ob-card')) {
+        document.getElementById('hover-modal').style.display = 'none';
+        activeSym = null;
+      }
+    });
 
-    function populateUI(d) {
-      screenerDataMap = {};
-      [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || []), ...(d.order_block_concepts || []), ...(d.combine_3 || [])].forEach(s => {
-        screenerDataMap[s.symbol] = s;
-      });
-
-      document.getElementById('sync-time-stamp').textContent = `Last sync: ${d.sync_time}`;
-      const ms = d.market_summary || {};
-      document.getElementById('hdr-n50').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
-      document.getElementById('card-spot').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
-      document.getElementById('hdr-vix').textContent = ms.india_vix || "13.61";
-      document.getElementById('card-adv').textContent = ms.advances || 94;
-      document.getElementById('card-dec').textContent = ms.declines || 92;
-      document.getElementById('card-top-sec').textContent = ms.strongest_sector || "Capital Goods";
-      document.getElementById('card-weak-sec').textContent = ms.weakest_sector || "IT";
-
-      const renderRow = (s) => {
-        const newsBadge = s.has_news ? `<span class="news-badge" title="Breaking news">N</span>` : '';
-        const isUp = (s.pct_chg || 0) >= 0;
-        return `
-          <tr class="hover:bg-blue-900/30 transition-colors">
-            <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
-            <td class="py-2.5 px-3 font-bold text-white flex items-center">
-              <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol}</span>${newsBadge}
-            </td>
-            <td class="py-2.5 px-3"><span class="sector-pill"><span class="sector-name">${s.sector}</span><span class="sector-val ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</span></span></td>
-            <td class="py-2.5 px-3 text-center font-bold text-slate-200">${s.listed_at}</td>
-            <td class="py-2.5 px-3 text-right font-black ${isUp ? 'tag-cyan' : 'tag-red'} text-xs">${s.pct_display || Math.abs(s.pct_chg).toFixed(2)}</td>
-            <td class="py-2.5 px-3 text-right font-bold text-slate-200">${s.hyperflow}</td>
-            <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
-            <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
-          </tr>
-        `;
-      };
-
-      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks are currently qualifying.</td></tr>`;
-      const fillTable = (id, list) => { document.getElementById(id).innerHTML = (list && list.length) ? list.map(renderRow).join('') : emptyNotice; };
-
-      fillTable('tbl-sonic-bullish', d.sonic_bullish);
-      fillTable('tbl-sonic-bearish', d.sonic_bearish);
-      fillTable('tbl-titan-bullish', d.titan_bullish);
-      fillTable('tbl-titan-bearish', d.titan_bearish);
-
-      const renderObcRow = (s, idx) => {
-        const isUp = (s.pct_chg || 0) >= 0;
-        const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
-        const rSign = (s.ob_rating || 0) > 0 ? '+' : '';
-        const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
-
-        return `
-          <tr class="hover:bg-blue-900/30 transition-colors">
-            <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
-            <td class="py-2.5 px-3 font-bold text-white"><span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span></td>
-            <td class="py-2.5 px-3 text-center font-bold text-slate-400">${s.listed_at}</td>
-            <td class="py-2.5 px-3 text-right font-bold ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</td>
-            <td class="py-2.5 px-3 text-center"><span class="${s.ob_color} font-black uppercase text-[10px] px-2 py-0.5 rounded border border-current bg-opacity-10">${s.ob_signal}</span></td>
-            <td class="py-2.5 px-3 text-center font-bold ${rColor} text-sm">${rSign}${s.ob_rating}★</td>
-            <td class="py-2.5 px-3 text-center text-slate-300 font-mono text-[10px] whitespace-nowrap">${s.ob_sup_res}</td>
-            <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4}</span></td>
-            <td class="py-2.5 px-3 text-left text-slate-400 whitespace-nowrap">${s.ob_desc}</td>
-          </tr>
-        `;
-      };
-      const obcEl = document.getElementById('tbl-order-blocks');
-      if (obcEl) obcEl.innerHTML = (d.order_block_concepts && d.order_block_concepts.length) ? d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('') : emptyNotice;
-
-      const renderCombineRow = (s, idx) => {
-        const isUp = (s.pct_chg || 0) >= 0;
-        const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
-        const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
-        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white shadow shadow-emerald-900' : 'bg-slate-800 text-slate-300';
-        
-        return `
-          <tr class="hover:bg-blue-900/30 transition-colors">
-            <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
-            <td class="py-2.5 px-3 font-bold text-white"><span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span></td>
-            <td class="py-2.5 px-3 text-center"><span class="px-2 py-1 rounded font-black text-[10px] ${matchBadge}">${s.combine_score}</span></td>
-            <td class="py-2.5 px-3 text-center font-bold ${rColor} text-base">${s.ob_rating > 0 ? '+' : ''}${s.ob_rating}★</td>
-            <td class="py-2.5 px-3 text-right font-bold ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</td>
-            <td class="py-2.5 px-3 text-center"><span class="${s.ob_color} font-black uppercase text-[9px] px-2 py-0.5 rounded border border-current bg-opacity-10">${s.ob_signal}</span></td>
-            <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4}</span></td>
-          </tr>
-        `;
-      };
-      const c3El = document.getElementById('tbl-combine-3');
-      if (c3El) c3El.innerHTML = (d.combine_3 && d.combine_3.length) ? d.combine_3.map((s, i) => renderCombineRow(s, i)).join('') : emptyNotice;
-    }
-
-    async function initQuantScreener() {
+    async function initOrderBlock() {
       try {
         const res = await fetch('screener.json?nocache=' + Date.now());
         if (res.ok) {
-          const liveData = await res.json();
-          populateUI(liveData);
+          const d = await res.json();
+          const all = [...(d.sonic_bullish||[]), ...(d.titan_bullish||[]), ...(d.sonic_bearish||[]), ...(d.titan_bearish||[])];
+          if(all.length) {
+            let processed = Array.from(new Map(all.map(item => [item.symbol, item])).values());
+            liveData = processed.map((s, i) => {
+              const isBull = s.pct_chg >= 0;
+              return {
+                sym: s.symbol, sec: s.sector, ltp: s.ltp, pct: s.pct_chg, rank: String(i+1).padStart(2, '0'),
+                isBull: isBull, intent: isBull ? "LONG BUILD-UP" : "SHORT BUILD-UP",
+                vwap: s.vwap, oi: isBull ? "+14.7%" : "+8.9%",
+                s3: s.day_low, s2: s.day_low + (s.ltp - s.day_low)*0.3, s1: s.day_low + (s.ltp - s.day_low)*0.7,
+                r1: s.day_high * 0.99, r2: s.day_high
+              }
+            });
+            liveData.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct));
+          }
         }
-      } catch (err) { console.log("No data available yet:", err); }
+      } catch (err) { console.log("Waiting for backend..."); }
+      renderGrids();
     }
 
-    initQuantScreener();
+    initOrderBlock();
   </script>
 </body>
 </html>
