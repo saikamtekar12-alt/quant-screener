@@ -184,7 +184,6 @@
                 <th class="py-2.5 px-3 text-center">SIGNAL RATING</th>
                 <th class="py-2.5 px-3 text-center">SUP / RES</th>
                 <th class="py-2.5 px-3 text-center">4/4 STATUS</th>
-                <th class="py-2.5 px-3 text-left">DETAILS</th>
               </tr>
             </thead>
             <tbody id="tbl-order-blocks" class="divide-y divide-blue-950/60 font-mono text-[11px]"></tbody>
@@ -243,9 +242,9 @@
       </div>
     </div>
 
-    <!-- Mobile-Fixed Canvas Container -->
-    <div class="relative w-full h-[360px] bg-[#030b1e]" id="canvas-wrapper">
-      <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
+    <!-- Canvas Container (Using Explicit Inline Sizing for Mobile Safety) -->
+    <div class="relative w-full h-[360px] bg-[#030b1e]" style="padding: 10px;">
+      <canvas id="quick-candle-canvas"></canvas>
 
       <div class="onchart-matrix-card">
         <table class="rule-table-grid">
@@ -283,15 +282,18 @@
 
     function drawQuickCandles(stock) {
       const canvas = document.getElementById('quick-candle-canvas');
-      const wrapper = document.getElementById('canvas-wrapper');
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
       
-      // Explicit calculations to prevent mobile browser rendering bug
-      const cw = wrapper.clientWidth || 700; 
-      const ch = wrapper.clientHeight || 360;
+      // Calculate fixed dimensions to absolutely prevent mobile 0px bugs
+      const modalWidth = Math.min(window.innerWidth * 0.94, 730);
+      const cw = modalWidth - 20; // accounting for padding
+      const ch = 340; 
+      
       canvas.width = cw * dpr; 
       canvas.height = ch * dpr;
+      canvas.style.width = cw + "px";
+      canvas.style.height = ch + "px";
       ctx.scale(dpr, dpr);
 
       ctx.clearRect(0, 0, cw, ch);
@@ -377,8 +379,10 @@
       modal.style.left = `${x}px`; modal.style.top = `${y}px`; 
       modal.style.display = 'block';
 
-      // Slight delay ensures the DOM wrapper size is computed before canvas tries to draw
-      setTimeout(() => drawQuickCandles(stock), 50);
+      // We explicitly defer the drawing until the next animation frame so mobile browsers register the modal block
+      requestAnimationFrame(() => {
+        setTimeout(() => drawQuickCandles(stock), 10);
+      });
     }
 
     function hideQuickChart() { document.getElementById('chart-hover-modal').style.display = 'none'; activeQuickSymbol = null; }
@@ -442,10 +446,10 @@
             <td class="py-2.5 px-3 text-center font-bold ${rColor} text-sm">${rSign}${s.ob_rating}★</td>
             <td class="py-2.5 px-3 text-center text-slate-300 font-mono text-[10px] whitespace-nowrap">${s.ob_sup_res}</td>
             <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4}</span></td>
-            <td class="py-2.5 px-3 text-left text-slate-400 whitespace-nowrap">${s.ob_desc}</td>
           </tr>
         `;
       };
+      
       const obcEl = document.getElementById('tbl-order-blocks');
       if (obcEl) obcEl.innerHTML = (d.order_block_concepts && d.order_block_concepts.length) ? d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('') : emptyNotice;
 
@@ -467,6 +471,7 @@
           </tr>
         `;
       };
+      
       const c3El = document.getElementById('tbl-combine-3');
       if (c3El) c3El.innerHTML = (d.combine_3 && d.combine_3.length) ? d.combine_3.map((s, i) => renderCombineRow(s, i)).join('') : emptyNotice;
     }
