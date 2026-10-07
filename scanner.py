@@ -6,9 +6,8 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# Expanded Active Option Chain Universe (140+ Stocks)
+# Expanded Active Option Chain Universe
 OPTION_CHAIN_UNIVERSE = [
-    # BANKS & FINANCIALS
     {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Bank"},
     {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Bank"},
     {"sym": "SBIN.NS", "name": "SBIN", "sector": "Bank"},
@@ -78,14 +77,14 @@ OPTION_CHAIN_UNIVERSE = [
     {"sym": "BHARTIARTL.NS", "name": "BHARTIARTL", "sector": "Telecom"}
 ]
 
-NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX"}
+NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "MCX", "RELIANCE"}
 
 def run_quant_engine():
     ist = timezone(timedelta(hours=5, minutes=30))
     now_ist = datetime.now(ist)
     current_time_str = now_ist.strftime("%H:%M")
 
-    # PRESERVE INITIAL TIMESTAMPS FOR 4/4 ENGINES ONLY
+    # Preserve initial qualification timestamps for 4/4 matrix only
     stored_timestamps = {}
     if os.path.exists("screener.json"):
         try:
@@ -101,14 +100,11 @@ def run_quant_engine():
     tickers = [u["sym"] for u in OPTION_CHAIN_UNIVERSE]
     meta_map = {u["sym"]: u for u in OPTION_CHAIN_UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live derivative data...")
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live data...")
     data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
-    sonic_bullish, sonic_bearish = [], []
-    titan_bullish, titan_bearish = [], []
-    order_block_concepts = []
-    
+    sonic_bullish, sonic_bearish, titan_bullish, titan_bearish, order_block_concepts = [], [], [], [], []
     advances, declines = 0, 0
     sector_deltas = {}
     valid_scanned = []
@@ -207,25 +203,24 @@ def run_quant_engine():
             valid_scanned.append(base_row)
 
             # 5 Video Order Flow Concepts
-            ob_signal, ob_desc, ob_color = None, None, ""
+            ob_signal, ob_color = None, ""
             last_3 = today_5m.tail(3)
             
             if pct_chg > 1.5 and all(c['Close'] < c['Open'] for _, c in last_3.iterrows()) and rvat > 1.3:
-                ob_signal, ob_desc, ob_color = "Delta Divergence", "Price up, Delta negative. Smart money selling into the pump.", "tag-red"
+                ob_signal, ob_color = "Delta Divergence", "tag-red"
             elif ltp <= day_low * 1.005 and rvat > 1.5 and abs(today_5m["Close"].iloc[-1] - today_5m["Open"].iloc[-1]) < (day_high - day_low) * 0.1:
-                ob_signal, ob_desc, ob_color = "Absorption", "High volume at low, tight spread. Buyers absorbing sellers.", "tag-green"
+                ob_signal, ob_color = "Absorption", "tag-green"
             elif abs(vwap_gap) <= 0.15 and cum_vol > avg_vol * 30:
-                ob_signal, ob_desc, ob_color = "Volume Profile (HVN)", "Price testing High Volume Node (real support/resistance).", "tag-cyan"
+                ob_signal, ob_color = "Volume Profile (HVN)", "tag-cyan"
             elif (ltp > orb_high * 1.01 or ltp < orb_low * 0.99) and rvat > 1.8:
-                ob_signal, ob_desc, ob_color = "Imbalance (AMT)", "Price transitioned from Balance (Range) to Imbalance (Trend).", "tag-amber"
+                ob_signal, ob_color = "Imbalance (AMT)", "tag-amber"
             elif abs(pct_chg) > 3.0:
-                ob_signal, ob_desc, ob_color = "Negative Gamma", "Dealers forced to hedge directionally, driving trend extension.", "tag-purple"
+                ob_signal, ob_color = "Negative Gamma", "tag-purple"
 
             if ob_signal:
                 ob_row = dict(base_row)
-                ob_row["listed_at"] = current_time_str  # Dynamic refresh timing
+                ob_row["listed_at"] = current_time_str  # Real-time refresh
                 ob_row["ob_signal"] = ob_signal
-                ob_row["ob_desc"] = ob_desc
                 ob_row["ob_color"] = ob_color
                 ob_row["ob_rating"] = ob_rating
                 ob_row["ob_sup_res"] = f"S: {day_low:.1f} | R: {day_high:.1f}"
@@ -249,9 +244,7 @@ def run_quant_engine():
         except Exception:
             continue
 
-    # ==========================================
-    # FALLBACK DATA INJECTION (FOR MARKET CLOSED)
-    # ==========================================
+    # FALLBACK DATA INJECTION (Ensures UI never breaks post-market)
     def build_candidate(name, sec, chg, tm, hf, is_news=False):
         k = f"mock_{name}"
         matched = next((x for x in valid_scanned if x["symbol"] == name), None)
@@ -267,7 +260,7 @@ def run_quant_engine():
             "bull_score": "4/4" if chg > 0 else "1/4", "bear_score": "4/4" if chg < 0 else "1/4",
             "rules_bull": {"Breakout": "YES", "Volume": "YES", "PDH": "YES", "Range": "YES"},
             "rules_bear": {"Breakout": "YES" if chg < 0 else "NO", "VWAP": "YES" if chg < 0 else "NO", "DL": "YES" if chg < 0 else "NO", "PDL": "YES" if chg < 0 else "NO"},
-            "ob_rating": 4 if chg > 0 else -4, "ob_sup_res": f"S: {dl} | R: {dh}", "ob_4x4": "4/4 BULL" if chg > 0 else "4/4 BEAR"
+            "ob_rating": 5 if chg > 0 else -5, "ob_sup_res": f"S: {dl} | R: {dh}", "ob_4x4": "4/4 BULL" if chg > 0 else "4/4 BEAR"
         }
 
     if not sonic_bullish:
@@ -275,7 +268,12 @@ def run_quant_engine():
             build_candidate("SBILIFE", "Insurance", 2.37, "06:44", "17.9x", False),
             build_candidate("BRITANNIA", "FMCG", 2.21, "06:44", "14.1x", True),
             build_candidate("SIEMENS", "Cap Goods", 4.13, "06:44", "12.5x", False),
-            build_candidate("DRREDDY", "Pharma", 0.42, "06:44", "12.4x", False)
+            build_candidate("DRREDDY", "Pharma", 0.42, "06:44", "12.4x", False),
+            build_candidate("KOTAKBANK", "Bank", 3.82, "18:14", "9.5x", False),
+            build_candidate("ASIANPAINT", "Consumer", 2.46, "06:44", "9.4x", True),
+            build_candidate("SUNPHARMA", "Pharma", 1.37, "06:44", "8.6x", False),
+            build_candidate("BHARTIARTL", "Telecom", 1.72, "06:44", "8.4x", False),
+            build_candidate("JSWSTEEL", "Metal", 2.16, "06:44", "6.9x", False)
         ])
     if not titan_bullish:
         titan_bullish.extend([
@@ -295,22 +293,19 @@ def run_quant_engine():
         ])
     if not order_block_concepts:
         ob1 = build_candidate("SBILIFE", "Insurance", 2.37, current_time_str, "17.9x", False)
-        ob1.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Price transitioned from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
+        ob1.update({"ob_signal": "Imbalance (AMT)", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
         ob2 = build_candidate("BRITANNIA", "FMCG", 2.21, current_time_str, "14.1x", True)
-        ob2.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Price transitioned from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
+        ob2.update({"ob_signal": "Imbalance (AMT)", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
         ob3 = build_candidate("GAIL", "Oil & Gas", 2.73, current_time_str, "9.1x", False)
-        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_desc": "Price transitioned from Balance into Imbalance.", "ob_color": "tag-amber", "ob_rating": 4, "listed_at": current_time_str})
-        ob4 = build_candidate("POWERGRID", "Power", 0.08, current_time_str, "6.1x", False)
-        ob4.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Testing High Volume Node.", "ob_color": "tag-cyan", "ob_rating": 2, "listed_at": current_time_str})
-        ob5 = build_candidate("M&M", "Auto", -0.09, current_time_str, "5.4x", False)
-        ob5.update({"ob_signal": "Volume Profile (HVN)", "ob_desc": "Testing High Volume Node.", "ob_color": "tag-cyan", "ob_rating": -2, "ob_4x4": "PENDING", "listed_at": current_time_str})
+        ob3.update({"ob_signal": "Imbalance (AMT)", "ob_color": "tag-amber", "ob_rating": 4, "listed_at": current_time_str})
+        ob4 = build_candidate("SIEMENS", "Cap Goods", 4.13, current_time_str, "12.5x", False)
+        ob4.update({"ob_signal": "Imbalance (AMT)", "ob_color": "tag-amber", "ob_rating": 5, "listed_at": current_time_str})
+        ob5 = build_candidate("POWERGRID", "Power", 0.08, current_time_str, "6.1x", False)
+        ob5.update({"ob_signal": "Volume Profile (HVN)", "ob_color": "tag-cyan", "ob_rating": 2, "ob_4x4": "PENDING", "listed_at": current_time_str})
         order_block_concepts.extend([ob1, ob2, ob3, ob4, ob5])
 
-    # ==========================================
     # COMBINE 3 CONFLUENCE ENGINE
-    # ==========================================
     confluence_map = {}
-    
     for s in sonic_bullish + sonic_bearish:
         sym = s['symbol']
         if sym not in confluence_map: confluence_map[sym] = {'data': s, 'sonic': True, 'titan': False, 'obc': False}
@@ -338,7 +333,6 @@ def run_quant_engine():
             row['ob_rating'] = 5 if row['pct_chg'] > 0 else -5
         combine_3_list.append(row)
 
-    # Sort by Confluence Score (3/3 first), then by Rating
     combine_3_list.sort(key=lambda x: (x['combine_val'], abs(x.get('ob_rating', 0))), reverse=True)
 
     sec_avgs = {k: np.mean(v) for k, v in sector_deltas.items()}
@@ -353,17 +347,14 @@ def run_quant_engine():
             "strongest_sector": strongest_sec, "weakest_sector": weakest_sec,
             "nifty_pcr": 0.88, "max_pain": 22800
         },
-        "sonic_bullish": sonic_bullish,
-        "sonic_bearish": sonic_bearish,
-        "titan_bullish": titan_bullish,
-        "titan_bearish": titan_bearish,
+        "sonic_bullish": sonic_bullish, "sonic_bearish": sonic_bearish,
+        "titan_bullish": titan_bullish, "titan_bearish": titan_bearish,
         "order_block_concepts": order_block_concepts,
         "combine_3": combine_3_list
     }
 
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
-
     print(f"[{output['sync_time']}] Engine complete. Generated Combine 3 list.")
 
 if __name__ == "__main__":
