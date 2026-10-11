@@ -237,7 +237,9 @@ def run_quant_engine():
     meta_map = {u["sym"]: u for u in NIFTY_200_UNIVERSE}
 
     print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live data for full Nifty 200 universe...")
-    data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
+    
+    # MODIFICATION 1: Changed period="5d" to period="15d" to ensure we have past week volume history
+    data_daily = yf.download(tickers, period="15d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
     sonic_bullish, sonic_bearish, titan_bullish, titan_bearish, order_block_concepts = [], [], [], [], []
@@ -254,12 +256,18 @@ def run_quant_engine():
                 continue
             df_d = data_daily[sym].dropna()
             df_5 = data_5m[sym].dropna()
-            if len(df_d) < 2 or len(df_5) < 1:
+            
+            # Need at least 6 daily bars to calculate a 5-day average ending yesterday
+            if len(df_d) < 6 or len(df_5) < 1:
                 continue
 
             prev_close = float(df_d["Close"].iloc[-2])
             pdh = float(df_d["High"].iloc[-2])
             pdl = float(df_d["Low"].iloc[-2])
+            
+            # MODIFICATION 2: Calculate Past 1 Week (5 trading days) Average Volume
+            past_5_days_vol = df_d["Volume"].iloc[-6:-1]
+            avg_vol_5d = float(past_5_days_vol.mean()) if len(past_5_days_vol) > 0 else 1e-6
 
             df_5.index = df_5.index.tz_convert(ist)
             latest_date = df_5.index[-1].date()
@@ -278,6 +286,10 @@ def run_quant_engine():
 
             day_high = round(float(today_5m["High"].max()), 2)
             day_low = round(float(today_5m["Low"].min()), 2)
+            
+            # MODIFICATION 3: Calculate Live Daily Volume Spurt Multiplier
+            live_daily_vol = float(today_5m["Volume"].sum())
+            vol_spurt_multiplier = round(live_daily_vol / avg_vol_5d, 2)
 
             # ORB Range
             orb_high = float(today_5m["High"].iloc[:min(3, len(today_5m))].max())
@@ -347,6 +359,7 @@ def run_quant_engine():
                 "symbol": clean_sym, "sector": sec, "ltp": ltp, "pct_chg": pct_chg, "pct_display": f"{abs(pct_chg):.2f}",
                 "day_high": day_high, "day_low": day_low, "vwap": vwap, "vwap_gap": vwap_gap,
                 "hyperflow": f"{hyperflow}x", "max_hyperflow": f"{max_hf}x", "min_hyperflow": f"{min_hf}x",
+                "vol_spurt": f"{vol_spurt_multiplier}x", # MODIFICATION 4: Added Volume Spurt to JSON payload
                 "has_news": clean_sym in NEWS_SYMBOLS, "candles": candles_payload,
                 "bull_score": f"{bull_score}/4", "bear_score": f"{bear_score}/4",
                 "rules_bull": {
