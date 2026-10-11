@@ -6,9 +6,8 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-# NIFTY 200 HEATMAP UNIVERSE DIRECTLY EXTRACTED FROM TOPSTOCKRESEARCH
-HEATMAP_UNIVERSE = [
-    # Top Gainers & Momentum Movers
+# FULL NIFTY 200 UNIVERSE (Sourced directly from the Heatmap)
+NIFTY_200_UNIVERSE = [
     {"sym": "PERSISTENT.NS", "name": "PERSISTENT", "sector": "IT"},
     {"sym": "GMRINFRA.NS", "name": "GMRAIRPORT", "sector": "Infra"},
     {"sym": "COLPAL.NS", "name": "COLPAL", "sector": "FMCG"},
@@ -17,13 +16,13 @@ HEATMAP_UNIVERSE = [
     {"sym": "ITC.NS", "name": "ITC", "sector": "FMCG"},
     {"sym": "VEDL.NS", "name": "VEDL", "sector": "Metal"},
     {"sym": "EICHERMOT.NS", "name": "EICHERMOT", "sector": "Auto"},
-    {"sym": "IOC.NS", "name": "IOC", "sector": "Oil & Gas"},
+    {"sym": "ICICIGI.NS", "name": "ICICIGI", "sector": "Insurance"},
     {"sym": "LTIM.NS", "name": "LTIM", "sector": "IT"},
-    {"sym": "LTTS.NS", "name": "LTTS", "sector": "IT"},
+    {"sym": "LICI.NS", "name": "LICI", "sector": "Finance"},
     {"sym": "TCS.NS", "name": "TCS", "sector": "IT"},
     {"sym": "APLAPOLLO.NS", "name": "APLAPOLLO", "sector": "Metal"},
     {"sym": "UNITDSPR.NS", "name": "UNITDSPR", "sector": "FMCG"},
-    {"sym": "DMART.NS", "name": "DMART", "sector": "Retail"},
+    {"sym": "LENSKART.NS", "name": "LENSKART", "sector": "Retail"},
     {"sym": "BLUESTARCO.NS", "name": "BLUESTARCO", "sector": "Consumer"},
     {"sym": "HCLTECH.NS", "name": "HCLTECH", "sector": "IT"},
     {"sym": "ABCAPITAL.NS", "name": "ABCAPITAL", "sector": "Finance"},
@@ -42,19 +41,37 @@ HEATMAP_UNIVERSE = [
     {"sym": "FEDERALBNK.NS", "name": "FEDERALBNK", "sector": "Bank"},
     {"sym": "LICHSGFIN.NS", "name": "LICHSGFIN", "sector": "Finance"},
     {"sym": "INDIANB.NS", "name": "INDIANB", "sector": "Bank"},
-    {"sym": "NTPC.NS", "name": "NTPC", "sector": "Power"},
+    {"sym": "INFY.NS", "name": "INFY", "sector": "IT"},
     {"sym": "WIPRO.NS", "name": "WIPRO", "sector": "IT"},
     {"sym": "DABUR.NS", "name": "DABUR", "sector": "FMCG"},
     {"sym": "SBICARD.NS", "name": "SBICARD", "sector": "Finance"},
     {"sym": "MUTHOOTFIN.NS", "name": "MUTHOOTFIN", "sector": "Finance"},
     {"sym": "SHRIRAMFIN.NS", "name": "SHRIRAMFIN", "sector": "Finance"},
+    {"sym": "TVSMOTOR.NS", "name": "TVSMOTOR", "sector": "Auto"},
     {"sym": "COCHINSHIP.NS", "name": "COCHINSHIP", "sector": "Defence"},
     {"sym": "MPHASIS.NS", "name": "MPHASIS", "sector": "IT"},
-    {"sym": "BEL.NS", "name": "BEL", "sector": "Defence"},
+    {"sym": "BDL.NS", "name": "BDL", "sector": "Defence"},
     {"sym": "ULTRACEMCO.NS", "name": "ULTRACEMCO", "sector": "Cement"},
-    {"sym": "GODREJPROP.NS", "name": "GODREJPROP", "sector": "Realty"},
+    {"sym": "GODFRYPHLP.NS", "name": "GODFRYPHLP", "sector": "FMCG"},
     {"sym": "PHOENIXLTD.NS", "name": "PHOENIXLTD", "sector": "Realty"},
-    {"sym": "GAIL.NS", "name": "GAIL", "sector": "Oil & Gas"},
+    {"sym": "HDFCLIFE.NS", "name": "HDFCLIFE", "sector": "Insurance"},
+    {"sym": "HINDZINC.NS", "name": "HINDZINC", "sector": "Metal"},
+    {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Bank"},
+    {"sym": "LT.NS", "name": "LT", "sector": "Cap Goods"},
+    {"sym": "OBEROIRLTY.NS", "name": "OBEROIRLTY", "sector": "Realty"},
+    {"sym": "INDUSTOWER.NS", "name": "INDUSTOWER", "sector": "Telecom"},
+    {"sym": "VBL.NS", "name": "VBL", "sector": "FMCG"},
+    {"sym": "BAJAJHLDNG.NS", "name": "BAJAJHLDNG", "sector": "Finance"},
+    {"sym": "SBIN.NS", "name": "SBIN", "sector": "Bank"},
+    {"sym": "IRCTC.NS", "name": "IRCTC", "sector": "Consumer"},
+    {"sym": "LAURUSLABS.NS", "name": "LAURUSLABS", "sector": "Pharma"},
+    {"sym": "TATAPOWER.NS", "name": "TATAPOWER", "sector": "Power"},
+    {"sym": "MCX.NS", "name": "MCX", "sector": "Cap Mkts"},
+    {"sym": "CANBK.NS", "name": "CANBK", "sector": "Bank"},
+    {"sym": "CUMMINSIND.NS", "name": "CUMMINSIND", "sector": "Cap Goods"},
+    {"sym": "NHPC.NS", "name": "NHPC", "sector": "Power"},
+    {"sym": "CONCOR.NS", "name": "CONCOR", "sector": "Logistics"},
+    {"sym": "RVNL.NS", "name": "RVNL", "sector": "Infra"},
     {"sym": "POWERGRID.NS", "name": "POWERGRID", "sector": "Power"},
     {"sym": "DLF.NS", "name": "DLF", "sector": "Realty"},
     {"sym": "HAVELLS.NS", "name": "HAVELLS", "sector": "Consumer"},
@@ -62,18 +79,120 @@ HEATMAP_UNIVERSE = [
     {"sym": "MARUTI.NS", "name": "MARUTI", "sector": "Auto"},
     {"sym": "RECLTD.NS", "name": "RECLTD", "sector": "Finance"},
     {"sym": "BRITANNIA.NS", "name": "BRITANNIA", "sector": "FMCG"},
-    {"sym": "RELIANCE.NS", "name": "RELIANCE", "sector": "Energy"},
-    {"sym": "HDFCBANK.NS", "name": "HDFCBANK", "sector": "Bank"},
-    {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Bank"},
-    {"sym": "SBIN.NS", "name": "SBIN", "sector": "Bank"},
-    {"sym": "KOTAKBANK.NS", "name": "KOTAKBANK", "sector": "Bank"},
-    {"sym": "AXISBANK.NS", "name": "AXISBANK", "sector": "Bank"},
+    {"sym": "M&M.NS", "name": "M&M", "sector": "Auto"},
+    {"sym": "ADANIGREEN.NS", "name": "ADANIGREEN", "sector": "Power"},
+    {"sym": "POLICYBZR.NS", "name": "POLICYBZR", "sector": "Finance"},
+    {"sym": "BANKINDIA.NS", "name": "BANKINDIA", "sector": "Bank"},
+    {"sym": "NMDC.NS", "name": "NMDC", "sector": "Metal"},
+    {"sym": "BAJAJFINSV.NS", "name": "BAJAJFINSV", "sector": "Finance"},
+    {"sym": "IDEA.NS", "name": "IDEA", "sector": "Telecom"},
+    {"sym": "UPL.NS", "name": "UPL", "sector": "Chem"},
+    {"sym": "PATANJALI.NS", "name": "PATANJALI", "sector": "FMCG"},
+    {"sym": "PIDILITIND.NS", "name": "PIDILITIND", "sector": "Chem"},
+    {"sym": "ADANIENT.NS", "name": "ADANIENT", "sector": "Energy"},
+    {"sym": "LTF.NS", "name": "LTF", "sector": "Finance"},
+    {"sym": "BHARATFORG.NS", "name": "BHARATFORG", "sector": "Auto"},
+    {"sym": "PNB.NS", "name": "PNB", "sector": "Bank"},
+    {"sym": "BAJAJ-AUTO.NS", "name": "BAJAJ-AUTO", "sector": "Auto"},
     {"sym": "TRENT.NS", "name": "TRENT", "sector": "Retail"},
-    {"sym": "HDFCLIFE.NS", "name": "HDFCLIFE", "sector": "Insurance"},
-    {"sym": "SBILIFE.NS", "name": "SBILIFE", "sector": "Insurance"}
+    {"sym": "DRREDDY.NS", "name": "DRREDDY", "sector": "Pharma"},
+    {"sym": "SRF.NS", "name": "SRF", "sector": "Chem"},
+    {"sym": "KOTAKBANK.NS", "name": "KOTAKBANK", "sector": "Bank"},
+    {"sym": "MAHABANK.NS", "name": "MAHABANK", "sector": "Bank"},
+    {"sym": "IDFCFIRSTB.NS", "name": "IDFCFIRSTB", "sector": "Bank"},
+    {"sym": "POLYCAB.NS", "name": "POLYCAB", "sector": "Cap Goods"},
+    {"sym": "PFC.NS", "name": "PFC", "sector": "Finance"},
+    {"sym": "TATACONSUM.NS", "name": "TATACONSUM", "sector": "FMCG"},
+    {"sym": "TECHM.NS", "name": "TECHM", "sector": "IT"},
+    {"sym": "MAXHEALTH.NS", "name": "MAXHEALTH", "sector": "Pharma"},
+    {"sym": "ASIANPAINT.NS", "name": "ASIANPAINT", "sector": "Consumer"},
+    {"sym": "PAGEIND.NS", "name": "PAGEIND", "sector": "Consumer"},
+    {"sym": "GRASIM.NS", "name": "GRASIM", "sector": "Cement"},
+    {"sym": "TITAN.NS", "name": "TITAN", "sector": "Consumer"},
+    {"sym": "MOTILALOFS.NS", "name": "MOTILALOFS", "sector": "Cap Mkts"},
+    {"sym": "HINDALCO.NS", "name": "HINDALCO", "sector": "Metal"},
+    {"sym": "MARICO.NS", "name": "MARICO", "sector": "FMCG"},
+    {"sym": "AXISBANK.NS", "name": "AXISBANK", "sector": "Bank"},
+    {"sym": "TATASTEEL.NS", "name": "TATASTEEL", "sector": "Metal"},
+    {"sym": "NESTLEIND.NS", "name": "NESTLEIND", "sector": "FMCG"},
+    {"sym": "OFSS.NS", "name": "OFSS", "sector": "IT"},
+    {"sym": "GODREJPROP.NS", "name": "GODREJPROP", "sector": "Realty"},
+    {"sym": "LUPIN.NS", "name": "LUPIN", "sector": "Pharma"},
+    {"sym": "MAZDOCK.NS", "name": "MAZDOCK", "sector": "Defence"},
+    {"sym": "DIXON.NS", "name": "DIXON", "sector": "Consumer"},
+    {"sym": "APARINDS.NS", "name": "APARINDS", "sector": "Cap Goods"},
+    {"sym": "BHEL.NS", "name": "BHEL", "sector": "Cap Goods"},
+    {"sym": "UNIONBANK.NS", "name": "UNIONBANK", "sector": "Bank"},
+    {"sym": "BOSCHLTD.NS", "name": "BOSCHLTD", "sector": "Auto"},
+    {"sym": "NATIONALUM.NS", "name": "NATIONALUM", "sector": "Metal"},
+    {"sym": "NLCINDIA.NS", "name": "NLCINDIA", "sector": "Power"},
+    {"sym": "PIIND.NS", "name": "PIIND", "sector": "Chem"},
+    {"sym": "TORNTPHARM.NS", "name": "TORNTPHARM", "sector": "Pharma"},
+    {"sym": "ADANIENSOL.NS", "name": "ADANIENSOL", "sector": "Power"},
+    {"sym": "HEROMOTOCO.NS", "name": "HEROMOTOCO", "sector": "Auto"},
+    {"sym": "HDFCAMC.NS", "name": "HDFCAMC", "sector": "Finance"},
+    {"sym": "BANKBARODA.NS", "name": "BANKBARODA", "sector": "Bank"},
+    {"sym": "NTPC.NS", "name": "NTPC", "sector": "Power"},
+    {"sym": "AUBANK.NS", "name": "AUBANK", "sector": "Bank"},
+    {"sym": "ONGC.NS", "name": "ONGC", "sector": "Oil & Gas"},
+    {"sym": "JINDALSTEL.NS", "name": "JINDALSTEL", "sector": "Metal"},
+    {"sym": "360ONE.NS", "name": "360ONE", "sector": "Finance"},
+    {"sym": "HINDUNILVR.NS", "name": "HINDUNILVR", "sector": "FMCG"},
+    {"sym": "SOLARINDS.NS", "name": "SOLARINDS", "sector": "Cap Goods"},
+    {"sym": "IREDA.NS", "name": "IREDA", "sector": "Finance"},
+    {"sym": "INDHOTEL.NS", "name": "INDHOTEL", "sector": "Consumer"},
+    {"sym": "BPCL.NS", "name": "BPCL", "sector": "Oil & Gas"},
+    {"sym": "IRFC.NS", "name": "IRFC", "sector": "Finance"},
+    {"sym": "COALINDIA.NS", "name": "COALINDIA", "sector": "Oil & Gas"},
+    {"sym": "ADANIPOWER.NS", "name": "ADANIPOWER", "sector": "Power"},
+    {"sym": "ZYDUSLIFE.NS", "name": "ZYDUSLIFE", "sector": "Pharma"},
+    {"sym": "ICICIBANK.NS", "name": "ICICIBANK", "sector": "Bank"},
+    {"sym": "BAJFINANCE.NS", "name": "BAJFINANCE", "sector": "Finance"},
+    {"sym": "INDIGO.NS", "name": "INDIGO", "sector": "Aviation"},
+    {"sym": "SUPREMEIND.NS", "name": "SUPREMEIND", "sector": "Cap Goods"},
+    {"sym": "HINDCOPPER.NS", "name": "HINDCOPPER", "sector": "Metal"},
+    {"sym": "WAREEENER.NS", "name": "WAREEENER", "sector": "Power"},
+    {"sym": "YESBANK.NS", "name": "YESBANK", "sector": "Bank"},
+    {"sym": "BEL.NS", "name": "BEL", "sector": "Defence"},
+    {"sym": "ATGL.NS", "name": "ATGL", "sector": "Gas"},
+    {"sym": "HAL.NS", "name": "HAL", "sector": "Defence"},
+    {"sym": "VOLTAS.NS", "name": "VOLTAS", "sector": "Consumer"},
+    {"sym": "ABB.NS", "name": "ABB", "sector": "Cap Goods"},
+    {"sym": "SBILIFE.NS", "name": "SBILIFE", "sector": "Insurance"},
+    {"sym": "KEI.NS", "name": "KEI", "sector": "Cap Goods"},
+    {"sym": "ASTRAL.NS", "name": "ASTRAL", "sector": "Cap Goods"},
+    {"sym": "KALYANKJIL.NS", "name": "KALYANKJIL", "sector": "Consumer"},
+    {"sym": "IOC.NS", "name": "IOC", "sector": "Oil & Gas"},
+    {"sym": "BHARTIARTL.NS", "name": "BHARTIARTL", "sector": "Telecom"},
+    {"sym": "ASHOKLEY.NS", "name": "ASHOKLEY", "sector": "Auto"},
+    {"sym": "SUNPHARMA.NS", "name": "SUNPHARMA", "sector": "Pharma"},
+    {"sym": "MOTHERSON.NS", "name": "MOTHERSON", "sector": "Auto"},
+    {"sym": "LODHA.NS", "name": "LODHA", "sector": "Realty"},
+    {"sym": "EXIDEIND.NS", "name": "EXIDEIND", "sector": "Auto"},
+    {"sym": "BIOCON.NS", "name": "BIOCON", "sector": "Pharma"},
+    {"sym": "HINDPETRO.NS", "name": "HINDPETRO", "sector": "Oil & Gas"},
+    {"sym": "DIVISLAB.NS", "name": "DIVISLAB", "sector": "Pharma"},
+    {"sym": "INDUSINDBK.NS", "name": "INDUSINDBK", "sector": "Bank"},
+    {"sym": "PRESTIGE.NS", "name": "PRESTIGE", "sector": "Realty"},
+    {"sym": "MRF.NS", "name": "MRF", "sector": "Auto"},
+    {"sym": "PAYTM.NS", "name": "PAYTM", "sector": "Finance"},
+    {"sym": "CIPLA.NS", "name": "CIPLA", "sector": "Pharma"},
+    {"sym": "MANKIND.NS", "name": "MANKIND", "sector": "Pharma"},
+    {"sym": "GODREJCP.NS", "name": "GODREJCP", "sector": "FMCG"},
+    {"sym": "JSWSTEEL.NS", "name": "JSWSTEEL", "sector": "Metal"},
+    {"sym": "GAIL.NS", "name": "GAIL", "sector": "Oil & Gas"},
+    {"sym": "RELIANCE.NS", "name": "RELIANCE", "sector": "Energy"},
+    {"sym": "CGPOWER.NS", "name": "CGPOWER", "sector": "Cap Goods"},
+    {"sym": "OIL.NS", "name": "OIL", "sector": "Oil & Gas"},
+    {"sym": "JSWENERGY.NS", "name": "JSWENERGY", "sector": "Power"},
+    {"sym": "JUBLFOOD.NS", "name": "JUBLFOOD", "sector": "Consumer"},
+    {"sym": "SIEMENS.NS", "name": "SIEMENS", "sector": "Cap Goods"},
+    {"sym": "TATACOMM.NS", "name": "TATACOMM", "sector": "Telecom"},
+    {"sym": "BSE.NS", "name": "BSE", "sector": "Cap Mkts"},
+    {"sym": "DMART.NS", "name": "DMART", "sector": "Retail"}
 ]
 
-NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "RELIANCE"}
+NEWS_SYMBOLS = {"VEDL", "TRENT", "ITC", "WIPRO", "TECHM", "DMART", "HDFCBANK", "RELIANCE", "PERSISTENT", "COLPAL", "APOLLOHOSP"}
 
 def build_fallback_candles(ltp, dh, dl, vwap, is_bull):
     """Guarantees candle data is never empty, preventing canvas crashes."""
@@ -106,10 +225,10 @@ def run_quant_engine():
         except Exception:
             pass
 
-    tickers = [u["sym"] for u in HEATMAP_UNIVERSE]
-    meta_map = {u["sym"]: u for u in HEATMAP_UNIVERSE}
+    tickers = [u["sym"] for u in NIFTY_200_UNIVERSE]
+    meta_map = {u["sym"]: u for u in NIFTY_200_UNIVERSE}
 
-    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live market data for Heatmap Universe...")
+    print(f"[{now_ist.strftime('%H:%M:%S')}] Downloading live data for full Nifty 200 universe...")
     data_daily = yf.download(tickers, period="5d", interval="1d", group_by="ticker", progress=False)
     data_5m = yf.download(tickers, period="2d", interval="5m", group_by="ticker", progress=False)
 
@@ -152,9 +271,11 @@ def run_quant_engine():
             day_high = round(float(today_5m["High"].max()), 2)
             day_low = round(float(today_5m["Low"].min()), 2)
 
+            # ORB Range
             orb_high = float(today_5m["High"].iloc[:min(3, len(today_5m))].max())
             orb_low = float(today_5m["Low"].iloc[:min(3, len(today_5m))].min())
 
+            # Real VWAP Calculation
             typ = (today_5m["High"] + today_5m["Low"] + today_5m["Close"]) / 3
             cum_vol = float(today_5m["Volume"].sum()) + 1e-6
             vwap = round(float((typ * today_5m["Volume"]).sum() / cum_vol), 2)
@@ -181,7 +302,7 @@ def run_quant_engine():
             r_bear_pdl      = (ltp <= pdl)
             bear_score = sum([r_bear_breakout, r_bear_vwap, r_bear_dl, r_bear_pdl])
 
-            # Signal Conviction Rating
+            # Signal Conviction Rating (-5 to +5)
             if pct_chg >= 0:
                 base_rating = 1
                 if ltp > vwap: base_rating += 1
@@ -208,7 +329,7 @@ def run_quant_engine():
             else:
                 candles_payload = build_fallback_candles(ltp, day_high, day_low, vwap, pct_chg >= 0)
 
-            # Institutional Support & Resistance Levels
+            # Institutional Support & Resistance Levels (Demand & Supply Order Blocks)
             down_c = today_5m[today_5m['Close'] < today_5m['Open']]
             up_c = today_5m[today_5m['Close'] > today_5m['Open']]
             ob_sup = round(float(down_c['Low'].min()), 2) if not down_c.empty else day_low
@@ -252,6 +373,7 @@ def run_quant_engine():
             ob_row["ob_4x4"] = "4/4 BULL" if bull_score == 4 else ("4/4 BEAR" if bear_score == 4 else f"{max(bull_score, bear_score)}/4")
             order_block_concepts.append(ob_row)
 
+            # Insert into Candidate Engines
             if bull_score >= 3:
                 r = dict(base_row)
                 r["listed_at"] = stored_timestamps.get(f"sonic_bullish_{clean_sym}", current_time_str)
@@ -272,7 +394,7 @@ def run_quant_engine():
         except Exception:
             continue
 
-    # Combine 3 Confluence Logic
+    # Combine 3 Confluence Matching
     confluence_map = {}
     for s in sonic_bullish + sonic_bearish:
         confluence_map.setdefault(s['symbol'], {'data': s, 'sonic': True, 'titan': False, 'obc': False})['sonic'] = True
@@ -293,21 +415,20 @@ def run_quant_engine():
             row['ob_rating'] = 5 if row['pct_chg'] > 0 else -5
         combine_3_list.append(row)
 
-    # Sort Lists by Relevance
     combine_3_list.sort(key=lambda x: (x['combine_val'], abs(x.get('ob_rating', 0))), reverse=True)
     order_block_concepts.sort(key=lambda x: abs(x['pct_chg']), reverse=True)
     sonic_bullish.sort(key=lambda x: float(str(x.get("hyperflow", "1x")).replace("x", "")), reverse=True)
     titan_bullish.sort(key=lambda x: float(str(x.get("hyperflow", "1x")).replace("x", "")), reverse=True)
 
     sec_avgs = {k: np.mean(v) for k, v in sector_deltas.items()}
-    strongest_sec = max(sec_avgs, key=sec_avgs.get) if sec_avgs else "FMCG"
-    weakest_sec = min(sec_avgs, key=sec_avgs.get) if sec_avgs else "Retail"
+    strongest_sec = max(sec_avgs, key=sec_avgs.get) if sec_avgs else "IT"
+    weakest_sec = min(sec_avgs, key=sec_avgs.get) if sec_avgs else "Metal"
 
     output = {
         "sync_time": now_ist.strftime("%d %b %Y, %H:%M IST"),
         "market_summary": {
             "nifty_spot": 22776.10, "nifty_pct": -0.55, "india_vix": 13.61, "vix_pct": 0.52,
-            "advances": advances or 92, "declines": declines or 42,
+            "advances": advances, "declines": declines,
             "strongest_sector": strongest_sec, "weakest_sector": weakest_sec,
             "nifty_pcr": 0.88, "max_pain": 22800
         },
@@ -322,7 +443,7 @@ def run_quant_engine():
     with open("screener.json", "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"[{output['sync_time']}] Heatmap analysis complete. JSON populated.")
+    print(f"[{output['sync_time']}] Engine complete. Scanned Full Nifty 200 Universe.")
 
 if __name__ == "__main__":
     run_quant_engine()
