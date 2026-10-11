@@ -272,8 +272,8 @@
 
     function switchTab(tab) {
       ['matrix', 'obc', 'spurts', 'combine'].forEach(t => {
-        document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
-        document.getElementById(`btn-tab-${t}`).className = t === tab 
+        document.getElementById('view-' + t).classList.toggle('hidden', t !== tab);
+        document.getElementById('btn-tab-' + t).className = t === tab 
           ? "px-4 py-1.5 rounded font-bold text-xs bg-cyan-600 text-white" 
           : "px-4 py-1.5 rounded font-bold text-xs text-slate-400 hover:text-white border border-transparent hover:border-blue-800";
       });
@@ -308,4 +308,234 @@
       const minVal = low - range * 0.05, maxVal = high + range * 0.05, totalRange = maxVal - minVal;
       const getY = (val) => h - 30 - ((val - minVal) / totalRange) * (h - 50);
 
-      ctx.strokeStyle = '#00e676'; ctx.setLineDash([
+      ctx.strokeStyle = '#00e676'; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(20, getY(high)); ctx.lineTo(w - 20, getY(high)); ctx.stroke();
+      ctx.fillStyle = '#00e676'; ctx.font = '9px monospace';
+      ctx.fillText("High: ₹" + high, w - 90, getY(high) - 3);
+
+      ctx.strokeStyle = '#ef4444';
+      ctx.beginPath(); ctx.moveTo(20, getY(low)); ctx.lineTo(w - 20, getY(low)); ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText("Low: ₹" + low, w - 90, getY(low) + 10);
+      ctx.setLineDash([]);
+
+      const num = candles.length;
+      const cW = Math.max(3, (w - 40) / num - 2);
+      const maxVol = Math.max(...candles.map(c => c.v), 1);
+
+      for (let i = 0; i < num; i++) {
+        const cd = candles[i];
+        const x = 20 + i * (cW + 2);
+        const bull = cd.c >= cd.o;
+        const color = bull ? '#00e5ff' : '#f43f5e';
+
+        ctx.strokeStyle = color; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(x + cW / 2, getY(cd.h)); ctx.lineTo(x + cW / 2, getY(cd.l)); ctx.stroke();
+        ctx.fillStyle = color;
+        ctx.fillRect(x, Math.min(getY(cd.o), getY(cd.c)), cW, Math.max(2, Math.abs(getY(cd.c) - getY(cd.o))));
+
+        const volH = (cd.v / maxVol) * 25;
+        ctx.fillStyle = bull ? 'rgba(0, 229, 255, 0.35)' : 'rgba(244, 63, 94, 0.35)';
+        ctx.fillRect(x, h - volH, cW, volH);
+      }
+    }
+
+    function showQuickChart(sym, event) {
+      if (activeQuickSymbol === sym) return;
+      activeQuickSymbol = sym;
+
+      const modal = document.getElementById('chart-hover-modal');
+      const stock = screenerDataMap[sym] || {};
+
+      document.getElementById('quick-chart-sym').textContent = sym + " // LIVE TAPE";
+      document.getElementById('qp-ltp').textContent = "₹" + (stock.ltp || 0).toFixed(2);
+      
+      const qpChg = document.getElementById('qp-chg');
+      qpChg.textContent = (stock.pct_chg >= 0 ? '+' : '') + stock.pct_chg + "%";
+      qpChg.className = stock.pct_chg >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold';
+
+      document.getElementById('qp-high').textContent = "₹" + (stock.day_high || 0);
+      document.getElementById('qp-low').textContent = "₹" + (stock.day_low || 0);
+
+      const isBull = (stock.pct_chg || 0) >= 0;
+      const tag = document.getElementById('qp-setup-tag');
+      tag.textContent = isBull ? "BULLISH SETUP" : "BEARISH SETUP";
+      tag.className = isBull ? "text-[10px] px-1.5 py-0.5 rounded font-black bg-emerald-950 text-emerald-400 border border-emerald-800" : "text-[10px] px-1.5 py-0.5 rounded font-black bg-rose-950 text-rose-400 border border-rose-800";
+
+      const rBull = stock.rules_bull || { Breakout: "NO", Volume: "NO", PDH: "NO", Range: "NO" };
+      const rBear = stock.rules_bear || { Breakout: "NO", VWAP: "NO", DL: "NO", PDL: "NO" };
+
+      document.getElementById('qp-bull-score').textContent = stock.bull_score || (isBull ? "3/4" : "1/4");
+      document.getElementById('qp-bear-score').textContent = stock.bear_score || (!isBull ? "3/4" : "0/4");
+
+      const body = document.getElementById('qp-matrix-body');
+      body.innerHTML = `
+        <tr><td>Breakout</td><td class="${rBull.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Breakout}</td><td>Breakout</td><td class="${rBear.Breakout === 'YES' ? 'status-yes' : 'status-no'}">${rBear.Breakout}</td></tr>
+        <tr><td>Volume</td><td class="${rBull.Volume === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Volume}</td><td>VWAP</td><td class="${rBear.VWAP === 'YES' ? 'status-yes' : 'status-no'}">${rBear.VWAP}</td></tr>
+        <tr><td>PDH</td><td class="${rBull.PDH === 'YES' ? 'status-yes' : 'status-no'}">${rBull.PDH}</td><td>DL</td><td class="${rBear.DL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.DL}</td></tr>
+        <tr><td>Range</td><td class="${rBull.Range === 'YES' ? 'status-yes' : 'status-no'}">${rBull.Range}</td><td>PDL</td><td class="${rBear.PDL === 'YES' ? 'status-yes' : 'status-no'}">${rBear.PDL}</td></tr>
+      `;
+
+      let x = event.clientX + 10;
+      let y = event.clientY - 100;
+      if (x + 680 > window.innerWidth) x = window.innerWidth - 700;
+      if (x < 10) x = 10;
+      if (y < 10) y = 10;
+
+      modal.style.left = x + 'px'; modal.style.top = y + 'px';
+      modal.style.display = 'block';
+
+      requestAnimationFrame(() => drawQuickCandles(stock));
+    }
+
+    function hideQuickChart() {
+      document.getElementById('chart-hover-modal').style.display = 'none';
+      activeQuickSymbol = null;
+    }
+
+    function populateUI(d) {
+      screenerDataMap = {};
+      let allDataArray = [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || []), ...(d.order_block_concepts || []), ...(d.combine_3 || [])];
+      
+      allDataArray.forEach(s => {
+        screenerDataMap[s.symbol] = s;
+      });
+
+      document.getElementById('sync-time-stamp').textContent = "Last sync: " + (d.sync_time || "--");
+      
+      const ms = d.market_summary || {};
+      document.getElementById('hdr-n50').textContent = ms.nifty_spot ? ms.nifty_spot.toLocaleString() : "22,776.1";
+      document.getElementById('card-adv').textContent = ms.advances !== undefined ? ms.advances : "--";
+      document.getElementById('card-dec').textContent = ms.declines !== undefined ? ms.declines : "--";
+      document.getElementById('card-top-sec').textContent = ms.strongest_sector || "--";
+      document.getElementById('card-weak-sec').textContent = ms.weakest_sector || "--";
+
+      const renderRow = (s) => {
+        const newsBadge = s.has_news ? `<span class="news-badge" title="Breaking news">N</span>` : '';
+        const isUp = (s.pct_chg || 0) >= 0;
+        return `
+          <tr class="hover:bg-blue-900/30 transition-colors">
+            <td class="py-2.5 px-3 text-center text-slate-500 font-bold cursor-pointer hover:text-white">+</td>
+            <td class="py-2.5 px-3 font-bold text-white flex items-center">
+              <span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol}</span>${newsBadge}
+            </td>
+            <td class="py-2.5 px-3"><span class="sector-pill"><span class="sector-name">${s.sector}</span><span class="sector-val ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</span></span></td>
+            <td class="py-2.5 px-3 text-center font-bold text-slate-200">${s.listed_at}</td>
+            <td class="py-2.5 px-3 text-right font-black ${isUp ? 'tag-cyan' : 'tag-red'} text-xs">${s.pct_display || Math.abs(s.pct_chg).toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-bold text-slate-200">${s.hyperflow}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-slate-300">${s.max_hyperflow}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-slate-400">${s.min_hyperflow}</td>
+          </tr>
+        `;
+      };
+
+      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks are currently qualifying under this engine's active rules.</td></tr>`;
+      const fillTable = (id, list) => { document.getElementById(id).innerHTML = (list && list.length) ? list.map(renderRow).join('') : emptyNotice; };
+
+      fillTable('tbl-sonic-bullish', d.sonic_bullish);
+      fillTable('tbl-sonic-bearish', d.sonic_bearish);
+      fillTable('tbl-titan-bullish', d.titan_bullish);
+      fillTable('tbl-titan-bearish', d.titan_bearish);
+
+      const renderObcRow = (s, idx) => {
+        const isUp = (s.pct_chg || 0) >= 0;
+        const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
+        const rSign = (s.ob_rating || 0) > 0 ? '+' : '';
+        const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
+
+        return `
+          <tr class="hover:bg-blue-900/30 transition-colors">
+            <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
+            <td class="py-2.5 px-3 font-bold text-white"><span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span></td>
+            <td class="py-2.5 px-3 text-center font-bold text-slate-400">${s.listed_at}</td>
+            <td class="py-2.5 px-3 text-right font-bold ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</td>
+            <td class="py-2.5 px-3 text-center"><span class="${s.ob_color || 'tag-cyan'} font-black uppercase text-[10px] px-2 py-0.5 rounded border border-current bg-opacity-10">${s.ob_signal}</span></td>
+            <td class="py-2.5 px-3 text-center font-bold ${rColor} text-sm">${rSign}${s.ob_rating}★</td>
+            <td class="py-2.5 px-3 text-center text-slate-300 font-mono text-[10px] whitespace-nowrap">${s.ob_sup_res}</td>
+            <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4}</span></td>
+          </tr>
+        `;
+      };
+      
+      const obcEl = document.getElementById('tbl-order-blocks');
+      if (obcEl) {
+          obcEl.innerHTML = (d.order_block_concepts && d.order_block_concepts.length) ? d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('') : emptyNotice;
+      }
+
+      // VOLUME SPURTS RENDERING
+      const renderSpurtRow = (s, idx) => {
+        const isUp = (s.pct_chg || 0) >= 0;
+        const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
+        
+        return `
+          <tr class="hover:bg-amber-900/20 transition-colors">
+            <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
+            <td class="py-2.5 px-3 font-bold text-white"><span class="cursor-pointer hover:text-amber-400 hover:underline border-b border-dotted border-amber-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span></td>
+            <td class="py-2.5 px-3 text-slate-400">${s.sector}</td>
+            <td class="py-2.5 px-3 text-right font-bold ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</td>
+            <td class="py-2.5 px-3 text-right font-black text-amber-400">${s.vol_spurt || '1.0x'}</td>
+            <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4 || '--'}</span></td>
+          </tr>
+        `;
+      };
+
+      const spurtEl = document.getElementById('tbl-volume-spurts');
+      if (spurtEl) {
+        let allSpurts = [...(d.sonic_bullish || []), ...(d.sonic_bearish || []), ...(d.titan_bullish || []), ...(d.titan_bearish || []), ...(d.order_block_concepts || [])];
+        let uniqueSpurtsMap = new Map();
+        
+        allSpurts.forEach(item => { uniqueSpurtsMap.set(item.symbol, item); });
+        let uniqueSpurts = Array.from(uniqueSpurtsMap.values());
+        
+        uniqueSpurts = uniqueSpurts.filter(s => parseFloat(String(s.vol_spurt || "1").replace('x', '')) >= 1.2);
+        uniqueSpurts.sort((a, b) => parseFloat(String(b.vol_spurt || "1").replace('x', '')) - parseFloat(String(a.vol_spurt || "1").replace('x', '')));
+
+        spurtEl.innerHTML = uniqueSpurts.length ? uniqueSpurts.map((s, i) => renderSpurtRow(s, i)).join('') : emptyNotice;
+      }
+
+      const renderCombineRow = (s, idx) => {
+        const isUp = (s.pct_chg || 0) >= 0;
+        const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
+        const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
+        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white shadow shadow-emerald-900' : 'bg-slate-800 text-slate-300';
+        
+        return `
+          <tr class="hover:bg-blue-900/30 transition-colors">
+            <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
+            <td class="py-2.5 px-3 font-bold text-white"><span class="cursor-pointer hover:text-cyan-400 hover:underline border-b border-dotted border-cyan-500/50" onmouseenter="showQuickChart('${s.symbol}', event)" onclick="showQuickChart('${s.symbol}', event)">${s.symbol} ↗</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="px-2 py-1 rounded font-black text-[10px] ${matchBadge}">${s.combine_score}</span></td>
+            <td class="py-2.5 px-3 text-center font-bold ${rColor} text-base">${s.ob_rating > 0 ? '+' : ''}${s.ob_rating}★</td>
+            <td class="py-2.5 px-3 text-right font-bold ${isUp ? 'tag-green' : 'tag-red'}">${isUp ? '+' : ''}${s.pct_chg}%</td>
+            <td class="py-2.5 px-3 text-center"><span class="${s.ob_color || 'tag-cyan'} font-black uppercase text-[9px] px-2 py-0.5 rounded border border-current bg-opacity-10">${s.ob_signal}</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded border text-[9px] font-bold ${matrixBadge}">${s.ob_4x4}</span></td>
+          </tr>
+        `;
+      };
+      
+      const c3El = document.getElementById('tbl-combine-3');
+      if (c3El) {
+          c3El.innerHTML = (d.combine_3 && d.combine_3.length) ? d.combine_3.map((s, i) => renderCombineRow(s, i)).join('') : emptyNotice;
+      }
+    }
+
+    function fetchScreenerData() {
+      fetch('screener.json?nocache=' + Date.now())
+        .then(res => res.json())
+        .then(data => populateUI(data))
+        .catch(err => console.error("Error loading market data", err));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchScreenerData();
+      setInterval(fetchScreenerData, 30000);
+    });
+
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('chart-hover-modal');
+      if (modal.style.display === 'block' && !modal.contains(e.target) && !e.target.closest('tr')) {
+        hideQuickChart();
+      }
+    });
+  </script>
+</body>
+</html>
