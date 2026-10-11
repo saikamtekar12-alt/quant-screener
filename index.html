@@ -28,7 +28,6 @@
       background-color: #4c0519; color: #f87171; border: 1px solid #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
     }
 
-    /* Fully responsive modal to prevent half-chart clipping */
     #chart-hover-modal {
       display: none; position: fixed; z-index: 9999;
       width: min(95vw, 680px);
@@ -84,15 +83,15 @@
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">BREADTH</div>
           <div class="grid grid-cols-2 gap-2 pt-1">
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Advances</div><div class="text-xl font-bold tag-green" id="card-adv">92</div></div>
-            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Declines</div><div class="text-xl font-bold tag-red" id="card-dec">42</div></div>
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Advances</div><div class="text-xl font-bold tag-green" id="card-adv">--</div></div>
+            <div class="bg-[#030917] p-2 rounded border border-blue-950 text-center"><div class="text-[10px] text-slate-400">Declines</div><div class="text-xl font-bold tag-red" id="card-dec">--</div></div>
           </div>
         </div>
         <div class="card-navy p-3.5 rounded space-y-2">
           <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">SECTORS</div>
           <div class="space-y-1.5 pt-1">
-            <div class="flex justify-between items-center"><span class="text-slate-400">Strongest:</span><span class="font-bold text-cyan-300" id="card-top-sec">Retail</span></div>
-            <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">IT</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-400">Strongest:</span><span class="font-bold text-cyan-300" id="card-top-sec">--</span></div>
+            <div class="flex justify-between items-center"><span class="text-slate-400">Weakest:</span><span class="font-bold text-rose-300" id="card-weak-sec">--</span></div>
           </div>
         </div>
         <div class="card-navy p-3.5 rounded space-y-2">
@@ -207,7 +206,7 @@
     </main>
   </div>
 
-  <!-- RESPONSIVE QUICK-PEEK MODAL (No Chart Clipping) -->
+  <!-- RESPONSIVE QUICK-PEEK MODAL -->
   <div id="chart-hover-modal">
     <div class="p-2.5 bg-[#091b3d] flex justify-between items-center border-b border-blue-900">
       <div class="flex items-center space-x-3">
@@ -227,12 +226,10 @@
       <b id="qp-setup-tag" class="text-[10px] px-1.5 py-0.5 rounded font-black">--</b>
     </div>
 
-    <!-- Canvas Container -->
     <div class="relative w-full h-[240px] bg-[#030b1e] p-2" id="canvas-wrapper">
       <canvas id="quick-candle-canvas" class="w-full h-full block"></canvas>
     </div>
 
-    <!-- Responsive On-Chart Rule Status (Placed Below Canvas so it Never Covers the Candles) -->
     <div class="p-2 bg-[#050f24] border-t border-blue-950">
       <table class="rule-table-grid">
         <thead>
@@ -275,7 +272,6 @@
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, w, h);
 
-      // Gridlines
       ctx.strokeStyle = '#0e2248'; ctx.lineWidth = 1;
       for (let y = 20; y < h; y += 35) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
@@ -290,7 +286,6 @@
       const minVal = low - range * 0.05, maxVal = high + range * 0.05, totalRange = maxVal - minVal;
       const getY = (val) => h - 30 - ((val - minVal) / totalRange) * (h - 50);
 
-      // High / Low Level Markers
       ctx.strokeStyle = '#00e676'; ctx.setLineDash([3, 3]);
       ctx.beginPath(); ctx.moveTo(20, getY(high)); ctx.lineTo(w - 20, getY(high)); ctx.stroke();
       ctx.fillStyle = '#00e676'; ctx.font = '9px monospace';
@@ -302,7 +297,6 @@
       ctx.fillText(`Low: ₹${low}`, w - 90, getY(low) + 10);
       ctx.setLineDash([]);
 
-      // Candlesticks
       const num = candles.length;
       const cW = Math.max(3, (w - 40) / num - 2);
       const maxVol = Math.max(...candles.map(c => c.v), 1);
@@ -386,10 +380,10 @@
       document.getElementById('sync-time-stamp').textContent = `Last sync: ${d.sync_time}`;
       const ms = d.market_summary || {};
       document.getElementById('hdr-n50').textContent = ms.nifty_spot?.toLocaleString() || "22,776.1";
-      document.getElementById('card-adv').textContent = ms.advances || 92;
-      document.getElementById('card-dec').textContent = ms.declines || 42;
-      document.getElementById('card-top-sec').textContent = ms.strongest_sector || "Retail";
-      document.getElementById('card-weak-sec').textContent = ms.weakest_sector || "IT";
+      document.getElementById('card-adv').textContent = ms.advances || "--";
+      document.getElementById('card-dec').textContent = ms.declines || "--";
+      document.getElementById('card-top-sec').textContent = ms.strongest_sector || "--";
+      document.getElementById('card-weak-sec').textContent = ms.weakest_sector || "--";
 
       const renderRow = (s) => {
         const newsBadge = s.has_news ? `<span class="news-badge" title="Breaking news">N</span>` : '';
@@ -410,7 +404,7 @@
         `;
       };
 
-      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks currently qualify under this engine's active rules.</td></tr>`;
+      const emptyNotice = `<tr><td colspan="8" class="py-4 text-center text-slate-500 font-medium">No stocks are currently qualifying under this engine's active rules.</td></tr>`;
       const fillTable = (id, list) => { document.getElementById(id).innerHTML = (list && list.length) ? list.map(renderRow).join('') : emptyNotice; };
 
       fillTable('tbl-sonic-bullish', d.sonic_bullish);
@@ -418,7 +412,6 @@
       fillTable('tbl-titan-bullish', d.titan_bullish);
       fillTable('tbl-titan-bearish', d.titan_bearish);
 
-      // Order Block Concept Table
       const renderObcRow = (s, idx) => {
         const isUp = (s.pct_chg || 0) >= 0;
         const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
@@ -441,13 +434,12 @@
       const obcEl = document.getElementById('tbl-order-blocks');
       if (obcEl) obcEl.innerHTML = (d.order_block_concepts && d.order_block_concepts.length) ? d.order_block_concepts.map((s, i) => renderObcRow(s, i)).join('') : emptyNotice;
 
-      // Combine 3 Confluence Table
       const renderCombineRow = (s, idx) => {
         const isUp = (s.pct_chg || 0) >= 0;
         const rColor = (s.ob_rating || 0) > 0 ? 'text-emerald-400' : 'text-rose-400';
         const matrixBadge = (s.ob_4x4 || "").includes('BULL') ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : ((s.ob_4x4 || "").includes('BEAR') ? 'bg-rose-950 text-rose-400 border-rose-800' : 'bg-transparent text-slate-500 border-slate-700');
-        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-300';
-
+        const matchBadge = s.combine_val === 3 ? 'bg-emerald-600 text-white shadow shadow-emerald-900' : 'bg-slate-800 text-slate-300';
+        
         return `
           <tr class="hover:bg-blue-900/30 transition-colors">
             <td class="py-2.5 px-3 text-center text-slate-500 font-bold">${idx + 1}</td>
