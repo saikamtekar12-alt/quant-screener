@@ -1,5 +1,5 @@
 {
-  "sync_time": "20 Oct 2026, 10:26 IST",
+  "sync_time": "20 Oct 2026, 10:49 IST",
   "market_summary": {
     "nifty_spot": 22776.1,
     "nifty_pct": -0.55,
@@ -29831,7 +29831,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 2,
@@ -30093,7 +30093,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 1,
@@ -30355,7 +30355,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 2,
@@ -30617,7 +30617,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -2,
@@ -30879,7 +30879,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 2,
@@ -31141,7 +31141,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -4,
@@ -31403,7 +31403,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -3,
@@ -31665,7 +31665,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -5,
@@ -31927,7 +31927,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -5,
@@ -32189,7 +32189,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -3,
@@ -32451,7 +32451,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -3,
@@ -32713,7 +32713,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 3,
@@ -32975,7 +32975,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -3,
@@ -33237,7 +33237,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 3,
@@ -33499,7 +33499,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -3,
@@ -33761,7 +33761,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 3,
@@ -34023,7 +34023,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -34285,7 +34285,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -34547,7 +34547,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -34809,7 +34809,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -35071,7 +35071,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -35333,7 +35333,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -35595,7 +35595,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 3,
@@ -35857,7 +35857,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -36119,7 +36119,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -36381,7 +36381,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -36643,7 +36643,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -36905,7 +36905,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -37167,7 +37167,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -37429,7 +37429,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -37691,7 +37691,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -37953,7 +37953,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -38215,7 +38215,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -38477,7 +38477,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -38739,7 +38739,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -39001,7 +39001,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -39263,7 +39263,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -39525,7 +39525,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -39787,7 +39787,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -40049,7 +40049,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -40311,7 +40311,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -40573,7 +40573,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -40835,7 +40835,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -41097,7 +41097,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 5,
@@ -41359,7 +41359,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -41621,7 +41621,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -41883,7 +41883,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -42145,7 +42145,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -42407,7 +42407,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -42669,7 +42669,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -42931,7 +42931,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 2,
@@ -43193,7 +43193,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -43455,7 +43455,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -43717,7 +43717,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -43979,7 +43979,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -44241,7 +44241,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -44503,7 +44503,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -44765,7 +44765,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -45027,7 +45027,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -45289,7 +45289,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -45551,7 +45551,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -45813,7 +45813,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -46075,7 +46075,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -46337,7 +46337,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -46599,7 +46599,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -46861,7 +46861,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -47123,7 +47123,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -47385,7 +47385,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -47647,7 +47647,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -47909,7 +47909,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -48171,7 +48171,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -48433,7 +48433,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -48695,7 +48695,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -48957,7 +48957,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -49219,7 +49219,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -49481,7 +49481,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -49743,7 +49743,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -50005,7 +50005,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -50267,7 +50267,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -50529,7 +50529,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -50791,7 +50791,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -51053,7 +51053,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -51315,7 +51315,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -51577,7 +51577,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 4,
@@ -51839,7 +51839,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 3,
@@ -52101,7 +52101,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -52363,7 +52363,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -52625,7 +52625,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -2,
@@ -52887,7 +52887,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -53149,7 +53149,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -53411,7 +53411,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -53673,7 +53673,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -53935,7 +53935,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -54197,7 +54197,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -54459,7 +54459,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -54721,7 +54721,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -54983,7 +54983,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -55245,7 +55245,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -55507,7 +55507,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -55769,7 +55769,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -56031,7 +56031,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -1,
@@ -56293,7 +56293,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -56555,7 +56555,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -56817,7 +56817,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -57079,7 +57079,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -57341,7 +57341,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -57603,7 +57603,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -57865,7 +57865,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -58127,7 +58127,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -58389,7 +58389,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -58651,7 +58651,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -58913,7 +58913,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -59175,7 +59175,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -59437,7 +59437,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -59699,7 +59699,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 2,
@@ -59961,7 +59961,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -60223,7 +60223,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -60485,7 +60485,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -5,
@@ -60747,7 +60747,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -61009,7 +61009,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -61271,7 +61271,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -61533,7 +61533,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -61795,7 +61795,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -62057,7 +62057,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -62319,7 +62319,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -2,
@@ -62581,7 +62581,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -62843,7 +62843,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -63105,7 +63105,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 3,
@@ -63367,7 +63367,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -63629,7 +63629,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 4,
@@ -63891,7 +63891,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -64153,7 +64153,7 @@
         "DL": "YES",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -4,
@@ -64415,7 +64415,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -64677,7 +64677,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -64939,7 +64939,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -65201,7 +65201,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -65463,7 +65463,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -65725,7 +65725,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 3,
@@ -65987,7 +65987,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -66249,7 +66249,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 3,
@@ -66511,7 +66511,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -66773,7 +66773,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -67035,7 +67035,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -67297,7 +67297,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -67559,7 +67559,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -67821,7 +67821,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -68083,7 +68083,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -68345,7 +68345,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -68607,7 +68607,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -68869,7 +68869,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -69131,7 +69131,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -69393,7 +69393,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -69655,7 +69655,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -69917,7 +69917,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -4,
@@ -70179,7 +70179,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -70441,7 +70441,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -70703,7 +70703,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -70965,7 +70965,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 4,
@@ -71227,7 +71227,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -71489,7 +71489,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -71751,7 +71751,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -72013,7 +72013,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -72275,7 +72275,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -72537,7 +72537,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -72799,7 +72799,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -73061,7 +73061,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -73323,7 +73323,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -73585,7 +73585,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -73847,7 +73847,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -74109,7 +74109,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -74371,7 +74371,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -74633,7 +74633,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -74895,7 +74895,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -75157,7 +75157,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -75419,7 +75419,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -75681,7 +75681,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -75943,7 +75943,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -76205,7 +76205,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -76467,7 +76467,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -76729,7 +76729,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -76991,7 +76991,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -77253,7 +77253,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -77515,7 +77515,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -77777,7 +77777,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -78039,7 +78039,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 2,
@@ -104503,7 +104503,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -104767,7 +104767,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -105031,7 +105031,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -105295,7 +105295,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -105559,7 +105559,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -105823,7 +105823,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -106087,7 +106087,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -106351,7 +106351,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -106615,7 +106615,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -106879,7 +106879,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -107143,7 +107143,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -107407,7 +107407,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -107671,7 +107671,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -107935,7 +107935,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -108199,7 +108199,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -108463,7 +108463,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -108727,7 +108727,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -108991,7 +108991,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -109255,7 +109255,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -109519,7 +109519,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -109783,7 +109783,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -110047,7 +110047,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -110311,7 +110311,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -110575,7 +110575,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -110839,7 +110839,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -3,
@@ -111103,7 +111103,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 3,
@@ -111367,7 +111367,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -3,
@@ -111631,7 +111631,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -3,
@@ -111895,7 +111895,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -112159,7 +112159,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -112423,7 +112423,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -112687,7 +112687,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -112951,7 +112951,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -113215,7 +113215,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -113479,7 +113479,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": -2,
@@ -113743,7 +113743,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -114007,7 +114007,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -114271,7 +114271,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -114535,7 +114535,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -114799,7 +114799,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -115063,7 +115063,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -115327,7 +115327,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -115591,7 +115591,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -115855,7 +115855,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -116119,7 +116119,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -2,
@@ -116383,7 +116383,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -116647,7 +116647,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -116911,7 +116911,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 2,
@@ -117175,7 +117175,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -117439,7 +117439,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -117703,7 +117703,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 2,
@@ -117967,7 +117967,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 2,
@@ -118231,7 +118231,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": -2,
@@ -118495,7 +118495,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -118759,7 +118759,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -119023,7 +119023,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -119287,7 +119287,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -119551,7 +119551,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 2,
@@ -119815,7 +119815,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -120079,7 +120079,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -120343,7 +120343,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -120607,7 +120607,7 @@
         "DL": "YES",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -120871,7 +120871,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -121135,7 +121135,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -121399,7 +121399,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Imbalance (AMT)",
       "ob_color": "tag-amber",
       "ob_rating": 2,
@@ -121663,7 +121663,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -2,
@@ -121927,7 +121927,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -2,
@@ -122191,7 +122191,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 2,
@@ -122455,7 +122455,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -122719,7 +122719,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -122983,7 +122983,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -123247,7 +123247,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -123511,7 +123511,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -123775,7 +123775,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -124039,7 +124039,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Negative Gamma",
       "ob_color": "tag-purple",
       "ob_rating": 1,
@@ -124303,7 +124303,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -124567,7 +124567,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -124831,7 +124831,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -125095,7 +125095,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-green",
       "ob_rating": -1,
@@ -125359,7 +125359,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -125623,7 +125623,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Absorption",
       "ob_color": "tag-red",
       "ob_rating": 1,
@@ -125887,7 +125887,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -126151,7 +126151,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
@@ -126415,7 +126415,7 @@
         "DL": "NO",
         "PDL": "NO"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": 1,
@@ -126679,7 +126679,7 @@
         "DL": "NO",
         "PDL": "YES"
       },
-      "listed_at": "10:26",
+      "listed_at": "10:49",
       "ob_signal": "Volume Profile (HVN)",
       "ob_color": "tag-cyan",
       "ob_rating": -1,
